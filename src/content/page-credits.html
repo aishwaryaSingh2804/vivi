@@ -1,0 +1,88 @@
+<div id="page-credits" class="page">
+<section class="std">
+  <a href="#page-resources" style="font-size:12px;color:var(--muted);text-decoration:none;margin-bottom:24px;display:inline-flex;align-items:center;gap:6px">&#8592; Resources</a>
+  <div class="section-overline">Credit Calculator</div>
+  <h1 style="font-family:var(--ff-display);font-size:clamp(36px,5vw,52px);font-weight:700;color:var(--text);margin-bottom:10px;line-height:1.1">How much will<br>my video cost?</h1>
+  <p style="font-size:15px;color:var(--muted);max-width:520px;margin-bottom:0">Select your preferences and see the estimated cost. 1 credit = $0.01.</p>
+
+  <div class="scr-box">
+    <div class="scr-grid">
+      <div class="scr-field">
+        <label>Model</label>
+        <select class="scr-sel" id="scr-model">
+          <option value="Basic">Basic</option>
+          <option value="Pro" selected>Pro</option>
+          <option value="Max">Max</option>
+        </select>
+      </div>
+      <div class="scr-field">
+        <label>Quality</label>
+        <select class="scr-sel" id="scr-quality">
+          <option value="Standard" selected>Standard (720p)</option>
+          <option value="HD">HD (1080p)</option>
+        </select>
+      </div>
+      <div class="scr-field">
+        <label>Duration</label>
+        <select class="scr-sel" id="scr-mins">
+          <option value="1" selected>1 minute</option>
+          <option value="2">2 minutes</option>
+          <option value="3">3 minutes</option>
+          <option value="4">4 minutes</option>
+          <option value="5">5 minutes</option>
+          <option value="6">6 minutes</option>
+          <option value="7">7 minutes</option>
+          <option value="8">8 minutes</option>
+          <option value="10">10 minutes</option>
+        </select>
+      </div>
+      <div class="scr-field">
+        <label>Background music</label>
+        <select class="scr-sel" id="scr-music">
+          <option value="yes" selected>With music</option>
+          <option value="no">Without music</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="scr-result">
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Estimated cost</div>
+        <div class="scr-cost-big" id="scr-usd">$17.26</div>
+        <div class="scr-cost-inr" id="scr-inr">&#8776; &#8377;1,450</div>
+        <div class="scr-cost-lbl" id="scr-lbl">1-minute Pro video, Standard, with music</div>
+      </div>
+      <div class="scr-credits">
+        <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Credits used</div>
+        <div class="scr-cr-num" id="scr-cr">1,726 credits</div>
+        <div class="scr-cr-lbl">from your monthly plan</div>
+      </div>
+    </div>
+    <div class="scr-note">
+      &#8505;&#65038; Prices are estimates based on current model rates. 25% platform markup included.
+      Rates may change. <a href="#page-pricing" style="color:var(--accent)" data-route="pricing">See plans &#8594;</a>
+    </div>
+  </div>
+
+  <div style="margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <div style="background:#FFF;border:1px solid #E0DED8;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.04)">
+      <div style="font-size:11px;font-weight:700;color:#2E7D32;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">Basic</div>
+      <div style="font-family:var(--ff-display);font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px">Good enough</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6">Solid quality for drafts and regular social content. Lower credit cost per video.</p>
+    </div>
+    <div style="background:#FFF;border:2px solid var(--accent);border-radius:12px;padding:24px;box-shadow:0 4px 16px rgba(200,131,26,.10)">
+      <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">Pro &#10022; Popular</div>
+      <div style="font-family:var(--ff-display);font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px">Best balance</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6">Better motion, more consistent characters. The default choice for most creators.</p>
+    </div>
+    <div style="background:#FFF;border:1px solid #E0DED8;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.04)">
+      <div style="font-size:11px;font-weight:700;color:#1565C0;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">Max</div>
+      <div style="font-family:var(--ff-display);font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px">Cinematic</div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6">Premium output for hero content. Best visuals, highest credit cost per video.</p>
+    </div>
+  </div>
+</section>
+<footer style="border-top:1px solid var(--rule);padding:40px;max-width:1200px;margin:0 auto">
+  <div class="footer-bottom"><span class="footer-copy">&#169; 2025 Vivi AI &middot; Made in India</span><div style="display:flex;gap:16px"><a href="#page-pricing" style="font-size:12px;color:var(--muted);text-decoration:none">Pricing</a><a href="#page-faq" style="font-size:12px;color:var(--muted);text-decoration:none">FAQ</a></div></div>
+</footer>
+</div>
