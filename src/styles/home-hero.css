@@ -1,0 +1,496 @@
+/* =========================================
+   VIVI HERO
+========================================= */
+
+.vivi-hero {
+  position: relative;
+  min-height: calc(100vh - 72px);
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f7f6f3;
+  border-bottom: 1px solid #e8e6e0;
+
+  isolation: isolate;
+}
+
+/* -----------------------------------------
+   Animated grid
+----------------------------------------- */
+
+.vivi-hero-grid {
+  position: absolute;
+  inset: -80px;
+
+  z-index: -3;
+
+  background-image:
+    linear-gradient(
+      rgba(40, 70, 110, 0.055) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(40, 70, 110, 0.055) 1px,
+      transparent 1px
+    );
+
+  background-size: 56px 56px;
+
+  transform: perspective(900px) rotateX(1deg);
+
+  animation: vivi-grid-drift 28s linear infinite;
+}
+
+@keyframes vivi-grid-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: 56px 56px, 56px 56px;
+  }
+}
+
+/* -----------------------------------------
+   Very subtle light movement
+----------------------------------------- */
+
+.vivi-hero-glow {
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  border-radius: 50%;
+
+  filter: blur(80px);
+
+  opacity: 0.12;
+
+  pointer-events: none;
+
+  z-index: -2;
+
+  animation: vivi-glow-float 14s ease-in-out infinite;
+}
+
+.vivi-hero-glow-one {
+  top: -260px;
+  left: 8%;
+  background: #5578b2;
+}
+
+.vivi-hero-glow-two {
+  right: -260px;
+  bottom: -260px;
+  background: #b175b1;
+
+  animation-delay: -7s;
+}
+
+@keyframes vivi-glow-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(25px, 18px, 0);
+  }
+}
+
+/* -----------------------------------------
+   Main content
+----------------------------------------- */
+
+.vivi-hero-content {
+  width: min(900px, calc(100% - 48px));
+
+  margin: 0 auto;
+
+  padding: 90px 0 80px;
+
+  text-align: center;
+}
+
+/* -----------------------------------------
+   Eyebrow
+----------------------------------------- */
+
+.vivi-hero-eyebrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-bottom: 24px;
+
+  color: #3158d4;
+
+  font-family: var(--ff-mono, monospace);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.vivi-hero-eyebrow-line {
+  width: 30px;
+  height: 1px;
+
+  background: #3158d4;
+}
+
+/* -----------------------------------------
+   Heading
+----------------------------------------- */
+
+.vivi-hero-title {
+  max-width: 850px;
+
+  margin: 0 auto 22px;
+
+  color: #162d4d;
+
+  font-family: var(--ff-display);
+  font-size: clamp(48px, 7vw, 82px);
+  font-weight: 400;
+
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+/* -----------------------------------------
+   Subtitle
+----------------------------------------- */
+
+.vivi-hero-subtitle {
+  max-width: 650px;
+
+  margin: 0 auto 36px;
+
+  color: #617b9c;
+
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* -----------------------------------------
+   Prompt
+----------------------------------------- */
+
+.vivi-prompt-wrapper {
+  width: min(720px, 100%);
+
+  margin: 0 auto;
+}
+
+.vivi-prompt-box {
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  border: 1px solid rgba(166, 187, 213, 0.75);
+  border-radius: 18px;
+
+  box-shadow:
+    0 20px 60px rgba(40, 63, 90, 0.08),
+    0 4px 14px rgba(40, 63, 90, 0.05);
+
+  backdrop-filter: blur(14px);
+
+  text-align: left;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.vivi-prompt-box:focus-within {
+  border-color: rgba(49, 88, 212, 0.45);
+
+  box-shadow:
+    0 24px 70px rgba(40, 63, 90, 0.12),
+    0 0 0 4px rgba(49, 88, 212, 0.06);
+
+  transform: translateY(-2px);
+}
+
+.vivi-prompt-label {
+  padding: 24px 26px 8px;
+
+  color: #8aa0bb;
+
+  font-family: var(--ff-display);
+  font-style: italic;
+
+  font-size: 15px;
+}
+
+.vivi-prompt-input {
+  display: block;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  min-height: 120px;
+
+  padding: 8px 26px 22px;
+
+  border: 0;
+  outline: 0;
+
+  resize: none;
+
+  background: transparent;
+
+  color: #405f83;
+
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.vivi-prompt-input::placeholder {
+  color: #a6b5c6;
+}
+
+.vivi-prompt-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 14px 18px;
+
+  background: rgba(245, 248, 252, 0.88);
+
+  border-top: 1px solid #e4ebf2;
+}
+
+.vivi-prompt-hint {
+  color: #8095ad;
+
+  font-size: 13px;
+  font-style: italic;
+}
+
+.vivi-prompt-button {
+  display: inline-flex;
+
+  align-items: center;
+  gap: 9px;
+
+  padding: 12px 22px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: #3158d4;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 16px rgba(49, 88, 212, 0.22);
+
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.vivi-prompt-button:hover {
+  background: #274bc0;
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 9px 22px rgba(49, 88, 212, 0.28);
+}
+
+.vivi-prompt-button:active {
+  transform: translateY(0);
+}
+
+/* -----------------------------------------
+   Prompt chips
+----------------------------------------- */
+
+.vivi-prompt-suggestions {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 15px;
+}
+
+.vivi-prompt-try {
+  color: #8296ad;
+
+  font-size: 13px;
+}
+
+.vivi-prompt-chip {
+  padding: 7px 13px;
+
+  border: 1px solid #d6e0eb;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  color: #5f7897;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.vivi-prompt-chip:hover,
+.vivi-prompt-chip.active {
+  background: white;
+
+  border-color: #9eb4d0;
+
+  color: #3158d4;
+
+  transform: translateY(-1px);
+}
+
+/* -----------------------------------------
+   Bottom note
+----------------------------------------- */
+
+.vivi-hero-note {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 18px;
+
+  color: #8194aa;
+
+  font-size: 13px;
+}
+
+/* -----------------------------------------
+   Explore
+----------------------------------------- */
+
+.vivi-hero-explore {
+  margin-top: 38px;
+
+  border: 0;
+  background: transparent;
+
+  color: #6d829c;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  opacity: 0.8;
+
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.vivi-hero-explore span {
+  display: inline-block;
+
+  margin-left: 6px;
+
+  animation: vivi-arrow 1.8s ease-in-out infinite;
+}
+
+.vivi-hero-explore:hover {
+  opacity: 1;
+  transform: translateY(2px);
+}
+
+@keyframes vivi-arrow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* -----------------------------------------
+   Mobile
+----------------------------------------- */
+
+@media (max-width: 720px) {
+  .vivi-hero-content {
+    width: min(100% - 32px, 900px);
+
+    padding: 64px 0 56px;
+  }
+
+  .vivi-hero-title {
+    font-size: clamp(42px, 12vw, 62px);
+  }
+
+  .vivi-hero-subtitle {
+    font-size: 15px;
+  }
+
+  .vivi-prompt-footer {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .vivi-prompt-button {
+    justify-content: center;
+  }
+
+  .vivi-hero-note {
+    flex-wrap: wrap;
+  }
+}
+
+/* -----------------------------------------
+   Accessibility
+----------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .vivi-hero-grid,
+  .vivi-hero-glow,
+  .vivi-hero-explore span {
+    animation: none;
+  }
+
+  .vivi-prompt-box,
+  .vivi-prompt-button,
+  .vivi-prompt-chip {
+    transition: none;
+  }
+}
