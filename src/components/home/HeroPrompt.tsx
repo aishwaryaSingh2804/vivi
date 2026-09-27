@@ -93,8 +93,8 @@ export function HeroPrompt() {
   };
 
   const handleStart = () => {
-    navigate('/studio');
-  };
+  navigate('/login');
+};
 
   const selectPrompt = (index: number) => {
     setPromptIndex(index);

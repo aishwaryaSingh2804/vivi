@@ -1,7 +1,8 @@
 export const ROUTES = {
   HOME: '/', KIDS: '/kids', HISTORY: '/history', INDIA: '/in', MICRODRAMA: '/microdrama', COMMUNITY: '/community', STUDIO: '/studio', PRICING: '/pricing',
   RESOURCES: '/resources', CREDITS: '/resources/credits', HOW_TO_USE: '/resources/how-to-use', BLOG: '/resources/blog', FAQ: '/resources/faq', CONTACT: '/resources/contact',
-  PRIVACY: '/privacy', TERMS: '/terms', REFUND: '/refund',
+  PRIVACY: '/privacy', TERMS: '/terms', REFUND: '/refund', LOGIN: '/login',
+SIGNUP: '/signup',
 } as const;
 export type AppRoute = typeof ROUTES[keyof typeof ROUTES];
 export const HASH_TO_ROUTE: Record<string, AppRoute> = {

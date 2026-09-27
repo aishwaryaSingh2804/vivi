@@ -1,12 +1,208 @@
 import { useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 import { chromeContent } from '../content';
-import { HASH_TO_ROUTE } from '../lib/routes';
+import { Navbar } from './navigation/Navbar';
 
 export function SiteChrome() {
-  const ref=useRef<HTMLDivElement>(null); const navigate=useNavigate(); const location=useLocation();
-    useEffect(()=>{ const fn=()=>{ const root=ref.current; const p=root?.querySelector('#account-panel'); if(!p)return; root?.querySelectorAll('.flyout.open').forEach(x=>{if(x!==p)x.classList.remove('open')}); p.classList.toggle('open'); }; window.addEventListener('vivi:toggle-account',fn); return()=>window.removeEventListener('vivi:toggle-account',fn); },[]);
-  useEffect(()=>{const root=ref.current;if(!root)return;const click=(e:MouseEvent)=>{const t=e.target as HTMLElement;const a=t.closest('a') as HTMLAnchorElement|null;if(a){const h=a.getAttribute('href')||'';if(HASH_TO_ROUTE[h]){e.preventDefault();navigate(HASH_TO_ROUTE[h]);return;}if(h==='#'){e.preventDefault();return;}}const drop=t.closest('.nav-drop-btn') as HTMLElement|null;if(drop){const parent=drop.closest('.nav-drop');if(parent){root.querySelectorAll('.nav-drop.open').forEach(x=>{if(x!==parent)x.classList.remove('open')});parent.classList.toggle('open');return;}}const notif=t.closest('#notif-btn');const acct=t.closest('#account-btn');if(notif||acct){const id=notif?'#notif-panel':'#account-panel';const p=root.querySelector(id);root.querySelectorAll('.flyout.open').forEach(x=>{if(x!==p)x.classList.remove('open')});p?.classList.toggle('open');return;}if(!t.closest('.nav-drop'))root.querySelectorAll('.nav-drop.open').forEach(x=>x.classList.remove('open'));if(!t.closest('.flyout')&&!notif&&!acct)root.querySelectorAll('.flyout.open').forEach(x=>x.classList.remove('open'));if(t.closest('#mark-read'))root.querySelectorAll('.flyout-item.unread').forEach(x=>x.classList.remove('unread'));if(t.closest('.cookie-accept')){try{localStorage.setItem('vivi_cookies','1')}catch{};root.querySelector('#cookie-banner')?.remove()}if(t.closest('.cookie-reject')){try{localStorage.setItem('vivi_cookies','0')}catch{};root.querySelector('#cookie-banner')?.remove()}};root.addEventListener('click',click);return()=>root.removeEventListener('click',click)},[navigate]);
-  useEffect(()=>{const root=ref.current;if(!root)return;const nav=root.querySelector('#main-nav') as HTMLElement|null;if(nav) nav.style.display=location.pathname==='\/studio'?'none':'';try{if(localStorage.getItem('vivi_cookies'))root.querySelector('#cookie-banner')?.remove();else {const b=root.querySelector('#cookie-banner') as HTMLElement|null;if(b)b.style.display='flex';}}catch{}},[location.pathname]);
-  return <div ref={ref} className="site-chrome"><div dangerouslySetInnerHTML={{__html:chromeContent.nav}}/><div dangerouslySetInnerHTML={{__html:chromeContent.notifications}}/><div dangerouslySetInnerHTML={{__html:chromeContent.account}}/><div dangerouslySetInnerHTML={{__html:chromeContent.cookie}}/></div>;
+  const ref = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+
+  /*
+   * Hide the main navbar on Studio.
+   *
+   * The new React Navbar uses id="main-nav",
+   * so we can preserve the existing Studio behavior.
+   */
+  useEffect(() => {
+    const root = ref.current;
+
+    if (!root) {
+      return;
+    }
+
+    const nav = root.querySelector(
+      '#main-nav'
+    ) as HTMLElement | null;
+
+    if (nav) {
+      nav.style.display =
+        location.pathname === '/studio'
+          ? 'none'
+          : '';
+    }
+  }, [location.pathname]);
+
+  /*
+   * Cookie banner
+   *
+   * We are keeping this legacy functionality
+   * because it is unrelated to the navbar.
+   */
+  useEffect(() => {
+    const root = ref.current;
+
+    if (!root) {
+      return;
+    }
+
+    const handleCookieClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
+      if (target.closest('.cookie-accept')) {
+        try {
+          localStorage.setItem(
+            'vivi_cookies',
+            '1'
+          );
+        } catch {
+          // Ignore localStorage errors.
+        }
+
+        root
+          .querySelector('#cookie-banner')
+          ?.remove();
+      }
+
+      if (target.closest('.cookie-reject')) {
+        try {
+          localStorage.setItem(
+            'vivi_cookies',
+            '0'
+          );
+        } catch {
+          // Ignore localStorage errors.
+        }
+
+        root
+          .querySelector('#cookie-banner')
+          ?.remove();
+      }
+    };
+
+    root.addEventListener(
+      'click',
+      handleCookieClick
+    );
+
+    return () => {
+      root.removeEventListener(
+        'click',
+        handleCookieClick
+      );
+    };
+  }, []);
+
+  /*
+   * Existing account toggle event.
+   *
+   * This keeps the old account panel working
+   * without bringing back the old navbar logic.
+   */
+  useEffect(() => {
+    const handleAccountToggle = () => {
+      const root = ref.current;
+
+      if (!root) {
+        return;
+      }
+
+      const panel =
+        root.querySelector(
+          '#account-panel'
+        );
+
+      if (!panel) {
+        return;
+      }
+
+      root
+        .querySelectorAll('.flyout.open')
+        .forEach((element) => {
+          if (element !== panel) {
+            element.classList.remove('open');
+          }
+        });
+
+      panel.classList.toggle('open');
+    };
+
+    window.addEventListener(
+      'vivi:toggle-account',
+      handleAccountToggle
+    );
+
+    return () => {
+      window.removeEventListener(
+        'vivi:toggle-account',
+        handleAccountToggle
+      );
+    };
+  }, []);
+
+  /*
+   * Cookie banner visibility on initial load.
+   */
+  useEffect(() => {
+    const root = ref.current;
+
+    if (!root) {
+      return;
+    }
+
+    try {
+      const cookieChoice =
+        localStorage.getItem(
+          'vivi_cookies'
+        );
+
+      if (cookieChoice) {
+        root
+          .querySelector('#cookie-banner')
+          ?.remove();
+      } else {
+        const banner =
+          root.querySelector(
+            '#cookie-banner'
+          ) as HTMLElement | null;
+
+        if (banner) {
+          banner.style.display = 'flex';
+        }
+      }
+    } catch {
+      // Ignore localStorage errors.
+    }
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="site-chrome"
+    >
+      {/* New React navbar */}
+      <Navbar />
+
+      {/* Existing notification system */}
+      <div
+        dangerouslySetInnerHTML={{
+          __html: chromeContent.notifications,
+        }}
+      />
+
+      {/* Existing account system */}
+      <div
+        dangerouslySetInnerHTML={{
+          __html: chromeContent.account,
+        }}
+      />
+
+      {/* Existing cookie banner */}
+      <div
+        dangerouslySetInnerHTML={{
+          __html: chromeContent.cookie,
+        }}
+      />
+    </div>
+  );
 }

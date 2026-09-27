@@ -26,24 +26,6 @@ body{background:var(--ink);color:var(--text);font-family:var(--ff-body);font-siz
 .page{display:none}
 .page.active{display:block;padding-top:60px}
 
-/* ── NAV ───────────────────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:90;
-  background:rgba(243,247,252,.96);backdrop-filter:blur(14px);box-shadow:0 1px 0 #D8E3F0;
-  border-bottom:1px solid var(--rule);
-  display:flex;align-items:center;gap:32px;padding:0 40px;height:60px;
-}
-.nav-logo{font-family:var(--ff-display);font-size:22px;font-weight:700;color:var(--text);letter-spacing:.02em;text-decoration:none}
-.nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:24px;margin-left:16px}
-.nav-links a{color:var(--muted);font-size:14px;text-decoration:none;transition:color .15s}
-.nav-links a:hover{color:var(--text)}
-.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px}
-.btn-ghost{background:none;border:1px solid #B7C8DA;color:var(--muted);padding:7px 16px;border-radius:var(--radius);font-size:13px;cursor:pointer;font-family:var(--ff-body);transition:all .15s}
-.btn-ghost:hover{border-color:var(--muted);color:var(--text)}
-.btn-primary{background:var(--accent);color:#FFFFFF;padding:8px 18px;border:none;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--ff-body);transition:all .15s}
-.btn-primary:hover{filter:brightness(1.08)}
-.nav-badge{background:#E8F0F8;border:1px solid #CBD9E8;color:#607896;font-size:11px;padding:3px 8px;border-radius:4px;margin-left:-6px}
 
 /* ── HERO ───────────────────────────────────────────────── */
 .hero{
@@ -381,6 +363,54 @@ footer{border-top:1px solid var(--rule);padding:56px 40px 36px;max-width:1200px;
 .diff-divider{color:#B7C8DA;font-size:16px}
 .diff-pill{font-size:12px;font-weight:500;color:var(--muted);background:#E8F0F8;padding:4px 12px;border-radius:20px}
 
+/* ── PRIMARY BUTTON ─────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 11px 22px;
+
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+
+  background: var(--accent);
+  color: #FFFFFF;
+
+  font-family: var(--ff-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: #274BC0;
+  border-color: #274BC0;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(49, 87, 213, 0.22);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid rgba(49, 87, 213, 0.35);
+  outline-offset: 3px;
+}
+
 /* ── PRICING PAGE ───────────────────────────────────────── */
 .pricing-toggle-wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:48px}
 .toggle-track{width:44px;height:24px;background:#D8E3F0;border-radius:12px;position:relative;cursor:pointer;transition:background .2s}
@@ -438,24 +468,6 @@ footer{border-top:1px solid var(--rule);padding:56px 40px 36px;max-width:1200px;
 .privacy-section li{margin-bottom:6px}
 .privacy-highlight{background:#F1F7FD;border-left:3px solid var(--accent);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}
 .privacy-highlight p{margin:0;font-size:13px}
-
-#main-nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(243,247,252,.96);backdrop-filter:blur(14px);box-shadow:0 1px 0 #D8E3F0;display:flex;align-items:center;gap:24px;padding:0 40px;height:60px;}
-#main-nav .nav-logo{font-family:var(--ff-display);font-size:22px;font-weight:700;color:var(--text);letter-spacing:.02em;text-decoration:none}
-#main-nav .nav-logo span{color:var(--accent)}
-#main-nav .nav-links{display:flex;gap:22px;margin-left:8px}
-#main-nav .nav-links a{color:var(--muted);font-size:13px;text-decoration:none;transition:color .15s}
-#main-nav .nav-links a:hover{color:var(--text)}
-#main-nav .nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
-
-/* ── NAV DROPDOWNS ──────────────────────────────────────── */
-.nav-drop{position:relative}
-.nav-drop-btn{background:none;border:none;color:var(--muted);font-size:13px;font-family:var(--ff-body);cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;transition:color .15s}
-.nav-drop-btn:hover{color:var(--text)}
-.drop-arr{font-size:9px;opacity:.6}
-.nav-drop-menu{display:none;position:absolute;top:calc(100% + 10px);left:0;background:#fff;border:1px solid #D8E3F0;border-radius:12px;box-shadow:0 8px 32px rgba(18,42,74,.10);padding:6px;min-width:170px;z-index:200}
-.nav-drop.open .nav-drop-menu{display:block}
-.nav-drop-item{display:block;padding:9px 12px;font-size:13px;color:var(--muted);text-decoration:none;border-radius:7px;transition:all .12s}
-.nav-drop-item:hover{background:#F1F6FB;color:var(--text)}
 
 /* ── NOTIFICATION + ACCOUNT ─────────────────────────────── */
 .notif-btn{position:relative;width:34px;height:34px;border-radius:50%;background:none;border:1px solid #D8E3F0;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all .15s}
@@ -582,15 +594,6 @@ footer{border-top:1px solid var(--rule);padding:56px 40px 36px;max-width:1200px;
 .contact-alt-h{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
 .contact-alt-p{font-size:11px;color:var(--muted)}
 
-
-/* ── PAGE ROUTING via CSS :target ──────────────────────────────────── */
-.page { display: none; padding-top: 60px; }
-.page:target { display: block; }
-#page-home { display: block; }
-body:has(.page:target:not(#page-home)) #page-home { display: none; }
-#page-studio { padding-top: 0; }
-#page-studio:target { padding-top: 0; }
-body:has(#page-studio:target) #main-nav { display: none; }
 
 
 /* ── CREDIT CALCULATOR ─────────────────────────────────── */
