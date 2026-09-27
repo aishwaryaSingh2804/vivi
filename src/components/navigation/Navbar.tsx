@@ -45,26 +45,48 @@ const NAV_ITEMS: NavItem[] = [
 
 export function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const closeMenu = () => {
-    setOpenMenu(null);
-  };
+  setOpenMenu(null);
+  setMobileMenuOpen(false);
+};
 
   return (
     <header id="main-nav" className="vivi-navbar">
-      <div className="vivi-navbar-inner">
+      <div
+  className={`vivi-navbar-inner ${
+    mobileMenuOpen ? 'mobile-open' : ''
+  }`}
+>
 
-        {/* Logo */}
         <Link
-          to={ROUTES.HOME}
-          className="vivi-navbar-logo"
-          onClick={closeMenu}
-        >
-          Vivi
-        </Link>
+  to={ROUTES.HOME}
+  className="vivi-navbar-logo"
+  onClick={closeMenu}
+>
+  Vivi
+</Link>
 
-        {/* Desktop navigation */}
-        <nav
+{/* Mobile menu button */}
+<button
+  type="button"
+  className="vivi-mobile-menu-button"
+  aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
+  aria-expanded={mobileMenuOpen}
+  aria-controls="main-navigation"
+  onClick={() => {
+    setMobileMenuOpen((open) => !open);
+    setOpenMenu(null);
+  }}
+>
+  <span />
+  <span />
+  <span />
+</button>
+
+{/* Desktop / mobile navigation */}
+<nav
+  id="main-navigation"
           className="vivi-navbar-links"
           aria-label="Main navigation"
         >
@@ -98,11 +120,16 @@ export function Navbar() {
                   </Link>
                 ) : (
                   <button
-                    type="button"
-                    className="vivi-nav-link vivi-nav-trigger"
-                    aria-haspopup="true"
-                    aria-expanded={openMenu === item.label}
-                  >
+  type="button"
+  className="vivi-nav-link vivi-nav-trigger"
+  aria-haspopup="true"
+  aria-expanded={openMenu === item.label}
+  onClick={() => {
+    setOpenMenu(
+      openMenu === item.label ? null : item.label
+    );
+  }}
+>
                     {item.label}
 
                     <span

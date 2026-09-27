@@ -1,6 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../lib/routes';
-
 <div id="page-studio" class="page">
   <div class="studio-header">
     <a href="#page-home" class="studio-logo"><div class="studio-logo-icon">V</div><span class="studio-logo-name">Vivi</span></a>
@@ -15,7 +12,9 @@ import { ROUTES } from '../lib/routes';
       <textarea class="studio-textarea" placeholder="A woman gets into a rickshaw at night after her phone dies. The driver keeps taking wrong turns. The door is child-locked."></textarea>
       <div class="studio-input-footer">
         <span class="studio-hint">Starts from the written prompt only</span>
-        <button class="studio-create-btn" onClick={() => navigate(ROUTES.LOGIN)}>&#8594; Start creating</button>
+        <button class="studio-create-btn" data-route="login">
+  &#8594; Start creating
+</button>
       </div>
     </div>
     <p class="studio-keyboard-hint">Enter to submit &nbsp;&middot;&nbsp; Shift+Enter for a new line</p>
