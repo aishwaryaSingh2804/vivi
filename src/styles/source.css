@@ -141,7 +141,1371 @@ h2.section-h{font-family:var(--ff-display);font-size:clamp(36px,4vw,52px);font-w
 .feature-h{font-size:17px;font-weight:600;color:var(--text);margin-bottom:8px}
 .feature-p{font-size:13px;color:var(--muted);line-height:1.7}
 
-/* ── GALLERY STRIP ──────────────────────────────────────── */
+/* =========================================================
+   VIVI FEATURE EXPLORER
+   ========================================================= */
+
+.vivi-features-section {
+  position: relative;
+  width: min(1240px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 120px 0;
+}
+
+/* Header */
+
+.vivi-features-header {
+  max-width: 720px;
+  margin-bottom: 64px;
+}
+
+.vivi-features-intro {
+  max-width: 560px;
+  margin: 24px 0 0;
+  color: #5b7ca8;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+
+/* Hide radio buttons */
+
+.vivi-features-section > input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   FEATURE TABS
+   ========================================================= */
+
+.vivi-feature-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(36, 90, 196, 0.16);
+  border-bottom: 1px solid rgba(36, 90, 196, 0.16);
+  margin-bottom: 28px;
+}
+
+.vivi-feature-tab {
+  position: relative;
+  min-height: 86px;
+  padding: 22px 20px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+
+  border-right: 1px solid rgba(36, 90, 196, 0.12);
+
+  color: #6b89ae;
+
+  transition:
+    color 220ms ease,
+    background 220ms ease;
+}
+
+.vivi-feature-tab:last-child {
+  border-right: none;
+}
+
+.vivi-feature-number {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+}
+
+.vivi-feature-tab-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.vivi-feature-tab::after {
+  content: '';
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  width: 0;
+  height: 3px;
+
+  background: #245ac4;
+
+  transition: width 300ms ease;
+}
+
+
+/* Active tabs */
+
+#vivi-feature-1:checked ~ .vivi-feature-tabs label[for="vivi-feature-1"],
+#vivi-feature-2:checked ~ .vivi-feature-tabs label[for="vivi-feature-2"],
+#vivi-feature-3:checked ~ .vivi-feature-tabs label[for="vivi-feature-3"],
+#vivi-feature-4:checked ~ .vivi-feature-tabs label[for="vivi-feature-4"] {
+  color: #173b73;
+  background: rgba(36, 90, 196, 0.035);
+}
+
+#vivi-feature-1:checked ~ .vivi-feature-tabs label[for="vivi-feature-1"]::after,
+#vivi-feature-2:checked ~ .vivi-feature-tabs label[for="vivi-feature-2"]::after,
+#vivi-feature-3:checked ~ .vivi-feature-tabs label[for="vivi-feature-3"]::after,
+#vivi-feature-4:checked ~ .vivi-feature-tabs label[for="vivi-feature-4"]::after {
+  width: 100%;
+}
+
+
+/* =========================================================
+   FEATURE STAGE
+   ========================================================= */
+
+.vivi-feature-stage {
+  position: relative;
+  min-height: 540px;
+
+  border-radius: 24px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(82, 139, 255, 0.16),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #f5f9ff,
+      #eaf2ff
+    );
+
+  border: 1px solid rgba(36, 90, 196, 0.12);
+}
+
+
+/* Panels */
+
+.vivi-feature-panel {
+  display: none;
+
+  min-height: 540px;
+  padding: 56px;
+
+  grid-template-columns: minmax(280px, 0.85fr) minmax(400px, 1.15fr);
+  gap: 60px;
+  align-items: center;
+
+  animation: viviFeatureIn 450ms ease;
+}
+
+@keyframes viviFeatureIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Show selected panel */
+
+#vivi-feature-1:checked ~ .vivi-feature-stage .vivi-feature-panel-1,
+#vivi-feature-2:checked ~ .vivi-feature-stage .vivi-feature-panel-2,
+#vivi-feature-3:checked ~ .vivi-feature-stage .vivi-feature-panel-3,
+#vivi-feature-4:checked ~ .vivi-feature-stage .vivi-feature-panel-4 {
+  display: grid;
+}
+
+
+/* =========================================================
+   COPY
+   ========================================================= */
+
+.vivi-feature-copy {
+  max-width: 470px;
+}
+
+.vivi-feature-kicker {
+  display: inline-block;
+  margin-bottom: 20px;
+
+  color: #245ac4;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.vivi-feature-copy h3 {
+  margin: 0;
+
+  color: #173b73;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(30px, 3.2vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.vivi-feature-copy p {
+  margin: 24px 0 0;
+
+  color: #5b7ca8;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   VISUAL AREA
+   ========================================================= */
+
+.vivi-feature-visual {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   FEATURE 1 — STORY
+   ========================================================= */
+
+.vivi-story-card {
+  position: relative;
+
+  width: 100%;
+  max-width: 580px;
+
+  margin: 0 auto;
+
+  padding: 14px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.78);
+
+  box-shadow:
+    0 25px 70px rgba(36, 90, 196, 0.14);
+
+  border: 1px solid rgba(36, 90, 196, 0.1);
+}
+
+.vivi-story-card-top,
+.vivi-story-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 8px 10px;
+
+  color: #6b89ae;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.vivi-story-scene {
+  position: relative;
+
+  height: 300px;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #bcd8ff 0%,
+      #e5f0ff 55%,
+      #b9d0ef 100%
+    );
+}
+
+.vivi-scene-sun {
+  position: absolute;
+
+  top: 42px;
+  right: 70px;
+
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  background: #fff7c7;
+
+  box-shadow: 0 0 45px rgba(255, 240, 160, 0.7);
+}
+
+.vivi-scene-mountain {
+  position: absolute;
+
+  bottom: -20px;
+
+  width: 0;
+  height: 0;
+
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 240px solid #8eacd1;
+}
+
+.mountain-one {
+  left: -30px;
+}
+
+.mountain-two {
+  right: -50px;
+
+  border-left-width: 190px;
+  border-right-width: 190px;
+  border-bottom-color: #6f92bd;
+}
+
+.vivi-scene-character {
+  position: absolute;
+
+  bottom: 35px;
+  left: 50%;
+
+  width: 75px;
+  height: 105px;
+
+  transform: translateX(-50%);
+
+  border-radius: 40px 40px 25px 25px;
+
+  background: #173b73;
+
+  display: grid;
+  place-items: center;
+
+  color: white;
+
+  box-shadow: 0 15px 30px rgba(23, 59, 115, 0.25);
+}
+
+.vivi-scene-character span {
+  font-size: 20px;
+}
+
+.vivi-story-card-bottom {
+  justify-content: center;
+  gap: 10px;
+}
+
+.vivi-story-card-bottom span:nth-child(even) {
+  color: #245ac4;
+}
+
+
+/* Timeline */
+
+.vivi-story-timeline {
+  margin-top: 34px;
+}
+
+.vivi-story-line {
+  height: 3px;
+
+  border-radius: 99px;
+
+  background: rgba(36, 90, 196, 0.12);
+
+  overflow: hidden;
+}
+
+.vivi-story-progress {
+  display: block;
+
+  width: 68%;
+  height: 100%;
+
+  background: #245ac4;
+
+  animation: viviTimeline 3s ease-in-out infinite alternate;
+}
+
+@keyframes viviTimeline {
+  from {
+    width: 25%;
+  }
+
+  to {
+    width: 88%;
+  }
+}
+
+.vivi-story-points {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 12px;
+}
+
+.vivi-story-points div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vivi-story-points strong {
+  color: #173b73;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+}
+
+.vivi-story-points span {
+  color: #6b89ae;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   FEATURE 2 — CHARACTERS
+   ========================================================= */
+
+.vivi-character-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.vivi-character-scene {
+  padding: 14px;
+
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  border: 1px solid rgba(36, 90, 196, 0.1);
+
+  box-shadow: 0 18px 45px rgba(36, 90, 196, 0.08);
+}
+
+.scene-label {
+  align-self: flex-start;
+
+  color: #6b89ae;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.vivi-character-avatar {
+  width: 105px;
+  height: 105px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  color: #fff;
+
+  font-size: 32px;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #9dc2ff,
+      #245ac4 70%
+    );
+
+  box-shadow: 0 15px 35px rgba(36, 90, 196, 0.22);
+
+  animation: viviCharacterFloat 3s ease-in-out infinite;
+}
+
+.vivi-character-scene:nth-child(2) .vivi-character-avatar {
+  animation-delay: 0.4s;
+}
+
+.vivi-character-scene:nth-child(3) .vivi-character-avatar {
+  animation-delay: 0.8s;
+}
+
+@keyframes viviCharacterFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.vivi-character-scene strong {
+  color: #173b73;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+}
+
+.vivi-consistency-badge {
+  width: fit-content;
+
+  margin: 18px auto 0;
+  padding: 9px 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  border-radius: 99px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  color: #245ac4;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  box-shadow: 0 10px 25px rgba(36, 90, 196, 0.1);
+}
+
+
+/* =========================================================
+   FEATURE 3 — SCRIPT
+   ========================================================= */
+
+.vivi-script-card {
+  max-width: 570px;
+  margin: 0 auto;
+
+  padding: 22px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.82);
+
+  border: 1px solid rgba(36, 90, 196, 0.1);
+
+  box-shadow: 0 25px 70px rgba(36, 90, 196, 0.12);
+}
+
+.vivi-script-header {
+  display: flex;
+  justify-content: space-between;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid rgba(36, 90, 196, 0.1);
+
+  color: #6b89ae;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.vivi-script-line {
+  display: flex;
+  gap: 14px;
+
+  padding: 22px 0;
+
+  border-bottom: 1px solid rgba(36, 90, 196, 0.08);
+}
+
+.vivi-script-icon {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 10px;
+
+  background: #edf4ff;
+}
+
+.vivi-script-line small {
+  color: #245ac4;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.vivi-script-line p {
+  margin: 5px 0 0;
+
+  color: #173b73;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.vivi-script-line.second {
+  opacity: 0.65;
+}
+
+.vivi-audio-wave {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  margin-top: 15px;
+}
+
+.vivi-audio-wave span {
+  width: 3px;
+
+  border-radius: 10px;
+
+  background: #245ac4;
+
+  animation: viviWave 1.1s ease-in-out infinite alternate;
+}
+
+.vivi-audio-wave span:nth-child(1) { height: 14px; }
+.vivi-audio-wave span:nth-child(2) { height: 24px; animation-delay: .1s; }
+.vivi-audio-wave span:nth-child(3) { height: 35px; animation-delay: .2s; }
+.vivi-audio-wave span:nth-child(4) { height: 20px; animation-delay: .3s; }
+.vivi-audio-wave span:nth-child(5) { height: 40px; animation-delay: .4s; }
+.vivi-audio-wave span:nth-child(6) { height: 25px; animation-delay: .5s; }
+.vivi-audio-wave span:nth-child(7) { height: 34px; animation-delay: .6s; }
+.vivi-audio-wave span:nth-child(8) { height: 18px; animation-delay: .7s; }
+.vivi-audio-wave span:nth-child(9) { height: 38px; animation-delay: .8s; }
+.vivi-audio-wave span:nth-child(10) { height: 22px; animation-delay: .9s; }
+.vivi-audio-wave span:nth-child(11) { height: 30px; animation-delay: 1s; }
+.vivi-audio-wave span:nth-child(12) { height: 15px; animation-delay: 1.1s; }
+
+@keyframes viviWave {
+  from {
+    transform: scaleY(0.55);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+
+/* =========================================================
+   FEATURE 4 — STYLES
+   ========================================================= */
+
+.vivi-style-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+
+  max-width: 570px;
+  margin: 0 auto;
+}
+
+.vivi-style-card {
+  position: relative;
+
+  min-height: 190px;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  color: #fff;
+
+  box-shadow: 0 20px 45px rgba(36, 90, 196, 0.14);
+
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.vivi-style-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 28px 55px rgba(36, 90, 196, 0.2);
+}
+
+.vivi-style-card span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.vivi-style-card strong {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.style-3d {
+  background:
+    radial-gradient(circle at 70% 30%, #b7d2ff, transparent 25%),
+    linear-gradient(135deg, #245ac4, #173b73);
+}
+
+.style-watercolour {
+  background:
+    radial-gradient(circle at 20% 70%, #c6e0ff, transparent 35%),
+    linear-gradient(135deg, #719bd1, #9bbbe4);
+}
+
+.style-cinematic {
+  background:
+    radial-gradient(circle at 80% 20%, #7895c2, transparent 25%),
+    linear-gradient(135deg, #263d62, #101e35);
+}
+
+.style-2d {
+  background:
+    radial-gradient(circle at 30% 30%, #d3e4ff, transparent 25%),
+    linear-gradient(135deg, #4d79b8, #245ac4);
+}
+
+
+/* Style pills */
+
+.vivi-style-pills {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 26px;
+}
+
+.vivi-style-pills span,
+.vivi-dialogue-tags span {
+  padding: 7px 11px;
+
+  border-radius: 99px;
+
+  background: rgba(36, 90, 196, 0.07);
+
+  color: #245ac4;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.vivi-dialogue-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 26px;
+}
+
+/* =========================================================
+   MOBILE / TABLET RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .vivi-features-section {
+    width: min(100% - 32px, 700px);
+    padding: 80px 0;
+  }
+
+  /* -----------------------------------------
+     HEADER
+     ----------------------------------------- */
+
+  .vivi-features-header {
+    max-width: 100%;
+    margin-bottom: 42px;
+  }
+
+  .vivi-features-intro {
+    max-width: 560px;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE TABS
+     ----------------------------------------- */
+
+  .vivi-feature-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+
+    overflow: visible;
+
+    margin-bottom: 20px;
+  }
+
+  .vivi-feature-tab {
+    min-width: 0;
+    width: 100%;
+    min-height: 78px;
+
+    padding: 16px 18px;
+
+    border-right: 1px solid rgba(36, 90, 196, 0.12);
+    border-bottom: 1px solid rgba(36, 90, 196, 0.12);
+  }
+
+  /* Remove right border from every second item */
+  .vivi-feature-tab:nth-child(2n) {
+    border-right: none;
+  }
+
+  /* Remove bottom border from last row */
+  .vivi-feature-tab:nth-child(3),
+  .vivi-feature-tab:nth-child(4) {
+    border-bottom: none;
+  }
+
+  .vivi-feature-number {
+    font-size: 10px;
+  }
+
+  .vivi-feature-tab-title {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE STAGE
+     ----------------------------------------- */
+
+  .vivi-feature-stage {
+    min-height: auto;
+    border-radius: 20px;
+  }
+
+  .vivi-feature-panel {
+    min-height: auto;
+
+    grid-template-columns: 1fr;
+
+    gap: 38px;
+
+    padding: 36px 24px;
+  }
+
+
+  /* -----------------------------------------
+     COPY
+     ----------------------------------------- */
+
+  .vivi-feature-copy {
+    width: 100%;
+    max-width: none;
+  }
+
+  .vivi-feature-kicker {
+    margin-bottom: 16px;
+    font-size: 10px;
+  }
+
+  .vivi-feature-copy h3 {
+    font-size: clamp(28px, 7vw, 36px);
+    line-height: 1.1;
+  }
+
+  .vivi-feature-copy p {
+    margin-top: 18px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+
+  /* -----------------------------------------
+     VISUAL
+     ----------------------------------------- */
+
+  .vivi-feature-visual {
+    width: 100%;
+    min-width: 0;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE 1 — STORY
+     ----------------------------------------- */
+
+  .vivi-story-card {
+    width: 100%;
+    max-width: none;
+    padding: 10px;
+  }
+
+  .vivi-story-scene {
+    height: 220px;
+  }
+
+  .vivi-scene-sun {
+    width: 52px;
+    height: 52px;
+
+    top: 30px;
+    right: 40px;
+  }
+
+  .vivi-scene-character {
+    width: 58px;
+    height: 82px;
+
+    bottom: 25px;
+  }
+
+  .vivi-scene-mountain {
+    border-left-width: 110px;
+    border-right-width: 110px;
+    border-bottom-width: 175px;
+  }
+
+  .mountain-two {
+    border-left-width: 140px;
+    border-right-width: 140px;
+  }
+
+  .vivi-story-timeline {
+    margin-top: 28px;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE 2 — CHARACTERS
+     ----------------------------------------- */
+
+  .vivi-character-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .vivi-character-scene {
+    min-height: 190px;
+    padding: 9px;
+    border-radius: 12px;
+  }
+
+  .vivi-character-avatar {
+    width: 58px;
+    height: 58px;
+    font-size: 20px;
+  }
+
+  .vivi-character-scene strong {
+    font-size: 9px;
+    text-align: center;
+  }
+
+  .scene-label {
+    font-size: 8px;
+  }
+
+  .vivi-consistency-badge {
+    margin-top: 14px;
+    font-size: 10px;
+    padding: 8px 12px;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE 3 — SCRIPT
+     ----------------------------------------- */
+
+  .vivi-script-card {
+    width: 100%;
+    max-width: none;
+
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .vivi-script-line {
+    gap: 10px;
+    padding: 16px 0;
+  }
+
+  .vivi-script-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .vivi-script-line p {
+    font-size: 11px;
+  }
+
+  .vivi-audio-wave {
+    height: 40px;
+    gap: 3px;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE 4 — VISUAL STYLES
+     ----------------------------------------- */
+
+  .vivi-style-grid {
+    width: 100%;
+    max-width: none;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+  }
+
+  .vivi-style-card {
+    min-height: 135px;
+    padding: 14px;
+
+    border-radius: 12px;
+  }
+
+  .vivi-style-card strong {
+    font-size: 14px;
+  }
+
+  .vivi-style-card span {
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .vivi-features-section {
+    width: calc(100% - 28px);
+    padding: 60px 0;
+  }
+
+
+  /* -----------------------------------------
+     HEADER
+     ----------------------------------------- */
+
+  .vivi-features-header {
+    margin-bottom: 32px;
+  }
+
+  .vivi-features-intro {
+    margin-top: 18px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+
+  /* -----------------------------------------
+     TABS — 2 × 2
+     ----------------------------------------- */
+
+  .vivi-feature-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+
+    margin-bottom: 14px;
+
+    overflow: visible;
+
+    border-top: 1px solid rgba(36, 90, 196, 0.16);
+    border-bottom: 1px solid rgba(36, 90, 196, 0.16);
+  }
+
+  .vivi-feature-tab {
+    min-width: 0;
+    min-height: 70px;
+
+    padding: 13px 12px;
+
+    gap: 5px;
+  }
+
+  .vivi-feature-number {
+    font-size: 9px;
+  }
+
+  .vivi-feature-tab-title {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE STAGE
+     ----------------------------------------- */
+
+  .vivi-feature-stage {
+    border-radius: 17px;
+  }
+
+  .vivi-feature-panel {
+    padding: 28px 17px 24px;
+    gap: 30px;
+  }
+
+
+  /* -----------------------------------------
+     COPY
+     ----------------------------------------- */
+
+  .vivi-feature-kicker {
+    margin-bottom: 14px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+
+  .vivi-feature-copy h3 {
+    font-size: 28px;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+
+  .vivi-feature-copy p {
+    margin-top: 16px;
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE 1
+     ----------------------------------------- */
+
+  .vivi-story-card {
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .vivi-story-card-top,
+  .vivi-story-card-bottom {
+    padding: 7px 8px;
+    font-size: 8px;
+  }
+
+  .vivi-story-scene {
+    height: 190px;
+    border-radius: 10px;
+  }
+
+  .vivi-scene-sun {
+    width: 45px;
+    height: 45px;
+
+    top: 25px;
+    right: 30px;
+  }
+
+  .vivi-scene-character {
+    width: 50px;
+    height: 72px;
+
+    bottom: 20px;
+  }
+
+  .vivi-story-points strong {
+    font-size: 10px;
+  }
+
+  .vivi-story-points span {
+    font-size: 8px;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE 2
+     ----------------------------------------- */
+
+  .vivi-character-grid {
+    gap: 5px;
+  }
+
+  .vivi-character-scene {
+    min-height: 175px;
+    padding: 8px;
+  }
+
+  .vivi-character-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .vivi-character-scene strong {
+    font-size: 8px;
+  }
+
+  .scene-label {
+    font-size: 7px;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE 3
+     ----------------------------------------- */
+
+  .vivi-script-card {
+    padding: 13px;
+  }
+
+  .vivi-script-header {
+    padding-bottom: 12px;
+    font-size: 8px;
+  }
+
+  .vivi-script-line {
+    gap: 8px;
+    padding: 14px 0;
+  }
+
+  .vivi-script-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .vivi-script-line small {
+    font-size: 8px;
+  }
+
+  .vivi-script-line p {
+    font-size: 10px;
+    line-height: 1.45;
+  }
+
+  .vivi-audio-wave {
+    height: 35px;
+    gap: 2px;
+  }
+
+  .vivi-audio-wave span {
+    width: 2px;
+  }
+
+
+  /* -----------------------------------------
+     FEATURE 4
+     ----------------------------------------- */
+
+  .vivi-style-grid {
+    gap: 7px;
+  }
+
+  .vivi-style-card {
+    min-height: 120px;
+    padding: 12px;
+    border-radius: 11px;
+  }
+
+  .vivi-style-card span {
+    font-size: 7px;
+  }
+
+  .vivi-style-card strong {
+    font-size: 12px;
+  }
+
+
+  /* -----------------------------------------
+     PILLS
+     ----------------------------------------- */
+
+  .vivi-style-pills,
+  .vivi-dialogue-tags {
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .vivi-style-pills span,
+  .vivi-dialogue-tags span {
+    padding: 6px 9px;
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES — iPhone SE / 320px
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .vivi-features-section {
+    width: calc(100% - 20px);
+  }
+
+  .vivi-feature-tab {
+    min-height: 66px;
+    padding: 11px 10px;
+  }
+
+  .vivi-feature-tab-title {
+    font-size: 10px;
+  }
+
+  .vivi-feature-panel {
+    padding: 25px 14px 22px;
+  }
+
+  .vivi-feature-copy h3 {
+    font-size: 26px;
+  }
+
+  .vivi-feature-copy p {
+    font-size: 12px;
+  }
+
+  .vivi-character-scene {
+    min-height: 160px;
+  }
+
+  .vivi-character-avatar {
+    width: 45px;
+    height: 45px;
+  }
+}
+
 /* ── GALLERY STRIP ──────────────────────────────────────── */
 
 .gallery-strip {
@@ -805,3 +2169,40 @@ footer{border-top:1px solid var(--rule);padding:56px 40px 36px;max-width:1200px;
 .legal-section ul{padding-left:18px}
 .legal-mock-notice{background:#F1F7FD;border:1px solid rgba(49,87,213,.20);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--muted);margin-bottom:28px;display:flex;gap:8px}
 
+@media (max-width: 600px) {
+
+  section.std {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .cat-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+    max-width: 100%;
+
+    gap: 4px;
+    margin-bottom: 28px;
+    padding: 4px;
+
+    box-sizing: border-box;
+  }
+
+  .cat-tab {
+    width: 100%;
+    min-width: 0;
+
+    padding: 9px 8px;
+
+    font-size: 11px;
+    line-height: 1.3;
+
+    white-space: normal;
+    text-align: center;
+
+    overflow: hidden;
+  }
+
+}
