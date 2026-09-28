@@ -30,13 +30,7 @@ export function HeroSection() {
 
         <HeroPrompt />
 
-        <div className="vivi-hero-note">
-          <span>Free</span>
-          <span>·</span>
-          <span>No credit card</span>
-          <span>·</span>
-          <span>3 videos/month</span>
-        </div>
+        
 
         <button
           className="vivi-hero-explore"

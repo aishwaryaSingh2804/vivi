@@ -3315,3 +3315,400 @@ footer{border-top:1px solid var(--rule);padding:56px 40px 36px;max-width:1200px;
   }
 
 }
+
+/* =========================================================
+   STORY CATEGORY CAROUSEL
+   ========================================================= */
+
+.story-carousel {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+
+/* ── TOP CATEGORY NAV ─────────────────────────────────── */
+
+.story-carousel-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+
+  margin-bottom: 28px;
+  padding: 5px;
+
+  background: rgba(229, 238, 249, 0.8);
+  border: 1px solid rgba(49, 87, 213, 0.07);
+  border-radius: 14px;
+
+  backdrop-filter: blur(12px);
+}
+
+
+.story-nav-item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+
+  min-height: 68px;
+  padding: 13px 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: var(--muted);
+
+  font-family: var(--ff-body);
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    color 350ms ease,
+    background 350ms ease,
+    transform 350ms cubic-bezier(.22,1,.36,1),
+    box-shadow 350ms ease;
+}
+
+
+.story-nav-item:hover {
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+
+.story-nav-item.active {
+  background: #ffffff;
+
+  color: var(--text);
+
+  transform: translateY(-3px) scale(1.015);
+
+  box-shadow:
+    0 8px 24px rgba(18, 42, 74, .10),
+    0 0 0 1px rgba(49, 87, 213, .06);
+}
+
+
+.story-nav-number {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+
+  color: var(--accent);
+
+  opacity: .7;
+}
+
+
+.story-nav-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* little active line */
+
+.story-nav-item::after {
+  content: '';
+
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 7px;
+
+  height: 2px;
+
+  border-radius: 99px;
+
+  background: var(--accent);
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 400ms cubic-bezier(.22,1,.36,1);
+}
+
+
+.story-nav-item.active::after {
+  transform: scaleX(1);
+}
+
+
+/* ── VIEWPORT ─────────────────────────────────────────── */
+
+.story-carousel-viewport {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+}
+
+
+/* ── TRACK ────────────────────────────────────────────── */
+
+.story-carousel-track {
+  display: flex;
+
+  width: 100%;
+
+  transition:
+    transform 850ms cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* ── SLIDES ───────────────────────────────────────────── */
+
+.story-carousel-slide {
+  flex: 0 0 100%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 16px;
+
+  min-width: 100%;
+
+  padding: 8px 2px 14px;
+}
+
+
+/* ── CARDS ────────────────────────────────────────────── */
+
+.story-carousel-slide .story-card {
+  opacity: .65;
+
+  transform:
+    translateY(16px)
+    scale(.97);
+
+  transition:
+    opacity 600ms ease,
+    transform 750ms cubic-bezier(.22,1,.36,1),
+    box-shadow 500ms ease;
+}
+
+
+/* active slide cards animate upward */
+
+.story-carousel-slide.active .story-card {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+
+  box-shadow:
+    0 8px 25px rgba(18, 42, 74, .07);
+}
+
+
+/* stagger each card */
+
+.story-carousel-slide.active .story-card:nth-child(1) {
+  transition-delay: 80ms;
+}
+
+.story-carousel-slide.active .story-card:nth-child(2) {
+  transition-delay: 150ms;
+}
+
+.story-carousel-slide.active .story-card:nth-child(3) {
+  transition-delay: 220ms;
+}
+
+
+/* subtle floating animation */
+
+.story-carousel-slide.active .story-card:hover {
+  transform:
+    translateY(-7px)
+    scale(1.015);
+
+  box-shadow:
+    0 18px 40px rgba(18, 42, 74, .13);
+}
+
+
+/* ── FOOTER ───────────────────────────────────────────── */
+
+.story-carousel-footer {
+  margin-top: 18px;
+}
+
+
+/* autoplay progress */
+
+.story-progress {
+  width: 100%;
+  height: 2px;
+
+  overflow: hidden;
+
+  border-radius: 99px;
+
+  background: rgba(49, 87, 213, .10);
+}
+
+
+.story-progress-fill {
+  display: block;
+
+  width: 0%;
+  height: 100%;
+
+  background: var(--accent);
+
+  border-radius: inherit;
+}
+
+
+/*
+   JS adds .running every time a slide becomes active.
+   4.5 seconds total.
+*/
+
+.story-progress-fill.running {
+  animation: storyAutoplayProgress 4.5s linear forwards;
+}
+
+
+@keyframes storyAutoplayProgress {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+
+/* ── DOTS + COUNTER ──────────────────────────────────── */
+
+.story-carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 14px;
+}
+
+
+.story-dots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+
+.story-dot {
+  position: relative;
+
+  width: 7px;
+  height: 7px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #b8c9df;
+
+  cursor: pointer;
+
+  transition:
+    width 400ms cubic-bezier(.22,1,.36,1),
+    background 300ms ease,
+    transform 300ms ease;
+}
+
+
+.story-dot:hover {
+  transform: scale(1.3);
+}
+
+
+.story-dot.active {
+  width: 28px;
+
+  border-radius: 99px;
+
+  background: var(--accent);
+}
+
+
+.story-counter {
+  display: flex;
+  gap: 5px;
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+
+  color: #91a5bf;
+}
+
+
+.story-current {
+  color: var(--text);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .story-carousel-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .story-carousel-slide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .story-carousel-slide .story-card:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .story-carousel-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .story-nav-item {
+    min-height: 60px;
+    padding: 11px 13px;
+  }
+
+  .story-nav-title {
+    font-size: 12px;
+  }
+
+  .story-carousel-slide {
+    grid-template-columns: 1fr;
+  }
+
+  .story-carousel-slide .story-card:nth-child(3) {
+    grid-column: auto;
+  }
+
+  .story-carousel-controls {
+    margin-top: 12px;
+  }
+
+}

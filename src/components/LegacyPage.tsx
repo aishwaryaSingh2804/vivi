@@ -182,47 +182,7 @@ export function LegacyPage({ html, pageKey }: Props) {
         }
       }
 
-      // --------------------------------------------------
-      // Category tabs
-      // --------------------------------------------------
-      const catTab = target.closest(
-        '.cat-tab'
-      ) as HTMLElement | null;
-
-      if (catTab) {
-        const tabs = [
-          ...root.querySelectorAll('.cat-tab'),
-        ];
-
-        const index = tabs.indexOf(catTab);
-
-        const ids = [
-          'micro',
-          'history',
-          'kids',
-          'animation',
-        ];
-
-        tabs.forEach((x) =>
-          x.classList.remove('active')
-        );
-
-        catTab.classList.add('active');
-
-        root
-          .querySelectorAll('.cat-panel')
-          .forEach((x) =>
-            x.classList.remove('active')
-          );
-
-        root
-          .querySelector('#cat-' + ids[index])
-          ?.classList.add('active');
-
-        return;
-      }
-
-      // --------------------------------------------------
+   // --------------------------------------------------
       // History tabs
       // --------------------------------------------------
       const histTab = target.closest(
@@ -430,6 +390,84 @@ export function LegacyPage({ html, pageKey }: Props) {
     };
   }, [navigate, pageKey]);
 
+  // --------------------------------------------------
+  // Story carousel autoplay
+  // --------------------------------------------------
+  useEffect(() => {
+    const root = ref.current;
+
+    if (!root) return;
+
+    const carousel = root.querySelector(
+      '.story-carousel'
+    ) as HTMLElement | null;
+
+    if (!carousel) return;
+
+    let currentIndex = 0;
+    let isPaused = false;
+
+    const slides = () => [
+      ...root.querySelectorAll('.story-carousel-slide'),
+    ];
+
+    const advance = () => {
+      if (isPaused) return;
+
+      const currentSlides = slides();
+
+      if (!currentSlides.length) return;
+
+      currentIndex =
+        (currentIndex + 1) % currentSlides.length;
+
+      goToStorySlide(root, currentIndex);
+    };
+
+    const interval = window.setInterval(
+      advance,
+      4500
+    );
+
+    const pause = () => {
+      isPaused = true;
+
+      const progress = root.querySelector(
+        '.story-progress-fill'
+      ) as HTMLElement | null;
+
+      if (progress) {
+        progress.style.animationPlayState = 'paused';
+      }
+    };
+
+    const resume = () => {
+      isPaused = false;
+
+      const progress = root.querySelector(
+        '.story-progress-fill'
+      ) as HTMLElement | null;
+
+      if (progress) {
+        progress.style.animationPlayState = 'running';
+      }
+    };
+
+    carousel.addEventListener('mouseenter', pause);
+    carousel.addEventListener('mouseleave', resume);
+
+    // Initialize the first slide and progress indicator.
+    goToStorySlide(root, 0);
+
+    return () => {
+      window.clearInterval(interval);
+      carousel.removeEventListener('mouseenter', pause);
+      carousel.removeEventListener('mouseleave', resume);
+    };
+  }, [pageKey]);
+
+
+
   useEffect(() => {
     const root = ref.current;
 
@@ -451,6 +489,96 @@ export function LegacyPage({ html, pageKey }: Props) {
     />
   );
 }
+
+function goToStorySlide(
+  root: HTMLElement,
+  index: number
+) {
+  const track = root.querySelector(
+    '.story-carousel-track'
+  ) as HTMLElement | null;
+
+  const slides = [
+    ...root.querySelectorAll('.story-carousel-slide'),
+  ];
+
+  const navItems = [
+    ...root.querySelectorAll('.story-nav-item'),
+  ];
+
+  const dots = [
+    ...root.querySelectorAll('.story-dot'),
+  ];
+
+  const progress = root.querySelector(
+    '.story-progress-fill'
+  ) as HTMLElement | null;
+
+  const currentCounter = root.querySelector(
+    '.story-current'
+  );
+
+
+  if (!track || !slides.length) {
+    return;
+  }
+
+
+  const safeIndex =
+    ((index % slides.length) + slides.length) %
+    slides.length;
+
+
+  // Move carousel
+  track.style.transform =
+    `translateX(-${safeIndex * 100}%)`;
+
+
+  // Update active slide
+  slides.forEach((slide, i) => {
+    slide.classList.toggle(
+      'active',
+      i === safeIndex
+    );
+  });
+
+
+  // Update category navigation
+  navItems.forEach((item, i) => {
+    item.classList.toggle(
+      'active',
+      i === safeIndex
+    );
+  });
+
+
+  // Update dots
+  dots.forEach((dot, i) => {
+    dot.classList.toggle(
+      'active',
+      i === safeIndex
+    );
+  });
+
+
+  // Update counter
+  if (currentCounter) {
+    currentCounter.textContent =
+      String(safeIndex + 1).padStart(2, '0');
+  }
+
+
+  // Restart progress animation
+  if (progress) {
+    progress.classList.remove('running');
+
+    // Force reflow so animation restarts
+    void progress.offsetWidth;
+
+    progress.classList.add('running');
+  }
+}
+
 
 function syncResolutionOptions(root: HTMLElement) {
   const model =

@@ -21,120 +21,463 @@
   <h2 class="section-h">One platform.<br>Every kind of story.</h2>
   <p class="section-sub">Whether it's a thriller microdrama, a history epic, a bedtime story or a Ghibli-style slice of life — Vivi handles the entire production.</p>
 
-  <div class="cat-tabs">
-    <button class="cat-tab active">Microdramas</button>
-    <button class="cat-tab">History</button>
-    <button class="cat-tab">Kids Stories</button>
-    <button class="cat-tab">Adult Animation</button>
+<!-- STORY CAROUSEL -->
+<div class="story-carousel">
+
+  <!-- Category navigation -->
+  <div class="story-carousel-nav">
+
+    <button
+      class="story-nav-item active"
+      data-slide="0"
+      type="button"
+    >
+      <span class="story-nav-number">01</span>
+      <span class="story-nav-title">Microdramas</span>
+    </button>
+
+    <button
+      class="story-nav-item"
+      data-slide="1"
+      type="button"
+    >
+      <span class="story-nav-number">02</span>
+      <span class="story-nav-title">History</span>
+    </button>
+
+    <button
+      class="story-nav-item"
+      data-slide="2"
+      type="button"
+    >
+      <span class="story-nav-number">03</span>
+      <span class="story-nav-title">Kids Stories</span>
+    </button>
+
+    <button
+      class="story-nav-item"
+      data-slide="3"
+      type="button"
+    >
+      <span class="story-nav-number">04</span>
+      <span class="story-nav-title">Adult Animation</span>
+    </button>
+
   </div>
 
-  <div id="cat-micro" class="cat-panel active">
-    <div class="story-card">
-      <div class="story-thumb grad-micro"><span>🎭</span><span class="story-thumb-label">2–3 min · Pure Dialogue</span></div>
-      <div class="story-body">
-        <div class="story-title">The Session</div>
-        <div class="story-desc">A therapist's session turns when her patient starts describing events from her own private life — things no one could know.</div>
-        <div class="story-tags"><span class="tag">Psychological</span><span class="tag">Twist ending</span><span class="tag">18–34</span></div>
+
+  <!-- Carousel viewport -->
+  <div class="story-carousel-viewport">
+
+    <div class="story-carousel-track">
+
+
+      <!-- MICRODRAMAS -->
+      <div class="story-carousel-slide active">
+
+        <div class="story-card">
+          <div class="story-thumb grad-micro">
+            <span>🎭</span>
+            <span class="story-thumb-label">
+              2–3 min · Pure Dialogue
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">The Session</div>
+
+            <div class="story-desc">
+              A therapist's session turns when her patient starts
+              describing events from her own private life — things
+              no one could know.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Psychological</span>
+              <span class="tag">Twist ending</span>
+              <span class="tag">18–34</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="story-card">
+          <div
+            class="story-thumb grad-micro"
+            style="background:linear-gradient(135deg,#0d1a2e,#1a3d5c)"
+          >
+            <span>🚗</span>
+            <span class="story-thumb-label">
+              2–3 min · Mostly Dialogue
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">The Pickup</div>
+
+            <div class="story-desc">
+              A woman gets into an auto rickshaw at night after
+              her phone dies. The driver takes a wrong turn.
+              Then another. The door is child-locked.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Thriller</span>
+              <span class="tag">Suspense</span>
+              <span class="tag">India</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="story-card">
+          <div
+            class="story-thumb"
+            style="background:linear-gradient(135deg,#1a1a0d,#3d3d1a)"
+          >
+            <span>⏳</span>
+            <span class="story-thumb-label">
+              2–3 min · Narration + Dialogue
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">Borrowed Time</div>
+
+            <div class="story-desc">
+              In a world where time is literal currency, a coffee
+              maker has 14 hours left. His daughter needs a medical
+              procedure that costs 6 months.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Sci-Fi</span>
+              <span class="tag">Dystopian</span>
+              <span class="tag">Global</span>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
-    <div class="story-card">
-      <div class="story-thumb grad-micro" style="background:linear-gradient(135deg,#0d1a2e,#1a3d5c)"><span>🚗</span><span class="story-thumb-label">2–3 min · Mostly Dialogue</span></div>
-      <div class="story-body">
-        <div class="story-title">The Pickup</div>
-        <div class="story-desc">A woman gets into an auto rickshaw at night after her phone dies. The driver takes a wrong turn. Then another. The door is child-locked.</div>
-        <div class="story-tags"><span class="tag">Thriller</span><span class="tag">Suspense</span><span class="tag">India</span></div>
+
+
+      <!-- HISTORY -->
+      <div class="story-carousel-slide">
+
+        <div class="story-card">
+          <div class="story-thumb grad-history">
+            <span>🚂</span>
+            <span class="story-thumb-label">
+              6–7 min · Narration + Dialogue
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">
+              The Kakori Conspiracy
+            </div>
+
+            <div class="story-desc">
+              August 1925. Ram Prasad Bismil's band of
+              revolutionaries plan to loot a British treasury
+              train near Kakori to fund India's independence
+              movement.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Indian History</span>
+              <span class="tag">Realistic</span>
+              <span class="tag">14–40</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="story-card">
+          <div
+            class="story-thumb"
+            style="background:linear-gradient(135deg,#0d1a0d,#1a3d1a)"
+          >
+            <span>⚛️</span>
+            <span class="story-thumb-label">
+              6–7 min · Narration + Dialogue
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">
+              The Three Divers of Chernobyl
+            </div>
+
+            <div class="story-desc">
+              Three plant workers volunteer to wade through
+              radioactive floodwater to open drainage valves.
+              If they fail, half of Europe becomes uninhabitable.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">World History</span>
+              <span class="tag">Survival</span>
+              <span class="tag">Global</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="story-card">
+          <div
+            class="story-thumb"
+            style="background:linear-gradient(135deg,#0d0d1a,#1a1a3d)"
+          >
+            <span>❄️</span>
+            <span class="story-thumb-label">
+              5–6 min · Pure Narration
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">
+              Silent Night, No Man's Land
+            </div>
+
+            <div class="story-desc">
+              December 24, 1914. German soldiers in the trenches
+              start singing. British soldiers hear it. Slowly,
+              men on both sides climb out of the trenches.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">WWI</span>
+              <span class="tag">Emotional</span>
+              <span class="tag">Global</span>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
-    <div class="story-card">
-      <div class="story-thumb" style="background:linear-gradient(135deg,#1a1a0d,#3d3d1a)"><span>⏳</span><span class="story-thumb-label">2–3 min · Narration + Dialogue</span></div>
-      <div class="story-body">
-        <div class="story-title">Borrowed Time</div>
-        <div class="story-desc">In a world where time is literal currency, a coffee maker has 14 hours left. His daughter needs a medical procedure that costs 6 months.</div>
-        <div class="story-tags"><span class="tag">Sci-Fi</span><span class="tag">Dystopian</span><span class="tag">Global</span></div>
+
+
+      <!-- KIDS -->
+      <div class="story-carousel-slide">
+
+        <div class="story-card">
+          <div class="story-thumb grad-kids">
+            <span>🔭</span>
+            <span class="story-thumb-label">
+              4–5 min · Narration + Dialogue
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">
+              Grandpa's Broken Telescope
+            </div>
+
+            <div class="story-desc">
+              A boy fixes his late grandfather's old telescope
+              and, guided by handwritten notes, identifies each
+              planet — racing to finish before the notebook runs out.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Science</span>
+              <span class="tag">Ages 4–8</span>
+              <span class="tag">Pixar 3D</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="story-card">
+          <div
+            class="story-thumb"
+            style="background:linear-gradient(135deg,#0a1a2a,#1a2a3a)"
+          >
+            <span>🦋</span>
+            <span class="story-thumb-label">
+              4–5 min · Pure Narration
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">
+              The Butterfly Who Came Back
+            </div>
+
+            <div class="story-desc">
+              A girl who releases a caterpillar is heartbroken
+              it's "gone" — then discovers weeks later the
+              butterfly that returns to her window is the same
+              creature transformed.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Life Cycles</span>
+              <span class="tag">Ages 4–8</span>
+              <span class="tag">Cute Animals</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="story-card">
+          <div
+            class="story-thumb"
+            style="background:linear-gradient(135deg,#1a0a0a,#3a1a1a)"
+          >
+            <span>🦷</span>
+            <span class="story-thumb-label">
+              3–4 min · Narration + Dialogue
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">
+              The Boy Who Skipped Brushing
+            </div>
+
+            <div class="story-desc">
+              Timmy ignores his teeth every night until tiny
+              "sugar bugs" throw a wild party in his mouth,
+              and he has to evict them before his tooth starts to ache.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Habits</span>
+              <span class="tag">Ages 3–6</span>
+              <span class="tag">Watercolour</span>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+
+      <!-- ADULT ANIMATION -->
+      <div class="story-carousel-slide">
+
+        <div class="story-card">
+          <div class="story-thumb grad-ghibli">
+            <span>🚃</span>
+            <span class="story-thumb-label">
+              6–7 min · Pure Narration
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">
+              Last Train from Churchgate
+            </div>
+
+            <div class="story-desc">
+              A 60-year-old dabbawallah in Mumbai is making his
+              last delivery run before retirement. His final day,
+              the familiar faces, and a dabba packed just for him.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Indian Ghibli</span>
+              <span class="tag">Slice of Life</span>
+              <span class="tag">India</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="story-card">
+          <div
+            class="story-thumb"
+            style="background:linear-gradient(135deg,#1a0d1a,#2a1a2a)"
+          >
+            <span>🏢</span>
+            <span class="story-thumb-label">
+              7–8 min · Pure Dialogue
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">
+              Othello — Corporate India
+            </div>
+
+            <div class="story-desc">
+              Othello is a self-made CEO who rose to lead a
+              legacy company. Iago is the VP who was passed over.
+              The handkerchief is a leaked email thread.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Literature</span>
+              <span class="tag">2D Animation</span>
+              <span class="tag">India</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="story-card">
+          <div
+            class="story-thumb"
+            style="background:linear-gradient(135deg,#0d1a0d,#1a2a1a)"
+          >
+            <span>👵</span>
+            <span class="story-thumb-label">
+              5–6 min · Narration + Dialogue
+            </span>
+          </div>
+
+          <div class="story-body">
+            <div class="story-title">
+              Amma's Kitchen
+            </div>
+
+            <div class="story-desc">
+              A Tamil grandmother prepares a Pongal feast.
+              Her children sent money instead of coming home.
+              She cooks for six anyway. Her phone buzzes with a video call.
+            </div>
+
+            <div class="story-tags">
+              <span class="tag">Indian Ghibli</span>
+              <span class="tag">Emotional</span>
+              <span class="tag">India</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
-  <div id="cat-history" class="cat-panel">
-    <div class="story-card">
-      <div class="story-thumb grad-history"><span>🚂</span><span class="story-thumb-label">6–7 min · Narration + Dialogue</span></div>
-      <div class="story-body">
-        <div class="story-title">The Kakori Conspiracy</div>
-        <div class="story-desc">August 1925. Ram Prasad Bismil's band of revolutionaries plan to loot a British treasury train near Kakori to fund India's independence movement.</div>
-        <div class="story-tags"><span class="tag">Indian History</span><span class="tag">Realistic</span><span class="tag">14–40</span></div>
-      </div>
+
+  <!-- Carousel footer -->
+  <div class="story-carousel-footer">
+
+    <div class="story-progress">
+      <span class="story-progress-fill"></span>
     </div>
-    <div class="story-card">
-      <div class="story-thumb" style="background:linear-gradient(135deg,#0d1a0d,#1a3d1a)"><span>⚛️</span><span class="story-thumb-label">6–7 min · Narration + Dialogue</span></div>
-      <div class="story-body">
-        <div class="story-title">The Three Divers of Chernobyl</div>
-        <div class="story-desc">Three plant workers volunteer to wade through radioactive floodwater to open drainage valves. If they fail, half of Europe becomes uninhabitable.</div>
-        <div class="story-tags"><span class="tag">World History</span><span class="tag">Survival</span><span class="tag">Global</span></div>
+
+    <div class="story-carousel-controls">
+
+      <div class="story-dots">
+        <button class="story-dot active" data-slide="0" aria-label="Microdramas"></button>
+        <button class="story-dot" data-slide="1" aria-label="History"></button>
+        <button class="story-dot" data-slide="2" aria-label="Kids Stories"></button>
+        <button class="story-dot" data-slide="3" aria-label="Adult Animation"></button>
       </div>
-    </div>
-    <div class="story-card">
-      <div class="story-thumb" style="background:linear-gradient(135deg,#0d0d1a,#1a1a3d)"><span>❄️</span><span class="story-thumb-label">5–6 min · Pure Narration</span></div>
-      <div class="story-body">
-        <div class="story-title">Silent Night, No Man's Land</div>
-        <div class="story-desc">December 24, 1914. German soldiers in the trenches start singing. British soldiers hear it. Slowly, men on both sides climb out of the trenches.</div>
-        <div class="story-tags"><span class="tag">WWI</span><span class="tag">Emotional</span><span class="tag">Global</span></div>
+
+      <div class="story-counter">
+        <span class="story-current">01</span>
+        <span>/</span>
+        <span>04</span>
       </div>
+
     </div>
+
   </div>
 
-  <div id="cat-kids" class="cat-panel">
-    <div class="story-card">
-      <div class="story-thumb grad-kids"><span>🔭</span><span class="story-thumb-label">4–5 min · Narration + Dialogue</span></div>
-      <div class="story-body">
-        <div class="story-title">Grandpa's Broken Telescope</div>
-        <div class="story-desc">A boy fixes his late grandfather's old telescope and, guided by handwritten notes, identifies each planet — racing to finish before the notebook runs out.</div>
-        <div class="story-tags"><span class="tag">Science</span><span class="tag">Ages 4–8</span><span class="tag">Pixar 3D</span></div>
-      </div>
-    </div>
-    <div class="story-card">
-      <div class="story-thumb" style="background:linear-gradient(135deg,#0a1a2a,#1a2a3a)"><span>🦋</span><span class="story-thumb-label">4–5 min · Pure Narration</span></div>
-      <div class="story-body">
-        <div class="story-title">The Butterfly Who Came Back</div>
-        <div class="story-desc">A girl who releases a caterpillar is heartbroken it's "gone" — then discovers weeks later the butterfly that returns to her window is the same creature transformed.</div>
-        <div class="story-tags"><span class="tag">Life Cycles</span><span class="tag">Ages 4–8</span><span class="tag">Cute Animals</span></div>
-      </div>
-    </div>
-    <div class="story-card">
-      <div class="story-thumb" style="background:linear-gradient(135deg,#1a0a0a,#3a1a1a)"><span>🦷</span><span class="story-thumb-label">3–4 min · Narration + Dialogue</span></div>
-      <div class="story-body">
-        <div class="story-title">The Boy Who Skipped Brushing</div>
-        <div class="story-desc">Timmy ignores his teeth every night until tiny "sugar bugs" throw a wild party in his mouth, and he has to evict them before his tooth starts to ache.</div>
-        <div class="story-tags"><span class="tag">Habits</span><span class="tag">Ages 3–6</span><span class="tag">Watercolour</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="cat-animation" class="cat-panel">
-    <div class="story-card">
-      <div class="story-thumb grad-ghibli"><span>🚃</span><span class="story-thumb-label">6–7 min · Pure Narration</span></div>
-      <div class="story-body">
-        <div class="story-title">Last Train from Churchgate</div>
-        <div class="story-desc">A 60-year-old dabbawallah in Mumbai is making his last delivery run before retirement. His final day, the familiar faces, and a dabba packed just for him.</div>
-        <div class="story-tags"><span class="tag">Indian Ghibli</span><span class="tag">Slice of Life</span><span class="tag">India</span></div>
-      </div>
-    </div>
-    <div class="story-card">
-      <div class="story-thumb" style="background:linear-gradient(135deg,#1a0d1a,#2a1a2a)"><span>🏢</span><span class="story-thumb-label">7–8 min · Pure Dialogue</span></div>
-      <div class="story-body">
-        <div class="story-title">Othello — Corporate India</div>
-        <div class="story-desc">Othello is a self-made Dalit CEO who rose to lead a legacy company. Iago is the VP who was passed over. The handkerchief is a leaked email thread.</div>
-        <div class="story-tags"><span class="tag">Literature</span><span class="tag">2D Animation</span><span class="tag">India</span></div>
-      </div>
-    </div>
-    <div class="story-card">
-      <div class="story-thumb" style="background:linear-gradient(135deg,#0d1a0d,#1a2a1a)"><span>👵</span><span class="story-thumb-label">5–6 min · Narration + Dialogue</span></div>
-      <div class="story-body">
-        <div class="story-title">Amma's Kitchen</div>
-        <div class="story-desc">A Tamil grandmother prepares a Pongal feast. Her children sent money instead of coming home. She cooks for six anyway. Her phone buzzes with a video call.</div>
-        <div class="story-tags"><span class="tag">Indian Ghibli</span><span class="tag">Emotional</span><span class="tag">India</span></div>
-      </div>
-    </div>
-  </div>
+</div>
 </section>
 
 <hr class="divider">
