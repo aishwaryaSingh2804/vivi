@@ -37,7 +37,46 @@ export function LegacyPage({ html, pageKey }: Props) {
 
     const onClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
+      // --------------------------------------------------
+      // Gallery carousel arrows
+      // --------------------------------------------------
+      const galleryPrev = target.closest(
+        '[data-gallery-prev]'
+      );
 
+      if (galleryPrev) {
+        const track = root.querySelector(
+          '.gallery-track'
+        ) as HTMLElement | null;
+
+        if (track) {
+          track.scrollBy({
+            left: -(track.clientWidth * 0.85),
+            behavior: 'smooth',
+          });
+        }
+
+        return;
+      }
+
+      const galleryNext = target.closest(
+        '[data-gallery-next]'
+      );
+
+      if (galleryNext) {
+        const track = root.querySelector(
+          '.gallery-track'
+        ) as HTMLElement | null;
+
+        if (track) {
+          track.scrollBy({
+            left: track.clientWidth * 0.85,
+            behavior: 'smooth',
+          });
+        }
+
+        return;
+      }
       // --------------------------------------------------
       // STUDIO: Start creating → Login
       // --------------------------------------------------
