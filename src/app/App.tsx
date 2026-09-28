@@ -21,6 +21,7 @@ import { RefundPage } from '../pages/RefundPage';
 import { LoginPage } from '../pages/LoginPage';
 import { SignupPage } from '../pages/SignupPage';
 import { Vivi25Banner } from '../components/Vivi25Banner';
+import { Footer } from '../components/Footer';
 
 const titles: Record<string, string> = {
   [ROUTES.HOME]: 'Vivi — AI Video Storytelling',
@@ -168,7 +169,10 @@ export function AppShell() {
           element={<Navigate to="/404" replace />}
         />
       </Routes>
+      <Footer />
+
     </>
+    
   );
 }
 export function App(){return <BrowserRouter><AppShell/></BrowserRouter>}
