@@ -20,6 +20,7 @@ import { TermsPage } from '../pages/TermsPage';
 import { RefundPage } from '../pages/RefundPage';
 import { LoginPage } from '../pages/LoginPage';
 import { SignupPage } from '../pages/SignupPage';
+import { Vivi25Banner } from '../components/Vivi25Banner';
 
 const titles: Record<string, string> = {
   [ROUTES.HOME]: 'Vivi — AI Video Storytelling',
@@ -51,6 +52,7 @@ export function AppShell() {
       <MetaTitle />
 
       <SiteChrome />
+  <Vivi25Banner />
 
       <Routes>
         <Route
