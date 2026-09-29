@@ -32,13 +32,6 @@ export function HeroSection() {
 
         
 
-        <button
-          className="vivi-hero-explore"
-          onClick={() => navigate('/resources/how-to-use')}
-        >
-          See how Vivi works
-          <span>↓</span>
-        </button>
       </div>
     </section>
   );
