@@ -64,7 +64,7 @@ export function Navbar() {
   className="vivi-navbar-logo"
   onClick={closeMenu}
 >
-  Vivi
+  vivi
 </Link>
 
 {/* Mobile menu button */}

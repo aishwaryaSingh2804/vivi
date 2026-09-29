@@ -96,11 +96,7 @@ export function HeroPrompt() {
   navigate('/login');
 };
 
-  const selectPrompt = (index: number) => {
-    setPromptIndex(index);
-    setValue(DEMO_PROMPTS[index].text);
-    setIsFocused(true);
-  };
+  
 
   return (
     <div className="vivi-prompt-wrapper">
@@ -154,23 +150,7 @@ export function HeroPrompt() {
         </div>
       </div>
 
-      <div className="vivi-prompt-suggestions">
-        <span className="vivi-prompt-try">Try:</span>
-
-        {DEMO_PROMPTS.map((prompt, index) => (
-          <button
-            key={prompt.label}
-            className={`vivi-prompt-chip ${
-              promptIndex === index && !isFocused
-                ? 'active'
-                : ''
-            }`}
-            onClick={() => selectPrompt(index)}
-          >
-            {prompt.label}
-          </button>
-        ))}
-      </div>
+      
     </div>
   );
 }
