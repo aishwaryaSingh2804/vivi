@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { mountViviAnimations } from './home/Animations';
 import { HASH_TO_ROUTE, ROUTES } from '../lib/routes';
 import {
   calculateDetailed,
@@ -389,6 +390,62 @@ export function LegacyPage({ html, pageKey }: Props) {
       root.removeEventListener('change', onChange);
     };
   }, [navigate, pageKey]);
+
+// --------------------------------------------------
+// VIVI OPENART-STYLE VIDEO SHOWCASE
+// Mount React Animations.tsx into the legacy HTML
+// --------------------------------------------------
+useEffect(() => {
+  if (pageKey !== 'home') return;
+
+  const mount = document.getElementById(
+    'vivi-openart-mount'
+  );
+
+  if (!mount) return;
+
+  mountViviAnimations();
+}, [pageKey]);
+
+// --------------------------------------------------
+// STUDIO: Populate prompt from video showcase
+// --------------------------------------------------
+useEffect(() => {
+  if (pageKey !== 'studio') return;
+
+  const root = ref.current;
+
+  if (!root) return;
+
+  const params = new URLSearchParams(
+    window.location.search
+  );
+
+  const prompt = params.get('prompt');
+
+  if (!prompt) return;
+
+  const textarea = root.querySelector(
+    '.studio-textarea'
+  ) as HTMLTextAreaElement | null;
+
+  if (!textarea) return;
+
+  textarea.value = prompt;
+
+  textarea.dispatchEvent(
+    new Event('input', {
+      bubbles: true,
+    })
+  );
+
+  textarea.dispatchEvent(
+    new Event('change', {
+      bubbles: true,
+    })
+  );
+}, [pageKey]);
+
 
   // --------------------------------------------------
   // Story carousel autoplay
