@@ -88,60 +88,174 @@ export function WhyVivi() {
           the story you want to tell.
         </p>
 
-<div className="why-vivi-flow">
-  <div className="why-vivi-flow-orbit why-vivi-flow-orbit--one" />
-  <div className="why-vivi-flow-orbit why-vivi-flow-orbit--two" />
+<div className="why-vivi-create-demo">
 
-  <div className="why-vivi-flow-line why-vivi-flow-line--1" />
-  <div className="why-vivi-flow-line why-vivi-flow-line--2" />
-  <div className="why-vivi-flow-line why-vivi-flow-line--3" />
-  <div className="why-vivi-flow-line why-vivi-flow-line--4" />
-  <div className="why-vivi-flow-line why-vivi-flow-line--5" />
-  <div className="why-vivi-flow-line why-vivi-flow-line--6" />
+  {/* ambient particles */}
+  <span className="demo-particle p1" />
+  <span className="demo-particle p2" />
+  <span className="demo-particle p3" />
+  <span className="demo-particle p4" />
+  <span className="demo-particle p5" />
+  <span className="demo-particle p6" />
 
-  <div className="why-vivi-flow-node why-vivi-flow-node--1">
+  {/* PROMPT */}
+  <div className="demo-prompt-card">
+
+    <div className="demo-prompt-top">
+      <span>VIVI PROMPT</span>
+      <span className="demo-live">
+        <i />
+        LIVE
+      </span>
+    </div>
+
+    <div className="demo-prompt-text">
+      <span className="typed-line">
+        A woman walks through Mumbai at night...
+      </span>
+      <span className="typed-cursor" />
+    </div>
+
+    <div className="demo-prompt-footer">
+      <span>cinematic</span>
+      <span>emotional</span>
+      <span>16:9</span>
+    </div>
+
+  </div>
+
+
+  {/* PROCESSING BEAM */}
+  <div className="demo-processing">
+
+    <span className="processing-dot" />
+
+    <div className="processing-line">
+      <i />
+    </div>
+
+    <span className="processing-label">
+      vivi is creating
+    </span>
+
+  </div>
+
+
+  {/* FILM STRIP */}
+  <div className="demo-filmstrip">
+
+    <div className="film-frame frame-1">
+      <span>01</span>
+    </div>
+
+    <div className="film-frame frame-2">
+      <span>02</span>
+    </div>
+
+    <div className="film-frame frame-3">
+      <span>03</span>
+    </div>
+
+    <div className="film-frame frame-4">
+      <span>04</span>
+    </div>
+
+    <div className="film-frame frame-5">
+      <span>05</span>
+    </div>
+
+    <div className="film-frame frame-6">
+      <span>06</span>
+    </div>
+
+  </div>
+
+
+  {/* CAMERA SCAN */}
+  <div className="demo-camera">
+
+    <div className="camera-corners">
+      <span />
+      <span />
+      <span />
+      <span />
+    </div>
+
+    <div className="camera-crosshair">
+      <i />
+      <i />
+    </div>
+
+    <span className="camera-label">
+      24 FPS
+    </span>
+
+  </div>
+
+
+  {/* FINAL VIDEO */}
+  <div className="demo-video">
+
+    <div className="video-glow" />
+
+    <div className="video-image">
+
+      <div className="video-moon" />
+
+      <div className="video-city">
+        <i />
+        <i />
+        <i />
+        <i />
+        <i />
+      </div>
+
+      <div className="video-character">
+        <div className="video-character-head" />
+        <div className="video-character-body" />
+      </div>
+
+      <div className="video-mist" />
+
+    </div>
+
+    <div className="video-ui">
+
+      <span>SCENE 04</span>
+
+      <div className="video-progress">
+        <i />
+      </div>
+
+      <span>00:08</span>
+
+    </div>
+
+    <div className="video-badge">
+      <i />
+      VIDEO READY
+    </div>
+
+  </div>
+
+
+  {/* LITTLE STORY LABELS */}
+  <div className="demo-label label-prompt">
     <span>01</span>
+    YOUR IDEA
+  </div>
+
+  <div className="demo-label label-story">
+    <span>02</span>
     STORY
   </div>
 
-  <div className="why-vivi-flow-node why-vivi-flow-node--2">
-    <span>02</span>
-    CHARACTERS
-  </div>
-
-  <div className="why-vivi-flow-node why-vivi-flow-node--3">
+  <div className="demo-label label-video">
     <span>03</span>
-    CONTINUITY
+    FINISHED VIDEO
   </div>
 
-  <div className="why-vivi-flow-node why-vivi-flow-node--4">
-    <span>04</span>
-    CINEMATIC
-  </div>
-
-  <div className="why-vivi-flow-node why-vivi-flow-node--5">
-    <span>05</span>
-    AUDIO
-  </div>
-
-  <div className="why-vivi-flow-node why-vivi-flow-node--6">
-    <span>06</span>
-    CHAT
-  </div>
-
-  <div className="why-vivi-flow-core">
-    <div className="why-vivi-flow-core-ring" />
-    <strong>VIVI</strong>
-    <span>ONE CREATIVE ENGINE</span>
-  </div>
-
-  <div className="why-vivi-flow-caption">
-    <span>6 capabilities</span>
-    <i />
-    <span>one finished story</span>
-  </div>
 </div>
-
       </div>
 
       <div className="why-vivi-features">
