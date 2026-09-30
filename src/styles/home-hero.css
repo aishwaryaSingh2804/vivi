@@ -80,7 +80,7 @@
       transparent 100%
     );
 
-  animation: vivi-grid-drift 34s linear infinite;
+  /* animation: vivi-grid-drift 34s linear infinite; */
 }
 
 @keyframes vivi-grid-drift {
@@ -2440,5 +2440,1698 @@ background:
     height: auto;
 
     min-height: calc(100svh - 64px);
+  }
+}
+
+/* =========================================================
+   VIVI — CINEMATIC FANTASY WORLD
+   ========================================================= */
+
+.vivi-world-background {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  background: #071426;
+  isolation: isolate;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN WORLD IMAGE
+   --------------------------------------------------------- */
+
+.vivi-world-image {
+  position: absolute;
+  inset: -2%;
+
+  background-image:
+    url("/images/vivi-fantasy-world.png");
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  transform: scale(1.035);
+
+  animation:
+    vivi-world-breathe 18s ease-in-out infinite alternate;
+
+  will-change: transform;
+}
+
+
+/* Very subtle cinematic movement */
+
+@keyframes vivi-world-breathe {
+  0% {
+    transform:
+      scale(1.035)
+      translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform:
+      scale(1.065)
+      translate3d(-0.35%, -0.25%, 0);
+  }
+}
+
+
+/* ---------------------------------------------------------
+   ATMOSPHERIC DEPTH
+   --------------------------------------------------------- */
+
+.vivi-world-haze {
+  position: absolute;
+  inset: -15%;
+
+  pointer-events: none;
+
+  filter: blur(45px);
+
+  mix-blend-mode: screen;
+
+  opacity: 0.22;
+}
+
+
+.vivi-world-haze-one {
+  background:
+    radial-gradient(
+      ellipse 35% 28% at 17% 47%,
+      rgba(213, 235, 255, 0.55),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 30% 24% at 83% 50%,
+      rgba(190, 220, 255, 0.38),
+      transparent 70%
+    );
+
+  animation:
+    vivi-haze-drift-one 22s ease-in-out infinite alternate;
+}
+
+
+.vivi-world-haze-two {
+  background:
+    radial-gradient(
+      ellipse 32% 20% at 50% 77%,
+      rgba(225, 240, 255, 0.5),
+      transparent 72%
+    );
+
+  opacity: 0.28;
+
+  animation:
+    vivi-haze-drift-two 27s ease-in-out infinite alternate;
+}
+
+
+@keyframes vivi-haze-drift-one {
+  0% {
+    transform: translate3d(-2%, 1%, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(2%, -1%, 0) scale(1.06);
+  }
+}
+
+
+@keyframes vivi-haze-drift-two {
+  0% {
+    transform: translate3d(1%, 2%, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(-2%, -1%, 0) scale(1.08);
+  }
+}
+
+
+/* ---------------------------------------------------------
+   FLOWING FOG
+   --------------------------------------------------------- */
+
+.vivi-fog {
+  position: absolute;
+
+  width: 150%;
+  height: 32%;
+
+  left: -25%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(239, 247, 255, 0.72) 0%,
+      rgba(215, 235, 255, 0.48) 28%,
+      rgba(185, 215, 247, 0.18) 48%,
+      transparent 72%
+    );
+
+  filter: blur(28px);
+
+  opacity: 0.34;
+
+  will-change: transform;
+
+  pointer-events: none;
+}
+
+
+/* Lower atmospheric fog */
+
+.vivi-fog-one {
+  bottom: -10%;
+  
+  animation:
+    vivi-fog-flow-one 24s ease-in-out infinite alternate;
+}
+
+
+.vivi-fog-two {
+  bottom: 13%;
+
+  height: 24%;
+
+  opacity: 0.22;
+
+  filter: blur(36px);
+
+  animation:
+    vivi-fog-flow-two 31s ease-in-out infinite alternate;
+}
+
+
+.vivi-fog-three {
+  top: 32%;
+
+  height: 19%;
+
+  opacity: 0.12;
+
+  filter: blur(42px);
+
+  animation:
+    vivi-fog-flow-three 37s ease-in-out infinite alternate;
+}
+
+
+@keyframes vivi-fog-flow-one {
+  0% {
+    transform:
+      translate3d(-8%, 3%, 0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate3d(3%, -1%, 0)
+      scale(1.04);
+  }
+
+  100% {
+    transform:
+      translate3d(9%, 2%, 0)
+      scale(1.08);
+  }
+}
+
+
+@keyframes vivi-fog-flow-two {
+  0% {
+    transform:
+      translate3d(7%, 0, 0)
+      scale(1.05);
+  }
+
+  100% {
+    transform:
+      translate3d(-8%, -3%, 0)
+      scale(1.12);
+  }
+}
+
+
+@keyframes vivi-fog-flow-three {
+  0% {
+    transform:
+      translate3d(-6%, 0, 0)
+      scale(1);
+  }
+
+  100% {
+    transform:
+      translate3d(8%, 2%, 0)
+      scale(1.1);
+  }
+}
+
+
+/* ---------------------------------------------------------
+   MAGICAL LIGHT
+   --------------------------------------------------------- */
+
+.vivi-world-light {
+  position: absolute;
+
+  width: 42vw;
+  height: 42vw;
+
+  min-width: 420px;
+  min-height: 420px;
+
+  left: 50%;
+  top: 26%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 220, 177, 0.18) 0%,
+      rgba(180, 207, 255, 0.08) 30%,
+      transparent 68%
+    );
+
+  filter: blur(18px);
+
+  mix-blend-mode: screen;
+
+  opacity: 0.72;
+
+  animation:
+    vivi-world-light-pulse 9s ease-in-out infinite alternate;
+}
+
+
+@keyframes vivi-world-light-pulse {
+  0% {
+    transform:
+      translate(-50%, -50%)
+      scale(0.92);
+
+    opacity: 0.52;
+  }
+
+  100% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.08);
+
+    opacity: 0.78;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   PARTICLES
+   --------------------------------------------------------- */
+
+.vivi-world-particles {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+}
+
+
+.vivi-world-particles span {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: rgba(235, 247, 255, 0.72);
+
+  box-shadow:
+    0 0 8px rgba(180, 220, 255, 0.85),
+    0 0 18px rgba(125, 185, 255, 0.35);
+
+  animation:
+    vivi-particle-rise
+    var(--particle-duration, 8s)
+    ease-in-out
+    infinite;
+}
+
+
+/* Individual positions */
+
+.vivi-world-particles span:nth-child(1) {
+  left: 12%;
+  top: 62%;
+  --particle-duration: 9s;
+}
+
+.vivi-world-particles span:nth-child(2) {
+  left: 20%;
+  top: 31%;
+  --particle-duration: 11s;
+  animation-delay: -3s;
+}
+
+.vivi-world-particles span:nth-child(3) {
+  left: 29%;
+  top: 70%;
+  --particle-duration: 12s;
+  animation-delay: -6s;
+}
+
+.vivi-world-particles span:nth-child(4) {
+  left: 38%;
+  top: 24%;
+  --particle-duration: 10s;
+  animation-delay: -2s;
+}
+
+.vivi-world-particles span:nth-child(5) {
+  left: 68%;
+  top: 30%;
+  --particle-duration: 13s;
+  animation-delay: -8s;
+}
+
+.vivi-world-particles span:nth-child(6) {
+  left: 77%;
+  top: 58%;
+  --particle-duration: 9s;
+  animation-delay: -4s;
+}
+
+.vivi-world-particles span:nth-child(7) {
+  left: 87%;
+  top: 38%;
+  --particle-duration: 12s;
+  animation-delay: -7s;
+}
+
+.vivi-world-particles span:nth-child(8) {
+  left: 57%;
+  top: 67%;
+  --particle-duration: 10s;
+  animation-delay: -5s;
+}
+
+.vivi-world-particles span:nth-child(9) {
+  left: 44%;
+  top: 75%;
+  --particle-duration: 14s;
+  animation-delay: -9s;
+}
+
+.vivi-world-particles span:nth-child(10) {
+  left: 8%;
+  top: 42%;
+  --particle-duration: 11s;
+  animation-delay: -1s;
+}
+
+.vivi-world-particles span:nth-child(11) {
+  left: 92%;
+  top: 70%;
+  --particle-duration: 13s;
+  animation-delay: -6s;
+}
+
+.vivi-world-particles span:nth-child(12) {
+  left: 73%;
+  top: 20%;
+  --particle-duration: 10s;
+  animation-delay: -2s;
+}
+
+
+@keyframes vivi-particle-rise {
+  0% {
+    transform:
+      translate3d(0, 12px, 0)
+      scale(0.6);
+
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.65;
+  }
+
+  50% {
+    transform:
+      translate3d(8px, -18px, 0)
+      scale(1);
+
+    opacity: 0.8;
+  }
+
+  75% {
+    opacity: 0.35;
+  }
+
+  100% {
+    transform:
+      translate3d(-4px, -38px, 0)
+      scale(0.5);
+
+    opacity: 0;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   CHATBOT PROTECTION ZONE
+   --------------------------------------------------------- */
+
+.vivi-chat-focus {
+  position: absolute;
+
+  left: 50%;
+  top: 52%;
+
+  width: min(920px, 82vw);
+  height: min(620px, 72vh);
+
+  transform: translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(8, 24, 48, 0.38) 0%,
+      rgba(8, 24, 48, 0.20) 42%,
+      transparent 72%
+    );
+
+  filter: blur(22px);
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   CINEMATIC VIGNETTE
+   --------------------------------------------------------- */
+
+.vivi-world-vignette {
+  position: absolute;
+  inset: 0;
+
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 12, 28, 0.18) 0%,
+      transparent 22%,
+      transparent 68%,
+      rgba(3, 12, 28, 0.32) 100%
+    ),
+    radial-gradient(
+      ellipse at center,
+      transparent 30%,
+      rgba(2, 10, 25, 0.30) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   VIVI — ENIGMATIC LIVING WORLD
+   No waterfall simulation.
+   No scroll interaction.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   CAMERA MOVEMENT
+
+   Very slow movement makes it feel like we are looking
+   around inside the world rather than watching a picture.
+--------------------------------------------------------- */
+
+.vivi-world-image {
+  inset: -7%;
+
+  animation:
+    vivi-cinematic-camera
+    22s
+    cubic-bezier(.45, 0, .55, 1)
+    infinite alternate;
+
+  will-change: transform;
+}
+
+
+@keyframes vivi-cinematic-camera {
+
+  0% {
+    transform:
+      scale(1.045)
+      translate3d(0%, 0%, 0);
+  }
+
+  25% {
+    transform:
+      scale(1.065)
+      translate3d(-0.7%, -0.3%, 0);
+  }
+
+  50% {
+    transform:
+      scale(1.085)
+      translate3d(-1.1%, 0.2%, 0);
+  }
+
+  75% {
+    transform:
+      scale(1.07)
+      translate3d(0.4%, -0.45%, 0);
+  }
+
+  100% {
+    transform:
+      scale(1.055)
+      translate3d(0.9%, 0.15%, 0);
+  }
+}
+
+
+/* =========================================================
+   DARK MOVING FOG
+
+   These are intentionally darker than the white fog.
+   They create shadows travelling through the mountains.
+--------------------------------------------------------- */
+
+.vivi-shadow-fog {
+
+  position: absolute;
+
+  pointer-events: none;
+
+  width: 150%;
+  height: 35%;
+
+  left: -25%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+
+      rgba(3, 13, 31, 0.52) 0%,
+      rgba(6, 20, 42, 0.38) 24%,
+      rgba(13, 34, 64, 0.22) 46%,
+      transparent 72%
+    );
+
+  filter: blur(38px);
+
+  mix-blend-mode: multiply;
+
+  z-index: 4;
+
+  will-change: transform;
+}
+
+
+/* Large shadow crossing the mountains */
+
+.vivi-shadow-fog-one {
+
+  top: 16%;
+
+  opacity: .62;
+
+  animation:
+    vivi-shadow-drift-one
+    13s
+    ease-in-out
+    infinite alternate;
+}
+
+
+/* Lower shadow drifting through the valley */
+
+.vivi-shadow-fog-two {
+
+  top: 47%;
+
+  height: 28%;
+
+  opacity: .48;
+
+  filter: blur(45px);
+
+  animation:
+    vivi-shadow-drift-two
+    17s
+    ease-in-out
+    infinite alternate-reverse;
+}
+
+
+/* Foreground atmospheric shadow */
+
+.vivi-shadow-fog-three {
+
+  bottom: -8%;
+
+  height: 31%;
+
+  opacity: .38;
+
+  filter: blur(52px);
+
+  animation:
+    vivi-shadow-drift-three
+    11s
+    ease-in-out
+    infinite alternate;
+}
+
+
+@keyframes vivi-shadow-drift-one {
+
+  0% {
+    transform:
+      translate3d(-17%, 4%, 0)
+      scale(1);
+  }
+
+  35% {
+    transform:
+      translate3d(-5%, -1%, 0)
+      scale(1.08);
+  }
+
+  70% {
+    transform:
+      translate3d(7%, 2%, 0)
+      scale(1.13);
+  }
+
+  100% {
+    transform:
+      translate3d(18%, -3%, 0)
+      scale(1.08);
+  }
+}
+
+
+@keyframes vivi-shadow-drift-two {
+
+  0% {
+    transform:
+      translate3d(16%, 3%, 0)
+      scale(1.05);
+  }
+
+  50% {
+    transform:
+      translate3d(0%, -3%, 0)
+      scale(1.12);
+  }
+
+  100% {
+    transform:
+      translate3d(-18%, 2%, 0)
+      scale(1.06);
+  }
+}
+
+
+@keyframes vivi-shadow-drift-three {
+
+  0% {
+    transform:
+      translate3d(-12%, 0, 0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate3d(2%, -4%, 0)
+      scale(1.12);
+  }
+
+  100% {
+    transform:
+      translate3d(15%, 1%, 0)
+      scale(1.08);
+  }
+}
+
+
+/* =========================================================
+   FAST MIST WISPS
+
+   These are lighter and move faster than the dark fog.
+   This creates depth because different atmospheric layers
+   move at different speeds.
+--------------------------------------------------------- */
+
+.vivi-mist-wisp {
+
+  position: absolute;
+
+  width: 135%;
+  height: 15%;
+
+  left: -18%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(235, 245, 255, .34),
+      rgba(202, 225, 250, .17) 35%,
+      transparent 70%
+    );
+
+  filter: blur(24px);
+
+  pointer-events: none;
+
+  z-index: 6;
+
+  will-change: transform;
+}
+
+
+.vivi-mist-wisp-one {
+
+  top: 58%;
+
+  animation:
+    vivi-wisp-one
+    8s
+    ease-in-out
+    infinite alternate;
+}
+
+
+.vivi-mist-wisp-two {
+
+  top: 69%;
+
+  opacity: .65;
+
+  animation:
+    vivi-wisp-two
+    10s
+    ease-in-out
+    infinite alternate-reverse;
+}
+
+
+.vivi-mist-wisp-three {
+
+  top: 43%;
+
+  height: 10%;
+
+  opacity: .4;
+
+  filter: blur(30px);
+
+  animation:
+    vivi-wisp-three
+    7s
+    ease-in-out
+    infinite alternate;
+}
+
+
+@keyframes vivi-wisp-one {
+
+  0% {
+    transform:
+      translate3d(-18%, 2%, 0)
+      scale(1);
+  }
+
+  100% {
+    transform:
+      translate3d(17%, -4%, 0)
+      scale(1.13);
+  }
+}
+
+
+@keyframes vivi-wisp-two {
+
+  0% {
+    transform:
+      translate3d(15%, 0, 0)
+      scale(1.08);
+  }
+
+  100% {
+    transform:
+      translate3d(-15%, -5%, 0)
+      scale(1);
+  }
+}
+
+
+@keyframes vivi-wisp-three {
+
+  0% {
+    transform:
+      translate3d(-14%, 0, 0)
+      scale(.9);
+  }
+
+  100% {
+    transform:
+      translate3d(18%, -3%, 0)
+      scale(1.15);
+  }
+}
+
+
+/* =========================================================
+   ATMOSPHERIC LIGHT
+
+   Slow enough to feel natural, noticeable enough that the
+   world doesn't look frozen.
+--------------------------------------------------------- */
+
+.vivi-world-light {
+
+  animation:
+    vivi-world-light-pulse
+    7s
+    ease-in-out
+    infinite alternate;
+}
+
+
+@keyframes vivi-world-light-pulse {
+
+  0% {
+
+    transform:
+      translate(-50%, -50%)
+      scale(.88);
+
+    opacity: .40;
+  }
+
+  50% {
+
+    opacity: .68;
+  }
+
+  100% {
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.13);
+
+    opacity: .82;
+  }
+}
+
+
+/* =========================================================
+   PARTICLES — A LITTLE MORE LIFE
+--------------------------------------------------------- */
+
+.vivi-world-particles span {
+
+  animation:
+    vivi-particle-drift
+    var(--particle-duration, 7s)
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes vivi-particle-drift {
+
+  0% {
+
+    transform:
+      translate3d(-5px, 15px, 0)
+      scale(.35);
+
+    opacity: 0;
+  }
+
+  20% {
+    opacity: .55;
+  }
+
+  50% {
+
+    transform:
+      translate3d(13px, -18px, 0)
+      scale(1.15);
+
+    opacity: .9;
+  }
+
+  75% {
+    opacity: .35;
+  }
+
+  100% {
+
+    transform:
+      translate3d(-9px, -45px, 0)
+      scale(.3);
+
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   REMOVE ANY OLD WATERFALL / WATER SHIMMER LAYERS
+--------------------------------------------------------- */
+
+.vivi-waterfall,
+.vivi-waterfall-mist,
+.vivi-water-shimmer {
+
+  display: none !important;
+}
+
+
+/* =========================================================
+   KEEP THE WORLD ABOVE THE PAGE BUT BELOW CONTENT
+--------------------------------------------------------- */
+
+.vivi-world-background {
+  z-index: -2;
+}
+
+.vivi-hero-content {
+  z-index: 20;
+}
+
+
+/* =========================================================
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 720px) {
+
+  .vivi-world-image {
+    animation-duration: 17s;
+  }
+
+  .vivi-shadow-fog {
+    width: 210%;
+    left: -55%;
+  }
+
+  .vivi-mist-wisp {
+    width: 220%;
+    left: -60%;
+  }
+
+  .vivi-shadow-fog-one {
+    opacity: .45;
+  }
+
+  .vivi-shadow-fog-two {
+    opacity: .35;
+  }
+}
+
+/* =========================================================
+   VIVI — DARK ENCHANTED WORLD
+   Continuous animation only.
+   NO scroll dependency.
+   ========================================================= */
+
+
+/* =========================================================
+   DARK ATMOSPHERIC COLOR SHIFT
+========================================================= */
+
+.vivi-dark-atmosphere {
+  position: absolute;
+  inset: -20%;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse 55% 45% at 5% 45%,
+      rgba(2, 10, 27, .72),
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 50% 45% at 97% 42%,
+      rgba(3, 12, 30, .62),
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 70% 32% at 50% 100%,
+      rgba(3, 13, 30, .42),
+      transparent 72%
+    );
+
+  filter: blur(12px);
+
+  opacity: .75;
+
+  animation:
+    vivi-dark-breath
+    10s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes vivi-dark-breath {
+
+  0% {
+    transform: scale(1);
+    opacity: .58;
+  }
+
+  50% {
+    opacity: .82;
+  }
+
+  100% {
+    transform: scale(1.07);
+    opacity: .68;
+  }
+}
+
+
+/* =========================================================
+   LARGE MOVING SHADOW CLOUDS
+========================================================= */
+
+.vivi-shadow-cloud {
+
+  position: absolute;
+
+  width: 90%;
+  height: 30%;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(1, 8, 23, .78) 0%,
+      rgba(3, 13, 32, .55) 28%,
+      rgba(8, 22, 46, .28) 50%,
+      transparent 74%
+    );
+
+  filter: blur(38px);
+
+  mix-blend-mode: multiply;
+
+  z-index: 5;
+
+  will-change: transform;
+}
+
+
+/* Shadow crossing the upper mountains */
+
+.vivi-shadow-cloud-one {
+
+  left: -45%;
+  top: 12%;
+
+  opacity: .62;
+
+  animation:
+    vivi-shadow-cloud-one-move
+    15s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes vivi-shadow-cloud-one-move {
+
+  0% {
+    transform:
+      translate3d(-4%, 2%, 0)
+      rotate(-2deg)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate3d(42%, -4%, 0)
+      rotate(1deg)
+      scale(1.15);
+  }
+
+  100% {
+    transform:
+      translate3d(82%, 3%, 0)
+      rotate(3deg)
+      scale(1.05);
+  }
+}
+
+
+/* Shadow moving in opposite direction */
+
+.vivi-shadow-cloud-two {
+
+  right: -48%;
+  left: auto;
+
+  top: 34%;
+
+  height: 27%;
+
+  opacity: .48;
+
+  animation:
+    vivi-shadow-cloud-two-move
+    19s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes vivi-shadow-cloud-two-move {
+
+  0% {
+    transform:
+      translate3d(0, 3%, 0)
+      scale(1.08);
+  }
+
+  50% {
+    transform:
+      translate3d(-38%, -3%, 0)
+      scale(1.18);
+  }
+
+  100% {
+    transform:
+      translate3d(-82%, 2%, 0)
+      scale(1.04);
+  }
+}
+
+
+/* Deep valley shadow */
+
+.vivi-shadow-cloud-three {
+
+  left: 5%;
+
+  top: 58%;
+
+  width: 90%;
+
+  height: 24%;
+
+  opacity: .34;
+
+  filter: blur(50px);
+
+  animation:
+    vivi-shadow-cloud-three-move
+    12s
+    ease-in-out
+    infinite
+    alternate-reverse;
+}
+
+
+@keyframes vivi-shadow-cloud-three-move {
+
+  0% {
+    transform:
+      translateX(-10%)
+      scaleX(.95);
+  }
+
+  100% {
+    transform:
+      translateX(16%)
+      scaleX(1.12);
+  }
+}
+
+
+/* =========================================================
+   SMOKE TENDRILS
+========================================================= */
+
+.vivi-smoke {
+
+  position: absolute;
+
+  width: 75%;
+  height: 9%;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(4, 15, 36, .72),
+      rgba(8, 25, 52, .38) 42%,
+      transparent 72%
+    );
+
+  filter: blur(18px);
+
+  z-index: 7;
+
+  will-change: transform;
+}
+
+
+/* Comes from left */
+
+.vivi-smoke-one {
+
+  left: -42%;
+  top: 43%;
+
+  transform: rotate(-9deg);
+
+  animation:
+    vivi-smoke-left
+    8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes vivi-smoke-left {
+
+  0% {
+    transform:
+      translate3d(0, 20px, 0)
+      rotate(-9deg)
+      scale(.9);
+
+    opacity: 0;
+  }
+
+  20% {
+    opacity: .65;
+  }
+
+  50% {
+    transform:
+      translate3d(55%, -8px, 0)
+      rotate(-4deg)
+      scale(1.08);
+
+    opacity: .42;
+  }
+
+  80% {
+    opacity: .25;
+  }
+
+  100% {
+    transform:
+      translate3d(115%, 12px, 0)
+      rotate(2deg)
+      scale(1.2);
+
+    opacity: 0;
+  }
+}
+
+
+/* Comes from right */
+
+.vivi-smoke-two {
+
+  right: -42%;
+  left: auto;
+
+  top: 55%;
+
+  transform: rotate(7deg);
+
+  animation:
+    vivi-smoke-right
+    10s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes vivi-smoke-right {
+
+  0% {
+    transform:
+      translate3d(0, -10px, 0)
+      rotate(7deg)
+      scale(.95);
+
+    opacity: 0;
+  }
+
+  20% {
+    opacity: .5;
+  }
+
+  55% {
+    transform:
+      translate3d(-60%, 4px, 0)
+      rotate(2deg)
+      scale(1.12);
+
+    opacity: .35;
+  }
+
+  100% {
+    transform:
+      translate3d(-125%, -8px, 0)
+      rotate(-3deg)
+      scale(1.2);
+
+    opacity: 0;
+  }
+}
+
+
+/* Very subtle smoke across the top */
+
+.vivi-smoke-three {
+
+  left: 10%;
+
+  top: 19%;
+
+  width: 80%;
+
+  height: 7%;
+
+  opacity: .28;
+
+  animation:
+    vivi-smoke-sky
+    13s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+@keyframes vivi-smoke-sky {
+
+  0% {
+    transform:
+      translateX(-13%)
+      scaleX(.9);
+  }
+
+  100% {
+    transform:
+      translateX(15%)
+      scaleX(1.12);
+  }
+}
+
+
+/* =========================================================
+   FOREGROUND CLOUD BANKS
+========================================================= */
+
+.vivi-cloud-bank {
+
+  position: absolute;
+
+  width: 120%;
+  height: 22%;
+
+  left: -20%;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(210, 231, 255, .35),
+      rgba(161, 194, 231, .18) 40%,
+      transparent 72%
+    );
+
+  filter: blur(30px);
+
+  z-index: 9;
+}
+
+
+.vivi-cloud-bank-one {
+
+  bottom: -8%;
+
+  animation:
+    vivi-cloud-bank-one-move
+    12s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+.vivi-cloud-bank-two {
+
+  bottom: 18%;
+
+  height: 13%;
+
+  opacity: .5;
+
+  animation:
+    vivi-cloud-bank-two-move
+    9s
+    ease-in-out
+    infinite
+    alternate-reverse;
+}
+
+
+@keyframes vivi-cloud-bank-one-move {
+
+  0% {
+    transform:
+      translateX(-12%)
+      scale(1);
+  }
+
+  100% {
+    transform:
+      translateX(14%)
+      scale(1.12);
+  }
+}
+
+
+@keyframes vivi-cloud-bank-two-move {
+
+  0% {
+    transform:
+      translateX(14%)
+      translateY(3px)
+      scale(1.05);
+  }
+
+  100% {
+    transform:
+      translateX(-15%)
+      translateY(-8px)
+      scale(1.14);
+  }
+}
+
+
+/* =========================================================
+   ATMOSPHERIC SHADOW SWEEP
+========================================================= */
+
+.vivi-atmospheric-sweep {
+
+  position: absolute;
+
+  top: -20%;
+  left: -60%;
+
+  width: 70%;
+  height: 150%;
+
+  pointer-events: none;
+
+  z-index: 10;
+
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(3, 12, 30, .08) 35%,
+      rgba(1, 7, 20, .38) 50%,
+      rgba(3, 12, 30, .08) 65%,
+      transparent 100%
+    );
+
+  filter: blur(25px);
+
+  transform: rotate(7deg);
+
+  animation:
+    vivi-atmospheric-sweep
+    18s
+    cubic-bezier(.45,0,.55,1)
+    infinite;
+}
+
+
+@keyframes vivi-atmospheric-sweep {
+
+  0% {
+    transform:
+      translateX(-15%)
+      rotate(7deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: .45;
+  }
+
+  45% {
+    opacity: .7;
+  }
+
+  70% {
+    opacity: .25;
+  }
+
+  100% {
+    transform:
+      translateX(260%)
+      rotate(7deg);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   MAGICAL GLOWS
+========================================================= */
+
+.vivi-magic-glow {
+
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background: #e9f4ff;
+
+  box-shadow:
+    0 0 10px rgba(220,240,255,.95),
+    0 0 30px rgba(120,180,255,.75),
+    0 0 65px rgba(90,150,255,.35);
+
+  z-index: 12;
+
+  animation:
+    vivi-magic-glimmer
+    4s
+    ease-in-out
+    infinite;
+}
+
+
+.vivi-magic-glow-one {
+
+  left: 22%;
+  top: 37%;
+}
+
+
+.vivi-magic-glow-two {
+
+  left: 78%;
+  top: 46%;
+
+  animation-delay: -2.3s;
+}
+
+
+@keyframes vivi-magic-glimmer {
+
+  0% {
+    transform:
+      scale(.2)
+      translateY(12px);
+
+    opacity: 0;
+  }
+
+  25% {
+    opacity: .85;
+  }
+
+  50% {
+    transform:
+      scale(1.3)
+      translateY(-8px);
+
+    opacity: 1;
+  }
+
+  75% {
+    opacity: .45;
+  }
+
+  100% {
+    transform:
+      scale(.1)
+      translateY(-30px);
+
+    opacity: 0;
   }
 }
