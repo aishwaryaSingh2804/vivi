@@ -4,17 +4,33 @@
 
 .vivi-hero {
   position: relative;
-
   min-height: calc(100vh - 72px);
-
   overflow: hidden;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: #f7f6f3;
-  border-bottom: 1px solid #e8e6e0;
+  /* CINEMATIC BLUE BASE */
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 50% 42%,
+      rgba(35, 87, 175, 0.28),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at 12% 25%,
+      rgba(45, 105, 230, 0.18),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at 88% 75%,
+      rgba(66, 120, 255, 0.14),
+      transparent 70%
+    ),
+    #071426;
+
+  border-bottom: 1px solid rgba(125, 170, 255, 0.14);
 
   isolation: isolate;
 }
@@ -32,20 +48,39 @@
 
   background-image:
     linear-gradient(
-      rgba(40, 70, 110, 0.055) 1px,
+      rgba(105, 158, 255, 0.075) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(40, 70, 110, 0.055) 1px,
+      rgba(105, 158, 255, 0.075) 1px,
       transparent 1px
     );
 
-  background-size: 56px 56px;
+  background-size: 64px 64px;
 
-  transform: perspective(900px) rotateX(1deg);
+  transform:
+    perspective(1000px)
+    rotateX(1deg)
+    scale(1.02);
 
-  animation: vivi-grid-drift 28s linear infinite;
+  mask-image:
+    radial-gradient(
+      ellipse at center,
+      black 20%,
+      rgba(0,0,0,.7) 55%,
+      transparent 100%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse at center,
+      black 20%,
+      rgba(0,0,0,.7) 55%,
+      transparent 100%
+    );
+
+  animation: vivi-grid-drift 34s linear infinite;
 }
 
 @keyframes vivi-grid-drift {
@@ -54,7 +89,7 @@
   }
 
   to {
-    background-position: 56px 56px, 56px 56px;
+    background-position: 64px 64px, 64px 64px;
   }
 }
 
@@ -116,7 +151,7 @@
 
 .vivi-hero-content {
   position: relative;
-
+  z-index:10;
   width: min(900px, calc(100% - 48px));
 
   margin: 0 auto;
@@ -145,8 +180,10 @@
 
   margin-bottom: 18px;
 
-  color: #3158d4;
+color: #76a5ff;
 
+  text-shadow:
+    0 0 20px rgba(65, 125, 255, .28);
   font-family: var(--ff-mono, monospace);
 
   font-size: 14px;
@@ -171,7 +208,10 @@
 
   margin: 0 auto 18px;
 
-  color: #162d4d;
+  color: #f4f8ff;
+
+  text-shadow:
+    0 4px 30px rgba(0, 0, 0, .24);
 
   font-family: var(--ff-display);
 
@@ -190,15 +230,23 @@
 ----------------------------------------- */
 
 .vivi-hero-subtitle {
-  max-width: 650px;
+  max-width: 700px;
 
-  margin: 0 auto 26px;
+  margin: 0 auto 28px;
 
-  color: #617b9c;
+  color: rgba(225, 237, 255, 0.92);
 
   font-size: 16px;
 
-  line-height: 1.6;
+  font-weight: 450;
+
+  line-height: 1.65;
+
+  letter-spacing: -0.01em;
+
+  text-shadow:
+    0 2px 18px rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(55, 115, 235, 0.10);
 }
 
 
@@ -213,42 +261,84 @@
 }
 
 .vivi-prompt-box {
+  position: relative;
+
   overflow: hidden;
 
-  background: rgba(255, 255, 255, 0.88);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, .985),
+      rgba(243, 248, 255, .97)
+    );
 
-  border: 1px solid rgba(166, 187, 213, 0.75);
+  border:
+    1px solid rgba(145, 184, 241, .75);
 
-  border-radius: 18px;
+  border-radius: 22px;
 
   box-shadow:
-    0 20px 60px rgba(40, 63, 90, 0.08),
-    0 4px 14px rgba(40, 63, 90, 0.05);
+    0 35px 90px rgba(0, 0, 0, .30),
+    0 15px 40px rgba(19, 72, 157, .18),
+    0 0 0 1px rgba(255,255,255,.55) inset,
+    0 0 80px rgba(47, 107, 255, .10);
 
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
 
   text-align: left;
 
   transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
+    transform 500ms cubic-bezier(.22,1,.36,1),
+    box-shadow 500ms cubic-bezier(.22,1,.36,1),
+    border-color 500ms ease;
+}
+
+/* blue cinematic edge */
+
+.vivi-prompt-box::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.9),
+      rgba(84,142,255,.45),
+      rgba(255,255,255,.55)
+    );
+
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  mask-composite: exclude;
+
+  pointer-events: none;
 }
 
 .vivi-prompt-box:focus-within {
-  border-color: rgba(49, 88, 212, 0.45);
+  border-color: rgba(74, 128, 255, .85);
 
   box-shadow:
-    0 24px 70px rgba(40, 63, 90, 0.12),
-    0 0 0 4px rgba(49, 88, 212, 0.06);
+    0 40px 100px rgba(0, 0, 0, .34),
+    0 18px 45px rgba(25, 83, 190, .22),
+    0 0 0 4px rgba(47, 107, 255, .10),
+    0 0 80px rgba(47, 107, 255, .16);
 
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .vivi-prompt-label {
   padding: 20px 26px 6px;
 
-  color: #8aa0bb;
+  color: #6c86aa;
 
   font-family: var(--ff-display);
 
@@ -275,18 +365,19 @@
 
   background: transparent;
 
-  color: #405f83;
+  color: #234d82;
 
   font-family: inherit;
 
-  font-size: 16px;
+  font-size: 17px;
 
   line-height: 1.6;
 }
 
 .vivi-prompt-input::placeholder {
-  color: #a6b5c6;
+  color: #8ba4c4;
 }
+
 
 
 /* -----------------------------------------
@@ -321,39 +412,53 @@
   display: inline-flex;
 
   align-items: center;
+  gap: 10px;
 
-  gap: 9px;
-
-  padding: 12px 22px;
+  padding: 13px 23px;
 
   border: 0;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
-  background: #3158d4;
+  background:
+    linear-gradient(
+      135deg,
+      #3977ff,
+      #2458d8
+    );
 
   color: white;
 
   font-size: 14px;
-
-  font-weight: 600;
+  font-weight: 650;
 
   cursor: pointer;
 
-  box-shadow: 0 6px 16px rgba(49, 88, 212, 0.22);
+  box-shadow:
+    0 10px 24px rgba(37, 91, 216, .30),
+    0 0 22px rgba(57, 119, 255, .12);
 
   transition:
-    transform 160ms ease,
-    box-shadow 160ms ease,
-    background 160ms ease;
+    transform 220ms cubic-bezier(.22,1,.36,1),
+    box-shadow 220ms ease,
+    filter 220ms ease;
 }
 
 .vivi-prompt-button:hover {
-  background: #274bc0;
+  background:
+    linear-gradient(
+      135deg,
+      #4b87ff,
+      #2d64e5
+    );
 
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 
-  box-shadow: 0 9px 22px rgba(49, 88, 212, 0.28);
+  filter: brightness(1.05);
+
+  box-shadow:
+    0 14px 30px rgba(37, 91, 216, .38),
+    0 0 30px rgba(57, 119, 255, .20);
 }
 
 .vivi-prompt-button:active {
@@ -486,6 +591,1207 @@
   }
 }
 
+/* =========================================================
+   VIVI CREATIVE BACKGROUND
+   Story ingredients floating behind the hero
+========================================================= */
+
+.vivi-creative-background {
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  --vivi-convergence: 0;
+  --vivi-video-reveal: 0;
+
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse 60% 55% at 50% 45%,
+      rgba(32, 91, 190, 0.18),
+      transparent 72%
+    );
+}
+
+/* CINEMATIC DARK OVERLAY */
+
+.vivi-creative-background::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 12, 27, 0.28) 0%,
+      rgba(4, 17, 37, 0.12) 40%,
+      rgba(3, 11, 26, 0.48) 100%
+    ),
+    radial-gradient(
+      ellipse at center,
+      transparent 20%,
+      rgba(2, 9, 21, 0.42) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* Soft cinematic blue atmosphere */
+
+.vivi-creative-background::after {
+  content: "";
+
+  position: absolute;
+  inset: -20%;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 20% 35%,
+      rgba(40, 111, 255, 0.14),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 82% 30%,
+      rgba(70, 135, 255, 0.12),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(25, 83, 190, 0.14),
+      transparent 28%
+    );
+
+  filter: blur(30px);
+
+  animation: vivi-atmosphere 18s ease-in-out infinite alternate;
+
+  pointer-events: none;
+}
+
+@keyframes vivi-atmosphere {
+  0% {
+    transform: translate3d(-1%, -1%, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(1%, 1%, 0) scale(1.04);
+  }
+}
+
+
+/* =========================================================
+   AMBIENT ORBIT
+========================================================= */
+
+.vivi-creative-orbit {
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  border: 1px solid rgba(49, 88, 212, 0.055);
+
+  border-radius: 50%;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    scale(
+      calc(1 - (var(--vivi-convergence) * .32))
+    );
+
+  opacity:
+    calc(
+      .55 - (var(--vivi-convergence) * .45)
+    );
+
+  transition: opacity 100ms linear;
+}
+
+.vivi-orbit-two {
+  width: 760px;
+  height: 760px;
+
+  border-color: rgba(157, 93, 232, 0.035);
+
+  transform:
+    translate(-50%, -50%)
+    scale(
+      calc(1 - (var(--vivi-convergence) * .42))
+    );
+}
+
+
+/* =========================================================
+   FLOATING CARDS — BASE
+========================================================= */
+
+.vivi-floating-card {
+  position: absolute;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(177, 210, 255, 0.34);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.97),
+      rgba(239, 246, 255, 0.91)
+    );
+
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.28),
+    0 10px 30px rgba(20, 76, 170, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.42) inset,
+    0 0 45px rgba(46, 112, 255, 0.08);
+
+  color: #17345f;
+
+  transition:
+    opacity 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 500ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  z-index: 2;
+
+  will-change: transform, opacity;
+}
+
+/* subtle blue edge */
+
+.vivi-floating-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.65),
+      transparent 35%,
+      transparent 70%,
+      rgba(76,135,255,.08)
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SCRIPT
+========================================================= */
+
+.vivi-script-card {
+  width: 230px;
+
+  left: 7%;
+  top: 4%;
+
+  padding: 16px 18px;
+
+  border-radius: 14px;
+
+  transform:
+    translate(
+      calc(
+        var(--vivi-convergence) * 310px
+      ),
+      calc(
+        var(--vivi-convergence) * 220px
+      )
+    )
+    rotate(
+      calc(
+        -3deg + (var(--vivi-convergence) * 3deg)
+      )
+    )
+    scale(
+      calc(
+        1 - (var(--vivi-convergence) * .25)
+      )
+    );
+
+  opacity:
+    calc(
+      1 - (var(--vivi-convergence) * .9)
+    );
+
+  animation: vivi-float-script 7s ease-in-out infinite;
+}
+
+.vivi-card-topline {
+  color: #5278b5;
+  font-family: var(--ff-mono, monospace);
+  font-size: 8px;
+  letter-spacing: .14em;
+  font-weight: 600;
+}
+
+.vivi-script-line {
+  font-family: var(--ff-mono, monospace);
+  font-size: 10px;
+  line-height: 1.6;
+  color: #244b7c;
+}
+
+.vivi-script-line.muted {
+  margin-top: 7px;
+  color: #6f89a9;
+}
+
+.vivi-script-cursor {
+  display: inline-block;
+  margin-top: 5px;
+  color: #2f6bff;
+
+  animation: vivi-blink 1s steps(2) infinite;
+}
+
+
+/* =========================================================
+   CHARACTER
+========================================================= */
+
+.vivi-character-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  width: 205px;
+
+  right: 7%;
+  top: 25%;
+
+  padding: 13px;
+
+  border-radius: 15px;
+
+  transform:
+    translate(
+      calc(
+        var(--vivi-convergence) * -290px
+      ),
+      calc(
+        var(--vivi-convergence) * 180px
+      )
+    )
+    rotate(
+      calc(
+        3deg - (var(--vivi-convergence) * 3deg)
+      )
+    )
+    scale(
+      calc(
+        1 - (var(--vivi-convergence) * .28)
+      )
+    );
+
+  opacity:
+    calc(
+      1 - (var(--vivi-convergence) * .9)
+    );
+
+  animation: vivi-float-character 8s ease-in-out infinite;
+}
+
+.vivi-character-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #dbeaff,
+      #f4f8ff
+    );
+
+  border: 1px solid rgba(68, 116, 210, 0.18);
+
+  color: #2458b8;
+
+  font-family: var(--ff-display);
+  font-size: 18px;
+
+  box-shadow:
+    0 8px 20px rgba(35, 88, 175, 0.12);
+}
+
+.vivi-character-info span {
+  font-family: var(--ff-mono, monospace);
+  font-size: 7px;
+  letter-spacing: .15em;
+  color: #7190b9;
+  font-weight: 600;
+}
+
+.vivi-character-info strong {
+  margin-top: 3px;
+  color: #183b69;
+  font-size: 12px;
+  letter-spacing: -.01em;
+}
+
+.vivi-character-info small {
+  margin-top: 2px;
+  color: #7890ad;
+  font-size: 7px;
+}
+
+.vivi-character-check {
+  margin-left: auto;
+
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(45, 105, 230, .10);
+
+  color: #2d73dd;
+  font-size: 10px;
+}
+
+/* =========================================================
+   SCENE
+========================================================= */
+
+.vivi-scene-card {
+  width: 170px;
+
+  right: 13%;
+  bottom: 20%;
+
+  padding: 8px;
+
+  border-radius: 14px;
+
+  transform:
+    translate(
+      calc(
+        var(--vivi-convergence) * -210px
+      ),
+      calc(
+        var(--vivi-convergence) * -170px
+      )
+    )
+    rotate(
+      calc(
+        -4deg + (var(--vivi-convergence) * 4deg)
+      )
+    )
+    scale(
+      calc(
+        1 - (var(--vivi-convergence) * .3)
+      )
+    );
+
+  opacity:
+    calc(
+      1 - (var(--vivi-convergence) * .9)
+    );
+
+  animation: vivi-float-scene 9s ease-in-out infinite;
+}
+
+
+
+.vivi-scene-preview > span {
+  position: absolute;
+
+  top: 7px;
+  left: 8px;
+
+  color: rgba(255,255,255,.8);
+
+  font-family: var(--ff-mono, monospace);
+
+  font-size: 8px;
+}
+
+.vivi-scene-sun {
+  position: absolute;
+
+  width: 24px;
+  height: 24px;
+
+  top: 15px;
+  right: 18px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.45);
+
+  filter: blur(2px);
+}
+
+.vivi-scene-preview {
+  position: relative;
+
+  height: 86px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background:
+    radial-gradient(
+      circle at 72% 24%,
+      rgba(145, 198, 255, .85) 0 8%,
+      transparent 9%
+    ),
+    linear-gradient(
+      180deg,
+      #315f98 0%,
+      #193a66 48%,
+      #081a32 100%
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+.vivi-scene-preview::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 35%,
+      rgba(2, 12, 28, .55) 100%
+    );
+}
+
+.vivi-scene-horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 47%;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 40, 70, .1),
+      rgba(3, 15, 31, .85)
+    );
+
+  clip-path: polygon(
+    0 55%,
+    22% 38%,
+    39% 50%,
+    57% 27%,
+    73% 43%,
+    100% 22%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.vivi-scene-person {
+  position: absolute;
+
+  width: 15px;
+  height: 32px;
+
+  bottom: 10px;
+  left: 48%;
+
+  z-index: 2;
+
+  border-radius: 9px 9px 4px 4px;
+
+  background: #071629;
+
+  box-shadow:
+    0 0 18px rgba(87, 151, 255, .28);
+}
+
+.vivi-scene-meta {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 8px 2px 1px;
+}
+
+.vivi-scene-meta span,
+.vivi-scene-meta strong {
+  font-size: 7px;
+
+  letter-spacing: .1em;
+}
+
+.vivi-scene-meta span {
+  color: #9baabd;
+}
+
+.vivi-scene-meta strong {
+  color: #617b9b;
+}
+
+
+/* =========================================================
+   AUDIO
+========================================================= */
+
+.vivi-audio-card {
+  width: 195px;
+
+  left: 11%;
+  bottom: 19%;
+
+  padding: 12px 14px;
+
+  border-radius: 13px;
+background:
+    linear-gradient(
+      145deg,
+      rgba(248, 252, 255, .97),
+      rgba(232, 242, 255, .91)
+    );
+  transform:
+    translate(
+      calc(
+        var(--vivi-convergence) * 270px
+      ),
+      calc(
+        var(--vivi-convergence) * -150px
+      )
+    )
+    rotate(
+      calc(
+        3deg - (var(--vivi-convergence) * 3deg)
+      )
+    )
+    scale(
+      calc(
+        1 - (var(--vivi-convergence) * .3)
+      )
+    );
+
+  opacity:
+    calc(
+      1 - (var(--vivi-convergence) * .9)
+    );
+
+  animation: vivi-float-audio 8s ease-in-out infinite;
+}
+
+.vivi-audio-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 9px;
+
+  color: #6d89b0;
+
+  font-family: var(--ff-mono, monospace);
+
+  font-size: 7px;
+
+  letter-spacing: .1em;
+}
+
+.vivi-waveform {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  height: 34px;
+}
+
+.vivi-waveform span {
+  width: 2px;
+
+  border-radius: 3px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #7192c7,
+      #b4c5df
+    );
+
+  opacity: .65;
+
+  animation: vivi-wave 1.7s ease-in-out infinite alternate;
+}
+
+.vivi-waveform span:nth-child(3n) {
+  animation-delay: -.4s;
+}
+
+.vivi-waveform span:nth-child(4n) {
+  animation-delay: -.8s;
+}
+
+.vivi-audio-label {
+  margin-top: 8px;
+
+  color: #8ea2ba;
+
+  font-size: 8px;
+}
+
+.vivi-waveform span {
+  width: 2px;
+
+  border-radius: 3px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #2f6bff,
+      #8db6ff
+    );
+
+  box-shadow:
+    0 0 8px rgba(47, 107, 255, .24);
+
+  opacity: .82;
+
+  animation:
+    vivi-wave 1.7s ease-in-out infinite alternate;
+}
+
+.vivi-audio-label {
+  margin-top: 8px;
+
+  color: #617da4;
+
+  font-size: 8px;
+}
+/* =========================================================
+   PROMPT FRAGMENT
+========================================================= */
+
+.vivi-prompt-fragment {
+  position: absolute;
+
+  left: 4%;
+  top: 47%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  padding: 9px 12px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.42);
+
+  border: 1px solid rgba(120,145,180,.12);
+
+  color: white;
+
+  transform:
+    translate(
+      calc(
+        var(--vivi-convergence) * 290px
+      ),
+      calc(
+        var(--vivi-convergence) * 15px
+      )
+    );
+
+  opacity:
+    calc(
+      1 - (var(--vivi-convergence) * .95)
+    );
+
+  font-family: var(--ff-mono, monospace);
+
+  font-size: 8px;
+
+  letter-spacing: .08em;
+}
+
+.vivi-prompt-fragment strong {
+  color: white;
+
+  font-size: 8px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   GENERATION NODE
+========================================================= */
+
+.vivi-generation-node {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  transform:
+    translate(-50%, -50%)
+    scale(
+      calc(
+        .72 + (var(--vivi-convergence) * .45)
+      )
+    );
+
+  opacity:
+    calc(
+      .35 + (var(--vivi-convergence) * .65)
+    );
+
+  z-index: 1;
+
+  will-change: transform, opacity;
+}
+
+.vivi-generation-node span {
+  color: #8eb5f4;
+
+  font-family: var(--ff-mono, monospace);
+  font-size: 7px;
+
+  letter-spacing: .14em;
+}
+
+.vivi-generation-node strong {
+  margin-top: 2px;
+
+  color: #d7e7ff;
+
+  font-size: 9px;
+  letter-spacing: .09em;
+}
+
+.vivi-generation-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border:
+    1px solid rgba(111, 166, 255, .72);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(77, 137, 255, .30),
+      rgba(10, 35, 75, .82)
+    );
+
+  box-shadow:
+    0 0 0 7px rgba(47, 107, 255, .08),
+    0 0 35px rgba(47, 107, 255, .30),
+    0 0 80px rgba(47, 107, 255, .12),
+    inset 0 1px 0 rgba(255,255,255,.2);
+
+  color: #dceaff;
+
+  animation:
+    vivi-generation-pulse 2.8s
+    cubic-bezier(.4,0,.2,1)
+    infinite;
+}
+
+
+/* =========================================================
+   CONNECTIONS
+========================================================= */
+
+.vivi-connection {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 260px;
+  height: 1px;
+
+  transform-origin: left center;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(92, 151, 255, .46),
+      rgba(92, 151, 255, .12),
+      transparent
+    );
+
+  box-shadow:
+    0 0 12px rgba(47, 107, 255, .16);
+
+  opacity:
+    calc(
+      var(--vivi-convergence) * .75
+    );
+
+  transition:
+    opacity 500ms ease;
+
+  z-index: 1;
+}
+
+.vivi-connection-one {
+  transform:
+    translateY(-40px)
+    rotate(205deg)
+    scaleX(
+      calc(.4 + var(--vivi-convergence))
+    );
+}
+
+.vivi-connection-two {
+  transform:
+    translateY(30px)
+    rotate(25deg)
+    scaleX(
+      calc(.4 + var(--vivi-convergence))
+    );
+}
+
+.vivi-connection-three {
+  transform:
+    translateY(-10px)
+    rotate(145deg)
+    scaleX(
+      calc(.4 + var(--vivi-convergence))
+    );
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+.vivi-particle {
+  position: absolute;
+
+  color: rgba(137, 184, 255, .75);
+
+  font-size: 11px;
+
+  text-shadow:
+    0 0 12px rgba(70, 135, 255, .65);
+
+  pointer-events: none;
+
+  animation:
+    vivi-particle-float 5s ease-in-out infinite;
+
+  opacity:
+    calc(
+      .8 - (var(--vivi-convergence) * .7)
+    );
+
+  z-index: 1;
+}
+
+.vivi-particle-one {
+  left: 24%;
+  top: 24%;
+}
+
+.vivi-particle-two {
+  left: 76%;
+  top: 18%;
+
+  animation-delay: -1s;
+}
+
+.vivi-particle-three {
+  right: 23%;
+  bottom: 33%;
+
+  animation-delay: -2s;
+}
+
+.vivi-particle-four {
+  left: 32%;
+  bottom: 24%;
+
+  animation-delay: -3s;
+}
+
+.vivi-particle-five {
+  right: 34%;
+  top: 39%;
+
+  animation-delay: -1.5s;
+}
+
+
+/* =========================================================
+   VIDEO REVEAL
+========================================================= */
+
+.vivi-hero-video-reveal {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: min(500px, 38vw);
+
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background: #071426;
+
+  border:
+    1px solid rgba(124, 169, 255, .38);
+
+  box-shadow:
+    0 40px 110px rgba(0, 0, 0, .50),
+    0 0 60px rgba(39, 104, 235, .18);
+
+  transform:
+    translate(-50%, -50%)
+    scale(
+      calc(
+        .82 + (var(--vivi-video-reveal) * .55)
+      )
+    );
+
+  opacity: var(--vivi-video-reveal);
+
+  filter:
+    saturate(
+      calc(.8 + (var(--vivi-video-reveal) * .2))
+    );
+
+  transition:
+    opacity 700ms cubic-bezier(.22,1,.36,1);
+
+  z-index: 3;
+
+  will-change: transform, opacity;
+}
+
+.vivi-hero-video-reveal video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.vivi-hero-video-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 18, 38, .04) 0%,
+      transparent 42%,
+      rgba(2, 9, 21, .78) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(5, 20, 43, .18),
+      transparent 45%,
+      rgba(5, 20, 43, .12)
+    );
+}
+
+.vivi-hero-video-label {
+  position: absolute;
+
+  left: 18px;
+  right: 18px;
+  bottom: 16px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  color: white;
+
+  text-shadow:
+    0 2px 15px rgba(0,0,0,.5);
+}
+
+.vivi-hero-video-label span {
+  color: #a8c8ff;
+
+  font-family: var(--ff-mono, monospace);
+
+  font-size: 7px;
+
+  letter-spacing: .16em;
+}
+
+.vivi-hero-video-label strong {
+  font-size: 15px;
+  letter-spacing: -.02em;
+}
+
+/* =========================================
+   SCROLL-DRIVEN STICKY HERO
+========================================= */
+
+.vivi-hero-scroll {
+  position: relative;
+
+  /* This creates the scroll distance
+     while the hero stays on screen */
+  height: 230vh;
+
+  width: 100%;
+}
+
+.vivi-hero-sticky {
+  position: sticky;
+
+  top: 72px;
+
+  height: calc(100vh - 72px);
+
+  width: 100%;
+}
+
+.vivi-hero-sticky .vivi-hero {
+  height: 100%;
+  min-height: 0;
+}
+/* =========================================================
+   FLOAT ANIMATIONS
+========================================================= */
+
+@keyframes vivi-float-script {
+  0%, 100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -9px;
+  }
+}
+
+@keyframes vivi-float-character {
+  0%, 100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: 11px;
+  }
+}
+
+@keyframes vivi-float-scene {
+  0%, 100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -10px;
+  }
+}
+
+@keyframes vivi-float-audio {
+  0%, 100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: 8px;
+  }
+}
+
+@keyframes vivi-particle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes vivi-wave {
+  from {
+    transform: scaleY(.65);
+  }
+
+  to {
+    transform: scaleY(1.15);
+  }
+}
+
+@keyframes vivi-generation-pulse {
+  0%, 100% {
+    transform: scale(.95);
+    box-shadow:
+      0 0 0 6px rgba(49,88,212,.035),
+      0 0 25px rgba(49,88,212,.08);
+  }
+
+  50% {
+    transform: scale(1.08);
+    box-shadow:
+      0 0 0 9px rgba(49,88,212,.035),
+      0 0 35px rgba(49,88,212,.14);
+  }
+}
+
+@keyframes vivi-blink {
+  50% {
+    opacity: 0;
+  }
+}
 
 /* =========================================
    SHORT DESKTOP SCREENS
@@ -685,5 +1991,454 @@
   .vivi-prompt-button,
   .vivi-prompt-chip {
     transition: none;
+  }
+}
+
+.vivi-creative-orbit,
+.vivi-generation-node,
+.vivi-connection,
+.vivi-hero-video-reveal {
+  transition: none;
+}
+
+/* =========================================================
+   MOBILE HERO — CLEAN / SIMPLE
+   No floating creative cards or background icons
+========================================================= */
+
+@media (max-width: 720px) {
+
+  /* -----------------------------------------
+     HERO
+  ----------------------------------------- */
+
+  .vivi-hero {
+    min-height: calc(100svh - 64px);
+
+    background:
+      radial-gradient(
+        ellipse 100% 60% at 50% 20%,
+        rgba(42, 100, 210, 0.22),
+        transparent 70%
+      ),
+      linear-gradient(
+        180deg,
+        #071426 0%,
+        #091a32 55%,
+        #061326 100%
+      );
+
+    border-bottom: 1px solid rgba(130, 175, 255, 0.12);
+  }
+
+
+  /* -----------------------------------------
+     SIMPLE BACKGROUND
+  ----------------------------------------- */
+
+  .vivi-creative-background {
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(
+        circle at 50% 30%,
+        rgba(48, 111, 230, 0.16),
+        transparent 55%
+      );
+
+    overflow: hidden;
+  }
+
+  /* Keep the atmosphere, but make it extremely subtle */
+
+  .vivi-creative-background::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 12, 27, 0.15),
+        rgba(3, 12, 27, 0.42)
+      );
+
+    pointer-events: none;
+  }
+
+  .vivi-creative-background::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(
+        circle at 50% 35%,
+        rgba(55, 115, 235, 0.10),
+        transparent 55%
+      );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+  }
+
+
+  /* -----------------------------------------
+     VERY SUBTLE GRID
+  ----------------------------------------- */
+
+  .vivi-hero-grid {
+    inset: 0;
+
+    background-image:
+      linear-gradient(
+        rgba(110, 160, 255, 0.035) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(110, 160, 255, 0.035) 1px,
+        transparent 1px
+      );
+
+    background-size: 44px 44px;
+
+    mask-image:
+      radial-gradient(
+        ellipse at center,
+        black 10%,
+        transparent 85%
+      );
+
+    -webkit-mask-image:
+      radial-gradient(
+        ellipse at center,
+        black 10%,
+        transparent 85%
+      );
+
+    animation: none;
+  }
+
+
+  /* -----------------------------------------
+     HIDE ALL DESKTOP CREATIVE ELEMENTS
+  ----------------------------------------- */
+
+  .vivi-floating-card,
+  .vivi-creative-orbit,
+  .vivi-prompt-fragment,
+  .vivi-generation-node,
+  .vivi-connection,
+  .vivi-particle,
+  .vivi-hero-video-reveal {
+    display: none !important;
+  }
+
+
+  /* -----------------------------------------
+     HERO CONTENT
+  ----------------------------------------- */
+
+  .vivi-hero-content {
+    position: relative;
+    z-index: 10;
+
+    width: min(100% - 32px, 620px);
+
+    padding: 54px 0 42px;
+
+    margin: 0 auto;
+
+    text-align: center;
+  }
+
+
+  /* -----------------------------------------
+     EYEBROW
+  ----------------------------------------- */
+
+  .vivi-hero-eyebrow {
+    margin-bottom: 18px;
+
+    color: #7eabff;
+
+    font-size: 11px;
+
+    letter-spacing: 0.11em;
+
+    text-shadow:
+      0 0 18px rgba(68, 125, 255, 0.25);
+  }
+
+  .vivi-hero-eyebrow-line {
+    width: 22px;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        #6096ff
+      );
+  }
+
+
+  /* -----------------------------------------
+     TITLE
+  ----------------------------------------- */
+
+  .vivi-hero-title {
+    max-width: 600px;
+
+    margin: 0 auto 18px;
+
+    color: #f4f8ff;
+
+    font-size: clamp(42px, 12vw, 58px);
+
+    line-height: 0.98;
+
+    letter-spacing: -0.045em;
+
+    text-shadow:
+      0 4px 30px rgba(0, 0, 0, 0.28);
+  }
+
+
+  /* -----------------------------------------
+     SUBTITLE
+  ----------------------------------------- */
+
+  .vivi-hero-subtitle {
+    max-width: 500px;
+
+    margin: 0 auto 28px;
+
+    color: #dceaff;
+
+    font-size: 15px;
+
+    font-weight: 450;
+
+    line-height: 1.6;
+
+    letter-spacing: -0.005em;
+
+    text-shadow:
+      0 2px 16px rgba(0, 0, 0, 0.45);
+  }
+
+
+  /* -----------------------------------------
+     PROMPT
+  ----------------------------------------- */
+
+  .vivi-prompt-wrapper {
+    width: 100%;
+
+    margin: 0 auto;
+  }
+
+  .vivi-prompt-box {
+    border-radius: 20px;
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.98),
+        rgba(241, 247, 255, 0.96)
+      );
+
+    border:
+      1px solid rgba(143, 184, 245, 0.75);
+
+    box-shadow:
+      0 28px 70px rgba(0, 0, 0, 0.32),
+      0 10px 35px rgba(25, 82, 180, 0.18),
+      0 0 50px rgba(47, 107, 255, 0.08);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+
+  /* -----------------------------------------
+     PROMPT TEXT
+  ----------------------------------------- */
+
+  .vivi-prompt-label {
+    padding: 18px 20px 5px;
+
+    color: #6c86aa;
+
+    font-size: 14px;
+  }
+
+  .vivi-prompt-input {
+    min-height: 105px;
+
+    padding: 7px 20px 16px;
+
+    color: #234d82;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+  }
+
+  .vivi-prompt-input::placeholder {
+    color: #8ca4c2;
+  }
+
+
+  /* -----------------------------------------
+     PROMPT FOOTER
+  ----------------------------------------- */
+
+  .vivi-prompt-footer {
+    gap: 12px;
+
+    padding: 12px;
+
+    background:
+      rgba(239, 246, 255, 0.88);
+
+    border-top:
+      1px solid rgba(126, 165, 220, 0.18);
+  }
+
+  .vivi-prompt-hint {
+    color: #7189a8;
+
+    font-size: 12px;
+  }
+
+
+  /* -----------------------------------------
+     BUTTON
+  ----------------------------------------- */
+
+  .vivi-prompt-button {
+    width: 100%;
+
+    justify-content: center;
+
+    padding: 12px 20px;
+
+    border-radius: 11px;
+
+    background:
+      linear-gradient(
+        135deg,
+        #3977ff,
+        #2458d8
+      );
+
+    box-shadow:
+      0 10px 24px rgba(37, 91, 216, 0.28);
+  }
+
+
+  /* -----------------------------------------
+     SUGGESTION CHIPS
+  ----------------------------------------- */
+
+  .vivi-prompt-suggestions {
+    margin-top: 14px;
+
+    gap: 7px;
+  }
+
+  .vivi-prompt-try {
+    width: 100%;
+
+    margin-bottom: 2px;
+
+    color: rgba(189, 210, 240, 0.72);
+
+    font-size: 11px;
+  }
+
+  .vivi-prompt-chip {
+    padding: 6px 11px;
+
+    background:
+      rgba(255, 255, 255, 0.07);
+
+    border:
+      1px solid rgba(137, 179, 245, 0.18);
+
+    color: #b9d0f2;
+
+    font-size: 11px;
+
+    backdrop-filter: blur(8px);
+  }
+
+  .vivi-prompt-chip:hover,
+  .vivi-prompt-chip.active {
+    background:
+      rgba(255, 255, 255, 0.12);
+
+    border-color:
+      rgba(110, 161, 255, 0.42);
+
+    color: #dceaff;
+  }
+
+
+  /* -----------------------------------------
+     NOTE
+  ----------------------------------------- */
+
+  .vivi-hero-note {
+    margin-top: 13px;
+
+    color: rgba(184, 207, 238, 0.65);
+
+    font-size: 11px;
+  }
+
+
+  /* -----------------------------------------
+     EXPLORE
+  ----------------------------------------- */
+
+  .vivi-hero-explore {
+    margin-top: 22px;
+
+    color: rgba(185, 207, 239, 0.68);
+
+    font-size: 12px;
+  }
+
+
+  /* -----------------------------------------
+     REMOVE DESKTOP STICKY SCROLL BEHAVIOUR
+     Mobile doesn't need the 230vh hero
+  ----------------------------------------- */
+
+  .vivi-hero-scroll {
+    height: auto;
+  }
+
+  .vivi-hero-sticky {
+    position: relative;
+
+    top: auto;
+
+    height: auto;
+
+    width: 100%;
+  }
+
+  .vivi-hero-sticky .vivi-hero {
+    height: auto;
+
+    min-height: calc(100svh - 64px);
   }
 }

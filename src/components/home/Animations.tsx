@@ -7,16 +7,6 @@ import {
 import { createRoot } from "react-dom/client";
 import "./Animations.css";
 
-/* =========================================================
-   VIDEO DATA
-
-   Put your videos in:
-
-   public/videos/
-
-   Then list their filenames here.
-========================================================= */
-
 interface VideoProduction {
   id: string;
   category: string;
@@ -29,32 +19,8 @@ interface VideoProduction {
 
 const VIDEO_PRODUCTIONS: VideoProduction[] = [
   {
-    id: "microdrama",
-    category: "MICRODRAMA",
-    title: "The Session",
-    description:
-      "A therapist's session takes an unexpected turn when her patient starts describing details from her private life.",
-    video: "/videos/microdrama.mp4",
-    prompt:
-      "Create a cinematic psychological microdrama about a therapist whose patient begins describing events from her private life that no one else could know. Build slowly escalating tension through realistic dialogue, subtle visual details, and a twist ending.",
-    meta: "Microdrama · Psychological",
-  },
-
-  {
-    id: "history",
-    category: "HISTORY · INDIA",
-    title: "The Kakori Conspiracy",
-    description:
-      "A cinematic historical story following revolutionaries planning the Kakori train action in 1925.",
-    video: "/videos/history.mp4",
-    prompt:
-      "Create a cinematic historical short film about the Kakori train action of 1925. Follow the revolutionaries as they plan the operation, prepare for the train robbery, and face the consequences. Use historically inspired environments, dramatic lighting, realistic costumes, emotional character moments, and an epic cinematic atmosphere.",
-    meta: "History · India",
-  },
-
-  {
-    id: "kids",
-    category: "KIDS",
+    id: "kids-1",
+    category: "KIDS STORIES",
     title: "Grandpa's Telescope",
     description:
       "A young boy discovers his late grandfather's telescope and follows a trail of handwritten clues.",
@@ -63,9 +29,41 @@ const VIDEO_PRODUCTIONS: VideoProduction[] = [
       "Create a warm animated children's story about a young boy who discovers his late grandfather's old telescope. Guided by handwritten notes, he learns about the planets and races to complete his grandfather's final astronomy challenge. Make it magical, colorful, emotional, and suitable for children.",
     meta: "Kids · Adventure",
   },
-
   {
-    id: "india",
+    id: "kids-2",
+    category: "KIDS STORIES",
+    title: "Kids Story · 02",
+    description:
+      "Another imaginative story created with Vivi for young audiences.",
+    video: "/videos/kids2.mp4",
+    prompt:
+      "Create a magical animated children's story with colorful characters, an imaginative world, emotional moments, and a warm sense of adventure.",
+    meta: "Kids · Adventure",
+  },
+  {
+    id: "history-1",
+    category: "HISTORY",
+    title: "The Kakori Conspiracy",
+    description:
+      "A cinematic historical story following revolutionaries planning the Kakori train action in 1925.",
+    video: "/videos/history.mp4",
+    prompt:
+      "Create a cinematic historical short film about the Kakori train action of 1925. Follow the revolutionaries as they plan the operation, prepare for the train robbery, and face the consequences. Use historically inspired environments, dramatic lighting, realistic costumes, emotional character moments, and an epic cinematic atmosphere.",
+    meta: "History · India",
+  },
+  {
+    id: "history-2",
+    category: "HISTORY",
+    title: "History Story · 02",
+    description:
+      "A cinematic historical story brought to life with AI-generated visuals.",
+    video: "/videos/history2.mp4",
+    prompt:
+      "Create a cinematic historical story with realistic environments, period-inspired costumes, emotional character moments, dramatic lighting, and an immersive historical atmosphere.",
+    meta: "History · Cinematic",
+  },
+  {
+    id: "india-1",
     category: "INDIA",
     title: "Stories from India",
     description:
@@ -75,53 +73,110 @@ const VIDEO_PRODUCTIONS: VideoProduction[] = [
       "Create a cinematic story set in India about a young woman returning to her hometown after many years away. Show the streets, people, architecture, food, colors, and atmosphere of the city as she reconnects with an important childhood memory. Make it visually rich, emotional, intimate, and cinematic.",
     meta: "India · Cinematic",
   },
-
   {
-    id: "shortfilm",
-    category: "SHORT FILM",
-    title: "The Last Message",
+    id: "india-2",
+    category: "INDIA",
+    title: "India Story · 02",
     description:
-      "A mysterious message sends a stranger on a journey to uncover a forgotten connection.",
-    video: "/videos/shortfilm.mp4",
+      "A visually rich story inspired by Indian places, people, and everyday life.",
+    video: "/videos/india2.mp4",
     prompt:
-      "Create a cinematic short film about a person who receives a mysterious message from someone who should no longer be able to contact them. Follow their journey as they investigate the message and uncover a hidden connection to their past. Build suspense gradually and end with an emotional reveal.",
-    meta: "Short Film · Mystery",
+      "Create a cinematic Indian story filled with authentic locations, people, atmosphere, colors, and emotional storytelling. Make it visually rich and intimate.",
+    meta: "India · Cinematic",
+  },
+  {
+    id: "microdrama-1",
+    category: "MICRODRAMA",
+    title: "The Session",
+    description:
+      "A therapist's session takes an unexpected turn when her patient starts describing details from her private life.",
+    video: "/videos/microdrama.mp4",
+    prompt:
+      "Create a cinematic psychological microdrama about a therapist whose patient begins describing events from her private life that no one else could know. Build slowly escalating tension through realistic dialogue, subtle visual details, and a twist ending.",
+    meta: "Microdrama · Psychological",
+  },
+  {
+    id: "microdrama-2",
+    category: "MICRODRAMA",
+    title: "Microdrama · 02",
+    description:
+      "A short cinematic story built around tension, character, and an unexpected turn.",
+    video: "/videos/microdrama2.mp4",
+    prompt:
+      "Create a cinematic psychological microdrama with realistic dialogue, subtle visual storytelling, escalating tension, and an unexpected twist ending.",
+    meta: "Microdrama · Psychological",
   },
 ];
 
+const VIDEO_CATEGORIES = [
+  "KIDS STORIES",
+  "HISTORY",
+  "INDIA",
+  "MICRODRAMA",
+];
 
-/* =========================================================
-   COMPONENT
-========================================================= */
+const CATEGORY_META: Record<
+  string,
+  { color: string; soft: string; label: string }
+> = {
+  "KIDS STORIES": {
+    color: "#61b98b",
+    soft: "rgba(97,185,139,.14)",
+    label: "Kids",
+  },
+  HISTORY: {
+    color: "#c38b52",
+    soft: "rgba(195,139,82,.14)",
+    label: "History",
+  },
+  INDIA: {
+    color: "#d96f78",
+    soft: "rgba(217,111,120,.14)",
+    label: "India",
+  },
+  MICRODRAMA: {
+    color: "#9d5de8",
+    soft: "rgba(157,93,232,.14)",
+    label: "Microdrama",
+  },
+};
+
+const CATEGORY_FIRST_INDEX: Record<string, number> = {
+  "KIDS STORIES": 0,
+  HISTORY: 2,
+  INDIA: 4,
+  MICRODRAMA: 6,
+};
 
 function Animations() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] =
-    useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [progressKey, setProgressKey] = useState(0);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   const wheelLocked = useRef(false);
   const transitionTimer = useRef<number | null>(null);
   const autoplayTimer = useRef<number | null>(null);
 
-  const activeVideo =
-    VIDEO_PRODUCTIONS[activeIndex];
+  const activeVideo = VIDEO_PRODUCTIONS[activeIndex];
 
   const previousIndex =
-    (activeIndex -
-      1 +
-      VIDEO_PRODUCTIONS.length) %
+    (activeIndex - 1 + VIDEO_PRODUCTIONS.length) %
     VIDEO_PRODUCTIONS.length;
 
   const nextIndex =
-    (activeIndex + 1) %
-    VIDEO_PRODUCTIONS.length;
+    (activeIndex + 1) % VIDEO_PRODUCTIONS.length;
 
+  const activeCategory = activeVideo.category;
 
-  /* =========================================================
-     CHANGE VIDEO
-  ========================================================= */
+  const activeCategoryVideos = VIDEO_PRODUCTIONS.filter(
+    (video) => video.category === activeCategory
+  );
+
+  const activeCategoryIndex = activeCategoryVideos.findIndex(
+    (video) => video.id === activeVideo.id
+  );
 
   const changeVideo = useCallback(
     (direction: "next" | "previous") => {
@@ -131,16 +186,11 @@ function Animations() {
 
       setActiveIndex((current) => {
         if (direction === "next") {
-          return (
-            (current + 1) %
-            VIDEO_PRODUCTIONS.length
-          );
+          return (current + 1) % VIDEO_PRODUCTIONS.length;
         }
 
         return (
-          (current -
-            1 +
-            VIDEO_PRODUCTIONS.length) %
+          (current - 1 + VIDEO_PRODUCTIONS.length) %
           VIDEO_PRODUCTIONS.length
         );
       });
@@ -148,112 +198,112 @@ function Animations() {
       setProgressKey((value) => value + 1);
 
       if (transitionTimer.current) {
-        window.clearTimeout(
-          transitionTimer.current
-        );
+        window.clearTimeout(transitionTimer.current);
       }
 
-      transitionTimer.current =
-        window.setTimeout(() => {
-          setIsTransitioning(false);
-        }, 700);
+      transitionTimer.current = window.setTimeout(() => {
+        setIsTransitioning(false);
+      }, 700);
     },
     [isTransitioning]
   );
 
-
-  /* =========================================================
-     DIRECT NAVIGATION
-  ========================================================= */
-
   const goToVideo = useCallback(
     (index: number) => {
-      if (
-        index === activeIndex ||
-        isTransitioning
-      ) {
-        return;
-      }
+      if (index === activeIndex || isTransitioning) return;
 
       setIsTransitioning(true);
       setActiveIndex(index);
       setProgressKey((value) => value + 1);
 
       if (transitionTimer.current) {
-        window.clearTimeout(
-          transitionTimer.current
-        );
+        window.clearTimeout(transitionTimer.current);
       }
 
-      transitionTimer.current =
-        window.setTimeout(() => {
-          setIsTransitioning(false);
-        }, 700);
+      transitionTimer.current = window.setTimeout(() => {
+        setIsTransitioning(false);
+      }, 700);
     },
     [activeIndex, isTransitioning]
   );
 
+ const goToCategory = useCallback(
+  (category: string) => {
+    const index = CATEGORY_FIRST_INDEX[category];
 
-  /* =========================================================
-     AUTOPLAY
-     
-     Every 6 seconds:
-     
-     01 → 02 → 03 → 04 → 05 → 01
-     
-     Pauses when user hovers over showcase.
-  ========================================================= */
+    if (index === undefined) return;
 
+    // Selecting a category should immediately resume
+    // the showcase's normal animation/autoplay flow.
+    setIsPaused(false);
+
+    goToVideo(index);
+  },
+  [goToVideo]
+);
+
+  const openVideoModal = useCallback(() => {
+    setIsPaused(true);
+    setIsVideoModalOpen(true);
+  }, []);
+
+  const closeVideoModal = useCallback(() => {
+    setIsVideoModalOpen(false);
+    setIsPaused(false);
+  }, []);
+
+  const changeModalVideo = useCallback(
+    (direction: "next" | "previous") => {
+      setActiveIndex((current) => {
+        if (direction === "next") {
+          return (current + 1) % VIDEO_PRODUCTIONS.length;
+        }
+
+        return (
+          (current - 1 + VIDEO_PRODUCTIONS.length) %
+          VIDEO_PRODUCTIONS.length
+        );
+      });
+
+      setProgressKey((value) => value + 1);
+    },
+    []
+  );
+
+  /* AUTOPLAY */
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || isVideoModalOpen) return;
 
-    autoplayTimer.current =
-      window.setTimeout(() => {
-        changeVideo("next");
-      }, 6000);
+    autoplayTimer.current = window.setTimeout(() => {
+      changeVideo("next");
+    }, 6000);
 
     return () => {
       if (autoplayTimer.current) {
-        window.clearTimeout(
-          autoplayTimer.current
-        );
+        window.clearTimeout(autoplayTimer.current);
       }
     };
   }, [
     activeIndex,
     isPaused,
+    isVideoModalOpen,
     changeVideo,
   ]);
 
-
-  /* =========================================================
-     CLEANUP
-  ========================================================= */
-
+  /* CLEANUP */
   useEffect(() => {
     return () => {
       if (transitionTimer.current) {
-        window.clearTimeout(
-          transitionTimer.current
-        );
+        window.clearTimeout(transitionTimer.current);
       }
 
       if (autoplayTimer.current) {
-        window.clearTimeout(
-          autoplayTimer.current
-        );
+        window.clearTimeout(autoplayTimer.current);
       }
     };
   }, []);
 
-
-  /* =========================================================
-     PLAY ACTIVE VIDEO
-     
-     Whenever activeIndex changes, explicitly restart
-     the active video from the beginning.
-  ========================================================= */
-
+  /* PLAY ACTIVE VIDEO */
   useEffect(() => {
     const video = document.querySelector(
       ".vivi-video-card-current video"
@@ -268,18 +318,13 @@ function Animations() {
         await video.play();
       } catch {
         // Browser may block autoplay.
-        // The video is muted, so this normally succeeds.
       }
     };
 
     playVideo();
   }, [activeIndex]);
 
-
-  /* =========================================================
-     PRELOAD NEIGHBOURING VIDEOS
-  ========================================================= */
-
+  /* PRELOAD NEIGHBOURING VIDEOS */
   useEffect(() => {
     const preloadVideos = [
       VIDEO_PRODUCTIONS[previousIndex].video,
@@ -287,31 +332,19 @@ function Animations() {
     ];
 
     preloadVideos.forEach((src) => {
-      const video = document.createElement(
-        "video"
-      );
-
+      const video = document.createElement("video");
       video.preload = "auto";
       video.src = src;
     });
-  }, [
-    previousIndex,
-    nextIndex,
-  ]);
+  }, [previousIndex, nextIndex]);
 
-
-  /* =========================================================
-     MOUSE WHEEL
-  ========================================================= */
-
+  /* MOUSE WHEEL */
   const handleWheel = (
     event: React.WheelEvent<HTMLDivElement>
   ) => {
-    if (wheelLocked.current) return;
+    if (wheelLocked.current || isVideoModalOpen) return;
 
-    if (Math.abs(event.deltaY) < 20) {
-      return;
-    }
+    if (Math.abs(event.deltaY) < 20) return;
 
     wheelLocked.current = true;
 
@@ -326,22 +359,13 @@ function Animations() {
     }, 800);
   };
 
-
-  /* =========================================================
-     KEYBOARD
-  ========================================================= */
-
+  /* KEYBOARD */
   useEffect(() => {
-    const handleKeyDown = (
-      event: KeyboardEvent
-    ) => {
-      const target =
-        event.target as HTMLElement;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (isVideoModalOpen) return;
 
-      /*
-       * Don't hijack keyboard navigation while
-       * someone is typing in an input.
-       */
+      const target = event.target as HTMLElement;
+
       if (
         target.tagName === "INPUT" ||
         target.tagName === "TEXTAREA"
@@ -366,30 +390,42 @@ function Animations() {
       }
     };
 
-    window.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
+      window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [changeVideo]);
+  }, [changeVideo, isVideoModalOpen]);
 
+  /* MODAL ESCAPE + PAGE SCROLL LOCK */
+  useEffect(() => {
+    if (!isVideoModalOpen) return;
 
-  /* =========================================================
-     TOUCH / SWIPE
-  ========================================================= */
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeVideoModal();
+      }
+    };
 
-  const touchStartY =
-    useRef<number | null>(null);
+    document.addEventListener("keydown", handleEscape);
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isVideoModalOpen, closeVideoModal]);
+
+  /* TOUCH / SWIPE */
+  const touchStartY = useRef<number | null>(null);
 
   const handleTouchStart = (
     event: React.TouchEvent
   ) => {
+    if (isVideoModalOpen) return;
+
     touchStartY.current =
       event.touches[0].clientY;
   };
@@ -398,7 +434,8 @@ function Animations() {
     event: React.TouchEvent
   ) => {
     if (
-      touchStartY.current === null
+      touchStartY.current === null ||
+      isVideoModalOpen
     ) {
       return;
     }
@@ -411,9 +448,7 @@ function Animations() {
 
     touchStartY.current = null;
 
-    if (Math.abs(distance) < 50) {
-      return;
-    }
+    if (Math.abs(distance) < 50) return;
 
     if (distance > 0) {
       changeVideo("next");
@@ -422,478 +457,447 @@ function Animations() {
     }
   };
 
-
-  /* =========================================================
-     START CREATING
-     
-     The CURRENT video's prompt is passed into Studio.
-  ========================================================= */
-
+  /* START CREATING */
   const startCreating = () => {
     const encodedPrompt =
-      encodeURIComponent(
-        activeVideo.prompt
-      );
+      encodeURIComponent(activeVideo.prompt);
 
     window.location.hash =
       `#page-studio?prompt=${encodedPrompt}`;
   };
 
-
-  /* =========================================================
-     RENDER
-  ========================================================= */
-
   return (
-    <section
-      className="vivi-openart-showcase"
-      onWheel={handleWheel}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
+    <>
+      <section
+        className="vivi-openart-showcase"
+        onWheel={handleWheel}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div className="vivi-showcase-header">
+  <div>
+    <div className="vivi-showcase-overline">
+      MADE WITH VIVI
+    </div>
 
-      {/* =====================================================
-          HEADER
-      ===================================================== */}
+    <h2>
+      One platform.
+      <br />
+      <span>Every kind of story.</span>
+    </h2>
 
-      <div className="vivi-showcase-header">
-        <div>
-          <div className="vivi-showcase-overline">
-            MADE WITH VIVI
-          </div>
+    <p>
+      From kids stories to history, India, and
+      microdramas — create every kind of story
+      with Vivi.
+    </p>
 
-          <h2>
-            One platform.
-            <br />
-            <span>
-              Every kind of story.
-            </span>
-          </h2>
+    <div className="vivi-story-types">
+      {VIDEO_CATEGORIES.map((category, index) => {
+        const categoryMeta = CATEGORY_META[category];
+        const isActive = activeCategory === category;
 
-          <p>
-            Explore what creators can make
-            with Vivi. Scroll through the
-            productions and start with any
-            story that inspires you.
-          </p>
-        </div>
-      </div>
-
-
-      {/* =====================================================
-          MAIN EXPERIENCE
-      ===================================================== */}
-
-      <div className="vivi-showcase">
-
-        {/* ===================================================
-            VIDEO SIDE
-        =================================================== */}
-
-        <div className="vivi-showcase-stage">
-
-          {/* -----------------------------------------------
-              PREVIOUS ARROW
-          ------------------------------------------------ */}
-
+        return (
           <button
+            key={category}
             type="button"
-            className="vivi-stage-arrow vivi-stage-arrow-up"
-            onClick={() =>
-              changeVideo("previous")
-            }
-            aria-label="Previous video"
-          >
-            <span>↑</span>
-          </button>
-
-
-          {/* -----------------------------------------------
-              VIDEO STACK
-          ------------------------------------------------ */}
-
-          <div
-            className={`vivi-video-stack ${
-              isTransitioning
-                ? "is-transitioning"
-                : ""
+            className={`vivi-story-type ${
+              isActive ? "active" : ""
             }`}
-          >
-
-            {/* -------------------------------------------
-                PREVIOUS VIDEO
-            -------------------------------------------- */}
-
-            <div className="vivi-video-card vivi-video-card-previous">
-              <video
-                src={
-                  VIDEO_PRODUCTIONS[
-                    previousIndex
-                  ].video
-                }
-                muted
-                playsInline
-                preload="auto"
-              />
-
-              <div className="vivi-video-card-glass" />
-            </div>
-
-
-            {/* -------------------------------------------
-                CURRENT VIDEO
-            -------------------------------------------- */}
-
-            <div className="vivi-video-card vivi-video-card-current">
-
-              <video
-                key={activeVideo.id}
-                src={activeVideo.video}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-              />
-
-              <div className="vivi-video-overlay" />
-
-
-              {/* TOP */}
-
-              <div className="vivi-video-top">
-
-                <span className="vivi-video-badge">
-                  EXAMPLE
-                </span>
-
-                <span className="vivi-video-number">
-                  {String(
-                    activeIndex + 1
-                  ).padStart(2, "0")}
-                </span>
-
-              </div>
-
-
-              {/* BOTTOM */}
-
-              <div className="vivi-video-bottom">
-
-                <div>
-                  <span>
-                    {activeVideo.category}
-                  </span>
-
-                  <strong>
-                    {activeVideo.title}
-                  </strong>
-                </div>
-
-              </div>
-
-            </div>
-
-
-            {/* -------------------------------------------
-                NEXT VIDEO
-            -------------------------------------------- */}
-
-            <div className="vivi-video-card vivi-video-card-next">
-
-              <video
-                src={
-                  VIDEO_PRODUCTIONS[
-                    nextIndex
-                  ].video
-                }
-                muted
-                playsInline
-                preload="auto"
-              />
-
-              <div className="vivi-video-card-glass" />
-
-            </div>
-
-          </div>
-
-
-          {/* -----------------------------------------------
-              NEXT ARROW
-          ------------------------------------------------ */}
-
-          <button
-            type="button"
-            className="vivi-stage-arrow vivi-stage-arrow-down"
-            onClick={() =>
-              changeVideo("next")
+            style={
+              {
+                "--category-color": categoryMeta.color,
+              } as React.CSSProperties
             }
-            aria-label="Next video"
+            onClick={() => goToCategory(category)}
           >
-            <span>↓</span>
-          </button>
-
-
-          {/* -----------------------------------------------
-              AUTOPLAY STATUS
-          ------------------------------------------------ */}
-
-          <div className="vivi-autoplay-indicator">
-
-            <span
-              className={
-                isPaused
-                  ? "vivi-autoplay-dot paused"
-                  : "vivi-autoplay-dot"
-              }
-            />
+            <span className="vivi-story-type-dot" />
 
             <span>
-              {isPaused
-                ? "Paused"
-                : "Auto playing"}
+              {categoryMeta.label}
+              {category === "KIDS STORIES" ? " Stories" : ""}
             </span>
 
-          </div>
-
-
-          {/* -----------------------------------------------
-              DOTS
-          ------------------------------------------------ */}
-
-          <div className="vivi-showcase-dots">
-
-            {VIDEO_PRODUCTIONS.map(
-              (video, index) => (
-                <button
-                  key={video.id}
-                  type="button"
-                  className={
-                    index === activeIndex
-                      ? "active"
-                      : ""
-                  }
-                  onClick={() =>
-                    goToVideo(index)
-                  }
-                  aria-label={`Show ${video.title}`}
-                  aria-current={
-                    index === activeIndex
-                      ? "true"
-                      : undefined
-                  }
-                />
-              )
+            {index < VIDEO_CATEGORIES.length - 1 && (
+              <span className="vivi-story-type-separator">
+                ·
+              </span>
             )}
+          </button>
+        );
+      })}
+    </div>
+  </div>
+</div>
 
-          </div>
-
-
-          {/* -----------------------------------------------
-              PROGRESS
-          ------------------------------------------------ */}
-
-          <div className="vivi-showcase-progress">
+        {/* MAIN EXPERIENCE */}
+        <div className="vivi-showcase">
+          {/* VIDEO SIDE */}
+          <div className="vivi-showcase-stage">
+            <button
+              type="button"
+              className="vivi-stage-arrow vivi-stage-arrow-up"
+              onClick={() => changeVideo("previous")}
+              aria-label="Previous video"
+            >
+              <span>↑</span>
+            </button>
 
             <div
-              key={progressKey}
-              className={
-                isPaused
-                  ? "vivi-showcase-progress-fill paused"
-                  : "vivi-showcase-progress-fill"
-              }
-            />
+              className={`vivi-video-stack ${
+                isTransitioning
+                  ? "is-transitioning"
+                  : ""
+              }`}
+            >
+              {/* PREVIOUS */}
+              <div className="vivi-video-card vivi-video-card-previous">
+                <video
+                  src={
+                    VIDEO_PRODUCTIONS[previousIndex].video
+                  }
+                  muted
+                  playsInline
+                  preload="auto"
+                />
+                <div className="vivi-video-card-glass" />
+              </div>
 
-          </div>
+              {/* CURRENT */}
+              <div className="vivi-video-card vivi-video-card-current">
+                <video
+                  key={activeVideo.id}
+                  src={activeVideo.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                />
 
-        </div>
+                <div className="vivi-video-overlay" />
 
+                <div className="vivi-video-top">
+                  <button
+                    type="button"
+                    className="vivi-video-category-badge"
+                    style={
+                      {
+                        "--category-color":
+                          CATEGORY_META[activeCategory].color,
+                        "--category-soft":
+                          CATEGORY_META[activeCategory].soft,
+                      } as React.CSSProperties
+                    }
+                    onClick={() =>
+                      goToCategory(activeCategory)
+                    }
+                    aria-label={`Current category: ${activeCategory}`}
+                  >
+                    <span className="vivi-category-badge-dot" />
+                    {activeCategory}
+                  </button>
 
-        {/* ===================================================
-            INFORMATION PANEL
-        =================================================== */}
+                  <button
+                    type="button"
+                    className="vivi-video-watch"
+                    onClick={openVideoModal}
+                    aria-label={`Watch ${activeVideo.title} full video`}
+                  >
+                    <span className="vivi-video-number">
+                      {String(activeCategoryIndex + 1).padStart(
+                        2,
+                        "0"
+                      )}
+                      <span className="vivi-video-number-divider">
+                        /
+                      </span>
+                      {String(activeCategoryVideos.length).padStart(
+                        2,
+                        "0"
+                      )}
+                    </span>
 
-        <aside className="vivi-showcase-panel">
+                    <span className="vivi-video-watch-icon">
+                      ↗
+                    </span>
+                  </button>
+                </div>
 
-          <div className="vivi-panel-top">
+                <div className="vivi-video-bottom">
+                  <div>
+                    <span>{activeVideo.category}</span>
 
-            <span className="vivi-panel-eyebrow">
-              {activeVideo.category}
-            </span>
+                    <strong>{activeVideo.title}</strong>
+                  </div>
+                </div>
+              </div>
 
-            <h3>
-              {activeVideo.title}
-            </h3>
-
-            <p>
-              {activeVideo.description}
-            </p>
-
-          </div>
-
-
-          {/* -----------------------------------------------
-              PROMPT
-          ------------------------------------------------ */}
-
-          <div className="vivi-prompt-card">
-
-            <div className="vivi-prompt-header">
-
-              <span className="vivi-prompt-icon">
-                ✦
-              </span>
-
-              <span>
-                CREATE THIS WITH VIVI
-              </span>
-
+              {/* NEXT */}
+              <div className="vivi-video-card vivi-video-card-next">
+                <video
+                  src={
+                    VIDEO_PRODUCTIONS[nextIndex].video
+                  }
+                  muted
+                  playsInline
+                  preload="auto"
+                />
+                <div className="vivi-video-card-glass" />
+              </div>
             </div>
 
-            <p>
-              {activeVideo.prompt}
-            </p>
-
-          </div>
-
-
-          {/* -----------------------------------------------
-              META
-          ------------------------------------------------ */}
-
-          <div className="vivi-production-meta">
-
-            <span>
-              {activeVideo.meta}
-            </span>
-
-            <span className="vivi-meta-dot">
-              •
-            </span>
-
-            <span>
-              AI generated
-            </span>
-
-          </div>
-
-
-          {/* -----------------------------------------------
-              CTA
-          ------------------------------------------------ */}
-
-          <button
-            type="button"
-            className="vivi-create-button"
-            onClick={startCreating}
-          >
-
-            <span>
-              Start creating
-            </span>
-
-            <span className="vivi-create-arrow">
-              →
-            </span>
-
-          </button>
-
-
-          <span className="vivi-create-hint">
-            The prompt will open in Vivi Studio.
-          </span>
-
-
-          {/* -----------------------------------------------
-              PANEL FOOTER
-          ------------------------------------------------ */}
-
-          <div className="vivi-panel-footer">
-
-            <span>
-              {String(
-                activeIndex + 1
-              ).padStart(2, "0")}
-            </span>
-
-            <div />
-
-            <span>
-              {String(
-                VIDEO_PRODUCTIONS.length
-              ).padStart(2, "0")}
-            </span>
-
-          </div>
-
-        </aside>
-
-      </div>
-
-
-      {/* =====================================================
-          BOTTOM CATEGORY STRIP
-      ===================================================== */}
-
-      <div className="vivi-showcase-categories">
-
-        {VIDEO_PRODUCTIONS.map(
-          (video, index) => (
             <button
-              key={video.id}
               type="button"
-              className={
-                index === activeIndex
-                  ? "active"
-                  : ""
-              }
-              onClick={() =>
-                goToVideo(index)
-              }
+              className="vivi-stage-arrow vivi-stage-arrow-down"
+              onClick={() => changeVideo("next")}
+              aria-label="Next video"
             >
+              <span>↓</span>
+            </button>
+
+            <div className="vivi-autoplay-indicator">
+              <span
+                className={
+                  isPaused
+                    ? "vivi-autoplay-dot paused"
+                    : "vivi-autoplay-dot"
+                }
+              />
+
+              <span>
+                {isPaused ? "Paused" : "Auto playing"}
+              </span>
+            </div>
+
+            <div className="vivi-category-rail">
+              {VIDEO_CATEGORIES.map((category, index) => {
+                const isActive =
+                  activeCategory === category;
+                const categoryMeta =
+                  CATEGORY_META[category];
+
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    className={
+                      isActive
+                        ? "vivi-category-dot active"
+                        : "vivi-category-dot"
+                    }
+                    style={
+                      {
+                        "--category-color":
+                          categoryMeta.color,
+                        "--category-soft":
+                          categoryMeta.soft,
+                      } as React.CSSProperties
+                    }
+                    onClick={() =>
+                      goToCategory(category)
+                    }
+                    aria-label={`Show ${category}`}
+                    aria-current={
+                      isActive ? "true" : undefined
+                    }
+                  >
+                    <span className="vivi-category-dot-core" />
+                    <span className="vivi-category-dot-label">
+                      {categoryMeta.label}
+                    </span>
+                    <span className="vivi-category-dot-number">
+                      0{index + 1}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="vivi-showcase-progress">
+              <div
+                key={progressKey}
+                className={
+                  isPaused
+                    ? "vivi-showcase-progress-fill paused"
+                    : "vivi-showcase-progress-fill"
+                }
+              />
+            </div>
+          </div>
+
+          {/* INFORMATION PANEL */}
+          <aside className="vivi-showcase-panel">
+            <div className="vivi-panel-top">
+              <span className="vivi-panel-eyebrow">
+                {activeVideo.category}
+              </span>
+
+              <h3>{activeVideo.title}</h3>
+
+              <p>{activeVideo.description}</p>
+            </div>
+
+            <div className="vivi-prompt-card">
+              <div className="vivi-prompt-header">
+                <span className="vivi-prompt-icon">
+                  ✦
+                </span>
+
+                <span>CREATE THIS WITH VIVI</span>
+              </div>
+
+              <p>{activeVideo.prompt}</p>
+            </div>
+
+            <div className="vivi-production-meta">
+              <span>{activeVideo.meta}</span>
+
+              <span className="vivi-meta-dot">•</span>
+
+              <span>AI generated</span>
+            </div>
+
+            <button
+              type="button"
+              className="vivi-create-button"
+              onClick={startCreating}
+            >
+              <span>Start creating</span>
+
+              <span className="vivi-create-arrow">
+                →
+              </span>
+            </button>
+
+            <span className="vivi-create-hint">
+              The prompt will open in Vivi Studio.
+            </span>
+
+            <div className="vivi-panel-footer">
+              <span>
+                {String(activeIndex + 1).padStart(2, "0")}
+              </span>
+
+              <div />
 
               <span>
                 {String(
-                  index + 1
+                  VIDEO_PRODUCTIONS.length
                 ).padStart(2, "0")}
               </span>
+            </div>
+          </aside>
+        </div>
+      </section>
 
-              <strong>
-                {video.category}
-              </strong>
+      {/* FULL VIDEO VIEWER */}
+      {isVideoModalOpen && (
+        <div
+          className="vivi-video-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Watch ${activeVideo.title}`}
+          onMouseDown={(event) => {
+            if (
+              event.target ===
+              event.currentTarget
+            ) {
+              closeVideoModal();
+            }
+          }}
+        >
+          <div className="vivi-video-modal-inner">
+            <div className="vivi-video-modal-top">
+              <div>
+                <span
+                  className="vivi-video-modal-category"
+                  style={
+                    {
+                      "--category-color":
+                        CATEGORY_META[
+                          activeVideo.category
+                        ].color,
+                    } as React.CSSProperties
+                  }
+                >
+                  <span className="vivi-modal-category-dot" />
+                  {activeVideo.category}
+                </span>
 
-              <em>
-                {video.title}
-              </em>
+                <h3>{activeVideo.title}</h3>
+              </div>
 
-            </button>
-          )
-        )}
+              <div className="vivi-video-modal-top-actions">
+                <span className="vivi-video-modal-count">
+                  {String(activeIndex + 1).padStart(2, "0")}
+                  <span>/</span>
+                  {String(
+                    VIDEO_PRODUCTIONS.length
+                  ).padStart(2, "0")}
+                </span>
 
-      </div>
+                <button
+                  type="button"
+                  className="vivi-video-modal-close"
+                  onClick={closeVideoModal}
+                  aria-label="Close video"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
 
-    </section>
+            <div className="vivi-video-modal-player-wrap">
+              <button
+                type="button"
+                className="vivi-modal-nav vivi-modal-nav-left"
+                onClick={() =>
+                  changeModalVideo("previous")
+                }
+                aria-label="Previous video"
+              >
+                ←
+              </button>
+
+              <div className="vivi-video-modal-player">
+                <video
+                  key={activeVideo.id}
+                  src={activeVideo.video}
+                  autoPlay
+                  controls
+                  playsInline
+                />
+              </div>
+
+              <button
+                type="button"
+                className="vivi-modal-nav vivi-modal-nav-right"
+                onClick={() =>
+                  changeModalVideo("next")
+                }
+                aria-label="Next video"
+              >
+                →
+              </button>
+            </div>
+
+            <div className="vivi-video-modal-footer">
+              <span>Made with Vivi</span>
+              <span>{activeVideo.meta}</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
-
-/* =========================================================
-   MOUNT HELPER
-
-   This allows the component to be called from the
-   existing legacy HTML page.
-
-   page-home.html needs:
-
-   <div id="vivi-openart-mount"></div>
-========================================================= */
-
+/* Mount helper for the existing legacy HTML page. */
 let viviAnimationsRoot:
   ReturnType<typeof createRoot> | null = null;
-
 
 export function mountViviAnimations() {
   const mount =
@@ -905,26 +909,18 @@ export function mountViviAnimations() {
     console.warn(
       "[Vivi] #vivi-openart-mount was not found."
     );
-
     return;
   }
-
-
-  /* Prevent duplicate React roots */
 
   if (viviAnimationsRoot) {
     return;
   }
 
-
-  viviAnimationsRoot =
-    createRoot(mount);
-
+  viviAnimationsRoot = createRoot(mount);
 
   viviAnimationsRoot.render(
     <Animations />
   );
 }
-
 
 export default Animations;
