@@ -895,15 +895,20 @@ function Animations() {
   );
 }
 
-/* Mount helper for the existing legacy HTML page. */
+/* =========================================================
+   MOUNT HELPER
+   Safely mounts the showcase into the legacy HTML page.
+   ========================================================= */
+
 let viviAnimationsRoot:
   ReturnType<typeof createRoot> | null = null;
 
+let viviAnimationsMount: HTMLElement | null = null;
+
 export function mountViviAnimations() {
-  const mount =
-    document.getElementById(
-      "vivi-openart-mount"
-    );
+  const mount = document.getElementById(
+    "vivi-openart-mount"
+  );
 
   if (!mount) {
     console.warn(
@@ -912,15 +917,48 @@ export function mountViviAnimations() {
     return;
   }
 
-  if (viviAnimationsRoot) {
+  /*
+   * If the exact same DOM container is already mounted,
+   * there is nothing to do.
+   */
+  if (
+    viviAnimationsRoot &&
+    viviAnimationsMount === mount
+  ) {
     return;
   }
 
+  /*
+   * If React was previously mounted into a different
+   * container, unmount that old root first.
+   *
+   * This is important when the legacy page recreates
+   * #vivi-openart-mount during navigation or rerenders.
+   */
+  if (
+    viviAnimationsRoot &&
+    viviAnimationsMount !== mount
+  ) {
+    try {
+      viviAnimationsRoot.unmount();
+    } catch (error) {
+      console.warn(
+        "[Vivi] Could not unmount previous animation root.",
+        error
+      );
+    }
+
+    viviAnimationsRoot = null;
+    viviAnimationsMount = null;
+  }
+
+  /*
+   * Create the React root for the current container.
+   */
   viviAnimationsRoot = createRoot(mount);
+  viviAnimationsMount = mount;
 
   viviAnimationsRoot.render(
     <Animations />
   );
 }
-
-export default Animations;
