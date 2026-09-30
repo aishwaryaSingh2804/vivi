@@ -23,7 +23,7 @@ const Newsletter: React.FC = () => {
             fontSize: "15px",
           }}
         >
-          We publish new Vivi-made videos every week — history, microdramas,
+          We publish new vivi-made videos every week — history, microdramas,
           kids stories. Get them in your inbox.
         </p>
 

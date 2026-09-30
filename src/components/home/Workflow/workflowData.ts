@@ -31,7 +31,7 @@ export const WORKFLOW_STAGES: WorkflowStage[] = [
     eyebrow: "IMAGINE",
     headline: "Turn an idea into a story.",
     description:
-      "Vivi takes your idea and shapes it into a story with characters, moments and a clear narrative direction.",
+      "vivi takes your idea and shapes it into a story with characters, moments and a clear narrative direction.",
     image: "/workflow/story.jpeg",
     accent: "#635bff",
   },
@@ -55,7 +55,7 @@ export const WORKFLOW_STAGES: WorkflowStage[] = [
     eyebrow: "CREATE",
     headline: "Bring every character to life.",
     description:
-      "Vivi creates the visual ingredients your story needs while keeping characters and worlds consistent.",
+      "vivi creates the visual ingredients your story needs while keeping characters and worlds consistent.",
     image: "/workflow/assets.jpeg",
     accent: "#6c63ff",
   },

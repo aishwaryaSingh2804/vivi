@@ -9,7 +9,7 @@ const features = [
       </>
     ),
     description:
-      'Turn a simple idea into a complete, long-form video. Vivi handles the story, scenes, characters and pacing for you.',
+      'Turn a simple idea into a complete, long-form video. vivi handles the story, scenes, characters and pacing for you.',
     type: 'longform',
   },
   {
@@ -64,7 +64,7 @@ const features = [
       </>
     ),
     description:
-      'Just tell Vivi what to change. No timeline, no complicated controls and no editing experience required.',
+      'Just tell vivi what to change. No timeline, no complicated controls and no editing experience required.',
     type: 'chat',
   },
 ];
@@ -84,7 +84,7 @@ export function WhyVivi() {
         </h2>
 
         <p>
-          Vivi takes care of the production details so you can focus on
+          vivi takes care of the production details so you can focus on
           the story you want to tell.
         </p>
 
@@ -531,7 +531,7 @@ function ChatVisual() {
         </div>
 
         <div className="chat-input">
-          <span>Tell Vivi what to change...</span>
+          <span>Tell vivi what to change...</span>
           <b>↑</b>
         </div>
 

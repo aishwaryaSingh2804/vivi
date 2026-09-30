@@ -359,7 +359,7 @@ export function WorkflowSection() {
                     </div>
 
                     <div className="workflow-cursor-label">
-                      Vivi
+                      vivi
                     </div>
 
                   </div>

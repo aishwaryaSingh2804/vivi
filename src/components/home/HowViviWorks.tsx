@@ -15,7 +15,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
     title: 'Start with an idea',
     eyebrow: 'SETUP',
     description:
-      'Tell Vivi what you want to create. Start with a simple idea, concept, or story direction.',
+      'Tell vivi what you want to create. Start with a simple idea, concept, or story direction.',
     image: '/workflow/setup.jpeg',
   },
   {
@@ -23,7 +23,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
     title: 'Shape the script',
     eyebrow: 'SCRIPT',
     description:
-      'Vivi turns your idea into a structured script with scenes, dialogue, characters, and story beats.',
+      'vivi turns your idea into a structured script with scenes, dialogue, characters, and story beats.',
     image: '/workflow/script.jpeg',
   },
   {

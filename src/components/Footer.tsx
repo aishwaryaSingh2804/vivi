@@ -101,7 +101,7 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="vivi-footer-bottom">
         <span>
-          © {currentYear} Vivi AI. Made in India.
+          © {currentYear} vivi AI. Made in India.
         </span>
 
         <div className="vivi-footer-socials">

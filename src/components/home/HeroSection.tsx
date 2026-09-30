@@ -55,7 +55,7 @@ export function HeroSection() {
             </h1>
 
             <p className="vivi-hero-subtitle">
-              Vivi turns your idea into a cinematic video — complete
+              vivi turns your idea into a cinematic video — complete
               characters, narration, a real story arc. No camera. No crew.
             </p>
 

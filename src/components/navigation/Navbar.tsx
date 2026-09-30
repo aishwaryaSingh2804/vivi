@@ -113,7 +113,7 @@ export function Navbar() {
           className="vivi-navbar-logo"
           onClick={closeMenu}
         >
-          vivi
+          vi<span>vi</span>
         </Link>
 
 

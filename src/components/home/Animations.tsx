@@ -773,7 +773,7 @@ function Animations() {
             </button>
 
             <span className="vivi-create-hint">
-              The prompt will open in Vivi Studio.
+              The prompt will open in vivi Studio.
             </span>
 
             <div className="vivi-panel-footer">
@@ -885,7 +885,7 @@ function Animations() {
             </div>
 
             <div className="vivi-video-modal-footer">
-              <span>Made with Vivi</span>
+              <span>Made with vivi</span>
               <span>{activeVideo.meta}</span>
             </div>
           </div>

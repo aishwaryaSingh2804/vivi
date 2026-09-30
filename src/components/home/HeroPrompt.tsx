@@ -117,7 +117,7 @@ export function HeroPrompt() {
           }}
           placeholder="Describe the story you want to create..."
           rows={4}
-          aria-label="Describe the story you want Vivi to create"
+          aria-label="Describe the story you want vivi to create"
         />
 
         <div className="vivi-prompt-footer">
