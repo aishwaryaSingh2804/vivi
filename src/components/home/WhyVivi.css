@@ -15,8 +15,9 @@
    ========================================================= */
 
 .why-vivi-intro {
+  height: auto;
   min-height: calc(100vh - 60px);
-
+position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,6 +83,441 @@
   line-height: 1.7;
 }
 
+/* =========================================================
+   INTRO MICROINTERACTION — 6 CAPABILITIES → VIVI
+   ========================================================= */
+
+.why-vivi-flow {
+  position: absolute;
+
+  width: 560px;
+  height: 430px;
+
+  right: -40px;
+  top: 50%;
+
+  transform: translateY(-43%);
+
+  pointer-events: none;
+}
+
+
+/* -----------------------------------------
+   SOFT ORBIT RINGS
+   ----------------------------------------- */
+
+.why-vivi-flow-orbit {
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  border: 1px solid rgba(49, 87, 213, .09);
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  animation: whyViviOrbitPulse 5s ease-in-out infinite;
+}
+
+.why-vivi-flow-orbit--one {
+  width: 250px;
+  height: 250px;
+}
+
+.why-vivi-flow-orbit--two {
+  width: 360px;
+  height: 360px;
+
+  animation-delay: -2.5s;
+  opacity: .55;
+}
+
+@keyframes whyViviOrbitPulse {
+  0%,
+  100% {
+    opacity: .35;
+    transform: translate(-50%, -50%) scale(.96);
+  }
+
+  50% {
+    opacity: .75;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+
+/* -----------------------------------------
+   CENTRAL VIVI CORE
+   ----------------------------------------- */
+
+.why-vivi-flow-core {
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  width: 116px;
+  height: 116px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transform: translate(-50%, -50%);
+
+  border: 1px solid rgba(49, 87, 213, .22);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      rgba(255,255,255,.98),
+      rgba(237,244,255,.94)
+    );
+
+  box-shadow:
+    0 20px 55px rgba(49,87,213,.13),
+    inset 0 0 0 8px rgba(255,255,255,.7);
+
+  z-index: 5;
+
+  animation: whyViviCoreFloat 4s ease-in-out infinite;
+}
+
+.why-vivi-flow-core-ring {
+  position: absolute;
+
+  inset: -8px;
+
+  border: 1px solid rgba(49,87,213,.13);
+  border-radius: 50%;
+
+  animation: whyViviCoreRing 3s ease-in-out infinite;
+}
+
+@keyframes whyViviCoreRing {
+  0%,
+  100% {
+    opacity: .35;
+    transform: scale(.96);
+  }
+
+  50% {
+    opacity: .9;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes whyViviCoreFloat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) translateY(-5px);
+  }
+}
+
+.why-vivi-flow-core strong {
+  color: var(--accent);
+
+  font-family: var(--ff-display);
+
+  font-size: 25px;
+  font-weight: 600;
+
+  letter-spacing: -.04em;
+}
+
+.why-vivi-flow-core span {
+  margin-top: 5px;
+
+  color: var(--muted);
+
+  font-family: var(--ff-body);
+
+  font-size: 6px;
+  font-weight: 700;
+
+  letter-spacing: .16em;
+}
+
+
+/* -----------------------------------------
+   FEATURE NODES
+   ----------------------------------------- */
+
+.why-vivi-flow-node {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 8px 11px;
+
+  border: 1px solid rgba(49,87,213,.12);
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.72);
+
+  color: var(--text);
+
+  font-family: var(--ff-body);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: .09em;
+
+  box-shadow:
+    0 8px 25px rgba(18,42,74,.055);
+
+  backdrop-filter: blur(10px);
+
+  z-index: 4;
+
+  animation: whyViviNodeFloat 4s ease-in-out infinite;
+}
+
+.why-vivi-flow-node span {
+  color: var(--accent);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  opacity: .7;
+}
+
+
+/* Individual positions */
+
+.why-vivi-flow-node--1 {
+  left: 52px;
+  top: 58px;
+
+  animation-delay: -.2s;
+}
+
+.why-vivi-flow-node--2 {
+  right: 48px;
+  top: 72px;
+
+  animation-delay: -.9s;
+}
+
+.why-vivi-flow-node--3 {
+  left: 0;
+  top: 190px;
+
+  animation-delay: -1.5s;
+}
+
+.why-vivi-flow-node--4 {
+  right: -3px;
+  top: 205px;
+
+  animation-delay: -2.1s;
+}
+
+.why-vivi-flow-node--5 {
+  left: 83px;
+  bottom: 66px;
+
+  animation-delay: -2.8s;
+}
+
+.why-vivi-flow-node--6 {
+  right: 78px;
+  bottom: 58px;
+
+  animation-delay: -3.5s;
+}
+
+@keyframes whyViviNodeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+
+/* -----------------------------------------
+   CONNECTING LINES
+   ----------------------------------------- */
+
+.why-vivi-flow-line {
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  width: 1px;
+  height: 135px;
+
+  transform-origin: center bottom;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(49,87,213,.22),
+      rgba(49,87,213,.02)
+    );
+
+  z-index: 1;
+}
+
+
+/* Six radial connections */
+
+.why-vivi-flow-line--1 {
+  transform: translate(-50%, -100%) rotate(-48deg);
+}
+
+.why-vivi-flow-line--2 {
+  transform: translate(-50%, -100%) rotate(48deg);
+}
+
+.why-vivi-flow-line--3 {
+  transform: translate(-50%, -100%) rotate(-82deg);
+  height: 118px;
+}
+
+.why-vivi-flow-line--4 {
+  transform: translate(-50%, -100%) rotate(82deg);
+  height: 118px;
+}
+
+.why-vivi-flow-line--5 {
+  transform: translate(-50%, -100%) rotate(-132deg);
+  height: 135px;
+}
+
+.why-vivi-flow-line--6 {
+  transform: translate(-50%, -100%) rotate(132deg);
+  height: 135px;
+}
+
+
+/* -----------------------------------------
+   MOVING ENERGY DOT
+   ----------------------------------------- */
+
+.why-vivi-flow-line::after {
+  content: '';
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 0;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 0 4px rgba(49,87,213,.08),
+    0 0 14px rgba(49,87,213,.25);
+
+  transform: translateX(-50%);
+
+  animation: whyViviEnergy 2.4s ease-in-out infinite;
+}
+
+.why-vivi-flow-line--2::after {
+  animation-delay: -.4s;
+}
+
+.why-vivi-flow-line--3::after {
+  animation-delay: -.8s;
+}
+
+.why-vivi-flow-line--4::after {
+  animation-delay: -1.2s;
+}
+
+.why-vivi-flow-line--5::after {
+  animation-delay: -1.6s;
+}
+
+.why-vivi-flow-line--6::after {
+  animation-delay: -2s;
+}
+
+@keyframes whyViviEnergy {
+  0% {
+    opacity: 0;
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(.5);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translateX(-50%)
+      translateY(-125px)
+      scale(1);
+  }
+}
+
+
+/* -----------------------------------------
+   CAPTION
+   ----------------------------------------- */
+
+.why-vivi-flow-caption {
+  position: absolute;
+
+  left: 50%;
+  bottom: 3px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  transform: translateX(-50%);
+
+  white-space: nowrap;
+
+  color: var(--muted);
+
+  font-family: var(--ff-body);
+
+  font-size: 8px;
+  font-weight: 600;
+
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.why-vivi-flow-caption i {
+  width: 18px;
+  height: 1px;
+
+  background: var(--accent);
+
+  opacity: .45;
+}
 
 /* =========================================================
    EACH FEATURE
@@ -1352,6 +1788,27 @@
 
 
 @media (max-width: 700px) {
+/* WHY VIVI — MOBILE FLOW */
+
+.why-vivi-flow {
+  display: block;
+
+  position: relative;
+
+  width: 560px;
+  height: 285px;
+
+  left: 50%;
+  right: auto;
+  top: auto;
+
+  margin-top: 35px;
+
+  transform: translateX(-50%) scale(.58);
+  transform-origin: top center;
+
+  pointer-events: none;
+}
 
   .why-vivi-intro {
     width: calc(100% - 36px);

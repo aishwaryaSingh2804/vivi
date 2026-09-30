@@ -87,6 +87,61 @@ export function WhyVivi() {
           Vivi takes care of the production details so you can focus on
           the story you want to tell.
         </p>
+
+<div className="why-vivi-flow">
+  <div className="why-vivi-flow-orbit why-vivi-flow-orbit--one" />
+  <div className="why-vivi-flow-orbit why-vivi-flow-orbit--two" />
+
+  <div className="why-vivi-flow-line why-vivi-flow-line--1" />
+  <div className="why-vivi-flow-line why-vivi-flow-line--2" />
+  <div className="why-vivi-flow-line why-vivi-flow-line--3" />
+  <div className="why-vivi-flow-line why-vivi-flow-line--4" />
+  <div className="why-vivi-flow-line why-vivi-flow-line--5" />
+  <div className="why-vivi-flow-line why-vivi-flow-line--6" />
+
+  <div className="why-vivi-flow-node why-vivi-flow-node--1">
+    <span>01</span>
+    STORY
+  </div>
+
+  <div className="why-vivi-flow-node why-vivi-flow-node--2">
+    <span>02</span>
+    CHARACTERS
+  </div>
+
+  <div className="why-vivi-flow-node why-vivi-flow-node--3">
+    <span>03</span>
+    CONTINUITY
+  </div>
+
+  <div className="why-vivi-flow-node why-vivi-flow-node--4">
+    <span>04</span>
+    CINEMATIC
+  </div>
+
+  <div className="why-vivi-flow-node why-vivi-flow-node--5">
+    <span>05</span>
+    AUDIO
+  </div>
+
+  <div className="why-vivi-flow-node why-vivi-flow-node--6">
+    <span>06</span>
+    CHAT
+  </div>
+
+  <div className="why-vivi-flow-core">
+    <div className="why-vivi-flow-core-ring" />
+    <strong>VIVI</strong>
+    <span>ONE CREATIVE ENGINE</span>
+  </div>
+
+  <div className="why-vivi-flow-caption">
+    <span>6 capabilities</span>
+    <i />
+    <span>one finished story</span>
+  </div>
+</div>
+
       </div>
 
       <div className="why-vivi-features">

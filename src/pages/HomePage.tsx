@@ -4,7 +4,7 @@ import { pageContent } from '../content';
 import { WorkflowSection } from "../components/home/Workflow/WorkflowSection";
 import { PricingSection } from "../components/pricing/PricingSection";
 import { WhyVivi } from "../components/home/WhyVivi";
-
+import Newsletter from "../components/Newsletter";
 export function HomePage() {
   return (
     <>
@@ -16,7 +16,7 @@ export function HomePage() {
         pageKey="home"
       />
       <PricingSection />
-
+<Newsletter />
     </>
   );
 }
