@@ -1343,3 +1343,106 @@
     transition: none !important;
   }
 }
+
+
+/* =========================================================
+   VIVI TYPOGRAPHY SYSTEM
+   Match the main homepage fonts
+   ========================================================= */
+
+/* Apply the body font throughout the workflow */
+.workflow-section {
+  font-family: var(--ff-body);
+}
+
+/* Header */
+.workflow-kicker,
+.workflow-kicker-brand,
+.workflow-kicker-title,
+.workflow-counter {
+  font-family: var(--ff-body);
+}
+
+/* Journey navigation */
+.workflow-node-circle,
+.workflow-node-label,
+.workflow-check {
+  font-family: var(--ff-body);
+}
+
+/* Studio window */
+.workflow-window-title {
+  font-family: var(--ff-body);
+}
+
+/* Stage information card */
+.workflow-stage-card {
+  font-family: var(--ff-body);
+}
+
+.workflow-stage-number {
+  font-family: var(--ff-display);
+}
+
+.workflow-stage-eyebrow {
+  font-family: var(--ff-body);
+}
+
+.workflow-stage-card h2,
+.workflow-stage-card h3,
+.workflow-stage-title {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.workflow-stage-card p,
+.workflow-stage-description {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* Image captions and scroll hints */
+.workflow-image-caption,
+.workflow-scroll-hint {
+  font-family: var(--ff-body);
+}
+
+/* CTA */
+.workflow-cta {
+  font-family: var(--ff-body);
+  font-weight: 600;
+}
+
+.workflow-cta-arrow {
+  font-family: var(--ff-body);
+}
+
+/* Finale */
+.workflow-finale h2 {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.workflow-finale p,
+.workflow-finale a {
+  font-family: var(--ff-body);
+}
+
+.vivi-prompt-button {
+  font-family: var(--ff-body);
+  font-size: 36px; /* Increased from 13px */
+  font-weight: 650;
+
+  padding: 13px 24px;
+
+  gap: 10px;
+}
+
+.vivi-prompt-button svg {
+  width: 19px;
+  height: 19px;
+}
