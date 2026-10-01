@@ -13,11 +13,6 @@ const clamp = (value: number, min: number, max: number) =>
 const lerp = (a: number, b: number, t: number) =>
   a + (b - a) * t;
 
-const smoothstep = (t: number) => {
-  const x = clamp(t, 0, 1);
-  return x * x * (3 - 2 * x);
-};
-
 const smootherstep = (t: number) => {
   const x = clamp(t, 0, 1);
   return x * x * x * (x * (x * 6 - 15) + 10);
