@@ -21,90 +21,97 @@ const VIDEO_PRODUCTIONS: VideoProduction[] = [
   {
     id: "kids-1",
     category: "KIDS STORIES",
-    title: "Grandpa's Telescope",
+    title: "The Magical Sunflower",
     description:
-      "A young boy discovers his late grandfather's telescope and follows a trail of handwritten clues.",
+      "Two children plant a handful of seeds in their backyard and discover something wonderfully unexpected growing from the soil.",
     video: "/videos/kids.mp4",
     prompt:
-      "Create a warm animated children's story about a young boy who discovers his late grandfather's old telescope. Guided by handwritten notes, he learns about the planets and races to complete his grandfather's final astronomy challenge. Make it magical, colorful, emotional, and suitable for children.",
-    meta: "Kids · Adventure",
+      "Create a warm animated children's story about a young girl and boy who discover colorful seed packets and decide to plant them together in their backyard. Follow them as they dig the soil, plant and water the seeds, and watch a giant magical sunflower bloom. Make it playful, colorful, wholesome, imaginative, and suitable for children.",
+    meta: "Kids · Magical Adventure",
   },
+
   {
     id: "kids-2",
     category: "KIDS STORIES",
-    title: "Kids Story · 02",
+    title: "A Day on the Farm",
     description:
-      "Another imaginative story created with Vivi for young audiences.",
+      "A curious little cat and a friendly lamb explore a sunny farm, meeting new animal friends along the way.",
     video: "/videos/kids2.mp4",
     prompt:
-      "Create a magical animated children's story with colorful characters, an imaginative world, emotional moments, and a warm sense of adventure.",
-    meta: "Kids · Adventure",
+      "Create a cheerful animated children's story following a curious orange cat and a friendly little lamb as they explore a beautiful countryside farm. Have them meet ducks, horses, cows, geese, rabbits, frogs, and other farm animals as they wander through fields, ponds, barns, and a nearby forest. Make it bright, playful, colorful, and full of gentle adventure.",
+    meta: "Kids · Farm Adventure",
   },
+
   {
     id: "history-1",
     category: "HISTORY",
-    title: "The Kakori Conspiracy",
+    title: "Krishna & The Sage",
     description:
-      "A cinematic historical story following revolutionaries planning the Kakori train action in 1925.",
+      "A mythological tale unfolding in a luminous kingdom, where a young Krishna shares a moment of wisdom with an elderly sage.",
     video: "/videos/history.mp4",
     prompt:
-      "Create a cinematic historical short film about the Kakori train action of 1925. Follow the revolutionaries as they plan the operation, prepare for the train robbery, and face the consequences. Use historically inspired environments, dramatic lighting, realistic costumes, emotional character moments, and an epic cinematic atmosphere.",
-    meta: "History · India",
+      "Create a cinematic Indian mythological story featuring young Krishna and an elderly sage carrying a traditional stringed instrument. Show them meeting in a magnificent celestial kingdom filled with palaces, gardens, temples, and glowing skies. Include Krishna walking through the kingdom, meeting the sage, entering a grand hall, and sharing a peaceful and emotional final moment together. Use rich Indian-inspired architecture, traditional clothing, warm golden lighting, and a magical mythological atmosphere.",
+    meta: "Mythology · India",
   },
+
   {
     id: "history-2",
     category: "HISTORY",
-    title: "History Story · 02",
+    title: "The Weaver's Secret",
     description:
-      "A cinematic historical story brought to life with AI-generated visuals.",
+      "In a medieval village, a young woman encounters figures from the royal court and uncovers a mysterious story tied to a precious necklace.",
     video: "/videos/history2.mp4",
     prompt:
-      "Create a cinematic historical story with realistic environments, period-inspired costumes, emotional character moments, dramatic lighting, and an immersive historical atmosphere.",
-    meta: "History · Cinematic",
+      "Create a cinematic historical drama set in a medieval European-inspired village. Follow a young woman working in a humble stone house as she encounters a mysterious cloaked man, speaks with a young boy, and is eventually brought into a royal palace. Show her meeting the queen and later returning to her village, where she discovers or reveals a beautiful necklace. Use cobblestone streets, stone cottages, candlelit interiors, royal costumes, dramatic palace interiors, and an atmospheric historical visual style.",
+    meta: "History · Historical Drama",
   },
+
   {
     id: "india-1",
     category: "INDIA",
-    title: "Stories from India",
+    title: "A Village Summer",
     description:
-      "A cinematic story rooted in Indian streets, people, memories, and everyday life.",
+      "A warm illustrated story of family, food, school, and everyday life in an Indian village.",
     video: "/videos/india.mp4",
     prompt:
-      "Create a cinematic story set in India about a young woman returning to her hometown after many years away. Show the streets, people, architecture, food, colors, and atmosphere of the city as she reconnects with an important childhood memory. Make it visually rich, emotional, intimate, and cinematic.",
-    meta: "India · Cinematic",
+      "Create a warm illustrated Indian family story set in a traditional village. Follow a family sharing a meal together, children going to school, a mother preparing food at home, children spending time with friends under a tree, and the family coming together again at sunset on the rooftop. Show mud-plastered homes, courtyards, village streets, bicycles and scooters, traditional kitchens, local markets, and everyday Indian family life. Use a hand-painted animated storybook style with warm earthy colors and nostalgic lighting.",
+    meta: "India · Family Story",
   },
+
   {
     id: "india-2",
     category: "INDIA",
-    title: "India Story · 02",
+    title: "Hanuman's Journey",
     description:
-      "A visually rich story inspired by Indian places, people, and everyday life.",
+      "A cinematic mythological adventure following Hanuman through a mysterious underground world filled with ancient warriors and hidden chambers.",
     video: "/videos/india2.mp4",
     prompt:
-      "Create a cinematic Indian story filled with authentic locations, people, atmosphere, colors, and emotional storytelling. Make it visually rich and intimate.",
-    meta: "India · Cinematic",
+      "Create a cinematic Indian mythological adventure centered on Hanuman. Begin with Hanuman emerging from the ocean at sunrise, then follow him into a vast underground cave system where he encounters warriors and mysterious figures. Show dramatic cavern landscapes, ancient stone corridors, underground rivers, monumental doors, temples, and powerful confrontations. Build toward an intense final sequence inside an ancient underground chamber. Use epic Indian mythological visuals, dramatic lighting, detailed costumes, powerful compositions, and a grand cinematic atmosphere.",
+    meta: "India · Mythology",
   },
+
   {
     id: "microdrama-1",
     category: "MICRODRAMA",
-    title: "The Session",
+    title: "The Last Walk",
     description:
-      "A therapist's session takes an unexpected turn when her patient starts describing details from her private life.",
+      "A woman spends a restless night working alone before stepping outside and taking a quiet walk into the fading evening.",
     video: "/videos/microdrama.mp4",
     prompt:
-      "Create a cinematic psychological microdrama about a therapist whose patient begins describing events from her private life that no one else could know. Build slowly escalating tension through realistic dialogue, subtle visual details, and a twist ending.",
+      "Create a cinematic psychological microdrama about a woman alone at home late at night. Begin with her sitting on the edge of her bed in a dark bedroom, then show her working alone on a laptop at night. Transition between nighttime and daylight as she sits by a window, gathers her thoughts, and eventually walks alone down a quiet stone path at sunset. Keep the dialogue minimal and let the mood, expressions, lighting, and changing environment carry the story. Make it intimate, atmospheric, contemplative, and emotionally ambiguous.",
     meta: "Microdrama · Psychological",
   },
+
   {
     id: "microdrama-2",
     category: "MICRODRAMA",
-    title: "Microdrama · 02",
+    title: "The Conversation",
     description:
-      "A short cinematic story built around tension, character, and an unexpected turn.",
+      "A tense conversation unfolds between three people in an intimate room, with a seemingly ordinary exchange growing increasingly uneasy.",
     video: "/videos/microdrama2.mp4",
     prompt:
-      "Create a cinematic psychological microdrama with realistic dialogue, subtle visual storytelling, escalating tension, and an unexpected twist ending.",
-    meta: "Microdrama · Psychological",
+      "Create a cinematic psychological microdrama set inside a warmly lit, intimate home. Center the story around a tense conversation between three adults: a woman in a dark coat, an older man seated in an armchair, and another woman who watches and later speaks from the room. Use close-ups of their expressions, pauses, body language, and shifting reactions to gradually build tension. Include moments where one woman sits alone thinking before returning to the conversation. End with an emotionally ambiguous final exchange. Use realistic performances, warm low-key lighting, restrained camera movement, and a tense dramatic atmosphere.",
+    meta: "Microdrama · Drama",
   },
 ];
 
