@@ -20,7 +20,7 @@ import { TermsPage } from '../pages/TermsPage';
 import { RefundPage } from '../pages/RefundPage';
 import { LoginPage } from '../pages/LoginPage';
 import { SignupPage } from '../pages/SignupPage';
-import { Vivi25Banner } from '../components/Vivi25Banner';
+// import { Vivi25Banner } from '../components/Vivi25Banner';
 import { Footer } from '../components/Footer';
 
 const titles: Record<string, string> = {
@@ -53,7 +53,7 @@ export function AppShell() {
       <MetaTitle />
 
       <SiteChrome />
-  <Vivi25Banner />
+  {/* <Vivi25Banner /> */}
 
       <Routes>
         <Route

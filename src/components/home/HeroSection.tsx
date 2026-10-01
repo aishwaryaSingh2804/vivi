@@ -2,7 +2,6 @@ import { HeroPrompt } from './HeroPrompt';
 import { HeroCreativeBackground } from './HeroCreativeBackground';
 
 export function HeroSection() {
-
   return (
     <div className="vivi-hero-scroll">
 
@@ -10,9 +9,9 @@ export function HeroSection() {
 
         <section className="vivi-hero">
 
-          {/* -----------------------------------------
-              EXISTING BACKGROUND
-          ----------------------------------------- */}
+          {/* =================================================
+              BASE HERO BACKGROUND
+          ================================================= */}
 
           <div
             className="vivi-hero-grid"
@@ -29,17 +28,27 @@ export function HeroSection() {
             aria-hidden="true"
           />
 
+          {/* =================================================
+              CINEMATIC CREATIVE BACKGROUND
 
-          {/* -----------------------------------------
-              NEW CREATIVE GENERATION LAYER
-          ----------------------------------------- */}
+              Floating cards
+                  ↓
+              Spiral / gather
+                  ↓
+              Full-screen video
+                  ↓
+              Dissolve
+                  ↓
+              Loop
+          ================================================= */}
 
           <HeroCreativeBackground />
 
-
-          {/* -----------------------------------------
+          {/* =================================================
               HERO CONTENT
-          ----------------------------------------- */}
+
+              Always remains above the animation.
+          ================================================= */}
 
           <div className="vivi-hero-content">
 
