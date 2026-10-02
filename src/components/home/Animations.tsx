@@ -185,38 +185,35 @@ function Animations() {
     (video) => video.id === activeVideo.id
   );
 
-const changeVideo = useCallback(
-  (direction: "next" | "previous") => {
-    if (isTransitioning) return;
+  const changeVideo = useCallback(
+    (direction: "next" | "previous") => {
+      if (isTransitioning) return;
 
-    // Resume autoplay when navigation is requested
-    setIsPaused(false);
+      setIsTransitioning(true);
 
-    setIsTransitioning(true);
+      setActiveIndex((current) => {
+        if (direction === "next") {
+          return (current + 1) % VIDEO_PRODUCTIONS.length;
+        }
 
-    setActiveIndex((current) => {
-      if (direction === "next") {
-        return (current + 1) % VIDEO_PRODUCTIONS.length;
+        return (
+          (current - 1 + VIDEO_PRODUCTIONS.length) %
+          VIDEO_PRODUCTIONS.length
+        );
+      });
+
+      setProgressKey((value) => value + 1);
+
+      if (transitionTimer.current) {
+        window.clearTimeout(transitionTimer.current);
       }
 
-      return (
-        (current - 1 + VIDEO_PRODUCTIONS.length) %
-        VIDEO_PRODUCTIONS.length
-      );
-    });
-
-    setProgressKey((value) => value + 1);
-
-    if (transitionTimer.current) {
-      window.clearTimeout(transitionTimer.current);
-    }
-
-    transitionTimer.current = window.setTimeout(() => {
-      setIsTransitioning(false);
-    }, 700);
-  },
-  [isTransitioning]
-);
+      transitionTimer.current = window.setTimeout(() => {
+        setIsTransitioning(false);
+      }, 700);
+    },
+    [isTransitioning]
+  );
 
   const goToVideo = useCallback(
     (index: number) => {
@@ -549,10 +546,7 @@ const changeVideo = useCallback(
             <button
               type="button"
               className="vivi-stage-arrow vivi-stage-arrow-up"
-              onClick={() => {
-  setIsPaused(false);
-  changeVideo("previous");
-}}
+              onClick={() => changeVideo("previous")}
               aria-label="Previous video"
             >
               <span>↑</span>
@@ -665,10 +659,7 @@ const changeVideo = useCallback(
             <button
               type="button"
               className="vivi-stage-arrow vivi-stage-arrow-down"
-              onClick={() => {
-  setIsPaused(false);
-  changeVideo("next");
-}}
+              onClick={() => changeVideo("next")}
               aria-label="Next video"
             >
               <span>↓</span>
