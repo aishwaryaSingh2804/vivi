@@ -1,0 +1,1260 @@
+
+/* =========================================================
+   VIVI — BENEFITS SECTION
+   ========================================================= */
+
+.benefits-section {
+  width: 100%;
+  background: #f1f6fd;
+  padding: clamp(30px, 4vh, 42px) 40px 30px;
+  overflow: hidden;
+}
+
+.benefits-inner {
+  width: min(1450px, 100%);
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.benefits-header {
+  text-align: center;
+  margin-bottom: clamp(20px, 2.5vh, 27px);
+}
+
+.benefits-header .section-overline {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 9px;
+  font-family: var(--ff-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.benefits-heading {
+  margin: 0;
+  font-family: var(--ff-display);
+  font-size: clamp(30px, 3vw, 43px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -.035em;
+  color: #142f54;
+}
+
+.benefits-heading span {
+  color: var(--accent);
+  font-style: italic;
+  margin-left: 7px;
+}
+
+.benefits-subheading {
+  max-width: 520px;
+  margin: 9px auto 0;
+  font-family: var(--ff-body);
+  font-size: 12px;
+  line-height: 1.6;
+  color: #7187a6;
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.benefit-card {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 15px 20px;
+  background: #fff;
+  border: 1px solid #dce7f6;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(30, 65, 115, .035);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease,
+    background .3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(49, 87, 213, .35);
+  box-shadow: 0 16px 35px rgba(36, 75, 145, .12);
+}
+
+.benefit-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.benefit-number {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.benefit-label {
+  font-family: var(--ff-body);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+  text-align: right;
+  color: #8ca1bf;
+}
+
+
+/* =========================================================
+   COMMON ILLUSTRATION CONTAINER
+   All four illustrations have identical dimensions.
+   ========================================================= */
+
+.benefit-visual {
+  position: relative;
+  width: 100%;
+  height: 175px;
+  flex: 0 0 175px;
+  margin-bottom: 12px;
+  border-radius: 13px;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   01 — TIME REIMAGINED
+   Animated clock + comparison timeline
+   ========================================================= */
+
+.visual-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 16px;
+  background:
+    radial-gradient(circle at 20% 45%, rgba(255,255,255,.95), transparent 35%),
+    linear-gradient(135deg, #edf2ff 0%, #e5edff 100%);
+}
+
+/* Clock */
+
+.time-clock {
+  position: relative;
+  flex: 0 0 88px;
+  width: 88px;
+  height: 88px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff, #f0f4ff);
+  box-shadow:
+    0 7px 20px rgba(65, 91, 155, .13),
+    inset 0 0 0 1px #dce6ff;
+  animation: clockFloat 2s ease-in-out infinite;
+}
+
+.time-clock::before,
+.time-clock::after {
+  content: "";
+  position: absolute;
+  background: #9eb6f6;
+  border-radius: 2px;
+}
+
+.time-clock::before {
+  width: 2px;
+  height: 7px;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.time-clock::after {
+  width: 2px;
+  height: 7px;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.clock-hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  display: block;
+  width: 3px;
+  border-radius: 5px;
+  background: #4569e7;
+  transform-origin: bottom center;
+}
+
+.clock-hand-hour {
+  height: 23px;
+  transform: translateX(-50%) rotate(30deg);
+}
+
+.clock-hand-minute {
+  height: 30px;
+  transform: translateX(-50%) rotate(180deg);
+  animation: clockTick 2s ease-in-out infinite;
+}
+
+.clock-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4569e7;
+  transform: translate(-50%, -50%);
+}
+
+/* Timeline */
+
+.time-timeline {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.timeline-label {
+  font-family: var(--ff-body);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  color: #879bbd;
+}
+
+.timeline-track {
+  position: relative;
+  width: 100%;
+  height: 9px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .9);
+  overflow: hidden;
+}
+
+.timeline-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.traditional-track span {
+  width: 100%;
+  background: #b8c9e8;
+}
+
+.vivi-track span {
+  width: 20%;
+  background: linear-gradient(90deg, #4266e5, #8eafff);
+  animation: viviTimeline 2s ease-in-out infinite alternate;
+}
+
+.time-saved-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 2px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #fff;
+  color: #4167df;
+  font-family: var(--ff-body);
+  font-size: 8px;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(65, 91, 155, .08);
+}
+
+.time-sparkle {
+  position: absolute;
+  color: #7292ee;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.sparkle-one {
+  top: 18%;
+  right: 9%;
+  font-size: 19px;
+}
+
+.sparkle-two {
+  bottom: 15%;
+  left: 9%;
+  font-size: 15px;
+  animation-delay: .7s;
+}
+
+
+/* =========================================================
+   02 — PRODUCTION READY
+   Large cinematic video preview
+   ========================================================= */
+
+.visual-ready {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e7f2ff, #e3ebff);
+}
+
+.draft-window {
+  position: relative;
+  width: 76%;
+  height: 90%;
+  padding: 9px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .97);
+  box-shadow: 0 8px 24px rgba(65, 91, 155, .13);
+  transform: rotate(-1deg);
+  animation: draftFloat 2s ease-in-out infinite;
+}
+
+.draft-window-top {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 17px;
+  margin-bottom: 5px;
+}
+
+.draft-window-top > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #b7c8ef;
+}
+
+.draft-window-top small {
+  margin-left: auto;
+  font-family: var(--ff-body);
+  font-size: 6px;
+  font-weight: 700;
+  color: #91a5c2;
+}
+
+.draft-scene {
+  position: relative;
+  height: calc(100% - 33px);
+  overflow: hidden;
+  border-radius: 6px;
+  background: #dce8ff;
+}
+
+.draft-scene img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  animation: cinematicZoom 2s ease-in-out infinite alternate;
+}
+
+.scene-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding-left: 2px;
+  border: 1px solid rgba(255, 255, 255, .8);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .35);
+  color: white;
+  font-size: 10px;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.scene-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, .4) 48%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  animation: sceneShine 2s ease-in-out infinite;
+  z-index: 3;
+}
+
+.draft-progress {
+  position: absolute;
+  bottom: 5px;
+  left: 9px;
+  right: 9px;
+  height: 3px;
+  border-radius: 5px;
+  background: #e1e9fa;
+  overflow: hidden;
+}
+
+.draft-progress span {
+  display: block;
+  width: 70%;
+  height: 100%;
+  border-radius: inherit;
+  background: #5277e8;
+  animation: progressMove 2s ease-in-out infinite alternate;
+}
+
+.ready-check {
+  position: absolute;
+  right: 11%;
+  bottom: 12%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #5277e8;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  box-shadow: 0 5px 15px rgba(58, 93, 190, .2);
+  animation: checkPop 2s ease-in-out infinite;
+}
+
+.ready-sparkle {
+  position: absolute;
+  top: 15%;
+  right: 12%;
+  color: #7292ee;
+  font-size: 20px;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   03 — CREATIVE FREEDOM
+   Four large colourful image tiles around the idea.
+   ========================================================= */
+
+
+
+/* Central idea */
+
+.creative-center {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border: 3px solid rgba(255, 255, 255, .98);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff, #eef0ff);
+  box-shadow: 0 8px 25px rgba(76, 83, 170, .16);
+  color: #596fd1;
+  animation: centerPulse 2s ease-in-out infinite;
+}
+
+.creative-center > span {
+  font-size: 29px;
+  line-height: 1.1;
+}
+
+.creative-center small {
+  margin-top: 5px;
+  font-family: var(--ff-body);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+/* Image tiles */
+
+.creative-scene {
+  position: absolute;
+  z-index: 3;
+  width: 86px;
+  height: 86px;
+  padding: 3px;
+  border: 2px solid rgba(255, 255, 255, .98);
+  border-radius: 19px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(63, 82, 158, .16);
+  overflow: hidden;
+  animation: sceneBob 2s ease-in-out infinite;
+}
+
+.creative-scene img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+
+.benefit-card:hover .creative-scene img {
+  transform: scale(1.08);
+}
+
+/* Four positions */
+
+.scene-a {
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scene-b {
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  animation-delay: .35s;
+}
+
+.scene-c {
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: .7s;
+}
+
+.scene-d {
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  animation-delay: 1s;
+}
+
+
+/* =========================================================
+   04 — INTELLIGENT PRODUCTION
+   Model optimization panel
+   ========================================================= */
+
+.visual-smart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #edf3ff, #e5edff);
+}
+
+.smart-panel {
+  position: relative;
+  width: 76%;
+  max-width: 260px;
+  padding: 11px 13px;
+  border: 1px solid rgba(255, 255, 255, .95);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .97);
+  box-shadow: 0 8px 24px rgba(65, 91, 155, .13);
+  animation: smartFloat 2s ease-in-out infinite;
+}
+
+/* Panel heading */
+
+.smart-panel-heading {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.smart-ai-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 25px;
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  background: #eef2ff;
+  color: #5879e8;
+  font-size: 16px;
+  animation: aiRotate 4s linear infinite;
+}
+
+.smart-panel-heading > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.smart-panel-heading strong {
+  font-family: var(--ff-body);
+  font-size: 9px;
+  font-weight: 700;
+  color: #29466f;
+}
+
+.smart-panel-heading small {
+  font-family: var(--ff-body);
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: #9aabc5;
+}
+
+.smart-status {
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: #61cba5;
+  box-shadow: 0 0 0 4px rgba(97, 203, 165, .13);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+/* Quality / speed / cost rows */
+
+.smart-option {
+  display: grid;
+  grid-template-columns: 45px minmax(0, 1fr) 28px;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 9px;
+}
+
+.smart-option > span {
+  font-family: var(--ff-body);
+  font-size: 6px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #91a5c2;
+}
+
+.smart-option b {
+  font-family: var(--ff-body);
+  font-size: 7px;
+  font-weight: 700;
+  text-align: right;
+  color: #526d98;
+}
+
+.smart-bar {
+  height: 6px;
+  border-radius: 20px;
+  background: #edf1fa;
+  overflow: hidden;
+}
+
+.smart-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.quality-bar {
+  width: 92%;
+  background: linear-gradient(90deg, #6384ee, #4569df);
+  animation: qualityAnimate 2s ease-in-out infinite alternate;
+}
+
+.speed-bar {
+  width: 80%;
+  background: linear-gradient(90deg, #91a9f4, #7193ed);
+  animation: speedAnimate 2s ease-in-out infinite alternate;
+}
+
+.cost-bar {
+  width: 55%;
+  background: linear-gradient(90deg, #8acbbd, #55b99d);
+  animation: costAnimate 2s ease-in-out infinite alternate;
+}
+
+/* Selected status */
+
+.smart-selected {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  padding: 6px 7px;
+  border-radius: 6px;
+  background: #edf3ff;
+  font-family: var(--ff-body);
+  font-size: 7px;
+  font-weight: 600;
+  color: #6684d8;
+}
+
+.smart-selected span {
+  display: grid;
+  place-items: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #6888e8;
+  color: white;
+  font-size: 8px;
+}
+
+.smart-sparkle {
+  position: absolute;
+  top: 15%;
+  right: 12%;
+  z-index: 2;
+  color: #7795ef;
+  font-size: 19px;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   METRICS
+   ========================================================= */
+
+.benefit-metric {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 13px 0 9px;
+}
+
+.benefit-metric-value {
+  font-family: var(--ff-display);
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--accent);
+  transition: transform .3s ease;
+}
+
+.benefit-card:hover .benefit-metric-value {
+  transform: scale(1.1);
+}
+
+.benefit-metric-label {
+  font-family: var(--ff-body);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #91a5c2;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.benefit-content {
+  flex: 1;
+}
+
+.benefit-title {
+  margin: 0 0 8px;
+  font-family: var(--ff-display);
+  font-size: clamp(16px, 1.3vw, 19px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.02em;
+  color: #142f54;
+  transition: color .3s ease;
+}
+
+.benefit-card:hover .benefit-title {
+  color: var(--accent);
+}
+
+.benefit-description {
+  margin: 0;
+  font-family: var(--ff-body);
+  font-size: 10.5px;
+  line-height: 1.65;
+  color: #7489a7;
+}
+
+
+/* =========================================================
+   CARD ACCENT
+   ========================================================= */
+
+.benefit-card-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #8aaaff);
+  transition: width .4s ease;
+}
+
+.benefit-card:hover .benefit-card-accent {
+  width: 100%;
+}
+
+
+/* =========================================================
+   CARD HOVER COLORS
+   ========================================================= */
+
+.benefit-time:hover {
+  background: linear-gradient(150deg, #fff, #f1f5ff);
+}
+
+.benefit-ready:hover {
+  background: linear-gradient(150deg, #fff, #edf7ff);
+}
+
+.benefit-creative:hover {
+  background: linear-gradient(150deg, #fff, #f3f1ff);
+}
+
+.benefit-smart:hover {
+  background: linear-gradient(150deg, #fff, #eef5ff);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+/* Clock */
+
+@keyframes clockFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes clockTick {
+  0% { transform: translateX(-50%) rotate(180deg); }
+  100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes viviTimeline {
+  from { width: 18%; }
+  to { width: 42%; }
+}
+
+/* Video */
+
+@keyframes draftFloat {
+  0%, 100% { transform: rotate(-1deg) translateY(0); }
+  50% { transform: rotate(0deg) translateY(-3px); }
+}
+
+@keyframes cinematicZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
+
+@keyframes sceneShine {
+  0%, 20% { transform: translateX(-120%); }
+  80%, 100% { transform: translateX(120%); }
+}
+
+@keyframes progressMove {
+  from { width: 35%; }
+  to { width: 90%; }
+}
+
+@keyframes checkPop {
+  0%, 15%, 100% { transform: scale(1); }
+  30% { transform: scale(1.12); }
+  45% { transform: scale(1); }
+}
+
+/* Creative tiles */
+
+@keyframes sceneBob {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -4px; }
+}
+
+@keyframes centerPulse {
+  0%, 100% {
+    box-shadow: 0 8px 25px rgba(76, 83, 170, .16);
+  }
+  50% {
+    box-shadow: 0 12px 30px rgba(76, 83, 170, .26);
+  }
+}
+
+@keyframes orbitRotate {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+/* Smart panel */
+
+@keyframes smartFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes aiRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(97, 203, 165, .12); }
+  50% { box-shadow: 0 0 0 6px rgba(97, 203, 165, .2); }
+}
+
+@keyframes qualityAnimate {
+  from { width: 75%; }
+  to { width: 94%; }
+}
+
+@keyframes speedAnimate {
+  from { width: 65%; }
+  to { width: 85%; }
+}
+
+@keyframes costAnimate {
+  from { width: 45%; }
+  to { width: 62%; }
+}
+
+/* Shared sparkle */
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: .55;
+    transform: scale(.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(20deg);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .benefits-section {
+    padding: 45px 25px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .benefit-title {
+    font-size: 20px;
+  }
+
+  .benefit-description {
+    font-size: 12px;
+  }
+
+  .benefit-visual {
+    height: 190px;
+    flex-basis: 190px;
+  }
+
+  .creative-scene {
+    width: 100px;
+    height: 100px;
+  }
+
+  .creative-center {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .benefits-section {
+    padding: 48px 17px 35px;
+  }
+
+  .benefits-heading {
+    font-size: 34px;
+  }
+
+  .benefits-heading span {
+    display: block;
+    margin-left: 0;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .benefit-card {
+    padding: 17px 17px 20px;
+  }
+
+  .benefit-title {
+    font-size: 21px;
+  }
+
+  .benefit-description {
+    font-size: 12px;
+  }
+
+  .benefit-visual {
+    height: 210px;
+    flex-basis: 210px;
+  }
+
+  .time-clock {
+    width: 100px;
+    height: 100px;
+    flex-basis: 100px;
+  }
+
+  .creative-scene {
+    width: 105px;
+    height: 105px;
+  }
+
+  .creative-center {
+    width: 90px;
+    height: 90px;
+  }
+
+  .smart-panel {
+    width: 78%;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .benefit-card,
+  .benefit-card-accent,
+  .benefit-metric-value,
+  .creative-scene img {
+    transition: none;
+  }
+
+  .benefit-card:hover {
+    transform: none;
+  }
+
+  .time-clock,
+  .clock-hand-minute,
+  .vivi-track span,
+  .draft-window,
+  .draft-scene img,
+  .scene-shine,
+  .draft-progress span,
+  .ready-check,
+  .ready-sparkle,
+  .creative-orbit,
+  .creative-center,
+  .creative-scene,
+  .smart-panel,
+  .smart-ai-icon,
+  .smart-status,
+  .quality-bar,
+  .speed-bar,
+  .cost-bar,
+  .smart-sparkle,
+  .time-sparkle {
+    animation: none !important;
+  }
+}
+
+/* =========================================================
+   03 — CREATIVE FREEDOM: SMALLER CENTRE + FITTED ORBITS
+   ========================================================= */
+
+.visual-creative {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Orbit rings stay behind the images */
+.creative-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px dashed rgba(104, 123, 205, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  transform-origin: center;
+}
+
+/* Outer orbit */
+.orbit-one {
+  width: 72%;
+  height: 72%;
+  animation: creativeOrbitOne 18s linear infinite;
+}
+
+/* Inner orbit */
+.orbit-two {
+  width: 54%;
+  height: 54%;
+  border-color: rgba(104, 123, 205, 0.2);
+  animation: creativeOrbitTwo 14s linear infinite reverse;
+}
+
+/* Smaller central idea circle */
+.creative-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 3px solid rgba(255, 255, 255, 0.98);
+  border-radius: 50%;
+
+  background: linear-gradient(145deg, #ffffff, #eef0ff);
+  box-shadow: 0 6px 20px rgba(76, 83, 170, 0.17);
+
+  color: #596fd1;
+
+  transform: translate(-50%, -50%);
+  animation: creativeCenterPulse 2.5s ease-in-out infinite;
+}
+
+.creative-center > span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.creative-center small {
+  margin-top: 4px;
+  font-family: var(--ff-body);
+  font-size: 6.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+/* Keep image tiles above the orbit lines */
+.creative-scene {
+  z-index: 3;
+}
+
+/* Orbit animations */
+@keyframes creativeOrbitOne {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes creativeOrbitTwo {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Gentle centre pulse */
+@keyframes creativeCenterPulse {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(76, 83, 170, 0.15);
+  }
+  50% {
+    box-shadow: 0 8px 25px rgba(76, 83, 170, 0.23);
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .orbit-one,
+  .orbit-two,
+  .creative-center {
+    animation: none !important;
+  }
+}
+
+/* Small central idea circle */
+.visual-creative .creative-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  padding: 0;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff, #eef0ff);
+  box-shadow: 0 4px 12px rgba(76, 83, 170, 0.16);
+
+  color: #596fd1;
+  transform: translate(-50%, -50%);
+  animation: creativeCenterPulse 2.5s ease-in-out infinite;
+}
+
+.visual-creative .creative-center > span {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.visual-creative .creative-center small {
+  margin: 0;
+  font-family: var(--ff-body);
+  font-size: 5px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
