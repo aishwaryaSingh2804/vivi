@@ -1,138 +1,152 @@
 /* =========================================================
-   VIVI WORKFLOW
+
+   VIVI WORKFLOW — SCROLL-DRIVEN PRODUCT WALKTHROUGH
+
    ========================================================= */
 
+
+
 .workflow-section {
+
   position: relative;
+
   width: 100%;
-  height: 700vh;
+
+  height: 800vh;
+
   overflow: clip;
 
   background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(91, 79, 230, 0.075),
-      transparent 30%
-    ),
+
+    radial-gradient(circle at 72% 42%, rgba(91, 79, 230, 0.075), transparent 38%),
+
     #f8f9ff;
+
+  font-family: var(--ff-body);
+
 }
 
 
-/* =========================================================
-   STICKY EXPERIENCE
-   ========================================================= */
 
 .workflow-sticky {
+
   position: sticky;
+
   top: 0;
 
   width: 100%;
+
   height: 100svh;
 
-  min-height: 600px;
+  min-height: 620px;
 
   overflow: hidden;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
+
+  align-items: stretch;
+
 }
 
 
-/* =========================================================
-   BACKGROUND GLOW
-   ========================================================= */
 
 .workflow-background-glow {
+
   position: absolute;
 
-  width: 60vw;
-  height: 60vw;
+  width: 58vw;
 
-  max-width: 850px;
-  max-height: 850px;
+  height: 58vw;
 
-  left: 50%;
-  top: 50%;
+  max-width: 900px;
 
-  transform:
-    translate(-50%, -50%);
+  max-height: 900px;
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(93, 82, 239, 0.085),
-      rgba(93, 82, 239, 0.025) 38%,
-      transparent 70%
-    );
+  right: 8%;
 
-  filter: blur(18px);
+  top: 48%;
+
+  transform: translateY(-50%);
+
+  background: radial-gradient(circle, rgba(93, 82, 239, 0.075), rgba(93, 82, 239, 0.02) 42%, transparent 70%);
+
+  filter: blur(24px);
 
   pointer-events: none;
+
 }
 
 
-/* =========================================================
-   CONTAINER
-   ========================================================= */
 
 .workflow-container {
+
   position: relative;
 
   z-index: 2;
 
-  width: min(
-    1160px,
-    calc(100% - 70px)
-  );
+  width: 100%;
 
   height: 100%;
 
   margin: 0 auto;
 
-  padding:
-    clamp(34px, 5vh, 55px)
-    0
-    32px;
+  padding: clamp(22px, 3.2vh, 38px) clamp(18px, 2.2vw, 36px) 38px;
 
   display: flex;
+
   flex-direction: column;
+
+  min-width: 0;
+
 }
 
 
-/* =========================================================
-   HEADER
-   ========================================================= */
 
 .workflow-header {
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   flex-shrink: 0;
+
+  padding-left: 2px;
+
+  margin-bottom: clamp(16px, 2.5vh, 28px);
+
 }
 
 
+
 .workflow-kicker {
+
   display: flex;
+
   align-items: center;
 
-  gap: 8px;
+  gap: 9px;
 
   color: #9da0b5;
 
-  font-size: 9px;
+  font-size: 10px;
+
   font-weight: 800;
 
   letter-spacing: 0.14em;
 
   text-transform: uppercase;
+
 }
 
 
+
 .workflow-kicker-dot {
-  width: 6px;
-  height: 6px;
+
+  width: 7px;
+
+  height: 7px;
 
   flex-shrink: 0;
 
@@ -140,18 +154,17 @@
 
   background: #5146e5;
 
-  box-shadow:
-    0 0 0 5px rgba(81, 70, 229, 0.09);
+  box-shadow: 0 0 0 5px rgba(81, 70, 229, 0.09);
+
 }
 
 
-.workflow-kicker-brand {
-  color: #999caf;
-}
 
+.workflow-kicker-brand { color: #999caf; }
 
 .workflow-kicker-title {
-  margin-left: 3px;
+
+  margin-left: 5px;
 
   color: #202136;
 
@@ -160,657 +173,295 @@
   letter-spacing: 0;
 
   text-transform: none;
+
 }
 
 
+
 .workflow-counter {
+
   display: flex;
+
   align-items: center;
 
   gap: 5px;
 
   color: #a5a7b9;
 
-  font-size: 10px;
-  font-weight: 700;
-}
-
-
-.workflow-counter strong {
-  color: #5146e5;
-}
-
-
-/* =========================================================
-   WAVY JOURNEY
-   ========================================================= */
-
-.workflow-journey {
-  position: relative;
-
-  width: 100%;
-
-  margin-top: 24px;
-  margin-bottom: 24px;
-
-  flex-shrink: 0;
-}
-
-
-.workflow-track {
-  position: relative;
-
-  width: 100%;
-  height: 58px;
-}
-
-
-/* =========================================================
-   WAVE SVG
-   ========================================================= */
-
-.workflow-wave {
-  position: absolute;
-
-  left: 0;
-  top: 0;
-
-  width: 100%;
-  height: 60px;
-
-  overflow: visible;
-
-  pointer-events: none;
-}
-
-
-.workflow-wave-base,
-.workflow-wave-progress {
-  fill: none;
-
-  stroke-width: 2.2;
-
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-
-.workflow-wave-base {
-  stroke: #dddff0;
-}
-
-
-.workflow-wave-progress {
-  stroke: url("#workflowGradient");
-
-  stroke: #5146e5;
-
-  transition:
-    stroke-dashoffset 0.45s
-    cubic-bezier(.2,.8,.2,1);
-}
-
-
-/* =========================================================
-   NODES
-   ========================================================= */
-
-.workflow-nodes {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 3;
-
-  display: flex;
-  align-items: center;
-
-  justify-content: space-between;
-}
-
-
-.workflow-node {
-  width: 55px;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-
-  gap: 7px;
-}
-
-
-.workflow-node-circle {
-  width: 31px;
-  height: 31px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: #fff;
-
-  border:
-    1px solid #e1e2ef;
-
-  color: #a5a7b7;
-
-  font-size: 9px;
-  font-weight: 800;
-
-  box-shadow:
-    0 5px 15px rgba(
-      45,
-      40,
-      100,
-      0.045
-    );
-
-  transition:
-    transform 0.45s
-      cubic-bezier(.2,.8,.2,1),
-
-    background 0.35s ease,
-
-    color 0.35s ease,
-
-    border-color 0.35s ease,
-
-    box-shadow 0.35s ease;
-}
-
-
-.workflow-node-label {
-  color: #999caf;
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: 0.07em;
-
-  text-transform: uppercase;
-
-  transition:
-    color 0.3s ease,
-
-    transform 0.3s ease;
-}
-
-
-.workflow-node.is-active
-.workflow-node-circle {
-  color: #fff;
-
-  background: #5146e5;
-
-  border-color: #5146e5;
-
-  transform: scale(1.18);
-
-  box-shadow:
-    0 0 0 7px
-      rgba(81,70,229,0.1),
-
-    0 10px 22px
-      rgba(81,70,229,0.2);
-}
-
-
-.workflow-node.is-active
-.workflow-node-label {
-  color: #5146e5;
-
-  transform:
-    translateY(1px);
-}
-
-
-.workflow-node.is-completed
-.workflow-node-circle {
-  color: #5146e5;
-
-  border-color: #c2c4ed;
-
-  background: #fafaff;
-}
-
-
-.workflow-check {
   font-size: 11px;
+
+  font-weight: 700;
+
 }
 
+.workflow-counter strong { color: #5146e5; }
 
-/* =========================================================
-   MAIN
-   ========================================================= */
 
-.workflow-main {
+
+.workflow-experience {
+
   flex: 1;
 
   min-height: 0;
 
   display: grid;
 
-  grid-template-columns:
-    minmax(0, 1.6fr)
-    minmax(280px, 0.72fr);
+  grid-template-columns: 82px minmax(220px, 270px) minmax(0, 1fr);
 
-  gap: 45px;
+  column-gap: clamp(18px, 2.1vw, 34px);
 
   align-items: center;
+
 }
 
 
-/* =========================================================
-   VISUAL
-   ========================================================= */
 
-.workflow-visual {
-  position: relative;
+/* Vertical timeline: anchored to the far left of the experience */
 
-  min-width: 0;
-}
-
-
-.workflow-window {
-  position: relative;
-
-  width: 100%;
-
-  overflow: hidden;
-
-  border-radius: 15px;
-
-  background: #fff;
-
-  border:
-    1px solid
-    rgba(100,102,150,0.12);
-
-  box-shadow:
-    0 25px 65px
-      rgba(39,36,91,0.11),
-
-    0 7px 22px
-      rgba(39,36,91,0.05);
-
-  transform:
-    perspective(1400px)
-    rotateX(1deg);
-}
-
-
-/* =========================================================
-   WINDOW BAR
-   ========================================================= */
-
-.workflow-window-bar {
-  height: 29px;
+.workflow-journey {
 
   position: relative;
+
+  align-self: stretch;
+
+  min-height: 0;
 
   display: flex;
-  align-items: center;
+
   justify-content: center;
 
-  border-bottom:
-    1px solid #edf0f6;
-
-  background:
-    rgba(255,255,255,0.95);
 }
 
 
-.workflow-window-dots {
+
+.workflow-vertical-track {
+  position: relative;
+  width: 100%;
+  height: min(100%, 520px);
+  min-height: 0;
+  align-self: center;
+}
+
+
+
+.workflow-vertical-line,
+
+.workflow-vertical-progress {
+
   position: absolute;
 
-  left: 11px;
+  top: 25px;
 
-  display: flex;
+  bottom: 25px;
 
-  gap: 4px;
+  left: 27px;
+
+  width: 2px;
+
+  border-radius: 4px;
+
 }
 
 
-.workflow-window-dots span {
-  width: 5px;
-  height: 5px;
 
-  border-radius: 50%;
+.workflow-vertical-line {
 
-  background: #dfe1eb;
+  background: #dedff0;
+
 }
 
 
-.workflow-window-title {
-  color: #a1a4b5;
 
-  font-size: 8px;
-  font-weight: 700;
+.workflow-vertical-progress {
+
+  bottom: auto;
+
+  height: 0;
+
+  max-height: calc(100% - 50px);
+
+  background: linear-gradient(180deg, #8178ff, #5146e5);
+
+  transition: height 0.4s cubic-bezier(.2,.8,.2,1);
+
 }
 
 
-/* =========================================================
-   IMAGE
-   ========================================================= */
 
-.workflow-image-stage {
-  position: relative;
+.workflow-nodes {
 
-  width: 100%;
-
-  aspect-ratio: 1.62;
-
-  overflow: hidden;
-
-  background: #f2f4f9;
-}
-
-
-.workflow-image {
   position: absolute;
 
   inset: 0;
 
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+}
+
+
+
+.workflow-node {
+
+  position: relative;
+
+  z-index: 2;
+
   width: 100%;
-  height: 100%;
 
-  object-fit: cover;
+  min-height: 48px;
 
-  opacity: 0;
+  display: flex;
 
-  transform:
-    translate3d(
-      calc(var(--stage-offset) * 7%),
-      16px,
-      0
-    )
-    scale(0.965);
+  align-items: center;
 
-  filter: blur(4px);
+  gap: 9px;
 
-  transition:
-    opacity 0.55s ease,
+  text-align: left;
 
-    transform
-      0.75s
-      cubic-bezier(.2,.8,.2,1),
-
-    filter 0.55s ease;
-
-  will-change:
-    transform,
-    opacity;
 }
 
 
-.workflow-image.is-current {
-  opacity: 1;
 
-  transform:
-    translate3d(0,0,0)
-    scale(1);
+.workflow-node-circle {
 
-  filter: blur(0);
-
-  z-index: 3;
-}
-
-
-.workflow-image.is-before {
-  transform:
-    translate3d(-7%,-10px,0)
-    scale(0.98);
-}
-
-
-.workflow-image.is-after {
-  transform:
-    translate3d(7%,16px,0)
-    scale(0.965);
-}
-
-
-/* =========================================================
-   FLOATING CURSOR
-   ========================================================= */
-
-.workflow-cursor {
-  position: absolute;
-
-  left: 52%;
-  top: 52%;
-
-  z-index: 8;
-
-  pointer-events: none;
-
-  animation:
-    workflowCursorFloat
-    2.8s
-    ease-in-out
-    infinite;
-}
-
-
-.workflow-cursor-pointer {
   width: 30px;
+
   height: 30px;
 
+  flex: 0 0 30px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
-  color: white;
-
-  background: #5146e5;
-
   border-radius: 50%;
 
-  border:
-    2px solid
-    rgba(255,255,255,0.95);
+  background: #fff;
 
-  box-shadow:
-    0 7px 18px
-      rgba(81,70,229,0.3);
+  border: 1px solid #e1e2ef;
 
-  font-size: 12px;
-}
+  color: #a5a7b7;
 
+  font-size: 8px;
 
-.workflow-cursor-label {
-  position: absolute;
-
-  top: 24px;
-  left: 17px;
-
-  padding:
-    3px 6px;
-
-  border-radius: 4px;
-
-  color: white;
-
-  background: #5146e5;
-
-  font-size: 7px;
   font-weight: 800;
+
+  box-shadow: 0 5px 15px rgba(45, 40, 100, 0.06);
+
+  transition: transform .35s ease, background .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease;
+
 }
 
 
-@keyframes workflowCursorFloat {
 
-  0%,
-  100% {
-    transform:
-      translate3d(-9px,-5px,0);
-  }
+.workflow-node-label {
 
-  50% {
-    transform:
-      translate3d(13px,8px,0);
-  }
-}
-
-
-/* =========================================================
-   ORBITS
-   ========================================================= */
-
-.workflow-visual-orbit {
-  position: absolute;
-
-  border:
-    1px solid
-    rgba(81,70,229,0.075);
-
-  border-radius: 50%;
-
-  pointer-events: none;
-}
-
-
-.orbit-one {
-  width: 100px;
-  height: 100px;
-
-  left: -50px;
-  top: 35%;
-
-  animation:
-    workflowOrbit
-    8s
-    linear
-    infinite;
-}
-
-
-.orbit-two {
-  width: 70px;
-  height: 70px;
-
-  right: -35px;
-  bottom: 18%;
-
-  animation:
-    workflowOrbit
-    6s
-    linear
-    infinite reverse;
-}
-
-
-@keyframes workflowOrbit {
-
-  from {
-    transform:
-      rotate(0deg);
-  }
-
-  to {
-    transform:
-      rotate(360deg);
-  }
-}
-
-
-/* =========================================================
-   IMAGE CAPTION
-   ========================================================= */
-
-.workflow-image-caption {
-  display: flex;
-
-  align-items: center;
-
-  gap: 7px;
-
-  margin-top: 10px;
-
-  color: #999caf;
+  color: #9295aa;
 
   font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .015em;
+
+  line-height: 1.15;
+
+  transition: color .3s ease;
+
 }
 
 
-.workflow-image-caption > span:first-child {
-  width: 18px;
-  height: 1px;
+
+.workflow-node.is-active .workflow-node-circle {
+
+  color: #fff;
 
   background: #5146e5;
+
+  border-color: #5146e5;
+
+  transform: scale(1.14);
+
+  box-shadow: 0 0 0 6px rgba(81,70,229,.11), 0 8px 20px rgba(81,70,229,.2);
+
+}
+
+.workflow-node.is-active .workflow-node-label { color: #5146e5; }
+
+.workflow-node.is-completed .workflow-node-circle {
+
+  color: #5146e5;
+
+  border-color: #c2c4ed;
+
+  background: #fafaff;
+
 }
 
 
-/* =========================================================
-   CONTENT CARD
-   ========================================================= */
 
-.workflow-content {
+/* Compact stage description popup */
+
+.workflow-stage-info {
+
+  min-width: 0;
+
   display: flex;
 
   align-items: center;
+
 }
+
 
 
 .workflow-stage-card {
+
   width: 100%;
 
-  padding: 28px;
+  padding: clamp(20px, 2.1vw, 30px);
 
   border-radius: 17px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.98),
-      rgba(250,250,255,0.92)
-    );
+  background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(250,250,255,.94));
 
-  border:
-    1px solid
-    rgba(101,103,156,0.12);
+  border: 1px solid rgba(101,103,156,.13);
 
-  box-shadow:
-    0 20px 50px
-      rgba(44,42,90,0.075);
+  box-shadow: 0 20px 50px rgba(44,42,90,.075);
 
-  animation:
-    workflowCardIn
-    0.5s
-    cubic-bezier(.2,.8,.2,1);
+  animation: workflowCardIn .45s cubic-bezier(.2,.8,.2,1);
+
 }
+
 
 
 @keyframes workflowCardIn {
 
-  from {
-    opacity: 0;
+  from { opacity: 0; transform: translateY(10px) scale(.99); }
 
-    transform:
-      translateY(12px)
-      scale(0.985);
-  }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 
-  to {
-    opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
-  }
 }
 
 
+
 .workflow-stage-number {
-  width: 29px;
-  height: 29px;
+
+  width: 30px;
+
+  height: 30px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   border-radius: 8px;
@@ -819,120 +470,219 @@
 
   background: #eef0ff;
 
-  font-size: 9px;
+  font-family: var(--ff-display);
+
+  font-size: 11px;
+
   font-weight: 800;
 
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+
 }
+
 
 
 .workflow-eyebrow {
+
   color: #5146e5;
 
-  font-size: 8px;
+  font-size: 9px;
+
   font-weight: 800;
 
-  letter-spacing: 0.16em;
+  letter-spacing: .16em;
 
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+
 }
 
 
+
 .workflow-stage-card h2 {
+
   margin: 0;
 
   color: #1d1e31;
 
-  font-size:
-    clamp(
-      28px,
-      2.8vw,
-      43px
-    );
+  font-family: var(--ff-display);
 
-  line-height: 1;
+  font-size: clamp(25px, 2.15vw, 36px);
 
-  letter-spacing: -0.045em;
+  line-height: 1.06;
+
+  letter-spacing: -.04em;
+
 }
 
 
-.workflow-stage-card p {
-  max-width: 390px;
 
-  margin:
-    17px 0 0;
+.workflow-stage-card p {
+
+  margin: 16px 0 0;
 
   color: #777b92;
 
   font-size: 12px;
 
-  line-height: 1.65;
+  line-height: 1.75;
+
 }
+
 
 
 .workflow-divider {
+
   width: 100%;
+
   height: 1px;
 
-  margin:
-    21px 0
-    13px;
+  margin: 21px 0 13px;
 
   background: #e8e9f2;
+
 }
 
 
+
 .workflow-next {
+
   display: flex;
 
   align-items: center;
+
   justify-content: space-between;
+
+  gap: 10px;
 
   color: #5146e5;
 
   font-size: 10px;
-  font-weight: 700;
-}
 
+  font-weight: 700;
+
+}
 
 .workflow-next-arrow {
+
   font-size: 17px;
 
-  animation:
-    workflowArrow
-    1.5s
-    ease-in-out
-    infinite;
-}
+  animation: workflowArrow 1.5s ease-in-out infinite;
 
+}
 
 @keyframes workflowArrow {
 
-  0%,
-  100% {
-    transform:
-      translateX(0);
-  }
+  0%, 100% { transform: translateX(0); }
 
-  50% {
-    transform:
-      translateX(5px);
-  }
+  50% { transform: translateX(5px); }
+
 }
 
 
-/* =========================================================
-   SCROLL HINT
-   ========================================================= */
+
+/* Large interactive HTML demo */
+
+.workflow-demo {
+
+  min-width: 0;
+
+  min-height: 0;
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+}
+
+
+
+.workflow-demo-heading {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 0 3px 10px;
+
+  color: #9295aa;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .12em;
+
+}
+
+
+
+.workflow-demo-heading span:last-child {
+
+  color: #5146e5;
+
+  letter-spacing: .04em;
+
+}
+
+
+
+.workflow-demo-frame {
+
+  position: relative;
+
+  width: 100%;
+
+  height: min(76vh, 780px);
+
+  min-height: 360px;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  background: #fff;
+
+  border: 1px solid rgba(100,102,150,.14);
+
+  box-shadow: 0 25px 65px rgba(39,36,91,.12), 0 7px 22px rgba(39,36,91,.05);
+
+}
+
+
+
+.workflow-demo-frame iframe {
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  border: 0;
+
+  background: #fff;
+
+}
+
+
 
 .workflow-scroll-hint {
+
   position: absolute;
 
   left: 50%;
-  bottom: 17px;
 
-  transform:
-    translateX(-50%);
+  bottom: 11px;
+
+  transform: translateX(-50%);
 
   display: flex;
 
@@ -943,99 +693,83 @@
   color: #9da0b4;
 
   font-size: 8px;
+
   font-weight: 700;
 
-  letter-spacing: 0.08em;
+  letter-spacing: .08em;
 
   text-transform: uppercase;
 
-  transition:
-    opacity 0.4s ease;
+  transition: opacity .4s ease;
+
+  pointer-events: none;
+
 }
 
+.workflow-scroll-hint.is-fading { opacity: .2; }
 
-.workflow-scroll-hint.is-fading {
-  opacity: 0.25;
-}
 
 
 .workflow-scroll-mouse {
+
   position: relative;
 
   width: 14px;
+
   height: 20px;
 
-  border:
-    1px solid #b9bbca;
+  border: 1px solid #b9bbca;
 
   border-radius: 9px;
+
 }
 
-
 .workflow-scroll-mouse span {
+
   position: absolute;
 
   top: 4px;
+
   left: 50%;
 
   width: 3px;
+
   height: 5px;
 
   border-radius: 5px;
 
   background: #5146e5;
 
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
 
-  animation:
-    workflowScrollWheel
-    1.6s
-    ease-in-out
-    infinite;
+  animation: workflowScrollWheel 1.6s ease-in-out infinite;
+
 }
-
 
 @keyframes workflowScrollWheel {
 
-  0% {
-    transform:
-      translate(-50%,0);
+  0% { transform: translate(-50%,0); opacity: 1; }
 
-    opacity: 1;
-  }
+  70%, 100% { transform: translate(-50%,7px); opacity: 0; }
 
-  70% {
-    transform:
-      translate(-50%,7px);
-
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-  }
 }
 
 
-/* =========================================================
-   JOURNEY COMPLETE
-   ========================================================= */
+
+/* Journey complete */
 
 .workflow-finale {
+
   position: absolute;
 
-  /*
-   * The sticky workflow occupies 600vh.
-   * The finale begins after all six stages.
-   */
-  top: 600vh;
+  top: 700vh;
 
   left: 0;
 
   width: 100%;
 
   height: 100vh;
+
   min-height: 600px;
 
   display: flex;
@@ -1043,33 +777,31 @@
   flex-direction: column;
 
   align-items: center;
+
   justify-content: center;
 
   text-align: center;
 
-  padding:
-    70px 30px;
+  padding: 70px 30px;
 
   background: #fff;
+
 }
 
-
 .workflow-finale-line {
+
   width: 1px;
+
   height: 50px;
 
   margin-bottom: 38px;
 
-  background:
-    linear-gradient(
-      to bottom,
-      transparent,
-      #5146e5
-    );
+  background: linear-gradient(to bottom, transparent, #5146e5);
+
 }
 
-
 .workflow-finale-kicker {
+
   display: flex;
 
   align-items: center;
@@ -1079,370 +811,385 @@
   color: #5146e5;
 
   font-size: 9px;
+
   font-weight: 800;
 
-  letter-spacing: 0.17em;
+  letter-spacing: .17em;
+
 }
 
-
 .workflow-finale-kicker span {
+
   width: 6px;
+
   height: 6px;
 
   border-radius: 50%;
 
   background: #5146e5;
 
-  box-shadow:
-    0 0 0 5px
-      rgba(81,70,229,0.09);
+  box-shadow: 0 0 0 5px rgba(81,70,229,.09);
+
 }
 
-
 .workflow-finale h2 {
-  margin:
-    17px 0 0;
+
+  margin: 17px 0 0;
 
   color: #1d1e31;
 
-  font-size:
-    clamp(
-      46px,
-      6vw,
-      78px
-    );
+  font-family: var(--ff-display);
 
-  line-height: 0.94;
+  font-size: clamp(46px, 6vw, 78px);
 
-  letter-spacing: -0.06em;
+  line-height: .94;
+
+  letter-spacing: -.06em;
+
 }
 
-
-.workflow-finale h2 span {
-  color: #5146e5;
-}
-
+.workflow-finale h2 span { color: #5146e5; }
 
 .workflow-finale p {
-  margin:
-    20px 0
-    28px;
+
+  margin: 20px 0 28px;
 
   color: #7f8297;
 
   font-size: 12px;
+
 }
 
-
 .workflow-cta {
+
   display: inline-flex;
 
   align-items: center;
+
   justify-content: space-between;
 
   gap: 28px;
 
   min-width: 145px;
 
-  padding:
-    13px 15px
-    13px 19px;
+  padding: 13px 15px 13px 19px;
 
   border-radius: 8px;
 
-  color: white;
+  color: #fff;
 
   background: #5146e5;
 
-  box-shadow:
-    0 14px 30px
-      rgba(81,70,229,0.2);
+  box-shadow: 0 14px 30px rgba(81,70,229,.2);
 
   text-decoration: none;
 
   font-size: 10px;
+
   font-weight: 700;
 
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
+  transition: transform .25s ease, box-shadow .25s ease;
 
+}
 
 .workflow-cta:hover {
-  transform:
-    translateY(-3px);
 
-  box-shadow:
-    0 18px 35px
-      rgba(81,70,229,0.28);
+  transform: translateY(-3px);
+
+  box-shadow: 0 18px 35px rgba(81,70,229,.28);
+
+}
+
+.workflow-cta-arrow { font-size: 16px; transition: transform .25s ease; }
+
+.workflow-cta:hover .workflow-cta-arrow { transform: translateX(4px); }
+
+
+
+/* Tablet */
+
+@media (max-width: 1050px) {
+
+  .workflow-container { padding-left: 16px; padding-right: 16px; }
+
+  .workflow-experience {
+
+    grid-template-columns: 65px minmax(190px, 230px) minmax(0, 1fr);
+
+    column-gap: 16px;
+
+  }
+
+  .workflow-stage-card { padding: 20px; }
+
+  .workflow-stage-card h2 { font-size: clamp(23px, 2.6vw, 30px); }
+
+  .workflow-stage-card p { font-size: 11px; }
+
+  .workflow-demo-frame { height: min(70vh, 700px); }
+
 }
 
 
-.workflow-cta-arrow {
-  font-size: 16px;
 
-  transition:
-    transform 0.25s ease;
-}
+/* Mobile keeps the stage rail vertical, with the description above the demo. */
 
+@media (max-width: 700px) {
 
-.workflow-cta:hover
-.workflow-cta-arrow {
-  transform:
-    translateX(4px);
-}
+  .workflow-section { height: 800vh; }
 
+  .workflow-sticky { min-height: 580px; }
 
-/* =========================================================
-   TABLET
-   ========================================================= */
+  .workflow-container { padding: 22px 12px 34px; }
 
-@media (max-width: 950px) {
+  .workflow-header { margin-bottom: 10px; }
 
-  .workflow-container {
-    width:
-      min(
-        calc(100% - 45px),
-        760px
-      );
-  }
+  .workflow-kicker { font-size: 8px; gap: 7px; }
 
-  .workflow-main {
-    grid-template-columns: 1fr;
+  .workflow-kicker-title { display: none; }
 
-    gap: 20px;
-  }
+  .workflow-experience {
 
-  .workflow-content {
-    display: none;
-  }
+    grid-template-columns: 43px minmax(0, 1fr);
 
-  .workflow-visual {
-    width: 100%;
-  }
+    grid-template-rows: auto minmax(0, 1fr);
 
-  .workflow-window {
-    max-height: 52vh;
-  }
+    column-gap: 10px;
 
-  .workflow-image-stage {
-    aspect-ratio: 1.5;
-  }
-}
+    row-gap: 12px;
 
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 650px) {
-
-  .workflow-section {
-    height: 700vh;
-  }
-
-  .workflow-sticky {
-    min-height: 560px;
-  }
-
-  .workflow-container {
-    width:
-      calc(100% - 28px);
-
-    padding:
-      27px 0
-      28px;
-  }
-
-  .workflow-kicker-title {
-    display: none;
   }
 
   .workflow-journey {
-    margin-top: 20px;
-    margin-bottom: 18px;
+
+    grid-column: 1;
+
+    grid-row: 1 / span 2;
+
   }
 
-  .workflow-track {
-    height: 52px;
-  }
+ .workflow-vertical-track {
+  height: min(100%, 390px);
+  min-height: 0;
+}
 
-  .workflow-wave {
-    height: 54px;
-  }
+  .workflow-vertical-line,
 
-  .workflow-node {
-    width: 42px;
-  }
+  .workflow-vertical-progress { left: 13px; top: 18px; bottom: 18px; }
 
-  .workflow-node-circle {
-    width: 27px;
-    height: 27px;
+  .workflow-node { min-height: 38px; gap: 5px; }
 
-    font-size: 7px;
-  }
+  .workflow-node-circle { width: 27px; height: 27px; flex-basis: 27px; font-size: 7px; }
 
   .workflow-node-label {
-    font-size: 6.5px;
+
+    position: absolute;
+
+    left: 0;
+
+    top: 29px;
+
+    width: 42px;
+
+    font-size: 6px;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    transform: translateX(-7px);
+
   }
 
-  .workflow-window {
-    border-radius: 11px;
-  }
+  .workflow-node { margin-bottom: 12px; }
 
-  .workflow-window-bar {
-    height: 26px;
-  }
+  .workflow-node:last-child { margin-bottom: 0; }
 
-  .workflow-image-stage {
-    aspect-ratio: 1.25;
-  }
+  .workflow-stage-info { grid-column: 2; grid-row: 1; }
 
-  .workflow-cursor {
-    transform:
-      scale(0.75);
-  }
+  .workflow-stage-card { padding: 15px; border-radius: 13px; }
 
-  .workflow-image-caption {
-    font-size: 8px;
-  }
+  .workflow-stage-number { width: 25px; height: 25px; margin-bottom: 10px; font-size: 9px; }
 
-  .workflow-scroll-hint {
-    font-size: 7px;
-  }
+  .workflow-eyebrow { margin-bottom: 6px; font-size: 7px; }
 
-  .workflow-finale {
-    top: 600vh;
-  }
+  .workflow-stage-card h2 { font-size: clamp(21px, 5vw, 27px); }
 
-  .workflow-finale h2 {
-    font-size: 46px;
-  }
+  .workflow-stage-card p { margin-top: 8px; font-size: 10px; line-height: 1.5; }
+
+  .workflow-divider { margin: 10px 0 8px; }
+
+  .workflow-next { font-size: 8px; }
+
+  .workflow-demo { grid-column: 2; grid-row: 2; justify-content: flex-start; }
+
+  .workflow-demo-heading { padding-bottom: 6px; font-size: 7px; }
+
+  .workflow-demo-frame { height: 100%; min-height: 0; border-radius: 10px; }
+
+  .workflow-scroll-hint { bottom: 8px; font-size: 7px; }
+
+  .workflow-finale { top: 700vh; min-height: 560px; }
+
+  .workflow-finale h2 { font-size: 44px; }
+
 }
 
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-  .workflow-image,
   .workflow-stage-card,
+
   .workflow-node-circle,
+
   .workflow-node-label,
+
   .workflow-cta,
+
   .workflow-next-arrow,
-  .workflow-cursor,
-  .orbit-one,
-  .orbit-two,
+
   .workflow-scroll-mouse span {
+
     animation: none !important;
 
     transition: none !important;
+
   }
+
 }
 
 
-/* =========================================================
-   VIVI TYPOGRAPHY SYSTEM
-   Match the main homepage fonts
-   ========================================================= */
 
-/* Apply the body font throughout the workflow */
-.workflow-section {
-  font-family: var(--ff-body);
+
+
+/* Intro state shown while the section is entering its sticky position. */
+
+.workflow-demo-intro {
+
+  width: 100%;
+
+  height: 100%;
+
+  min-height: 360px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 13px;
+
+  padding: 28px;
+
+  text-align: center;
+
+  background:
+
+    radial-gradient(circle at 50% 42%, rgba(112, 103, 255, .13), transparent 48%),
+
+    linear-gradient(145deg, #fbfbff, #f2f3ff);
+
+  color: #202136;
+
 }
 
-/* Header */
-.workflow-kicker,
-.workflow-kicker-brand,
-.workflow-kicker-title,
-.workflow-counter {
-  font-family: var(--ff-body);
+
+
+.workflow-demo-intro-kicker {
+
+  color: #5146e5;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .18em;
+
 }
 
-/* Journey navigation */
-.workflow-node-circle,
-.workflow-node-label,
-.workflow-check {
-  font-family: var(--ff-body);
-}
 
-/* Studio window */
-.workflow-window-title {
-  font-family: var(--ff-body);
-}
 
-/* Stage information card */
-.workflow-stage-card {
-  font-family: var(--ff-body);
-}
+.workflow-demo-intro strong {
 
-.workflow-stage-number {
+  max-width: 440px;
+
   font-family: var(--ff-display);
+
+  font-size: clamp(24px, 3vw, 42px);
+
+  line-height: 1.08;
+
+  letter-spacing: -.04em;
+
 }
 
-.workflow-stage-eyebrow {
-  font-family: var(--ff-body);
+
+
+.workflow-demo-intro-copy {
+
+  color: #8588a0;
+
+  font-size: 12px;
+
 }
 
-.workflow-stage-card h2,
-.workflow-stage-card h3,
-.workflow-stage-title {
-  font-family: var(--ff-display);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
+
+
+.workflow-demo-intro-arrow {
+
+  display: grid;
+
+  place-items: center;
+
+  width: 32px;
+
+  height: 32px;
+
+  margin-top: 8px;
+
+  border: 1px solid rgba(81, 70, 229, .2);
+
+  border-radius: 50%;
+
+  color: #5146e5;
+
+  animation: workflowIntroNudge 1.5s ease-in-out infinite;
+
 }
 
-.workflow-stage-card p,
-.workflow-stage-description {
-  font-family: var(--ff-body);
-  font-weight: 400;
-  line-height: 1.7;
+
+
+@keyframes workflowIntroNudge {
+
+  0%, 100% { transform: translateY(0); }
+
+  50% { transform: translateY(5px); }
+
 }
 
-/* Image captions and scroll hints */
-.workflow-image-caption,
-.workflow-scroll-hint {
-  font-family: var(--ff-body);
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .workflow-demo-intro-arrow { animation: none; }
+
 }
 
-/* CTA */
-.workflow-cta {
-  font-family: var(--ff-body);
-  font-weight: 600;
+
+/* Let the next clip appear cleanly when the active stage changes. */
+.workflow-demo-frame iframe {
+  animation: workflowDemoReveal 0.32s ease-out both;
 }
 
-.workflow-cta-arrow {
-  font-family: var(--ff-body);
+@keyframes workflowDemoReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Finale */
-.workflow-finale h2 {
-  font-family: var(--ff-display);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
-.workflow-finale p,
-.workflow-finale a {
-  font-family: var(--ff-body);
-}
-
-.vivi-prompt-button {
-  font-family: var(--ff-body);
-  font-size: 36px; /* Increased from 13px */
-  font-weight: 650;
-
-  padding: 13px 24px;
-
-  gap: 10px;
-}
-
-.vivi-prompt-button svg {
-  width: 19px;
-  height: 19px;
+@media (prefers-reduced-motion: reduce) {
+  .workflow-demo-frame iframe { animation: none; }
 }

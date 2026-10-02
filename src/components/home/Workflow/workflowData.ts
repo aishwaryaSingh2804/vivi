@@ -7,35 +7,33 @@ export interface WorkflowStage {
   eyebrow: string;
   headline: string;
   description: string;
-  image: string;
+  demoClip: "prompt" | "essentials" | "script" | "assets" | "vibe" | "editor" | "publish";
   accent: string;
 }
 
 export const WORKFLOW_STAGES: WorkflowStage[] = [
   {
-    id: "setup",
+    id: "idea",
     number: "01",
+    title: "Idea",
+    eyebrow: "IMAGINE",
+    headline: "It all starts with an idea.",
+    description:
+      "Describe what you want to create in your own words. Vivi turns your initial thought into the starting point for a complete video.",
+    demoClip: "prompt",
+    accent: "#5146e5",
+  },
+  {
+    id: "setup",
+    number: "02",
     title: "Setup",
     eyebrow: "DEFINE",
     headline: "Give your story a personality.",
     description:
-      "Start by defining the creative DNA of your video — format, duration, language, tone and visual style.",
-    image: "/workflow/setup.jpeg",
-    accent: "#5146e5",
-  },
-
-  {
-    id: "story",
-    number: "02",
-    title: "Story",
-    eyebrow: "IMAGINE",
-    headline: "Turn an idea into a story.",
-    description:
-      "vivi takes your idea and shapes it into a story with characters, moments and a clear narrative direction.",
-    image: "/workflow/story.jpeg",
+      "Choose the format, duration, language, creative direction and visual style that shape the DNA of your video.",
+    demoClip: "essentials",
     accent: "#635bff",
   },
-
   {
     id: "script",
     number: "03",
@@ -43,44 +41,41 @@ export const WORKFLOW_STAGES: WorkflowStage[] = [
     eyebrow: "WRITE",
     headline: "Build the story, scene by scene.",
     description:
-      "Your concept becomes a structured script with dialogue, action and cinematic beats ready for production.",
-    image: "/workflow/script.jpeg",
+      "Review and refine the script, from scene descriptions and dialogue to narration, pacing and story structure.",
+    demoClip: "script",
     accent: "#756cf0",
   },
-
   {
     id: "assets",
     number: "04",
     title: "Assets",
     eyebrow: "CREATE",
-    headline: "Bring every character to life.",
+    headline: "Bring your story world to life.",
     description:
-      "vivi creates the visual ingredients your story needs while keeping characters and worlds consistent.",
-    image: "/workflow/assets.jpeg",
+      "Explore the characters, locations, props and voices that make up your story, with a consistent visual identity.",
+    demoClip: "assets",
     accent: "#6c63ff",
   },
-
   {
-    id: "editor",
+    id: "vibe-edit",
     number: "05",
-    title: "Editor",
+    title: "Vibe Edit",
     eyebrow: "REFINE",
-    headline: "Shape the final experience.",
+    headline: "Direct your video through conversation.",
     description:
-      "Review your scenes, make changes and guide the video until every moment feels exactly right.",
-    image: "/workflow/editor.jpeg",
+      "Tell Vivi what you want to change. Use natural language to guide edits and shape the result until it feels right.",
+    demoClip: "vibe",
     accent: "#5548e8",
   },
-
   {
     id: "publish",
     number: "06",
     title: "Publish",
     eyebrow: "SHARE",
-    headline: "Your idea is ready for the screen.",
+    headline: "Your story is ready to share.",
     description:
-      "Bring everything together into one finished story — ready to share with the world.",
-    image: "/workflow/publish.jpeg",
+      "Review the rendered master, choose where to share it, publish to your selected channels or download the finished video.",
+    demoClip: "publish",
     accent: "#4638d8",
   },
 ];
