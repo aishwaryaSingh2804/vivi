@@ -1,110 +1,150 @@
+export interface PricingFeature {
+  name: string;
+  available: boolean;
+}
+
 export interface PricingPlan {
   id: string;
   name: string;
   price: string;
-  period?: string;
+  period: string;
   description: string;
-  features: string[];
-  disabledFeatures?: string[];
-  featured?: boolean;
   badge?: string;
+  featured?: boolean;
   buttonLabel: string;
+  features: PricingFeature[];
 }
+
+const feature = (name: string, available: boolean): PricingFeature => ({
+  name,
+  available,
+});
 
 export const pricingPlans: PricingPlan[] = [
   {
     id: "free",
     name: "Free",
-    price: "₹0",
-    description:
-      "For creators who want to try before committing. Full quality, limited volume.",
+    price: "$0",
+    period: "",
+    description: "Explore Vivi and bring your first ideas to life.",
+    buttonLabel: "Start for Free",
     features: [
-      "3 videos per month",
-      "Up to 3 minutes per video",
-      "HD download",
-      "All visual styles",
+      feature("Max video length: 30 sec", true),
+      feature("Monthly credits: 300", true),
+      feature("Video models: Value + Standard", true),
+      feature("Image models: 2K", true),
+      feature("Max resolution: 480p", true),
+      feature("Vibe Edit", false),
+      feature("Watermark", true),
+      feature("Priority queue", false),
+      feature("Commercial rights", false),
+      feature("Team seats: 1", true),
+      feature("Credit rollover", false),
+      feature("Pay-as-you-go coverage", true),
+      feature("Community access", false),
+      feature("Parallel videos", false),
     ],
-    disabledFeatures: [
-      "Priority generation",
-      "Custom voice upload",
-      "Multi-language dubbing",
-    ],
-    buttonLabel: "Start for free",
   },
 
   {
-    id: "basic",
-    name: "Basic",
-    price: "₹499",
+    id: "starter",
+    name: "Starter",
+    price: "$25",
     period: "/month",
-    description:
-      "For creators ready to make more videos without a large commitment.",
+    description: "For creators getting started with AI video.",
+    buttonLabel: "Choose Starter",
     features: [
-      "10 videos per month",
-      "Up to 5 minutes per video",
-      "HD download",
-      "All visual styles",
+      feature("Max video length: 3 min", true),
+      feature("Monthly credits: 2,500", true),
+      feature("Video models: Value + Standard + Premium", true),
+      feature("Image models: 2K", true),
+      feature("Max resolution: 720p", true),
+      feature("Vibe Edit", true),
+      feature("Watermark", false),
+      feature("Priority queue", false),
+      feature("Commercial rights", true),
+      feature("Team seats: 1", true),
+      feature("Credit rollover", false),
+      feature("Pay-as-you-go coverage", true),
+      feature("Community access", true),
+      feature("Parallel videos", false),
     ],
-    buttonLabel: "Get Basic",
   },
 
   {
     id: "creator",
     name: "Creator",
-    price: "₹999",
+    price: "$60",
     period: "/month",
-    description:
-      "For creators publishing consistently. Everything you need to build an audience.",
-    features: [
-      "25 videos per month",
-      "Up to 8 minutes per video",
-      "HD download + 4K upgrade",
-      "Priority generation queue",
-      "Custom voice upload",
-      "Subtitles in 12 languages",
-    ],
-    disabledFeatures: [
-      "Multi-language dubbing",
-    ],
+    description: "For creators producing videos consistently.",
+    badge: "Most Popular",
     featured: true,
-    badge: "Most popular",
-    buttonLabel: "Get Creator",
+    buttonLabel: "Choose Creator",
+    features: [
+      feature("Max video length: 5 min", true),
+      feature("Monthly credits: 6,000", true),
+      feature("Video models: Value + Standard + Premium", true),
+      feature("Image models: All incl.", true),
+      feature("Max resolution: 720p + 1080p", true),
+      feature("Vibe Edit", true),
+      feature("Watermark", false),
+      feature("Priority queue", true),
+      feature("Commercial rights", true),
+      feature("Team seats: 1", true),
+      feature("Credit rollover", true),
+      feature("Pay-as-you-go coverage", true),
+      feature("Community access", true),
+      feature("Parallel videos: 2 videos", true),
+    ],
   },
 
   {
     id: "pro",
     name: "Pro",
-    price: "₹2,999",
+    price: "$150",
     period: "/month",
-    description:
-      "For studios and serious creators shipping multiple series simultaneously.",
+    description: "For professional creators scaling production.",
+    buttonLabel: "Choose Pro",
     features: [
-      "Unlimited videos",
-      "Up to 15 minutes per video",
-      "4K download",
-      "Instant generation",
-      "Multi-language dubbing",
-      "API access",
-      "Dedicated support",
+      feature("Max video length: 10 min", true),
+      feature("Monthly credits: 15,000", true),
+      feature("Video models: All incl. Premium", true),
+      feature("Image models: All incl.", true),
+      feature("Max resolution: 720p + 1080p", true),
+      feature("Vibe Edit", true),
+      feature("Watermark", false),
+      feature("Priority queue", true),
+      feature("Commercial rights", true),
+      feature("Team seats: 1", true),
+      feature("Credit rollover", true),
+      feature("Pay-as-you-go coverage", true),
+      feature("Community access", true),
+      feature("Parallel videos: 3 videos", true),
     ],
-    buttonLabel: "Get Pro",
   },
 
   {
-    id: "studio",
-    name: "Studio",
-    price: "Custom",
-    description:
-      "For teams and production studios creating at scale with advanced needs.",
+    id: "business",
+    name: "Business",
+    price: "$250",
+    period: "/month",
+    description: "For teams and businesses producing at scale.",
+    buttonLabel: "Choose Business",
     features: [
-      "Custom video volume",
-      "Advanced generation limits",
-      "4K production",
-      "Team workflows",
-      "API access",
-      "Dedicated support",
-      "Custom solutions",
+      feature("Max video length: 10 min", true),
+      feature("Monthly credits: 25,000", true),
+      feature("Video models: All incl. Premium", true),
+      feature("Image models: All incl.", true),
+      feature("Max resolution: 720p + 1080p", true),
+      feature("Vibe Edit", true),
+      feature("Watermark", false),
+      feature("Priority queue", true),
+      feature("Commercial rights", true),
+      feature("Team seats: Custom", true),
+      feature("Credit rollover", true),
+      feature("Pay-as-you-go coverage", true),
+      feature("Community access", true),
+      feature("Parallel videos: 5 videos", true),
     ],
-    buttonLabel: "Contact us",
   },
 ];

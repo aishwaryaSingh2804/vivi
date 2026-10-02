@@ -1,3 +1,4 @@
+
 import "./PricingSection.css";
 import { pricingPlans } from "../../data/pricing";
 
@@ -61,23 +62,27 @@ export function PricingSection() {
 
               </div>
 
+              {/* FEATURES */}
               <ul className="price-features">
-                {plan.features.map((feature) => (
-                  <li key={feature}>
-                    {feature}
-                  </li>
-                ))}
-
-                {plan.disabledFeatures?.map((feature) => (
+                {plan.features.map((item) => (
                   <li
-                    key={feature}
-                    className="dim"
+                    key={item.name}
+                    className={
+                      item.available ? "available" : "dim"
+                    }
                   >
-                    {feature}
+                    <span className="feature-icon" aria-hidden="true">
+                      {item.available ? "✓" : "×"}
+                    </span>
+
+                    <span className="feature-name">
+                      {item.name}
+                    </span>
                   </li>
                 ))}
               </ul>
 
+              {/* BUTTON */}
               <button
                 className={`btn-plan ${
                   plan.featured
@@ -87,15 +92,11 @@ export function PricingSection() {
               >
                 {plan.buttonLabel}
               </button>
+
             </article>
           ))}
         </div>
 
-        {/* FOOTNOTE */}
-        <p className="pricing-note">
-          All prices in INR. Billed monthly. Annual plans available
-          at 20% off. USD pricing also available.
-        </p>
 
       </div>
     </section>
