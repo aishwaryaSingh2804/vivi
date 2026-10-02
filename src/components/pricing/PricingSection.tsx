@@ -4,7 +4,7 @@ import { pricingPlans } from "../../data/pricing";
 
 export function PricingSection() {
   return (
-    <section className="pricing-section">
+    <section className="pricing-section" id="vivi-pricing" style={{ scrollMarginTop: "88px" }}>
       <div className="pricing-inner">
 
         {/* HEADER */}

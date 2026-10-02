@@ -5,69 +5,64 @@ import '../styles/footer.css';
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
+  // Also handles clicks when the user is already on the destination page.
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
+
+  // If already on the homepage, handle repeat clicks on the same hash too.
+  const scrollToHomeSection = (sectionId: string) => {
+    if (window.location.pathname !== ROUTES.HOME) return;
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.getElementById(sectionId)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+    });
+  };
+
   return (
     <footer className="vivi-footer">
       <div className="vivi-footer-inner">
-
         {/* Brand */}
         <div className="vivi-footer-brand">
-          <Link to={ROUTES.HOME} className="vivi-footer-logo">
+          <Link
+            to={ROUTES.HOME}
+            className="vivi-footer-logo"
+            onClick={scrollToTop}
+          >
             vi<span>vi</span>
           </Link>
 
           <p>
-            You tell the story. Vivi AI is the tool.
+            You tell the story. vivi AI is the tool.
             No camera. No crew. No excuse.
           </p>
-        </div>
-
-        {/* Make */}
-        <div className="vivi-footer-column">
-          <h3>Make</h3>
-
-          <Link to={ROUTES.MICRODRAMA}>
-            Microdramas
-          </Link>
-
-          <Link to={ROUTES.HISTORY}>
-            History videos
-          </Link>
-
-          <Link to={ROUTES.KIDS}>
-            Kids stories
-          </Link>
-
-          <Link to={ROUTES.MICRODRAMA}>
-            Adult animation
-          </Link>
-
-          <Link to={ROUTES.COMMUNITY}>
-            All examples
-          </Link>
         </div>
 
         {/* Product */}
         <div className="vivi-footer-column">
           <h3>Product</h3>
 
-          <Link to={ROUTES.HOW_TO_USE}>
+          <Link
+            to={`${ROUTES.HOME}#vivi-workflow`}
+            onClick={() => scrollToHomeSection('vivi-workflow')}
+          >
             How it works
           </Link>
 
-          <Link to={ROUTES.PRICING}>
+          <Link
+            to={`${ROUTES.HOME}#vivi-pricing`}
+            onClick={() => scrollToHomeSection('vivi-pricing')}
+          >
             Pricing
           </Link>
 
-          <Link to={ROUTES.PRICING}>
-            For teams
-          </Link>
-
-          <Link to={ROUTES.PRICING}>
-            API
-          </Link>
-
-          <Link to={ROUTES.FAQ}>
-            Changelog
+          <Link to={ROUTES.FAQ} onClick={scrollToTop}>
+            FAQs
           </Link>
         </div>
 
@@ -75,27 +70,18 @@ export function Footer() {
         <div className="vivi-footer-column">
           <h3>Company</h3>
 
-          <Link to={ROUTES.FAQ}>
-            About
+          <Link to={ROUTES.PRIVACY} onClick={scrollToTop}>
+            Privacy Policy
           </Link>
 
-          <Link to={ROUTES.BLOG}>
-            Blog
+          <Link to={ROUTES.TERMS} onClick={scrollToTop}>
+            Terms of service
           </Link>
 
-          <Link to={ROUTES.FAQ}>
-            Careers
-          </Link>
-
-          <Link to={ROUTES.CONTACT}>
-            Contact
-          </Link>
-
-          <Link to={ROUTES.PRIVACY}>
-            Privacy
+          <Link to={ROUTES.CONTACT} onClick={scrollToTop}>
+            Contact Us
           </Link>
         </div>
-
       </div>
 
       {/* Bottom bar */}
@@ -105,25 +91,11 @@ export function Footer() {
         </span>
 
         <div className="vivi-footer-socials">
-          <a href="#" aria-label="YouTube">
-            YouTube
-          </a>
-
-          <a href="#" aria-label="Instagram">
-            Instagram
-          </a>
-
-          <a href="#" aria-label="TikTok">
-            TikTok
-          </a>
-
-          <a href="#" aria-label="X">
-            X
-          </a>
-
-          <a href="#" aria-label="LinkedIn">
-            LinkedIn
-          </a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+          <a href="#" aria-label="X">X</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
         </div>
       </div>
     </footer>

@@ -121,6 +121,7 @@ export function WorkflowSection() {
       ref={sectionRef}
       className="workflow-section"
       id="vivi-workflow"
+      style={{ scrollMarginTop: "88px" }}
     >
 
       {/* =====================================================

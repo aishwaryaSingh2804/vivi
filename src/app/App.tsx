@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { SiteChrome } from '../components/SiteChrome';
 import { ROUTES } from '../lib/routes';
 import { HomePage } from '../pages/HomePage'; 
@@ -47,10 +48,43 @@ const titles: Record<string, string> = {
 };
 
 function MetaTitle(){const {pathname}=useLocation(); const title=titles[pathname]??'Vivi AI'; document.title=title; const description='Vivi AI creates long-form videos with consistent characters and complete story arcs.'; let meta=document.querySelector('meta[name=description]') as HTMLMetaElement|null; if(!meta){meta=document.createElement('meta');meta.name='description';document.head.appendChild(meta);} meta.content=description; let canonical=document.querySelector('link[rel=canonical]') as HTMLLinkElement|null; if(!canonical){canonical=document.createElement('link');canonical.rel='canonical';document.head.appendChild(canonical);} canonical.href=window.location.origin+pathname; return null;}
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    let frameId = 0;
+
+    // Let React render the destination route before resolving the anchor.
+    frameId = window.requestAnimationFrame(() => {
+      frameId = window.requestAnimationFrame(() => {
+        if (hash) {
+          const targetId = decodeURIComponent(hash.slice(1));
+          const target = document.getElementById(targetId);
+
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+            return;
+          }
+        }
+
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [pathname, hash]);
+
+  return null;
+}
+
 export function AppShell() {
   return (
     <>
       <MetaTitle />
+      <ScrollManager />
 
       <SiteChrome />
   {/* <Vivi25Banner /> */}
