@@ -3,27 +3,28 @@
    ========================================================= */
 
 .vivi-navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 1000;
   width: 100%;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(18, 42, 74, 0.08);
+  isolation: isolate;
 }
 
 .vivi-navbar-inner {
   width: min(1240px, calc(100% - 48px));
-  height: 76px;
+  min-height: 76px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 42px;
+  gap: 24px;
+  box-sizing: border-box;
 }
 
-/* =========================================================
-   LOGO
-   ========================================================= */
+/* LOGO */
 
 .vivi-navbar-logo {
   flex-shrink: 0;
@@ -36,28 +37,28 @@
   font-weight: 700;
   letter-spacing: -0.06em;
   line-height: 1;
-  transition:
-    color 160ms ease,
-    transform 160ms ease;
+  transition: color 160ms ease, transform 160ms ease;
 }
+
 .vivi-navbar-logo span {
   color: #245ac4;
 }
+
 .vivi-navbar-logo:hover {
   color: #245ac4;
   transform: translateY(-1px);
 }
 
-/* =========================================================
-   MAIN NAVIGATION
-   ========================================================= */
+/* MAIN NAVIGATION */
 
 .vivi-navbar-links {
   display: flex;
   align-items: stretch;
-  gap: 4px;
-  height: 100%;
+  justify-content: flex-start;
+  gap: 2px;
+  height: 76px;
   flex: 1;
+  min-width: 0;
 }
 
 .vivi-nav-item {
@@ -69,104 +70,30 @@
 .vivi-nav-link {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
   height: 100%;
-  padding: 0 13px;
+  padding: 0 10px;
   border: 0;
   background: transparent;
   color: #304a70;
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
-  transition:
-    color 160ms ease,
-    opacity 160ms ease;
+  transition: color 160ms ease, opacity 160ms ease;
 }
 
-.vivi-nav-link:hover,
-.vivi-nav-item.is-open > .vivi-nav-link {
+.vivi-nav-link:hover {
   color: #245ac4;
 }
 
-.vivi-nav-trigger {
+.vivi-nav-section-link {
   appearance: none;
 }
 
-.vivi-nav-chevron {
-  font-size: 11px;
-  line-height: 1;
-  color: #6d83a2;
-  transition:
-    transform 180ms ease,
-    color 180ms ease;
-}
-
-.vivi-nav-item.is-open .vivi-nav-chevron {
-  transform: rotate(180deg);
-  color: #245ac4;
-}
-
-/* =========================================================
-   DROPDOWN
-   ========================================================= */
-
-.vivi-nav-dropdown {
-  position: absolute;
-  top: calc(100% - 1px);
-  left: 0;
-  min-width: 220px;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.98);
-  border: 1px solid rgba(18, 42, 74, 0.08);
-  border-radius: 14px;
-  box-shadow:
-    0 18px 50px rgba(18, 42, 74, 0.10),
-    0 4px 12px rgba(18, 42, 74, 0.05);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-6px);
-  pointer-events: none;
-  transition:
-    opacity 150ms ease,
-    transform 150ms ease,
-    visibility 150ms ease;
-}
-
-.vivi-nav-item.is-open .vivi-nav-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.vivi-nav-dropdown-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 11px 12px;
-  border-radius: 9px;
-  color: #304a70;
-  text-decoration: none;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  transition:
-    background 140ms ease,
-    color 140ms ease;
-}
-
-.vivi-nav-dropdown-link:hover {
-  background: rgba(36, 90, 196, 0.07);
-  color: #245ac4;
-}
-
-/* =========================================================
-   RIGHT SIDE ACTIONS
-   ========================================================= */
+/* RIGHT SIDE ACTIONS */
 
 .vivi-navbar-actions {
   display: flex;
@@ -181,19 +108,18 @@
   align-items: center;
   justify-content: center;
   height: 40px;
-  padding: 0 15px;
+  padding: 0 14px;
   border-radius: 9px;
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
+  white-space: nowrap;
   transition:
     background 160ms ease,
     color 160ms ease,
     border-color 160ms ease;
 }
-
-/* Login */
 
 .vivi-navbar-login {
   color: #304a70;
@@ -203,8 +129,6 @@
   background: rgba(36, 90, 196, 0.06);
   color: #245ac4;
 }
-
-/* Signup */
 
 .vivi-navbar-signup {
   color: #245ac4;
@@ -217,48 +141,18 @@
   border-color: rgba(36, 90, 196, 0.38);
 }
 
-/* Start creating */
+/* OFFSET ANCHOR TARGETS FOR THE STICKY NAVBAR */
 
-.vivi-navbar-create {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 42px;
-  padding: 0 17px;
-  border: 0;
-  border-radius: 10px;
-  background: #245ac4;
-  color: #ffffff;
-  text-decoration: none;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 160ms ease,
-    background 160ms ease,
-    box-shadow 160ms ease;
+#vivi-workflow,
+#why-vivi,
+#vivi-benefits,
+#vivi-openart-mount,
+#vivi-pricing,
+.pricing-section {
+  scroll-margin-top: 92px;
 }
 
-.vivi-navbar-create:hover {
-  background: #194ba9;
-  transform: translateY(-1px);
-  box-shadow:
-    0 8px 20px rgba(36, 90, 196, 0.20);
-}
-
-.vivi-navbar-create span {
-  transition: transform 160ms ease;
-}
-
-.vivi-navbar-create:hover span {
-  transform: translateX(3px);
-}
-
-/* =========================================================
-   MOBILE MENU BUTTON
-   Hidden on desktop
-   ========================================================= */
+/* MOBILE MENU BUTTON — HIDDEN ON DESKTOP */
 
 .vivi-mobile-menu-button {
   display: none;
@@ -282,9 +176,7 @@
   height: 2px;
   border-radius: 2px;
   background: #304a70;
-  transition:
-    transform 160ms ease,
-    opacity 160ms ease;
+  transition: transform 160ms ease, opacity 160ms ease;
 }
 
 .vivi-mobile-menu-button:hover {
@@ -296,65 +188,47 @@
   outline-offset: 2px;
 }
 
-/* Hamburger → X */
+/* HAMBURGER → X */
 
-.vivi-mobile-menu-button[aria-expanded='true']
-  span:nth-child(1) {
+.vivi-mobile-menu-button[aria-expanded='true'] span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
 
-.vivi-mobile-menu-button[aria-expanded='true']
-  span:nth-child(2) {
+.vivi-mobile-menu-button[aria-expanded='true'] span:nth-child(2) {
   opacity: 0;
 }
 
-.vivi-mobile-menu-button[aria-expanded='true']
-  span:nth-child(3) {
+.vivi-mobile-menu-button[aria-expanded='true'] span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* =========================================================
-   TABLET
-   ========================================================= */
+/* TABLET */
 
-@media (max-width: 900px) {
-
+@media (max-width: 1050px) and (min-width: 761px) {
   .vivi-navbar-inner {
-    width: min(100% - 32px, 720px);
-    height: 68px;
-    gap: 18px;
-  }
-
-  .vivi-navbar-links {
-    gap: 0;
+    width: calc(100% - 32px);
+    gap: 12px;
   }
 
   .vivi-nav-link {
-    padding: 0 8px;
+    padding: 0 6px;
+    font-size: 12px;
   }
 
-  .vivi-navbar-login {
-    display: inline-flex;
-  }
-
-  .vivi-navbar-create {
-    display: none;
-  }
-
+  .vivi-navbar-login,
   .vivi-navbar-signup {
-    height: 38px;
-    padding: 0 13px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .vivi-navbar-actions {
+    gap: 4px;
   }
 }
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* MOBILE */
 
-@media (max-width: 650px) {
-
-  /* Header */
-
+@media (max-width: 760px) {
   .vivi-navbar-inner {
     width: calc(100% - 24px);
     min-height: 68px;
@@ -364,22 +238,14 @@
     gap: 0;
   }
 
-  /* Logo */
-
   .vivi-navbar-logo {
     font-size: 25px;
   }
-
-  /* Hamburger */
 
   .vivi-mobile-menu-button {
     display: flex;
     margin-left: auto;
   }
-
-  /* -------------------------------------------------------
-     Navigation panel
-     ------------------------------------------------------- */
 
   .vivi-navbar-links {
     display: none;
@@ -398,62 +264,20 @@
     display: flex;
   }
 
-  /* Individual nav items */
-
   .vivi-nav-item {
     width: 100%;
     display: block;
   }
 
-.vivi-nav-link {
-  width: 100%;
-  height: 44px;
-  min-height: 44px;
-  justify-content: space-between;
-  padding: 0 8px;
-  font-size: 15px;
-}
-
-/* -------------------------------------------------------
-   Mobile dropdowns
-   ------------------------------------------------------- */
-
-.vivi-nav-dropdown {
-  display: none;
-  position: static;
-  width: 100%;
-  min-width: 0;
-
-  padding: 2px 0 6px 12px;
-
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  background: transparent;
-}
-
-.vivi-nav-item.is-open .vivi-nav-dropdown {
-  display: block;
-}
-
-.vivi-nav-dropdown-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 100%;
-  min-height: 38px;
-
-  padding: 7px 12px;
-
-  border-radius: 7px;
-
-  font-size: 14px;
-  font-weight: 400;
-}
-  /* -------------------------------------------------------
-     Login / Signup
-     ------------------------------------------------------- */
+  .vivi-nav-link {
+    width: 100%;
+    height: 44px;
+    min-height: 44px;
+    justify-content: flex-start;
+    padding: 0 8px;
+    font-size: 15px;
+    text-align: left;
+  }
 
   .vivi-navbar-actions {
     display: none;
@@ -475,20 +299,11 @@
     width: 100%;
     height: 44px;
   }
-
-  /* Start creating stays hidden */
-
-  .vivi-navbar-create {
-    display: none;
-  }
 }
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
-
   .vivi-navbar *,
   .vivi-navbar *::before,
   .vivi-navbar *::after {

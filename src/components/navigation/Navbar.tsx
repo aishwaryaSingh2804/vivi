@@ -1,99 +1,134 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../lib/routes';
 
-type DropdownItem = {
+type SectionNavItem = {
   label: string;
-  path: string;
+  sectionId: string;
 };
 
-type NavItem = {
-  label: string;
-  path?: string;
-  dropdown?: DropdownItem[];
-};
-
-const NAV_ITEMS: NavItem[] = [
-  {
-    label: 'Create',
-    dropdown: [
-      { label: 'India', path: ROUTES.INDIA },
-      { label: 'Kids', path: ROUTES.KIDS },
-      { label: 'Microdrama', path: ROUTES.MICRODRAMA },
-      { label: 'History', path: ROUTES.HISTORY },
-    ],
-  },
-
-  {
-    label: 'Features',
-  },
-
-  {
-    label: 'Community',
-    path: ROUTES.COMMUNITY,
-  },
-
-  {
-    label: 'Resources',
-    dropdown: [
-      { label: 'Credit Calculator', path: ROUTES.CREDITS },
-      { label: 'How to use Vivi', path: ROUTES.HOW_TO_USE },
-      { label: 'Blog', path: ROUTES.BLOG },
-      { label: 'FAQ', path: ROUTES.FAQ },
-      { label: 'Contact', path: ROUTES.CONTACT },
-    ],
-  },
-
-  {
-    label: 'Pricing',
-    path: ROUTES.PRICING,
-  },
-
-  {
-    label: 'Waitlist',
-  },
+const SECTION_NAV_ITEMS: SectionNavItem[] = [
+  { label: 'How it works', sectionId: 'vivi-workflow' },
+  { label: 'Features', sectionId: 'why-vivi' },
+  { label: 'Benefits', sectionId: 'vivi-benefits' },
+  { label: 'Explore', sectionId: 'vivi-openart-mount' },
+  { label: 'Pricing', sectionId: 'vivi-pricing' },
 ];
 
-export function Navbar() {
-  const navigate = useNavigate();
+function scrollToTarget(sectionId: string) {
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      const target =
+        document.getElementById(sectionId) ??
+        (sectionId === 'vivi-pricing'
+          ? document.querySelector('.pricing-section')
+          : null);
 
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const closeMenu = () => {
-    setOpenMenu(null);
-    setMobileMenuOpen(false);
-  };
-
-  /**
-   * Scroll to a section on the homepage.
-   * If the user is on another page, navigate home first.
-   */
-  const scrollToSection = (sectionId: string) => {
-    closeMenu();
-
-    // Already on homepage
-    if (window.location.pathname === ROUTES.HOME) {
-      requestAnimationFrame(() => {
-        document.getElementById(sectionId)?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      });
-
-      return;
-    }
-
-    // Navigate to homepage first
-    navigate(ROUTES.HOME);
-
-    // Give React Router time to render HomePage
-    setTimeout(() => {
-      document.getElementById(sectionId)?.scrollIntoView({
+      target?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
-    }, 150);
+    });
+  });
+}
+
+export function Navbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const closeMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    closeMenu();
+
+    const targetHash = `#${sectionId}`;
+
+    // Handle repeat clicks when the user is already at this section.
+    if (
+      location.pathname === ROUTES.HOME &&
+      location.hash === targetHash
+    ) {
+      scrollToTarget(sectionId);
+      return;
+    }
+
+    // React Router changes the URL first; the effect below scrolls after
+    // the homepage has rendered, including when navigating from another page.
+    navigate({
+      pathname: ROUTES.HOME,
+      hash: targetHash,
+    });
+  };
+
+  useEffect(() => {
+    let firstFrame = 0;
+    let secondFrame = 0;
+
+    if (location.pathname === ROUTES.HOME && location.hash) {
+      const sectionId = decodeURIComponent(location.hash.slice(1));
+
+      firstFrame = window.requestAnimationFrame(() => {
+        secondFrame = window.requestAnimationFrame(() => {
+          const target =
+            document.getElementById(sectionId) ??
+            (sectionId === 'vivi-pricing'
+              ? document.querySelector('.pricing-section')
+              : null);
+
+          target?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        });
+      });
+    } else {
+      // Every normal page navigation starts at the top of that page.
+      firstFrame = window.requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'auto',
+        });
+      });
+    }
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      window.cancelAnimationFrame(secondFrame);
+    };
+  }, [location.pathname, location.hash]);
+
+  const handleFaqClick = () => {
+    closeMenu();
+
+    // Clicking FAQs again while already on the FAQ page should return to its top.
+    if (location.pathname === ROUTES.FAQ) {
+      window.requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'auto',
+        });
+      });
+    }
+  };
+
+  const handleLogoClick = () => {
+    closeMenu();
+
+    if (location.pathname === ROUTES.HOME) {
+      window.requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        });
+      });
+    }
   };
 
   return (
@@ -103,192 +138,62 @@ export function Navbar() {
           mobileMenuOpen ? 'mobile-open' : ''
         }`}
       >
-
-        {/* =====================================================
-            LOGO
-            ===================================================== */}
-
+        {/* LOGO */}
         <Link
           to={ROUTES.HOME}
           className="vivi-navbar-logo"
-          onClick={closeMenu}
+          onClick={handleLogoClick}
         >
           vi<span>vi</span>
         </Link>
 
-
-        {/* =====================================================
-            MOBILE MENU BUTTON
-            ===================================================== */}
-
+        {/* MOBILE MENU BUTTON */}
         <button
           type="button"
           className="vivi-mobile-menu-button"
           aria-label={
-            mobileMenuOpen
-              ? 'Close navigation'
-              : 'Open navigation'
+            mobileMenuOpen ? 'Close navigation' : 'Open navigation'
           }
           aria-expanded={mobileMenuOpen}
           aria-controls="main-navigation"
-          onClick={() => {
-            setMobileMenuOpen((open) => !open);
-            setOpenMenu(null);
-          }}
+          onClick={() => setMobileMenuOpen((open) => !open)}
         >
           <span />
           <span />
           <span />
         </button>
 
-
-        {/* =====================================================
-            NAVIGATION
-            ===================================================== */}
-
+        {/* MAIN NAVIGATION */}
         <nav
           id="main-navigation"
           className="vivi-navbar-links"
           aria-label="Main navigation"
         >
-          {NAV_ITEMS.map((item) => {
-            const hasDropdown = Boolean(item.dropdown);
-
-            return (
-              <div
-                key={item.label}
-                className={`vivi-nav-item ${
-                  openMenu === item.label ? 'is-open' : ''
-                }`}
-                onMouseEnter={() => {
-                  if (hasDropdown) {
-                    setOpenMenu(item.label);
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (hasDropdown) {
-                    setOpenMenu(null);
-                  }
-                }}
+          {SECTION_NAV_ITEMS.map((item) => (
+            <div className="vivi-nav-item" key={item.label}>
+              <button
+                type="button"
+                className="vivi-nav-link vivi-nav-section-link"
+                onClick={() => scrollToSection(item.sectionId)}
               >
+                {item.label}
+              </button>
+            </div>
+          ))}
 
-                {/* =================================================
-                    NORMAL ROUTE
-                    ================================================= */}
-
-                {item.path ? (
-                  <Link
-                    to={item.path}
-                    className="vivi-nav-link"
-                    onClick={closeMenu}
-                  >
-                    {item.label}
-                  </Link>
-
-                ) : item.label === 'Features' ? (
-
-                  /* ===============================================
-                     FEATURES → WHY VIVI
-                     =============================================== */
-
-                  <button
-                    type="button"
-                    className="vivi-nav-link vivi-nav-section-link"
-                    onClick={() =>
-                      scrollToSection('why-vivi')
-                    }
-                  >
-                    {item.label}
-                  </button>
-
-                ) : item.label === 'Waitlist' ? (
-
-                  /* ===============================================
-                     WAITLIST → WAITLIST FORM
-                     =============================================== */
-
-                  <button
-                    type="button"
-                    className="vivi-nav-link vivi-nav-section-link"
-                    onClick={() =>
-                      scrollToSection('waitlist')
-                    }
-                  >
-                    {item.label}
-                  </button>
-
-                ) : (
-
-                  /* ===============================================
-                     DROPDOWN TRIGGER
-                     =============================================== */
-
-                  <button
-                    type="button"
-                    className="vivi-nav-link vivi-nav-trigger"
-                    aria-haspopup="true"
-                    aria-expanded={
-                      openMenu === item.label
-                    }
-                    onClick={() => {
-                      setOpenMenu(
-                        openMenu === item.label
-                          ? null
-                          : item.label
-                      );
-                    }}
-                  >
-                    {item.label}
-
-                    <span
-                      className="vivi-nav-chevron"
-                      aria-hidden="true"
-                    >
-                      ↓
-                    </span>
-                  </button>
-                )}
-
-
-                {/* =================================================
-                    DROPDOWN
-                    ================================================= */}
-
-                {item.dropdown && (
-                  <div className="vivi-nav-dropdown">
-                    {item.dropdown.map(
-                      (dropdownItem) => (
-                        <Link
-                          key={dropdownItem.path}
-                          to={dropdownItem.path}
-                          className="vivi-nav-dropdown-link"
-                          onClick={closeMenu}
-                        >
-                          <span>
-                            {dropdownItem.label}
-                          </span>
-
-                          <span aria-hidden="true">
-                            →
-                          </span>
-                        </Link>
-                      )
-                    )}
-                  </div>
-                )}
-
-              </div>
-            );
-          })}
+          <div className="vivi-nav-item">
+            <Link
+              to={ROUTES.FAQ}
+              className="vivi-nav-link"
+              onClick={handleFaqClick}
+            >
+              FAQs
+            </Link>
+          </div>
         </nav>
 
-
-        {/* =====================================================
-            RIGHT SIDE ACTIONS
-            ===================================================== */}
-
+        {/* RIGHT SIDE ACTIONS */}
         <div className="vivi-navbar-actions">
-
           <Link
             to={ROUTES.LOGIN}
             className="vivi-navbar-login"
@@ -304,20 +209,7 @@ export function Navbar() {
           >
             Sign up
           </Link>
-
-          {/*
-          <Link
-            to={ROUTES.LOGIN}
-            className="vivi-navbar-create"
-            onClick={closeMenu}
-          >
-            Start creating
-            <span aria-hidden="true">→</span>
-          </Link>
-          */}
-
         </div>
-
       </div>
     </header>
   );

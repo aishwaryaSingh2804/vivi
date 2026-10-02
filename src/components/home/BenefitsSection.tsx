@@ -207,7 +207,7 @@ export function BenefitsSection() {
   };
 
   return (
-    <section className="benefits-section" id="benefits">
+    <section  id="vivi-benefits" className="benefits-section">
       <div className="benefits-inner">
         <div className="benefits-header">
           <div className="section-overline">
