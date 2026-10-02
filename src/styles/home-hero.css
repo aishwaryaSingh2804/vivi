@@ -2141,3 +2141,115 @@ background:
   }
 
 }
+
+
+/* ==========================================
+   MOBILE HERO — FINAL SPACING CORRECTION
+========================================== */
+
+@media (max-width: 720px) {
+
+  /* Use controlled spacing instead of space-between */
+  .vivi-hero-content {
+    width: calc(100% - 32px);
+    min-height: calc(100svh - 145px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 0;
+    padding: 30px 0;
+    margin: auto;
+  }
+
+  /* Eyebrow */
+  .vivi-hero-eyebrow {
+    margin-bottom: 48px !important;
+  }
+
+  /* Main heading */
+  .vivi-hero-title {
+    font-size: clamp(39px, 10.5vw, 46px) !important;
+    line-height: 1.12 !important;
+    margin: 0 0 38px !important;
+    max-width: 100%;
+  }
+
+  /* THE ACTUAL MIDDLE DESCRIPTION */
+  .vivi-hero-subtitle {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    font-size: 20px !important;
+    line-height: 1.75 !important;
+    font-weight: 400 !important;
+
+    letter-spacing: 0.01em !important;
+
+    padding: 0 5px !important;
+    margin: 0 0 48px !important;
+
+    text-align: center !important;
+
+    color: rgba(235, 243, 255, 0.92) !important;
+
+    box-sizing: border-box;
+  }
+
+  /* Prompt card */
+  .vivi-prompt-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Prompt card writing area */
+  .vivi-prompt-input {
+    min-height: 115px;
+    height: 115px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* Suggestions */
+  .vivi-prompt-suggestions {
+    margin-top: 18px !important;
+  }
+
+  /* Bottom note */
+  .vivi-hero-note {
+    margin-top: 24px !important;
+  }
+
+  .vivi-hero-explore {
+    margin-top: 16px !important;
+  }
+
+}
+
+/* Shorter mobile screens */
+@media (max-width: 720px) and (max-height: 750px) {
+
+  .vivi-hero-content {
+    padding: 20px 0;
+  }
+
+  .vivi-hero-eyebrow {
+    margin-bottom: 28px !important;
+  }
+
+  .vivi-hero-title {
+    margin-bottom: 25px !important;
+    font-size: 37px !important;
+  }
+
+  .vivi-hero-subtitle {
+    margin-bottom: 30px !important;
+    font-size: 15px !important;
+  }
+
+}
