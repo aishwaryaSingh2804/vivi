@@ -4031,3 +4031,138 @@ position: relative;
     height: 185px;
   }
 }
+
+/* =========================================
+   FEATURE START CREATING BUTTON
+========================================= */
+
+.feature-create-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+
+  width: fit-content;
+  margin-top: 28px;
+  padding: 15px 25px;
+
+  color: #ffffff;
+  background: linear-gradient(
+    115deg,
+    #147bff 0%,
+    #315cff 45%,
+    #704bff 100%
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+
+  box-shadow:
+    0 7px 22px rgba(39, 100, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+  overflow: hidden;
+  isolation: isolate;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+/* Shimmer effect */
+
+.feature-create-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 65%;
+  height: 100%;
+
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  transition: left 0.65s ease;
+  z-index: -1;
+}
+
+.feature-create-btn:hover::before {
+  left: 150%;
+}
+
+/* Hover interaction */
+
+.feature-create-btn:hover {
+  transform: translateY(-4px) scale(1.035);
+
+  box-shadow:
+    0 12px 30px rgba(39, 100, 255, 0.4),
+    0 0 22px rgba(88, 113, 255, 0.25);
+}
+
+.feature-create-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Sparkle */
+
+.feature-btn-sparkle {
+  font-size: 17px;
+  color: #d9f5ff;
+
+  animation: sparkleFloat 2s ease-in-out infinite;
+}
+
+/* Arrow */
+
+.feature-btn-arrow {
+  font-size: 19px;
+  line-height: 1;
+
+  transition: transform 0.3s ease;
+}
+
+.feature-create-btn:hover .feature-btn-arrow {
+  transform: translate(4px, -4px);
+}
+
+@keyframes sparkleFloat {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(25deg) scale(1.2);
+  }
+}
+
+/* Accessibility */
+
+.feature-create-btn:focus-visible {
+  outline: 3px solid #8fcaff;
+  outline-offset: 5px;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .feature-create-btn {
+    margin-top: 20px;
+    padding: 13px 22px;
+    font-size: 13px;
+    gap: 11px;
+  }
+}

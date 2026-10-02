@@ -244,13 +244,21 @@ window into a flooded city...
             <div className="why-vivi-feature-inner">
               {/* LEFT — COPY */}
               <div className="why-vivi-copy">
-                <div className="why-vivi-number">
-                  {feature.number}
-                </div>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
-                <div className="why-vivi-line" />
-              </div>
+  <div className="why-vivi-number">
+    {feature.number}
+  </div>
+
+  <h3>{feature.title}</h3>
+  <p>{feature.description}</p>
+
+  <a href="/signup" className="feature-create-btn">
+    <span className="feature-btn-sparkle">✦</span>
+    <span>Start Creating</span>
+    <span className="feature-btn-arrow">↗</span>
+  </a>
+
+  <div className="why-vivi-line" />
+</div>
               {/* RIGHT — VISUAL */}
               <div className="why-vivi-visual">
                 {feature.type === 'longform' && (
