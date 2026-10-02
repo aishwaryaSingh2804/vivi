@@ -4,54 +4,13 @@ import { HeroCreativeBackground } from './HeroCreativeBackground';
 export function HeroSection() {
   return (
     <div className="vivi-hero-scroll">
-
       <div className="vivi-hero-sticky">
-
         <section className="vivi-hero">
-
-          {/* =================================================
-              BASE HERO BACKGROUND
-          ================================================= */}
-
-          <div
-            className="vivi-hero-grid"
-            aria-hidden="true"
-          />
-
-          <div
-            className="vivi-hero-glow vivi-hero-glow-one"
-            aria-hidden="true"
-          />
-
-          <div
-            className="vivi-hero-glow vivi-hero-glow-two"
-            aria-hidden="true"
-          />
-
-          {/* =================================================
-              CINEMATIC CREATIVE BACKGROUND
-
-              Floating cards
-                  ↓
-              Spiral / gather
-                  ↓
-              Full-screen video
-                  ↓
-              Dissolve
-                  ↓
-              Loop
-          ================================================= */}
-
+          {/* Full-screen HTML animation background */}
           <HeroCreativeBackground />
 
-          {/* =================================================
-              HERO CONTENT
-
-              Always remains above the animation.
-          ================================================= */}
-
+          {/* Hero content stays above the animation */}
           <div className="vivi-hero-content">
-
             <div className="vivi-hero-eyebrow">
               <span className="vivi-hero-eyebrow-line" />
               Long-form AI video
@@ -69,13 +28,9 @@ export function HeroSection() {
             </p>
 
             <HeroPrompt />
-
           </div>
-
         </section>
-
       </div>
-
     </div>
   );
 }
