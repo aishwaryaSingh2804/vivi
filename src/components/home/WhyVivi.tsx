@@ -3,10 +3,15 @@ const features = [
   {
     number: '01',
     title: (
-      <>
-        <span>Long-form AI videos</span>, in one click
-      </>
-    ),
+  <>
+    <span className="title-line title-blue-line">
+      Long-form AI videos
+    </span>
+    <span className="title-line title-black-line">
+      in one click
+    </span>
+  </>
+),
     description:
       'Turn a simple idea into a complete, long-form video. vivi handles the story, scenes, characters and pacing for you.',
     type: 'longform',
@@ -14,10 +19,15 @@ const features = [
   {
     number: '02',
     title: (
-      <>
-        Characters that <span>stay consistent</span>
-      </>
-    ),
+  <>
+    <span className="title-line title-black-line">
+      Characters that
+    </span>
+    <span className="title-line title-blue-line">
+      stay consistent
+    </span>
+  </>
+),
     description:
       'Keep your characters looking the same across every scene, even as the story, location and camera angle change.',
     type: 'characters',
@@ -25,10 +35,15 @@ const features = [
   {
     number: '03',
     title: (
-      <>
-        Seamless <span>shot-to-shot continuity</span>
-      </>
-    ),
+  <>
+    <span className="title-line title-black-line">
+      Seamless
+    </span>
+    <span className="title-line title-blue-line">
+      shot-to-shot continuity
+    </span>
+  </>
+),
     description:
       'Create connected scenes that flow naturally from one shot to the next, without losing the visual thread of your story.',
     type: 'continuity',
@@ -36,10 +51,15 @@ const features = [
   {
     number: '04',
     title: (
-      <>
-        <span>Cinematic scenes</span>, automatically
-      </>
-    ),
+  <>
+    <span className="title-line title-blue-line">
+      Cinematic scenes
+    </span>
+    <span className="title-line title-black-line">
+      automatically
+    </span>
+  </>
+),
     description:
       'Generate multiple shots, camera angles and compositions that make your story feel like a real production.',
     type: 'cinematic',
@@ -47,21 +67,31 @@ const features = [
   {
     number: '05',
     title: (
-      <>
-        <span>Voices & music</span> that fit the story
-      </>
-    ),
+  <>
+    <span className="title-line title-blue-line">
+      Voices & music
+    </span>
+    <span className="title-line title-black-line">
+      that fit the story
+    </span>
+  </>
+),
     description:
       'Give every scene the right voice, music, mood and sound — all working together with the story.',
     type: 'audio',
   },
   {
     number: '06',
-    title: (
-      <>
-        <span>Edit your video</span> by chatting
-      </>
-    ),
+   title: (
+  <>
+    <span className="title-line title-blue-line">
+      Edit your video
+    </span>
+    <span className="title-line title-black-line">
+      by chatting
+    </span>
+  </>
+),
     description:
       'Just tell vivi what to change. No timeline, no complicated controls and no editing experience required.',
     type: 'chat',

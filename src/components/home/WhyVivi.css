@@ -717,19 +717,142 @@ position: relative;
 }
 
 .longform-output {
-  width: 100%;
-  min-width: 0;
-  aspect-ratio: 1 / 1;
-  padding: 8px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 14px;
+
   border: 1px solid rgba(49,87,213,.14);
   border-radius: 16px;
+
   background: #fff;
+
   box-shadow: 0 24px 65px rgba(18,42,74,.11);
 }
+
+.output-top,
+.output-footer {
+  display: flex;
+  justify-content: space-between;
+
+  color: var(--muted);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .1em;
+}
+
+.output-top {
+  padding: 4px 5px 12px;
+}
+
+.output-scenes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+}
+
+.mini-scene {
+  height: 105px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 7px;
+
+  background: linear-gradient(
+    145deg,
+    #bdd5f5,
+    #5279b9
+  );
+}
+
+.mini-scene::before {
+  content: '';
+
+  position: absolute;
+
+  width: 55px;
+  height: 75px;
+
+  bottom: -10px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 30px 30px 8px 8px;
+
+  background: #173b73;
+}
+
+.mini-scene::after {
+  content: '';
+
+  position: absolute;
+
+  width: 35px;
+  height: 35px;
+
+  bottom: 56px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: #d5e3f5;
+}
+
+.scene-two {
+  background: linear-gradient(
+    145deg,
+    #6e8dbd,
+    #203c68
+  );
+}
+
+.scene-three {
+  background: linear-gradient(
+    145deg,
+    #9bbbe3,
+    #476d9e
+  );
+}
+
+.scene-four {
+  background: linear-gradient(
+    145deg,
+    #17385f,
+    #7197c7
+  );
+}
+
+.mini-scene span {
+  position: absolute;
+
+  z-index: 2;
+
+  left: 8px;
+  bottom: 7px;
+
+  padding: 3px 6px;
+
+  border-radius: 4px;
+
+  background: rgba(7,25,52,.55);
+
+  color: white;
+
+  font-size: 8px;
+}
+
+.output-footer {
+  gap: 8px;
+
+  justify-content: flex-start;
+
+  padding: 12px 5px 3px;
+}
+
+
 /* =========================================================
    02 — CHARACTERS
    ========================================================= */
@@ -776,6 +899,50 @@ position: relative;
 
 .scene-location {
   align-self: center;
+}
+
+.character {
+  position: relative;
+
+  width: 110px;
+  height: 190px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  justify-content: flex-end;
+}
+
+.character-head {
+  width: 67px;
+  height: 67px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #b8d3fa,
+      #527fc0 65%
+    );
+
+  box-shadow: 0 12px 28px rgba(36,90,196,.18);
+}
+
+.character-body {
+  width: 100px;
+  height: 110px;
+
+  margin-top: -2px;
+
+  border-radius: 45px 45px 15px 15px;
+
+  background: #173b73;
+}
+
+.character-second {
+  transform: translateY(5px);
 }
 
 .character-connector {
@@ -901,6 +1068,42 @@ position: relative;
       #c5dcf7,
       #7193bc
     );
+}
+
+.shot-image::before {
+  content: '';
+
+  position: absolute;
+
+  width: 70px;
+  height: 100px;
+
+  bottom: -8px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 38px 38px 8px 8px;
+
+  background: #173b73;
+}
+
+.shot-image::after {
+  content: '';
+
+  position: absolute;
+
+  width: 45px;
+  height: 45px;
+
+  bottom: 78px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: #d7e4f5;
 }
 
 .shot-two {
@@ -1031,6 +1234,42 @@ position: relative;
   top: 50%;
 
   transform: translateY(-50%) rotate(-2deg);
+}
+
+.cinematic-frame-large::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 70% 25%,
+      rgba(255,255,255,.5),
+      transparent 18%
+    ),
+    linear-gradient(
+      145deg,
+      #bdd5f5,
+      #355b8e 58%,
+      #122d50
+    );
+}
+
+.cinematic-subject {
+  position: absolute;
+
+  width: 75px;
+  height: 150px;
+
+  bottom: 0;
+  left: 48%;
+
+  transform: translateX(-50%);
+
+  border-radius: 40px 40px 0 0;
+
+  background: #0e294d;
 }
 
 .cinematic-overlay {
@@ -1300,11 +1539,216 @@ position: relative;
 
 .chat-visual {
   width: 100%;
-  height: 100%;
+}
+
+.chat-window {
+  width: min(100%, 540px);
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(49,87,213,.15);
+  border-radius: 17px;
+
+  background: #fff;
+
+  box-shadow: 0 25px 70px rgba(18,42,74,.11);
+}
+
+.chat-header {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0 16px;
+
+  border-bottom: 1px solid var(--rule);
+
+  color: var(--text);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.chat-header > span:last-child {
+  margin-left: auto;
+
+  color: var(--accent);
+
+  font-size: 8px;
+}
+
+.chat-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  box-shadow: 0 0 0 4px rgba(49,87,213,.09);
+}
+
+.chat-content {
+  padding: 18px;
+}
+
+.chat-message {
+  max-width: 78%;
+
+  padding: 11px 13px;
+
+  border-radius: 10px;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.user-message {
+  margin-left: auto;
+
+  background: #edf4ff;
+
+  color: var(--text);
+}
+
+.vivi-message {
+  margin-top: 10px;
+
+  background: #f6f9fd;
+
+  color: var(--muted);
+}
+
+.chat-change {
+  margin-top: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.change-preview {
+  position: relative;
+
+  flex: 1;
+
+  height: 145px;
+
+  overflow: hidden;
+
+  border-radius: 8px;
+
+  background: linear-gradient(
+    145deg,
+    #c7dbf5,
+    #7597bd
+  );
+}
+
+.change-preview::before {
+  content: '';
+
+  position: absolute;
+
+  width: 45px;
+  height: 75px;
+
+  bottom: -5px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 25px 25px 0 0;
+
+  background: #173b73;
+}
+
+.change-preview span {
+  position: absolute;
+
+  top: 8px;
+  left: 9px;
+
+  color: white;
+
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.after {
+  background:
+    linear-gradient(
+      145deg,
+      #314f75,
+      #0d213c
+    );
+}
+
+.after::after {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    repeating-linear-gradient(
+      105deg,
+      transparent 0,
+      transparent 12px,
+      rgba(255,255,255,.12) 13px,
+      transparent 14px
+    );
+}
+
+.change-arrow {
+  color: var(--accent);
+
+  font-size: 18px;
+}
+
+.chat-input {
+  margin: 0 14px 14px;
+
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 9px 0 13px;
+
+  border: 1px solid #d8e3f0;
+  border-radius: 9px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+.chat-input b {
+  width: 27px;
+  height: 27px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 7px;
+
+  background: var(--accent);
+
+  color: white;
+
+  font-size: 13px;
 }
+
+
 /* =========================================================
    RESPONSIVE
    ========================================================= */
@@ -3217,15 +3661,16 @@ position: relative;
   pointer-events: none;
 }
 
-/* =========================================================
-   GENERATED FEATURE IMAGES
-   These styles replace only the old CSS-drawn placeholders.
-   The surrounding feature layout and intro animations remain intact.
-   ========================================================= */
 
-/* 01 — LONG-FORM GRID */
+/* =========================================
+   VIVI FEATURES — ACTUAL GENERATED IMAGES
+========================================= */
+
+
+/* 01 — LONG FORM */
+
 .longform-output {
-  position: relative;
+  overflow: hidden;
 }
 
 .longform-grid-image {
@@ -3233,64 +3678,39 @@ position: relative;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 9px;
+  border-radius: inherit;
 }
 
+
 /* 02 — CHARACTER CONSISTENCY */
+
 .character-scene {
   position: relative;
   overflow: hidden;
-  isolation: isolate;
 }
 
 .character-scene-image {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 0;
   border-radius: inherit;
-}
-
-.character-scene::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(8,24,48,.34),
-    transparent 30%,
-    transparent 65%,
-    rgba(8,24,48,.42)
-  );
 }
 
 .character-scene .scene-number,
 .character-scene .scene-location {
   position: absolute;
   z-index: 2;
-  align-self: auto;
-  color: #fff;
 }
 
-.character-scene .scene-number {
-  top: 14px;
-  left: 14px;
-}
 
-.character-scene .scene-location {
-  bottom: 14px;
-  left: 14px;
-}
+/* 03 — SHOT CONTINUITY */
 
-/* 03 — SHOT-TO-SHOT CONTINUITY */
 .shot-image {
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 
 .shot-image img {
@@ -3298,100 +3718,316 @@ position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
+
 /* 04 — CINEMATIC SCENES */
+
 .cinematic-frame {
   position: absolute;
   overflow: hidden;
-  isolation: isolate;
 }
 
 .cinematic-frame img {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
 .cinematic-overlay,
 .cinematic-frame-small span {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
 }
 
-/* 06 — CHAT EDITING IMAGE */
+
+/* 06 — CHAT EDITING */
+
 .chat-visual {
-  min-width: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chat-editor-image {
   display: block;
   width: 100%;
-  max-width: 100%;
-  max-height: 100%;
   height: auto;
+  max-width: 100%;
   object-fit: contain;
-  border-radius: 16px;
+  border-radius: 22px;
 }
 
-/* IMAGE LAYOUT ON SMALL SCREENS */
-@media (max-width: 700px) {
-  .why-vivi-feature--longform .why-vivi-visual {
-    height: auto;
-    min-height: 0;
-  }
 
-  .longform-output {
-    width: 95%;
-    max-width: 390px;
-    margin: 0 auto;
-    aspect-ratio: 1 / 1;
-  }
+/* MOBILE IMAGE ADJUSTMENTS */
+
+@media (max-width: 768px) {
 
   .longform-grid-image {
     object-fit: contain;
-  }
-
-  .character-scene {
-    position: relative;
-    min-height: 260px;
   }
 
   .character-scene-image {
     object-fit: cover;
   }
 
-  .character-scene .scene-number {
-    top: 10px;
-    left: 10px;
-    font-size: 8px;
-  }
-
-  .character-scene .scene-location {
-    bottom: 10px;
-    left: 10px;
-    font-size: 8px;
-  }
-
   .chat-editor-image {
-    border-radius: 12px;
+    width: 100%;
+    border-radius: 14px;
+  }
+
+}
+
+/* =========================================================
+   WHY VIVI — BALANCED ALTERNATING FEATURE LAYOUT
+   Appended overrides: preserves existing animations and visuals
+   ========================================================= */
+
+@media (min-width: 1001px) {
+  .why-vivi-feature-inner {
+    width: min(1400px, calc(100% - 96px));
+    grid-template-columns: minmax(0, .95fr) minmax(0, 1.2fr);
+    gap: clamp(48px, 4.5vw, 76px);
+  }
+
+  .why-vivi-copy {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .why-vivi-copy h3 {
+    font-size: clamp(44px, 4vw, 62px);
+    line-height: 1.04;
+  }
+
+  .why-vivi-copy p {
+    max-width: 500px;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .why-vivi-visual {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Even-numbered features: visual left, copy right. */
+  .why-vivi-feature:nth-child(even) .why-vivi-feature-inner {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .95fr);
+  }
+
+  .why-vivi-feature:nth-child(even) .why-vivi-visual {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .why-vivi-feature:nth-child(even) .why-vivi-copy {
+    grid-column: 2;
+    grid-row: 1;
   }
 }
 
-@media (max-width: 390px) {
-  .character-scene {
-    min-height: 220px;
+/* Keep a consistent reading order on tablet and mobile. */
+@media (max-width: 1000px) {
+  .why-vivi-feature-inner {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .character-scene .scene-number,
+  .why-vivi-feature .why-vivi-copy,
+  .why-vivi-feature .why-vivi-visual,
+  .why-vivi-feature:nth-child(even) .why-vivi-copy,
+  .why-vivi-feature:nth-child(even) .why-vivi-visual {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .why-vivi-copy {
+    width: 100%;
+    max-width: 650px;
+  }
+
+  .why-vivi-copy h3 {
+    font-size: clamp(40px, 5.2vw, 54px);
+  }
+
+  .why-vivi-copy p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .why-vivi-copy h3 {
+    font-size: clamp(36px, 9vw, 44px);
+    line-height: 1.05;
+  }
+
+  .why-vivi-copy p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+/* =========================================================
+   FINAL VISUAL FIXES — IMAGE LAYERS, TITLES & ALTERNATION
+   ========================================================= */
+
+/* Character cards: give both images a definite frame height. */
+.character-scene {
+  position: relative;
+  height: 330px;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+  isolation: isolate;
+}
+
+.character-scene-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+}
+
+/* Keep the Delhi morning composition visible within its card. */
+.character-scene:last-of-type .character-scene-image {
+  object-position: center 45%;
+}
+
+.character-scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 24, 48, .38) 0%,
+    transparent 28%,
+    transparent 68%,
+    rgba(8, 24, 48, .48) 100%
+  );
+}
+
+.character-scene .scene-number {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  align-self: auto;
+  color: #fff;
+}
+
+.character-scene .scene-location {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 2;
+  align-self: auto;
+  color: #fff;
+}
+
+/* Remove the old CSS-drawn person from the real detective photos. */
+.shot-image::before,
+.shot-image::after {
+  content: none !important;
+  display: none !important;
+}
+
+.shot-image > img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Title markup uses separate black and blue line spans. */
+.why-vivi-copy h3 .title-line {
+  display: block;
+}
+
+.why-vivi-copy h3 .title-black-line {
+  color: var(--text);
+  font-style: normal;
+}
+
+.why-vivi-copy h3 .title-blue-line {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* First feature stays copy-left / visual-right; even features reverse. */
+@media (min-width: 1001px) {
+  .why-vivi-feature:nth-child(odd) .why-vivi-feature-inner {
+    grid-template-columns: minmax(0, .95fr) minmax(0, 1.2fr);
+  }
+
+  .why-vivi-feature:nth-child(odd) .why-vivi-copy {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .why-vivi-feature:nth-child(odd) .why-vivi-visual {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .why-vivi-feature:nth-child(even) .why-vivi-feature-inner {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .95fr);
+  }
+
+  .why-vivi-feature:nth-child(even) .why-vivi-visual {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .why-vivi-feature:nth-child(even) .why-vivi-copy {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+/* Tablet/mobile: retain natural DOM reading order and prevent overflow. */
+@media (max-width: 1000px) {
+  .character-scene {
+    height: 280px;
+  }
+
+  .why-vivi-feature .why-vivi-copy,
+  .why-vivi-feature .why-vivi-visual {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .character-scene {
+    height: 205px;
+  }
+
+  .character-scene .scene-number {
+    top: 9px;
+    left: 9px;
+    font-size: 7px;
+  }
+
   .character-scene .scene-location {
+    left: 9px;
+    bottom: 9px;
     font-size: 7px;
   }
 }
 
+@media (max-width: 380px) {
+  .character-scene {
+    height: 185px;
+  }
+}
