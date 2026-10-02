@@ -14,18 +14,21 @@
 
   width: min(1400px, calc(100% - 48px));
 
-  height: clamp(650px, 82vh, 820px);
+  /* Fit below the website navbar */
+  height: calc(100svh - 90px);
+  min-height: 0;
+  max-height: 900px;
 
   margin: 0 auto;
+  padding: 14px 0 10px;
 
-  padding: 34px 0 18px;
-
-  color: var(--vivi-navy);
-
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   box-sizing: border-box;
+  overflow: hidden;
 }
+
 
 
 /* =========================================================
@@ -96,83 +99,6 @@
 }
 
 
-/* =========================================================
-   MAIN SHOWCASE
-========================================================= */
-
-.vivi-showcase {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.35fr)
-    minmax(320px, .65fr);
-
-  flex: 1;
-
-  min-height: 0;
-
-  overflow: hidden;
-
-  border:
-    1px solid
-    var(--vivi-border);
-
-  border-radius: 24px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.95),
-      rgba(244,248,253,.92)
-    );
-
-  box-shadow:
-    0 25px 70px rgba(32, 65, 105, .10);
-}
-
-
-/* =========================================================
-   VIDEO STAGE
-========================================================= */
-
-.vivi-showcase-stage {
-  position: relative;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  min-width: 0;
-  min-height: 0;
-
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(104, 142, 207, .14),
-      transparent 58%
-    );
-}
-
-
-/* =========================================================
-   VIDEO STACK
-========================================================= */
-
-.vivi-video-stack {
-  position: relative;
-
-  width: min(570px, 68%);
-
-  height: 78%;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-}
 
 
 /* =========================================================
@@ -797,75 +723,6 @@
 
   letter-spacing: -.035em;
 }
-
-
-/* =========================================================
-   ARROWS
-========================================================= */
-
-.vivi-stage-arrow {
-  position: absolute;
-
-  z-index: 8;
-
-  left: 50%;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 38px;
-  height: 38px;
-
-  transform:
-    translateX(-50%);
-
-  border:
-    1px solid
-    rgba(20,43,77,.14);
-
-  border-radius: 50%;
-
-  background:
-    rgba(255,255,255,.82);
-
-  backdrop-filter: blur(12px);
-
-  color: var(--vivi-navy);
-
-  font-size: 16px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 8px 25px rgba(20,43,77,.10);
-
-  transition:
-    transform 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease;
-}
-
-.vivi-stage-arrow:hover {
-  transform:
-    translateX(-50%)
-    scale(1.1);
-
-  background: #fff;
-
-  box-shadow:
-    0 12px 30px rgba(20,43,77,.16);
-}
-
-.vivi-stage-arrow-up {
-  top: 14px;
-}
-
-.vivi-stage-arrow-down {
-  bottom: 14px;
-}
-
 
 /* =========================================================
    CATEGORY DOT RAIL
@@ -1521,6 +1378,19 @@
   .vivi-video-stack {
     width: 70%;
   }
+
+  .vivi-openart-showcase {
+  height: calc(100svh - 90px);
+  min-height: 0;
+}
+
+.vivi-showcase {
+  min-height: 0;
+}
+
+.vivi-showcase-stage {
+  min-height: 0;
+}
 }
 
 
@@ -1530,17 +1400,10 @@
 
 @media (max-width: 760px) {
   .vivi-openart-showcase {
-    width: calc(100% - 24px);
-
-    height: auto;
-
-    min-height: 0;
-
-    padding:
-      50px 0 30px;
-
-    overflow: visible;
-  }
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
 
   .vivi-showcase-header {
     margin-bottom: 18px;
@@ -1563,15 +1426,14 @@
   }
 
   .vivi-showcase-stage {
-    height: 480px;
+  height: 480px;
+  min-height: 480px;
+}
 
-    min-height: 480px;
-  }
-
-  .vivi-video-stack {
-    width: 72%;
-    height: 72%;
-  }
+.vivi-video-stack {
+  width: 72%;
+  height: 72%;
+}
 
   .vivi-showcase-panel {
     min-height: 390px;
@@ -1823,5 +1685,324 @@
 
   .vivi-story-type-separator {
     margin: 0 7px;
+  }
+}
+
+/* =========================================================
+   VIDEO STAGE NAVIGATION ARROWS
+========================================================= */
+
+.vivi-stage-arrow {
+  position: absolute;
+  z-index: 20;
+
+  left: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+
+  transform: translateX(-50%);
+
+  border: 1.5px solid rgba(49, 95, 216, .28);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, .96);
+
+  backdrop-filter: blur(14px);
+
+  color: #142b4d;
+
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(20, 43, 77, .16),
+    0 0 0 5px rgba(255, 255, 255, .20);
+
+  transition:
+    transform 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.vivi-stage-arrow:hover {
+  transform: translateX(-50%) scale(1.12);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 12px 32px rgba(20, 43, 77, .22),
+    0 0 0 7px rgba(49, 95, 216, .08);
+}
+
+/* UP ARROW */
+.vivi-stage-arrow-up {
+  top: 18px;
+}
+
+/* DOWN ARROW */
+.vivi-stage-arrow-down {
+  bottom: 22px;
+}
+
+/* Keep arrows visible inside the video stage */
+.vivi-showcase-stage {
+  position: relative;
+  isolation: isolate;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .vivi-stage-arrow {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    font-size: 23px;
+  }
+
+  .vivi-stage-arrow-up {
+    top: 12px;
+  }
+
+  .vivi-stage-arrow-down {
+    bottom: 18px;
+  }
+}
+/* =========================================
+   VIEWPORT-FIT OPENART SHOWCASE
+========================================= */
+
+.vivi-openart-showcase {
+  --vivi-navy: #142b4d;
+  --vivi-blue: #315fd8;
+  --vivi-purple: #9d5de8;
+  --vivi-muted: #67809f;
+  --vivi-border: rgba(25, 54, 92, 0.11);
+
+  position: relative;
+
+  width: min(1400px, calc(100% - 48px));
+
+  /* Fit below the website navbar */
+  height: calc(100svh - 90px);
+  min-height: 0;
+  max-height: 900px;
+
+  margin: 0 auto;
+  padding: 14px 0 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Compact heading */
+.vivi-showcase-header {
+  flex: 0 0 auto;
+  max-width: 760px;
+  margin-bottom: 10px;
+}
+
+.vivi-showcase-header h2 {
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: .98;
+}
+
+.vivi-showcase-header p {
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Main video and details */
+.vivi-showcase {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(320px, .65fr);
+
+  flex: 1 1 0;
+  min-height: 0;
+  height: 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--vivi-border);
+  border-radius: 22px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,.95),
+    rgba(244,248,253,.92)
+  );
+
+  box-shadow: 0 20px 55px rgba(32,65,105,.09);
+}
+
+/* Video gets all available vertical space */
+.vivi-showcase-stage {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+/* Larger video */
+.vivi-video-stack {
+  position: relative;
+
+  width: min(620px, 76%);
+  height: 80%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Keep both navigation arrows inside the stage */
+.vivi-stage-arrow {
+  position: absolute;
+  left: 50%;
+  z-index: 20;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+  border: 1px solid rgba(20,43,77,.18);
+
+  background: rgba(255,255,255,.97);
+  color: var(--vivi-navy);
+
+  font-size: 23px;
+  cursor: pointer;
+
+  box-shadow: 0 5px 20px rgba(20,43,77,.16);
+}
+
+.vivi-stage-arrow-up {
+  top: 10px;
+}
+
+.vivi-stage-arrow-down {
+  bottom: 10px;
+}
+
+/* Keep category strip compact */
+.vivi-showcase-categories {
+  flex: 0 0 48px;
+  margin-top: 8px;
+}
+
+/* =========================================
+   SHOWCASE COLUMN WIDTH FIX
+========================================= */
+
+.vivi-showcase {
+  display: grid !important;
+
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    minmax(360px, 0.85fr) !important;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* LEFT VIDEO AREA */
+.vivi-showcase-stage {
+  position: relative;
+
+  min-width: 0;
+  min-height: 0;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0 28px 0 55px;
+
+  box-sizing: border-box;
+}
+
+/* VIDEO CARD */
+.vivi-video-stack {
+  width: min(640px, 100%);
+  max-width: 100%;
+  height: 78%;
+}
+
+/* RIGHT DETAILS PANEL */
+.vivi-showcase-panel {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  box-sizing: border-box;
+
+  padding: 28px 26px 20px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* PREVENT TEXT OVERFLOW */
+.vivi-panel-top,
+.vivi-prompt-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.vivi-panel-top h3 {
+  overflow-wrap: anywhere;
+}
+
+.vivi-panel-top p,
+.vivi-prompt-card p {
+  overflow-wrap: break-word;
+}
+
+/* RESPONSIVE LAPTOP WIDTH */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .vivi-showcase {
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(320px, 0.85fr) !important;
+  }
+
+  .vivi-showcase-stage {
+    padding-left: 42px;
+    padding-right: 15px;
+  }
+
+  .vivi-showcase-panel {
+    padding: 20px 16px;
+  }
+
+  .vivi-video-stack {
+    width: 100%;
   }
 }
