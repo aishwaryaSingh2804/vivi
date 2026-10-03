@@ -1033,6 +1033,50 @@
 
   .workflow-finale h2 { font-size: 44px; }
 
+/* Mobile timeline — prevent stage labels overlapping circles */
+
+.workflow-vertical-track {
+  height: min(100%, 390px);
+  min-height: 0;
+}
+
+.workflow-vertical-line,
+.workflow-vertical-progress {
+  left: 13px;
+  top: 14px;
+  bottom: 37px;
+}
+
+.workflow-node {
+  min-height: 50px;
+  margin-bottom: 8px;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.workflow-node:last-child {
+  margin-bottom: 0;
+}
+
+.workflow-node-circle {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  font-size: 7px;
+}
+
+.workflow-node-label {
+  position: absolute;
+  left: 0;
+  top: 37px;
+  width: 54px;
+  font-size: 7px;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.2;
+  transform: translateX(-13px);
+}
+
 }
 
 
