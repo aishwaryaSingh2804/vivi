@@ -1961,7 +1961,23 @@ function play(){
   t0=performance.now()+100;
   raf=requestAnimationFrame(tick);
 }
-function finish(){ stopPad(); document.body.classList.remove('playing'); document.body.classList.add('done'); $('play').textContent='Replay'; }
+function finish() {
+  stopPad();
+  document.body.classList.remove('playing');
+  document.body.classList.add('done');
+  $('play').textContent = 'Replay';
+
+  // Tell React that this stage's entire demo has finished.
+  if (embedMode && window.parent !== window) {
+    window.parent.postMessage(
+      {
+        type: 'VIVI_WORKFLOW_DONE',
+        clip: clipKey
+      },
+      window.location.origin
+    );
+  }
+}
 function pick(v){ cancelAnimationFrame(raf); stopPad(); $('clip').value=v; clipKey=(v==='all')?'prompt':v; allMode=false; $('wipe').classList.remove('go'); k=+$('len').value; document.body.classList.remove('playing','done'); $('play').textContent='Play'; build(); }
 
 /* controls */
@@ -1983,6 +1999,62 @@ const embedParams = new URLSearchParams(window.location.search);
 const requestedClip = embedParams.get('clip');
 const embedMode = embedParams.get('embed') === '1';
 const shouldAutoplay = embedParams.get('autoplay') === '1';
+
+// Listen for playback commands from the React workflow.
+if (embedMode) {
+  window.addEventListener('message', (event) => {
+    if (event.source !== window.parent) return;
+    if (event.origin !== window.location.origin) return;
+
+    const data = event.data;
+
+    if (data?.type === 'VIVI_WORKFLOW_PLAY') {
+      const nextClip = data.clip;
+
+      if (!Object.prototype.hasOwnProperty.call(CLIPS, nextClip)) {
+        return;
+      }
+
+      // Always select the requested clip and rebuild it from the beginning.
+      $('clip').value = nextClip;
+      play();
+    }
+
+    if (data?.type === 'VIVI_WORKFLOW_PAUSE') {
+      cancelAnimationFrame(raf);
+      stopPad();
+
+      document.body.classList.remove('playing');
+    }
+  });
+}
+// Allow React to change stages without reloading the iframe.
+window.addEventListener("message", (event) => {
+  if (event.source !== window.parent) return;
+  if (event.origin !== window.location.origin) return;
+  if (!embedMode) return;
+
+  const data = event.data;
+
+  if (data?.type !== "VIVI_WORKFLOW_PLAY") return;
+
+  const nextClip = data.clip;
+
+  if (!Object.prototype.hasOwnProperty.call(CLIPS, nextClip)) {
+    return;
+  }
+
+  // Avoid restarting an already-playing stage.
+  if (
+    $('clip').value === nextClip &&
+    document.body.classList.contains("playing")
+  ) {
+    return;
+  }
+
+  $('clip').value = nextClip;
+  play();
+});
 if (embedMode) {
   document.body.classList.add('embed-mode');
   // Keep the walkthrough silent in an iframe; browser autoplay policies can
@@ -1994,9 +2066,7 @@ if (requestedClip && Object.prototype.hasOwnProperty.call(CLIPS, requestedClip))
   $('clip').value = requestedClip;
 }
 build();
-if (embedMode && shouldAutoplay && requestedClip && Object.prototype.hasOwnProperty.call(CLIPS, requestedClip)) {
-  window.setTimeout(() => play(), 180);
-}
+
 </script>
 </body>
 </html>
