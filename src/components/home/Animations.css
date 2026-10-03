@@ -95,6 +95,43 @@
   line-height: 1.55;
 }
 
+/* Compact category key shown above the video showcase. */
+.vivi-category-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 18px;
+  min-width: 0;
+}
+
+.vivi-category-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #8a9db6;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  line-height: 1.4;
+  white-space: nowrap;
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+.vivi-category-legend-item i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: var(--category-color, #7892b4);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--category-color, #7892b4), transparent 88%);
+}
+
+.vivi-category-legend-item.active {
+  color: var(--category-color, var(--vivi-blue));
+}
+
 
 /* =========================================================
    MAIN SHOWCASE
@@ -310,7 +347,7 @@
 
 /* =========================================================
    VIDEO TOP
-   ========================================================= */
+========================================================= */
 
 .vivi-video-top {
   position: absolute;
@@ -325,83 +362,26 @@
   justify-content: space-between;
 }
 
-.vivi-video-category-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.vivi-video-badge {
+  padding: 6px 9px;
 
-  padding: 7px 10px;
-
-  border: 1px solid
-    color-mix(
-      in srgb,
-      var(--category-color) 28%,
-      white
-    );
+  border:
+    1px solid
+    rgba(255,255,255,.22);
 
   border-radius: 999px;
 
   background:
-    linear-gradient(
-      135deg,
-      var(--category-soft),
-      rgba(0,0,0,.25)
-    );
+    rgba(0,0,0,.32);
 
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
 
   color: #fff;
 
   font-size: 8px;
   font-weight: 800;
 
-  letter-spacing: .12em;
-  text-transform: uppercase;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 6px 18px rgba(0,0,0,.10);
-
-  transition:
-    transform 220ms ease,
-    background 220ms ease,
-    border-color 220ms ease;
-}
-
-.vivi-video-category-badge:hover {
-  transform: translateY(-1px);
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--category-soft),
-      rgba(255,255,255,.16)
-    );
-
-  border-color:
-    color-mix(
-      in srgb,
-      var(--category-color) 50%,
-      white
-    );
-}
-
-.vivi-category-badge-dot {
-  width: 6px;
-  height: 6px;
-
-  border-radius: 50%;
-
-  background: var(--category-color);
-
-  box-shadow:
-    0 0 0 3px
-    color-mix(
-      in srgb,
-      var(--category-color) 22%,
-      transparent
-    );
+  letter-spacing: .13em;
 }
 
 .vivi-video-number {
@@ -409,355 +389,6 @@
 
   font-size: 10px;
   font-weight: 700;
-}
-
-
-/* =========================================================
-   FULL VIDEO ACTION
-   ========================================================= */
-
-.vivi-video-watch {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-
-  padding: 4px 5px 4px 9px;
-
-  border: 1px solid rgba(255,255,255,.20);
-  border-radius: 999px;
-
-  background: rgba(0,0,0,.28);
-  backdrop-filter: blur(10px);
-
-  color: #fff;
-
-  cursor: pointer;
-
-  transition:
-    transform 220ms ease,
-    background 220ms ease,
-    border-color 220ms ease;
-}
-
-.vivi-video-watch:hover {
-  transform: translateY(-1px);
-
-  background: rgba(255,255,255,.18);
-  border-color: rgba(255,255,255,.38);
-}
-
-.vivi-video-watch .vivi-video-number {
-  color: rgba(255,255,255,.88);
-  font-size: 9px;
-  font-weight: 700;
-}
-
-.vivi-video-number-divider {
-  display: inline-block;
-  margin: 0 2px;
-  opacity: .45;
-}
-
-.vivi-video-watch-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 23px;
-  height: 23px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.92);
-  color: var(--vivi-navy);
-
-  font-size: 13px;
-  font-weight: 700;
-
-  transition: transform 220ms ease;
-}
-
-.vivi-video-watch:hover .vivi-video-watch-icon {
-  transform: translate(2px, -2px);
-}
-
-
-/* =========================================================
-   FULL VIDEO MODAL
-   ========================================================= */
-
-.vivi-video-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 30px;
-
-  background: rgba(10, 22, 40, .72);
-  backdrop-filter: blur(18px);
-
-  animation: vivi-modal-in 240ms ease forwards;
-}
-
-.vivi-video-modal-inner {
-  width: min(1100px, 94vw);
-  max-height: 92vh;
-
-  display: flex;
-  flex-direction: column;
-
-  padding: 18px;
-
-  border: 1px solid rgba(255,255,255,.16);
-  border-radius: 22px;
-
-  background: rgba(244,248,253,.97);
-
-  box-shadow:
-    0 35px 100px rgba(0,0,0,.35);
-
-  animation:
-    vivi-modal-content-in
-    400ms
-    cubic-bezier(.22,1,.36,1)
-    forwards;
-}
-
-.vivi-video-modal-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 5px 5px 15px 8px;
-}
-
-.vivi-video-modal-category {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  margin-bottom: 6px;
-
-  color: var(--category-color);
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: .15em;
-}
-
-.vivi-modal-category-dot {
-  width: 6px;
-  height: 6px;
-
-  border-radius: 50%;
-
-  background: var(--category-color);
-
-  box-shadow:
-    0 0 0 4px
-    color-mix(
-      in srgb,
-      var(--category-color) 14%,
-      transparent
-    );
-}
-
-.vivi-video-modal-top h3 {
-  margin: 0;
-
-  color: var(--vivi-navy);
-
-  font-family:
-    var(--ff-display, Georgia, serif);
-
-  font-size: 25px;
-  line-height: 1;
-}
-
-.vivi-video-modal-top-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.vivi-video-modal-count {
-  color: #8a9db2;
-
-  font-size: 9px;
-  font-weight: 800;
-
-  letter-spacing: .08em;
-}
-
-.vivi-video-modal-count span {
-  margin: 0 3px;
-
-  color: #b4c0cc;
-}
-
-.vivi-video-modal-close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 38px;
-  height: 38px;
-
-  border: 1px solid rgba(20,43,77,.10);
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.80);
-
-  color: var(--vivi-navy);
-
-  font-size: 22px;
-  font-weight: 300;
-
-  cursor: pointer;
-
-  transition:
-    transform 200ms ease,
-    background 200ms ease;
-}
-
-.vivi-video-modal-close:hover {
-  transform: rotate(90deg);
-  background: #fff;
-}
-
-.vivi-video-modal-player-wrap {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  width: 100%;
-}
-
-.vivi-modal-nav {
-  position: absolute;
-
-  top: 50%;
-
-  z-index: 5;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 42px;
-  height: 42px;
-
-  transform: translateY(-50%);
-
-  border: 1px solid rgba(20,43,77,.12);
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.92);
-
-  color: var(--vivi-navy);
-
-  font-size: 18px;
-  font-weight: 500;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 10px 28px rgba(20,43,77,.15);
-
-  backdrop-filter: blur(12px);
-
-  transition:
-    transform 220ms ease,
-    background 220ms ease,
-    box-shadow 220ms ease;
-}
-
-.vivi-modal-nav:hover {
-  background: #fff;
-
-  box-shadow:
-    0 14px 34px rgba(20,43,77,.22);
-}
-
-.vivi-modal-nav-left {
-  left: -21px;
-}
-
-.vivi-modal-nav-right {
-  right: -21px;
-}
-
-.vivi-video-modal-player {
-  position: relative;
-
-  width: 100%;
-
-  overflow: hidden;
-
-  border-radius: 15px;
-
-  background: #0b1421;
-
-  box-shadow:
-    0 20px 50px rgba(20,43,77,.16);
-}
-
-.vivi-video-modal-player video {
-  display: block;
-
-  width: 100%;
-  max-height: 72vh;
-
-  aspect-ratio: 16 / 9;
-
-  object-fit: contain;
-
-  background: #0b1421;
-}
-
-.vivi-video-modal-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 12px 7px 2px;
-
-  color: #879ab0;
-
-  font-size: 9px;
-  font-weight: 700;
-}
-
-.vivi-video-modal-footer span:last-child {
-  color: #a1afbf;
-}
-
-@keyframes vivi-modal-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes vivi-modal-content-in {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(.97);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
 }
 
 
@@ -868,168 +499,53 @@
 
 
 /* =========================================================
-   CATEGORY DOT RAIL
-   ========================================================= */
+   DOTS
+========================================================= */
 
-.vivi-category-rail {
+.vivi-showcase-dots {
   position: absolute;
 
   left: 17px;
+
   top: 50%;
 
-  z-index: 9;
+  z-index: 8;
 
   display: flex;
+
   flex-direction: column;
-  align-items: flex-start;
 
-  gap: 9px;
+  gap: 7px;
 
-  transform: translateY(-50%);
+  transform:
+    translateY(-50%);
 }
 
-.vivi-category-dot {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  width: 23px;
-  height: 23px;
+.vivi-showcase-dots button {
+  width: 5px;
+  height: 5px;
 
   padding: 0;
 
   border: 0;
 
-  border-radius: 999px;
+  border-radius: 50%;
 
-  background: transparent;
+  background:
+    rgba(20,43,77,.20);
 
   cursor: pointer;
 
   transition:
-    width 280ms cubic-bezier(.22,1,.36,1),
-    transform 220ms ease;
+    transform 250ms ease,
+    background 250ms ease;
 }
 
-.vivi-category-dot:hover {
-  transform: translateX(1px);
-}
-
-.vivi-category-dot-core {
-  position: absolute;
-
-  left: 8px;
-  top: 50%;
-
-  width: 6px;
-  height: 6px;
-
-  transform: translateY(-50%);
-
-  border-radius: 50%;
+.vivi-showcase-dots button.active {
+  transform: scale(1.8);
 
   background:
-    color-mix(
-      in srgb,
-      var(--category-color) 34%,
-      #8fa1b5
-    );
-
-  box-shadow:
-    0 0 0 0
-    color-mix(
-      in srgb,
-      var(--category-color) 20%,
-      transparent
-    );
-
-  transition:
-    width 260ms ease,
-    height 260ms ease,
-    background 260ms ease,
-    box-shadow 260ms ease,
-    transform 260ms ease;
-}
-
-.vivi-category-dot.active {
-  width: 116px;
-}
-
-.vivi-category-dot.active
-.vivi-category-dot-core {
-  width: 9px;
-  height: 9px;
-
-  background: var(--category-color);
-
-  box-shadow:
-    0 0 0 5px
-    var(--category-soft);
-
-  transform:
-    translateY(-50%)
-    scale(1);
-}
-
-.vivi-category-dot-label {
-  position: absolute;
-
-  left: 25px;
-  top: 50%;
-
-  transform:
-    translateY(-50%)
-    translateX(-5px);
-
-  opacity: 0;
-
-  white-space: nowrap;
-
-  color: var(--category-color);
-
-  font-size: 8px;
-  font-weight: 800;
-
-  letter-spacing: .10em;
-  text-transform: uppercase;
-
-  pointer-events: none;
-
-  transition:
-    opacity 180ms ease,
-    transform 220ms ease;
-}
-
-.vivi-category-dot.active
-.vivi-category-dot-label,
-.vivi-category-dot:hover
-.vivi-category-dot-label {
-  opacity: 1;
-
-  transform:
-    translateY(-50%)
-    translateX(0);
-}
-
-.vivi-category-dot-number {
-  position: absolute;
-
-  right: 0;
-
-  opacity: 0;
-
-  color: var(--category-color);
-
-  font-size: 7px;
-  font-weight: 800;
-
-  transition: opacity 180ms ease;
-}
-
-.vivi-category-dot.active
-.vivi-category-dot-number {
-  opacity: .65;
+    var(--vivi-blue);
 }
 
 
@@ -1606,63 +1122,6 @@
       1px solid
       rgba(25,54,92,.07);
   }
-
-
-
-  .vivi-category-rail {
-    left: 10px;
-    gap: 7px;
-  }
-
-  .vivi-category-dot.active {
-    width: 92px;
-  }
-
-  .vivi-category-dot-label {
-    left: 22px;
-    font-size: 7px;
-  }
-
-  .vivi-video-category-badge {
-    font-size: 7px;
-    padding: 6px 8px;
-  }
-
-  .vivi-modal-nav {
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
-  }
-
-  .vivi-modal-nav-left {
-    left: 8px;
-  }
-
-  .vivi-modal-nav-right {
-    right: 8px;
-  }
-
-  .vivi-video-modal {
-    padding: 12px;
-  }
-
-  .vivi-video-modal-inner {
-    width: 100%;
-    padding: 12px;
-    border-radius: 17px;
-  }
-
-  .vivi-video-modal-top h3 {
-    font-size: 21px;
-  }
-
-  .vivi-video-modal-player video {
-    max-height: 70vh;
-  }
-
-  .vivi-video-modal-footer {
-    font-size: 8px;
-  }
 }
 
 
@@ -1691,137 +1150,871 @@
   }
 }
 
-/* Category strip is intentionally replaced by the compact category dot rail. */
+
+/* =========================================================
+   POLISHED NAVIGATION + CATEGORY COLOURS
+   Appended overrides keep the existing showcase structure.
+========================================================= */
+
+.vivi-openart-showcase {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+.vivi-showcase {
+  flex: 0 0 auto;
+  min-height: clamp(480px, 57vh, 620px);
+}
+
+.vivi-showcase-panel {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(49, 95, 216, .24) transparent;
+}
+
+.vivi-showcase-panel::-webkit-scrollbar {
+  width: 5px;
+}
+
+.vivi-showcase-panel::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: rgba(49, 95, 216, .24);
+}
+
+.vivi-video-top {
+  z-index: 5;
+}
+
+.vivi-video-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vivi-video-badge {
+  border-color: color-mix(in srgb, var(--category-color, #7892b4), white 35%);
+  background: color-mix(in srgb, var(--category-color, #7892b4), transparent 68%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+}
+
+.vivi-video-category-label {
+  color: var(--category-color, rgba(255,255,255,.72)) !important;
+}
+
+.vivi-panel-eyebrow {
+  color: var(--category-color, var(--vivi-purple));
+}
+
+.vivi-video-expand {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.38);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(10, 20, 35, .38);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 5px 18px rgba(0,0,0,.18);
+  cursor: pointer;
+  transition: transform 200ms ease, background 200ms ease;
+}
+
+.vivi-video-expand span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.vivi-video-expand:hover {
+  transform: scale(1.09);
+  background: rgba(10, 20, 35, .68);
+}
+
+.vivi-stage-arrow {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255,255,255,.78);
+  background: rgba(255,255,255,.88);
+  color: var(--vivi-navy);
+  box-shadow: 0 10px 28px rgba(20,43,77,.15);
+}
+
+.vivi-stage-arrow span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  font-size: 0;
+}
+
+.vivi-stage-arrow-up span {
+  transform: translateY(2px) rotate(-45deg);
+}
+
+.vivi-stage-arrow-down span {
+  transform: translateY(-2px) rotate(135deg);
+}
+
+.vivi-stage-arrow-up {
+  top: 18px;
+}
+
+.vivi-stage-arrow-down {
+  bottom: 18px;
+}
+
+.vivi-showcase-dots {
+  left: 20px;
+  gap: 8px;
+}
+
+.vivi-showcase-dots button {
+  width: 6px;
+  height: 6px;
+  background: color-mix(in srgb, var(--category-color, #7892b4), white 45%);
+}
+
+.vivi-showcase-dots button.active {
+  background: var(--category-color, var(--vivi-blue));
+  transform: scale(1.65);
+}
+
+.vivi-showcase-categories button {
+  column-gap: 4px;
+}
+
+.vivi-showcase-categories button > span {
+  color: var(--category-color, #a7b5c5);
+}
+
+.vivi-showcase-categories button.active {
+  background: color-mix(in srgb, var(--category-color, var(--vivi-blue)), transparent 92%);
+}
+
+.vivi-showcase-categories button.active > span,
+.vivi-showcase-categories button.active strong {
+  color: var(--category-color, var(--vivi-blue));
+}
+
+/* The bottom progress line uses the same four-second cycle as autoplay. */
+.vivi-showcase-progress {
+  position: absolute;
+  z-index: 9;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  overflow: hidden;
+  background: rgba(20,43,77,.08);
+}
+
+.vivi-showcase-progress-fill {
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: var(--vivi-blue);
+  animation: vivi-showcase-progress 4s linear forwards;
+}
+
+.vivi-showcase-progress-fill.paused {
+  animation-play-state: paused;
+}
+
+@keyframes vivi-showcase-progress {
+  to { transform: scaleX(1); }
+}
+
+/* Fullscreen-style video preview */
+.vivi-video-modal {
+  position: fixed;
+  z-index: 99999;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(7, 13, 24, .82);
+  backdrop-filter: blur(12px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  animation: vivi-modal-fade-in 180ms ease both;
+}
+
+.vivi-video-modal-dialog {
+  position: relative;
+  width: min(1120px, 100%);
+  max-height: calc(100dvh - 56px);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 22px;
+  background: #f8faff;
+  box-shadow: 0 30px 100px rgba(0,0,0,.38);
+  scrollbar-width: thin;
+}
+
+.vivi-video-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 22px;
+}
+
+.vivi-video-modal-heading {
+  min-width: 0;
+}
+
+.vivi-video-modal-category {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: var(--category-color, var(--vivi-purple));
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.vivi-video-modal-heading h3 {
+  margin: 0;
+  color: var(--vivi-navy);
+  font-family: var(--ff-display, Georgia, serif);
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.05;
+}
+
+.vivi-video-modal-close {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(20,43,77,.12);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--vivi-navy);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.vivi-video-modal-close:hover {
+  transform: rotate(90deg);
+  background: #edf3ff;
+}
+
+.vivi-video-modal-player {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 0 72px;
+  background: #080e18;
+}
+
+.vivi-video-modal-player video {
+  display: block;
+  width: 100%;
+  max-height: min(68vh, 680px);
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #080e18;
+}
+
+.vivi-modal-nav {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 76px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 15px;
+  color: #fff;
+  background: rgba(255,255,255,.13);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 26px rgba(0,0,0,.2);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.vivi-modal-nav span {
+  font-family: Arial, sans-serif;
+  font-size: 58px;
+  font-weight: 300;
+  line-height: .7;
+}
+
+.vivi-modal-nav:hover {
+  background: rgba(255,255,255,.25);
+}
+
+.vivi-modal-nav-previous {
+  left: 14px;
+}
+
+.vivi-modal-nav-next {
+  right: 14px;
+}
+
+.vivi-video-modal-details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 22px 18px;
+  color: #7185a0;
+  font-size: 12px;
+}
+
+.vivi-video-modal-details p {
+  max-width: 760px;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.vivi-video-modal-details > span {
+  flex: 0 0 auto;
+  color: #93a3b7;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+@keyframes vivi-modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 1050px) and (min-width: 761px) {
+  .vivi-showcase {
+    min-height: 520px;
+    grid-template-columns: minmax(0, 1fr) minmax(290px, 320px);
+  }
+
+  .vivi-showcase-panel {
+    padding: 24px 22px 20px;
+  }
+
+  .vivi-panel-top h3 {
+    font-size: clamp(25px, 2.5vw, 34px);
+  }
+}
+
+@media (max-width: 760px) {
+  .vivi-openart-showcase {
+    padding: 34px 0 28px;
+  }
+
+  .vivi-showcase {
+    min-height: 0;
+  }
+
+  .vivi-showcase-stage {
+    height: 390px;
+    min-height: 390px;
+    overflow: hidden;
+  }
+
+  .vivi-video-stack {
+    width: calc(100% - 104px);
+    max-width: 570px;
+    height: 70%;
+  }
+
+  /* Dots get their own row, never sharing space with the video. */
+  .vivi-showcase-dots {
+    top: 17px;
+    left: 50%;
+    flex-direction: row;
+    gap: 10px;
+    transform: translateX(-50%);
+  }
+
+  .vivi-showcase-dots button {
+    width: 7px;
+    height: 7px;
+  }
+
+  .vivi-stage-arrow {
+    top: 50%;
+    bottom: auto;
+    width: 38px;
+    height: 48px;
+    border-radius: 13px;
+    transform: translateY(-50%);
+  }
+
+  .vivi-stage-arrow:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .vivi-stage-arrow-up {
+    left: 10px;
+  }
+
+  .vivi-stage-arrow-down {
+    left: auto;
+    right: 10px;
+  }
+
+  .vivi-stage-arrow-up span {
+    transform: translate(2px, 0) rotate(-135deg);
+  }
+
+  .vivi-stage-arrow-down span {
+    transform: translate(-2px, 0) rotate(45deg);
+  }
+
+  .vivi-autoplay-indicator {
+    left: 13px;
+    bottom: 13px;
+  }
+
+  .vivi-showcase-panel {
+    overflow: visible;
+    min-height: 0;
+  }
+
+  .vivi-create-button {
+    margin-top: 20px;
+  }
+
+  .vivi-video-modal {
+    display: block;
+    padding: max(12px, env(safe-area-inset-top)) 10px max(12px, env(safe-area-inset-bottom));
+  }
+
+  .vivi-video-modal-dialog {
+    width: 100%;
+    max-height: calc(100dvh - 24px);
+    margin: 0 auto;
+    border-radius: 17px;
+  }
+
+  .vivi-video-modal-header {
+    padding: 14px 15px;
+  }
+
+  .vivi-video-modal-player {
+    padding: 0 42px;
+  }
+
+  .vivi-video-modal-player video {
+    max-height: 52vh;
+    aspect-ratio: 9 / 16;
+  }
+
+  .vivi-modal-nav {
+    width: 34px;
+    height: 58px;
+    border-radius: 11px;
+  }
+
+  .vivi-modal-nav span {
+    font-size: 43px;
+  }
+
+  .vivi-modal-nav-previous {
+    left: 5px;
+  }
+
+  .vivi-modal-nav-next {
+    right: 5px;
+  }
+
+  .vivi-video-modal-details {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 15px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vivi-showcase-stage {
+    height: 350px;
+    min-height: 350px;
+  }
+
+  .vivi-video-stack {
+    width: calc(100% - 92px);
+    height: 68%;
+  }
+
+  .vivi-showcase-categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vivi-showcase-categories button {
+    min-width: 0;
+    border-right: 1px solid rgba(25,54,92,.07);
+  }
+
+  .vivi-video-modal-player {
+    padding: 0 36px;
+  }
+
+  .vivi-video-modal-player video {
+    max-height: 48vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vivi-video-card,
+  .vivi-stage-arrow,
+  .vivi-video-expand,
+  .vivi-modal-nav {
+    transition-duration: .01ms !important;
+  }
+
+  .vivi-showcase-progress-fill {
+    animation-duration: .01ms;
+  }
+}
+
+
+/* The former per-video category strip is intentionally not part of this layout. */
 .vivi-showcase-categories {
   display: none !important;
 }
 
-/* =========================================================
-   STORY TYPES — EDITORIAL INLINE NAV
-   ========================================================= */
-
-.vivi-story-types {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-
-  margin-top: 22px;
-
-  gap: 0;
-
-  font-family: var(--ff-body, sans-serif);
-}
-
-
-/* Individual text item */
-
-.vivi-story-type {
-  display: inline-flex;
-  align-items: center;
-
-  padding: 0;
-  border: 0;
-  background: transparent;
-
-  font-family: inherit;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-
-  color: rgba(39, 67, 105, 0.48);
-
-  cursor: pointer;
-
-  transition:
-    color 0.25s ease,
-    transform 0.25s ease;
-}
-
-
-/* Tiny category colour */
-
-.vivi-story-type-dot {
-  width: 6px;
-  height: 6px;
-
-  margin-right: 7px;
-
-  border-radius: 50%;
-
-  background: var(--category-color);
-
-  opacity: 0.42;
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-}
-
-
-/* Separator */
-
-.vivi-story-type-separator {
-  margin: 0 11px;
-
-  color: rgba(39, 67, 105, 0.2);
-
-  pointer-events: none;
-}
-
-
-/* Active */
-
-.vivi-story-type.active {
-  color: var(--category-color);
-}
-
-.vivi-story-type.active .vivi-story-type-dot {
-  opacity: 1;
-
-  transform: scale(1.25);
-
-  box-shadow:
-    0 0 0 4px color-mix(
-      in srgb,
-      var(--category-color) 12%,
-      transparent
-    );
-}
-
-
-/* Hover */
-
-.vivi-story-type:hover {
-  color: var(--category-color);
-
-  transform: translateY(-1px);
-}
-
-.vivi-story-type:hover .vivi-story-type-dot {
-  opacity: 0.9;
-
-  transform: scale(1.15);
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-  .vivi-story-types {
-    margin-top: 17px;
-
-    row-gap: 9px;
+@media (max-width: 760px) {
+  .vivi-category-legend {
+    gap: 9px 15px;
+    margin-top: 14px;
   }
 
-  .vivi-story-type {
+  .vivi-category-legend-item {
+    gap: 6px;
+    font-size: 9px;
+    letter-spacing: .1em;
+  }
+}
+
+/* ==========================================
+   MOBILE CAROUSEL + MODAL ARROW FIX
+========================================== */
+
+@media (max-width: 760px) {
+
+  /* =================================
+     1. MAIN CAROUSEL
+     Arrows stay UP / DOWN
+  ================================= */
+
+  .vivi-stage-arrow {
+    position: absolute;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .vivi-stage-arrow-up {
+    top: 8px;
+    bottom: auto;
+  }
+
+  .vivi-stage-arrow-down {
+    top: auto;
+    bottom: 8px;
+  }
+
+
+  /* =================================
+     2. CATEGORY BUTTONS
+     Move them to the sides
+  ================================= */
+
+  .vivi-showcase-categories {
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: auto;
+    gap: 12px;
+    z-index: 5;
+  }
+
+  .vivi-showcase-categories button {
+    max-width: 75px;
+    white-space: nowrap;
     font-size: 8px;
-    letter-spacing: 0.1em;
+    padding: 5px 7px;
   }
 
-  .vivi-story-type-separator {
-    margin: 0 7px;
+
+  /* =================================
+     3. EXPANDED MODAL
+     Arrows ONLY LEFT / RIGHT
+  ================================= */
+
+  .vivi-modal-nav {
+    position: absolute;
+
+    top: 50%;
+    bottom: auto;
+
+    width: 38px;
+    height: 40px;
+
+    transform: translateY(-50%);
+    z-index: 20;
   }
+
+  .vivi-modal-nav-previous {
+    left: 8px;
+    right: auto;
+  }
+
+  .vivi-modal-nav-next {
+    right: 8px;
+    left: auto;
+  }
+
+  .vivi-modal-nav:hover {
+    transform: translateY(-50%);
+  }
+
+}
+
+/* ==========================================
+   MOBILE CAROUSEL + EXPANDED MODAL FIX
+========================================== */
+
+@media (max-width: 760px) {
+
+  /* ----------------------------------
+     1. MAIN CAROUSEL CATEGORY BUTTONS
+     Move categories to the sides
+  ---------------------------------- */
+
+  .vivi-showcase-categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .vivi-showcase-categories button {
+    flex: 0 1 auto;
+    font-size: 9px;
+  }
+
+  /* Keep main carousel arrows vertical */
+  .vivi-stage-arrow {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .vivi-stage-arrow-up {
+    top: 8px;
+    bottom: auto;
+  }
+
+  .vivi-stage-arrow-down {
+    top: auto;
+    bottom: 8px;
+  }
+
+
+  /* ----------------------------------
+     2. EXPANDED VIDEO MODAL
+     Centre the entire rectangle
+  ---------------------------------- */
+
+  .vivi-video-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .vivi-video-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    transform: none;
+    box-sizing: border-box;
+  }
+
+
+  /* ----------------------------------
+     3. MODAL VIDEO
+     Keep video centred
+  ---------------------------------- */
+
+  .vivi-video-modal-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+
+  /* ----------------------------------
+     4. MODAL ARROWS
+     Restore LEFT / RIGHT navigation
+  ---------------------------------- */
+
+  .vivi-modal-nav {
+    position: absolute;
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 40px;
+    z-index: 10;
+  }
+
+  .vivi-modal-nav-previous {
+    left: 8px;
+    right: auto;
+  }
+
+  .vivi-modal-nav-next {
+    right: 8px;
+    left: auto;
+  }
+
+  .vivi-modal-nav:hover {
+    transform: translateY(-50%);
+  }
+
+}
+
+
+/* ==========================================
+   MOBILE CAROUSEL ARROWS + VIDEO DOTS
+========================================== */
+
+@media (max-width: 760px) {
+
+  /* UP ARROW */
+  .vivi-stage-arrow-up {
+    top: 8px;
+    bottom: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  /* DOWN ARROW */
+  .vivi-stage-arrow-down {
+    top: auto;
+    bottom: 8px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  /* Preserve vertical arrow appearance */
+  .vivi-stage-arrow {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    z-index: 10;
+  }
+
+  .vivi-stage-arrow:hover {
+    transform: translateX(-50%) scale(1.05);
+  }
+
+  /* UP CHEVRON */
+  .vivi-stage-arrow-up span {
+    transform: translateY(2px) rotate(-45deg);
+  }
+
+  /* DOWN CHEVRON */
+  .vivi-stage-arrow-down span {
+    transform: translateY(-2px) rotate(135deg);
+  }
+
+  /* VIDEO PAGINATION DOTS */
+  .vivi-showcase-dots {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+    transform: translate(-50%, -50%);
+
+    z-index: 9;
+  }
+
+  .vivi-showcase-dots button {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+  }
+
+  .vivi-showcase-dots button.active {
+    transform: scale(1.65);
+  }
+
+}
+
+/* VIDEO PAGINATION DOTS - VERTICAL LEFT ALIGNMENT */
+.vivi-showcase-dots {
+  position: absolute;
+
+  top: 50%;
+  left: 8px;
+  right: auto;
+  bottom: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  transform: translateY(-50%);
+  z-index: 9;
+}
+
+.vivi-showcase-dots button {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+}
+
+.vivi-showcase-dots button.active {
+  transform: scale(1.65);
 }
