@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { mountViviAnimations } from './home/Animations';
 import { HASH_TO_ROUTE, ROUTES } from '../lib/routes';
 import {
   calculateDetailed,
@@ -390,22 +389,6 @@ export function LegacyPage({ html, pageKey }: Props) {
       root.removeEventListener('change', onChange);
     };
   }, [navigate, pageKey]);
-
-// --------------------------------------------------
-// VIVI OPENART-STYLE VIDEO SHOWCASE
-// Mount React Animations.tsx into the legacy HTML
-// --------------------------------------------------
-useEffect(() => {
-  if (pageKey !== 'home') return;
-
-  const mount = document.getElementById(
-    'vivi-openart-mount'
-  );
-
-  if (!mount) return;
-
-  mountViviAnimations();
-}, [pageKey]);
 
 // --------------------------------------------------
 // STUDIO: Populate prompt from video showcase
