@@ -1,11 +1,10 @@
-import { LegacyPage } from '../components/LegacyPage';
 import { HeroSection } from '../components/home/HeroSection';
-import { pageContent } from '../content';
-import { WorkflowSection } from "../components/home/Workflow/WorkflowSection";
-import { PricingSection } from "../components/pricing/PricingSection";
-import { WhyVivi } from "../components/home/WhyVivi";
-import Newsletter from "../components/Newsletter";
-import { BenefitsSection } from "../components/home/BenefitsSection";
+import { WorkflowSection } from '../components/home/Workflow/WorkflowSection';
+import { WhyVivi } from '../components/home/WhyVivi';
+import { BenefitsSection } from '../components/home/BenefitsSection';
+import { HomeShowcaseAndGallery } from '../components/home/HomeShowcaseAndGallery';
+import { PricingSection } from '../components/pricing/PricingSection';
+import Newsletter from '../components/Newsletter';
 
 export function HomePage() {
   return (
@@ -14,12 +13,9 @@ export function HomePage() {
       <WorkflowSection />
       <WhyVivi />
       <BenefitsSection />
-      <LegacyPage
-        html={pageContent.home}
-        pageKey="home"
-      />
+      <HomeShowcaseAndGallery />
       <PricingSection />
-<Newsletter />
+      <Newsletter />
     </>
   );
 }

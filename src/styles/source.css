@@ -23,8 +23,9 @@ body{background:var(--ink);color:var(--text);font-family:var(--ff-body);font-siz
 
 
 /* ── PAGES ─────────────────────────────────────────────── */
-.page{display:none}
-.page.active{display:block;padding-top:60px}
+.page {
+  display: block;
+}
 
 
 /* ── HERO ───────────────────────────────────────────────── */

@@ -1,4 +1,3 @@
-import home from './page-home.html?raw'; import kids from './page-kids.html?raw'; import history from './page-history.html?raw'; import india from './page-india.html?raw'; import microdrama from './page-microdrama.html?raw'; import studio from './page-studio.html?raw'; import resources from './page-resources.html?raw'; import howToUse from './page-how-to-use.html?raw'; import blog from './page-blog.html?raw'; import contact from './page-contact.html?raw'; import community from './page-community.html?raw'; import pricing from './page-pricing.html?raw'; import faq from './page-faq.html?raw'; import privacy from './page-privacy.html?raw'; import credits from './page-credits.html?raw'; import terms from './page-terms.html?raw'; import refund from './page-refund.html?raw';
-import nav from './main-nav.html?raw'; import notifications from './notif-panel.html?raw'; import account from './account-panel.html?raw'; import cookie from './cookie-banner.html?raw';
-export const pageContent = { home, kids, history, india, microdrama, studio, resources, howToUse, blog, contact, community, pricing, faq, privacy, credits, terms, refund } as const;
-export const chromeContent = { nav, notifications, account, cookie } as const;
+// Legacy HTML page templates have been migrated to React.
+// Shared navigation is now handled by Navbar.tsx.
+export {};

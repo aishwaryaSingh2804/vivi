@@ -4,7 +4,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { createRoot } from "react-dom/client";
 import { createPortal } from "react-dom";
 import "./Animations.css";
 
@@ -1029,53 +1028,5 @@ function Animations() {
     </>
   );
 }
-
-
-/* =========================================================
-   MOUNT HELPER
-
-   This allows the component to be called from the
-   existing legacy HTML page.
-
-   page-home.html needs:
-
-   <div id="vivi-openart-mount"></div>
-========================================================= */
-
-let viviAnimationsRoot:
-  ReturnType<typeof createRoot> | null = null;
-
-
-export function mountViviAnimations() {
-  const mount =
-    document.getElementById(
-      "vivi-openart-mount"
-    );
-
-  if (!mount) {
-    console.warn(
-      "[Vivi] #vivi-openart-mount was not found."
-    );
-
-    return;
-  }
-
-
-  /* Prevent duplicate React roots */
-
-  if (viviAnimationsRoot) {
-    return;
-  }
-
-
-  viviAnimationsRoot =
-    createRoot(mount);
-
-
-  viviAnimationsRoot.render(
-    <Animations />
-  );
-}
-
 
 export default Animations;

@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 
-import { chromeContent } from '../content';
 import { Navbar } from './navigation/Navbar';
 
 export function SiteChrome() {
@@ -117,26 +116,7 @@ export function SiteChrome() {
       {/* Shared navbar — remains present across the site's routes. */}
       <Navbar />
 
-      {/* Other global chrome elements stay separate from the sticky navbar. */}
-      <div ref={ref} className="site-chrome">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: chromeContent.notifications,
-          }}
-        />
-
-        <div
-          dangerouslySetInnerHTML={{
-            __html: chromeContent.account,
-          }}
-        />
-
-        <div
-          dangerouslySetInnerHTML={{
-            __html: chromeContent.cookie,
-          }}
-        />
-      </div>
+      
     </>
   );
 }
