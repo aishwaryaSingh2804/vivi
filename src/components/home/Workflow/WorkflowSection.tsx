@@ -13,7 +13,11 @@ const LAST_STAGE_INDEX =
   WORKFLOW_STAGES.length - 1;
 
 const WALKTHROUGH_VIEWPORTS =
-  WORKFLOW_STAGES.length + 1;
+  WORKFLOW_STAGES.length;
+
+// Sub-pixel / rounding slack when comparing scroll positions
+// against stage boundaries.
+const SCROLL_TOLERANCE_PX = 2;
 
 type PlaybackSession = {
   id: number;
@@ -68,6 +72,11 @@ export function WorkflowSection() {
   const targetStageRef =
     useRef<number | null>(null);
 
+  // Records the ONE stage allowed to start after an automatic
+  // completion → scroll transition.
+  const pendingStageRef =
+    useRef<number | null>(null);
+
   const targetScrollYRef =
     useRef<number | null>(null);
 
@@ -117,7 +126,6 @@ export function WorkflowSection() {
     activeStage,
     demoProgress,
     isPlaying,
-    isTransitioning,
   } = workflowState;
 
   const currentStage =
@@ -138,19 +146,24 @@ export function WorkflowSection() {
             previous: WorkflowState
           ) => WorkflowState)
     ) => {
-      setWorkflowState((previous) => {
-        const next =
-          typeof updater === "function"
-            ? updater(previous)
-            : {
-                ...previous,
-                ...updater,
-              };
+      /*
+       * Compute the next state synchronously from the ref so
+       * every handler (scroll, message, rAF) sees the newest
+       * state immediately, not after React's next render.
+       */
+      const previous = stateRef.current;
 
-        stateRef.current = next;
+      const next =
+        typeof updater === "function"
+          ? updater(previous)
+          : {
+              ...previous,
+              ...updater,
+            };
 
-        return next;
-      });
+      stateRef.current = next;
+
+      setWorkflowState(next);
     },
     []
   );
@@ -197,7 +210,7 @@ export function WorkflowSection() {
     invalidatePlayback();
 
     sendToDemo({
-      type: "VIVI_WORKFLOW_PAUSE",
+      type: "VISL_WORKFLOW_PAUSE",
     });
   }, [
     invalidatePlayback,
@@ -214,6 +227,35 @@ export function WorkflowSection() {
         WORKFLOW_STAGES[stageIndex];
 
       if (!stage) {
+        return;
+      }
+
+      /*
+       * Do not restart the exact same stage while its current
+       * playback session is already running.
+       *
+       * This prevents a late scroll/render callback from
+       * replaying a stage that has already started.
+       */
+      const existingSession =
+        playbackSessionRef.current;
+
+      /*
+       * While an automatic transition is in progress, no other
+       * callback is allowed to start a stage.
+       */
+      if (
+        stateRef.current.isTransitioning &&
+        targetStageRef.current !== null
+      ) {
+        return;
+      }
+
+      if (
+        existingSession &&
+        existingSession.stageIndex === stageIndex &&
+        existingSession.clip === stage.demoClip
+      ) {
         return;
       }
 
@@ -278,7 +320,7 @@ export function WorkflowSection() {
       });
 
       sendToDemo({
-        type: "VIVI_WORKFLOW_PLAY",
+        type: "VISL_WORKFLOW_PLAY",
         clip: stage.demoClip,
         playbackId,
         stageIndex,
@@ -319,10 +361,34 @@ export function WorkflowSection() {
       const target =
         targetStageRef.current;
 
+      const targetY =
+        targetScrollYRef.current;
+
       stopAutoScrollWatchdog();
 
       if (target === null) {
         return;
+      }
+
+      /*
+       * FIX (stage replay bug):
+       * The transition is considered "reached" a couple of
+       * pixels BEFORE the smooth scroll actually lands. The
+       * remaining pixels used to be seen by the manual scroll
+       * handler as "the user scrolled back to the previous
+       * stage", which restarted that stage. Snap exactly onto
+       * the target (cancelling the smooth scroll) first.
+       */
+      if (
+        targetY !== null &&
+        Math.abs(window.scrollY - targetY) >
+          0.5
+      ) {
+        window.scrollTo({
+          top: targetY,
+          behavior:
+            "instant" as ScrollBehavior,
+        });
       }
 
       targetStageRef.current = null;
@@ -333,16 +399,19 @@ export function WorkflowSection() {
 
       /*
        * IMPORTANT:
-       *
        * The next stage becomes active ONLY HERE.
-       *
-       * The normal scroll listener is not allowed to
-       * activate it while the automatic scroll is occurring.
        */
       updateState({
         isTransitioning: false,
         targetStage: null,
       });
+
+      // Consume the automatic destination exactly once.
+      if (
+        pendingStageRef.current === target
+      ) {
+        pendingStageRef.current = null;
+      }
 
       startStage(target);
     }, [
@@ -381,7 +450,10 @@ export function WorkflowSection() {
   // ---------------------------------------------------------
 
   const scrollToStage = useCallback(
-    (stageIndex: number) => {
+    (
+      stageIndex: number,
+      isAutomaticTransition = false
+    ) => {
       const section =
         sectionRef.current;
 
@@ -398,14 +470,34 @@ export function WorkflowSection() {
           )
         );
 
+      /*
+       * Automatic progression is one-shot. Only the exact stage
+       * recorded by the completion handler may consume it.
+       */
+      if (
+        isAutomaticTransition &&
+        pendingStageRef.current !==
+          clampedIndex
+      ) {
+        return;
+      }
+
       // Cancel any previous transition watcher before starting
       // a new one. This prevents two transitions racing each other.
       stopAutoScrollWatchdog();
 
-      // Invalidate the old demo session. The completed demo has
-      // already reached its next node, so nothing from that session
-      // is allowed to change the timeline during the scroll.
-      pauseDemo();
+      /*
+       * Manual jump:
+       * stop the current demo first.
+       *
+       * Automatic completion:
+       * the completed playback has already sent DONE and its
+       * session has already been invalidated. Do not send a
+       * second PAUSE between stages.
+       */
+      if (!isAutomaticTransition) {
+        pauseDemo();
+      }
 
       const sectionTop =
         section.getBoundingClientRect()
@@ -425,6 +517,11 @@ export function WorkflowSection() {
       targetStageRef.current =
         clampedIndex;
 
+      pendingStageRef.current =
+        isAutomaticTransition
+          ? clampedIndex
+          : null;
+
       targetScrollYRef.current =
         targetTop;
 
@@ -442,30 +539,21 @@ export function WorkflowSection() {
       });
 
       const reachedTarget = () => {
-        const currentTarget =
-          targetScrollYRef.current;
+  const target = targetScrollYRef.current;
+  const direction = transitionDirectionRef.current;
 
-        const currentDirection =
-          transitionDirectionRef.current;
+  if (target === null || direction === null) {
+    return false;
+  }
 
-        if (
-          currentTarget === null ||
-          currentDirection === null
-        ) {
-          return false;
-        }
+  const tolerance = 2;
 
-        // A small tolerance prevents sub-pixel scroll values from
-        // leaving the transition permanently waiting.
-        const tolerance = 2;
+  if (direction === "forward") {
+    return window.scrollY >= target - tolerance;
+  }
 
-        return
-          currentDirection === "forward"
-            ? window.scrollY >=
-                currentTarget - tolerance
-            : window.scrollY <=
-                currentTarget + tolerance;
-      };
+  return window.scrollY <= target + tolerance;
+};
 
       const watchScroll = () => {
         if (!stateRef.current.isTransitioning) {
@@ -560,12 +648,31 @@ export function WorkflowSection() {
         .top +
       window.scrollY;
 
+    /*
+     * The section is exactly one viewport per stage, so the
+     * last stage sits at the very end of the sticky range.
+     * Scrolling to the section's bottom edge brings the next
+     * fold to the top of the viewport. Clamp to the maximum
+     * scrollable position so we never wait for a position
+     * the page cannot reach.
+     */
+    const maxScrollY =
+      Math.max(
+        0,
+        document.documentElement
+          .scrollHeight -
+          window.innerHeight
+      );
+
     const finaleTop =
-      sectionTop +
-      window.innerHeight *
-        WALKTHROUGH_VIEWPORTS;
+      Math.min(
+        sectionTop +
+          section.offsetHeight,
+        maxScrollY
+      );
 
     targetStageRef.current = null;
+    pendingStageRef.current = null;
 
     targetScrollYRef.current =
       finaleTop;
@@ -583,7 +690,10 @@ export function WorkflowSection() {
       currentPlayingClip: null,
     });
 
-    if (window.scrollY === finaleTop) {
+    if (
+      window.scrollY >=
+      finaleTop - SCROLL_TOLERANCE_PX
+    ) {
       finishFinaleTransition();
       return;
     }
@@ -592,9 +702,28 @@ export function WorkflowSection() {
       top: finaleTop,
       behavior: "smooth",
     });
+
+    // Safety fallback so the scroll lock can never get stuck.
+    stopAutoScrollWatchdog();
+
+    autoScrollTimeoutRef.current =
+      window.setTimeout(() => {
+        autoScrollTimeoutRef.current =
+          null;
+
+        if (
+          stateRef.current
+            .isTransitioning &&
+          transitionKindRef.current ===
+            "finale"
+        ) {
+          finishFinaleTransition();
+        }
+      }, 2500);
   }, [
     finishFinaleTransition,
     pauseDemo,
+    stopAutoScrollWatchdog,
     updateState,
   ]);
 
@@ -676,6 +805,7 @@ export function WorkflowSection() {
           false;
 
         targetStageRef.current = null;
+        pendingStageRef.current = null;
         targetScrollYRef.current = null;
         transitionDirectionRef.current =
           null;
@@ -716,8 +846,12 @@ export function WorkflowSection() {
 
         const reached =
           direction === "forward"
-            ? window.scrollY >= targetY
-            : window.scrollY <= targetY;
+            ? window.scrollY >=
+              targetY -
+                SCROLL_TOLERANCE_PX
+            : window.scrollY <=
+              targetY +
+                SCROLL_TOLERANCE_PX;
 
         if (reached) {
           if (
@@ -758,7 +892,8 @@ export function WorkflowSection() {
           Math.max(
             0,
             (window.scrollY -
-              sectionTop) /
+              sectionTop +
+              SCROLL_TOLERANCE_PX) /
               viewportHeight
           );
 
@@ -796,13 +931,19 @@ export function WorkflowSection() {
           rect.top +
           window.scrollY;
 
+        /*
+         * Tolerance: being 1-2px short of a stage boundary
+         * (smooth-scroll tail, sub-pixel rounding) must NOT
+         * count as being in the previous stage.
+         */
         const relativePosition =
           Math.max(
             0,
             Math.min(
               LAST_STAGE_INDEX,
               (window.scrollY -
-                sectionTop) /
+                sectionTop +
+                SCROLL_TOLERANCE_PX) /
                 viewportHeight
             )
           );
@@ -928,7 +1069,7 @@ export function WorkflowSection() {
 
       if (
         data.type ===
-        "VIVI_WORKFLOW_PROGRESS"
+        "VISL_WORKFLOW_PROGRESS"
       ) {
         /*
          * A progress message MUST belong to the current
@@ -980,7 +1121,7 @@ export function WorkflowSection() {
          * 0 <= stageProgress <= 1
          */
         // Do not allow the live progress event to reach the next
-        // node. Only VIVI_WORKFLOW_DONE is allowed to place the
+        // node. Only VISL_WORKFLOW_DONE is allowed to place the
         // line exactly on that node.
         const stageProgress =
           Math.max(
@@ -1068,7 +1209,7 @@ export function WorkflowSection() {
 
       if (
         data.type !==
-        "VIVI_WORKFLOW_DONE"
+        "VISL_WORKFLOW_DONE"
       ) {
         return;
       }
@@ -1174,10 +1315,16 @@ export function WorkflowSection() {
        *        ↓
        * begin automatic scroll
        */
+      // Record the exact next stage before the automatic
+      // scroll begins. No other callback may consume it.
+      pendingStageRef.current =
+        nextIndex;
+
       window.requestAnimationFrame(
         () => {
           scrollToStage(
-            nextIndex
+            nextIndex,
+            true
           );
         }
       );
@@ -1371,7 +1518,7 @@ export function WorkflowSection() {
               <span className="workflow-kicker-dot" />
 
               <span className="workflow-kicker-brand">
-                VIVI STUDIO
+                VISL STUDIO
               </span>
 
               <span className="workflow-kicker-title">
@@ -1420,9 +1567,7 @@ export function WorkflowSection() {
                 <div
                   className="workflow-vertical-progress"
                   style={{
-                    height: `${
-                      demoProgress * 100
-                    }%`,
+                    transform: `scaleY(${demoProgress})`,
                   }}
                 />
 

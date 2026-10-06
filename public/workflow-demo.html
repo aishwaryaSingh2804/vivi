@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Vivi – Setup stage demo</title>
+<title>Visl – Setup stage demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
@@ -934,7 +934,7 @@ const hudHTML=p=>['Prompt','Essentials','Script','Assets','Editor','Publish'].ma
 const stageItems=[['Prompt','sparkle','done'],['Video Essentials','sliders','act'],['Script','file','pend'],['Assets','image','pend'],['Editor','wand','pend'],['Publish','play','dis']];
 
 const rings='<div class="ring"></div><div class="ring"></div><div class="ring"></div>';
-const INTRO_LOGO=rings+'<div class="logo big">V</div><div class="iw">Vivi</div><small>AI Video Studio</small>';
+const INTRO_LOGO=rings+'<div class="logo big">V</div><div class="iw">Visl</div><small>AI Video Studio</small>';
 const introStage=(n,t)=>rings+`<small class="sn">Stage ${n} of 6</small><div class="iw">${t}</div><div class="hud light big">${hudHTML('i')}</div>`;
 const mkHTML=(introHTML,nextTxt)=>`
 <div id="intro">${introHTML}</div>
@@ -952,9 +952,9 @@ const mkHTML=(introHTML,nextTxt)=>`
   <div class="orb" style="left:900px;top:760px;width:340px;height:340px;background:#ffd3c4;animation-delay:-5s"></div>
   <svg class="spk" style="left:1460px;top:170px;animation-delay:0s" width="34" height="34" viewBox="0 0 24 24"><path fill="#fff" d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg><svg class="spk" style="left:1320px;top:330px;animation-delay:0.8s" width="22" height="22" viewBox="0 0 24 24"><path fill="#fff" d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg><svg class="spk" style="left:1560px;top:300px;animation-delay:1.5s" width="26" height="26" viewBox="0 0 24 24"><path fill="#fff" d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg><svg class="spk" style="left:360px;top:250px;animation-delay:0.4s" width="20" height="20" viewBox="0 0 24 24"><path fill="#fff" d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg><svg class="spk" style="left:1100px;top:120px;animation-delay:1.9s" width="18" height="18" viewBox="0 0 24 24"><path fill="#fff" d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
 
-  <div id="hlogo" class="st" style="--i:0"><div class="logo">V</div>Vivi</div>
+  <div id="hlogo" class="st" style="--i:0"><div class="logo">V</div>Visl</div>
   <div id="hnav" class="st" style="--i:1">
-    <div class="pill-grey">${ic('sparkle',16)}Vivi Studio</div>
+    <div class="pill-grey">${ic('sparkle',16)}Visl Studio</div>
     <div class="pill-av"><div class="av">${ic('user',20)}</div></div>
     <div class="bellc" style="margin-top:30px">${ic('bell',22)}</div>
   </div>
@@ -964,7 +964,7 @@ const mkHTML=(introHTML,nextTxt)=>`
       <div class="h1 st" style="--i:2">What should we</div>
       <div class="scriptbox" id="scr" style="opacity:0">create?<svg class="sqg" viewBox="0 0 200 26" preserveAspectRatio="none"><path pathLength="100" d="M2 14 Q 14 2 26 14 T 50 14 T 74 14 T 98 14 T 122 14 T 146 14 T 170 14 T 198 14"/></svg></div>
     </div>
-    <div class="sub st" style="--i:4">Describe the story or paste a link. Vivi will guide the rest.</div>
+    <div class="sub st" style="--i:4">Describe the story or paste a link. Visl will guide the rest.</div>
     <div class="pbox st" id="pbox" style="--i:5">
       <div class="ptext"><span id="typed"></span><span class="caret"></span></div>
       <div class="pfoot"><span>Starts from the written prompt only</span><div class="btn" id="startBtn">${ic('arrow',20,2.4)}<span>Start creating</span></div></div>
@@ -978,7 +978,7 @@ const mkHTML=(introHTML,nextTxt)=>`
 <!-- SETUP -->
 <div class="scene" id="setup">
   <div id="side">
-    <div class="top st" style="--i:0"><div class="logo sm">V</div><div><b>Vivi</b><small>AI Video Studio</small></div><span class="col">${ic('dbl',20)}</span></div>
+    <div class="top st" style="--i:0"><div class="logo sm">V</div><div><b>Visl</b><small>AI Video Studio</small></div><span class="col">${ic('dbl',20)}</span></div>
     <div class="stg st" style="--i:1">STAGES</div>
     ${stageItems.map((s,i)=>`<div class="item st ${s[2]==='act'?'act':''} ${s[2]==='dis'?'dis':''}" id="it${i}" style="--i:${i+2}"><span class="ico">${ic(s[1],18)}</span>${s[0]}${(s[2]==='done'||s[2]==='act')?`<span class="ck ${s[2]==='act'?'hide':''}" id="ck${i}">${ic('check',18,2.6)}</span>`:''}</div>`).join('')}
     <div id="sbot" class="st" style="--i:3">
@@ -988,7 +988,7 @@ const mkHTML=(introHTML,nextTxt)=>`
       <div class="urow"><div class="av">${ic('user',20)}</div>${ic('logout',20)}</div>
     </div>
   </div>
-  <div id="rail" class="st" style="--i:3"><div class="sp">${ic('panel',22)}</div><div class="sp">${ic('sparkle',22)}</div><div class="vt">ASK VIVI</div><div class="bl">${ic('bell',22)}</div></div>
+  <div id="rail" class="st" style="--i:3"><div class="sp">${ic('panel',22)}</div><div class="sp">${ic('sparkle',22)}</div><div class="vt">ASK VISL</div><div class="bl">${ic('bell',22)}</div></div>
   <div id="mw"><div id="mi">
     <h1 class="ptitle st" style="--i:2">Vikas's World Cup Dream</h1>
     <div class="pcard st" id="pcard" style="--i:3"><div class="pin"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 17v5M9 10.8a2 2 0 01-1.1 1.8l-1.8.9A2 2 0 005 15.2V16a1 1 0 001 1h12a1 1 0 001-1v-.8a2 2 0 00-1.1-1.8l-1.8-.9a2 2 0 01-1.1-1.8V7a1 1 0 011-1 2 2 0 000-4H8a2 2 0 000 4 1 1 0 011 1z"/></svg></div><div class="plab">ORIGINAL PROMPT</div><div class="ptxt">${PROMPT}</div></div>
@@ -1017,7 +1017,7 @@ const mkHTML=(introHTML,nextTxt)=>`
           ${sc('vs4',ART.a5,'Family Sitcom',['Family'])}
         </div></div><div style="height:12px"></div>`)}
       </div>
-      <div class="pwh">Choose how much power Vivi should use</div>
+      <div class="pwh">Choose how much power Visl should use</div>
       <div class="pwc">Balance quality, speed, and cost before the agent starts creating.</div>
       <div class="pws">
         ${power('pw0','diamond','c-v','Ultra',60)}${power('pw1','wand','c-t','Max',50,1)}${power('pw2','sliders','c-g','Pro',40)}${power('pw3','cc','c-p','Standard',30)}
@@ -1262,7 +1262,7 @@ function docHTML(p){
 const NAVS=[["01","Vikas’s village — lane outside home",3],["02","Vikas’s village — lane outside home",2],["03","Vikas’s village — lane outside home",3],["04","Route to district ground — rural footpath",3],["05","District cricket ground — practice and selection field",4],["06","District cricket ground — match day",3],["07","World Cup stadium — final over",4]];
 const CAST=[['V','Vikas'],['V(','Vikas (age 24, India jersey)'],['VM',"Vikas's Mother"],['DC','District Coach']];
 const sbar=(id)=>`<div class="sbar"><i class="tri u"></i><div class="th" id="${id}"></div><i class="tri d"></i></div>`;
-const railR=()=>`<div class="railr st" style="--i:3"><div class="sp">${ic('panel',22)}</div><div class="sp">${ic('sparkle',22)}</div><div class="vt">ASK VIVI</div><div class="bl">${ic('bell',22)}</div></div>`;
+const railR=()=>`<div class="railr st" style="--i:3"><div class="sp">${ic('panel',22)}</div><div class="sp">${ic('sparkle',22)}</div><div class="vt">ASK VISL</div><div class="bl">${ic('bell',22)}</div></div>`;
 const RL=[['sparkle','done'],['sliders','done'],['file','act'],['image','pend'],['wand','pend'],['play','dis']];
 
 function scriptScene(){ return `
@@ -1557,10 +1557,10 @@ function wireAssets(e){
 Object.assign(P,{uparrow:'<path d="M12 19V5M6 11l6-6 6 6"/>'});
 const chatPanelHTML=()=>`
 <div id="chatPanel">
-  <div class="chh"><div class="chb">${ic('sparkle',22)}</div><div class="cht"><b>Vivi</b><small id="chSub">Editor is ready for your review.</small></div><div class="chc2">${ic('bell',20)}</div>${ic('panel',22)}</div>
-  <div id="chatMsgs"><div class="chempty">LET’S CREATE WITH VIVI</div></div>
+  <div class="chh"><div class="chb">${ic('sparkle',22)}</div><div class="cht"><b>Visl</b><small id="chSub">Editor is ready for your review.</small></div><div class="chc2">${ic('bell',20)}</div>${ic('panel',22)}</div>
+  <div id="chatMsgs"><div class="chempty">LET’S CREATE WITH VISL</div></div>
   <div class="pendbar" id="pendBar"><span class="pd"></span><span id="pendTxt">3 edits applied · waiting to be saved</span><span class="pdisc" id="pendDisc">Discard</span><span class="psave" id="chatSave">Save</span></div>
-  <div class="cin" id="chatIn"><div class="crow2"><div class="tx"><span id="chatTyped"></span><span class="caretx" id="chatCaret"></span><span class="ph" id="chatPh">Ask Vivi a question or describe an edit...</span></div><div class="csend" id="chatSend">${ic('uparrow',20,2.4)}</div></div><div class="hint3">Enter to send · Shift+Enter for a new line</div></div>
+  <div class="cin" id="chatIn"><div class="crow2"><div class="tx"><span id="chatTyped"></span><span class="caretx" id="chatCaret"></span><span class="ph" id="chatPh">Ask Visl a question or describe an edit...</span></div><div class="csend" id="chatSend">${ic('uparrow',20,2.4)}</div></div><div class="hint3">Enter to send · Shift+Enter for a new line</div></div>
   <div class="padb"></div>
 </div>`;
 
@@ -1569,7 +1569,7 @@ function chatMsg(kind,label,html){
   const em=document.querySelector('.chempty'); if(em)em.remove();
   $('chatMsgs').appendChild(m); requestAnimationFrame(()=>requestAnimationFrame(()=>m.classList.add('in'))); return m;
 }
-function chatTyping(){ return chatMsg('v','VIVI','<span class="dots"><i></i><i></i><i></i></span>'); }
+function chatTyping(){ return chatMsg('v','VISL','<span class="dots"><i></i><i></i><i></i></span>'); }
 function chatTypeFn(text){ let last=-1; return p=>{ const n=Math.round(text.length*p); if(n===last)return; last=n; $('chatTyped').textContent=text.slice(0,n); $('chatPh').style.display=n>0?'none':''; $('chatSend').classList.toggle('on',n>0); if(n%2===0)SFX.key(); }; }
 function chatClear(){ $('chatTyped').textContent=''; $('chatPh').style.display=''; $('chatSend').classList.remove('on'); $('chatCaret').classList.remove('on'); $('chatIn').classList.remove('foc'); }
 function focusInput(){ $('chatIn').classList.add('foc'); $('chatCaret').classList.add('on'); }
@@ -1593,8 +1593,8 @@ function wireVibe(e){
   e(1.5,()=>{$('arl4').classList.add('glow'); cap('Stage 5: Editor');});
   e(2.9,uncap);
 
-  /* open Ask Vivi */
-  e(3.0,()=>{cap('Ask Vivi to edit any asset'); gz('askBtn',.5,.5,.6,1.3);});
+  /* open Ask Visl */
+  e(3.0,()=>{cap('Ask Visl to edit any asset'); gz('askBtn',.5,.5,.6,1.3);});
   e(3.7,()=>{ripple(); stage.classList.add('chatopen'); $('assets').classList.add('chatOpen'); SFX.whoosh(); zoomOff(.7);});
   e(4.6,uncap);
 
@@ -1604,14 +1604,14 @@ function wireVibe(e){
   e(7.1,()=>gc('chatSend',.5,.5,.4,1.45));
   e(7.6,()=>{ripple(); press($('chatSend')); chatMsg('u','YOU',T1); chatClear(); SFX.pop(600); uncap();});
   e(8.0,()=>{zoomOff(.5); tp=chatTyping();});
-  e(9.0,()=>{tp.remove(); chatMsg('v','VIVI','Should I change Vikas’s shirt by editing the existing image or redrawing it from scratch?<div class="opts"><span id="optEdit">Edit image</span><span>Redraw from scratch</span></div>'); SFX.pop(520); zoom(1.25,1920,700,.6);});
+  e(9.0,()=>{tp.remove(); chatMsg('v','VISL','Should I change Vikas’s shirt by editing the existing image or redrawing it from scratch?<div class="opts"><span id="optEdit">Edit image</span><span>Redraw from scratch</span></div>'); SFX.pop(520); zoom(1.25,1920,700,.6);});
   e(9.8,()=>gc('optEdit',.5,.5,.45,1.4));
   e(10.2,()=>hov($('optEdit')));
   e(10.4,()=>{ripple(); press($('optEdit')); hov(null); chatMsg('u','YOU','Edit image'); SFX.pop(600);});
   e(10.8,()=>{tp=chatTyping();});
-  e(11.5,()=>{tp.remove(); chatMsg('v','VIVI','Applying 1 edit: asset appearance.'); $('chI0').classList.add('loading'); cap('Only Vikas is re-rendered'); go('chI0',.5,.45,.7,true); {const r=raw($('chI0')); zoom(1.14,900,r.y+r.h/2,.8);} SFX.shimmer();});
+  e(11.5,()=>{tp.remove(); chatMsg('v','VISL','Applying 1 edit: asset appearance.'); $('chI0').classList.add('loading'); cap('Only Vikas is re-rendered'); go('chI0',.5,.45,.7,true); {const r=raw($('chI0')); zoom(1.14,900,r.y+r.h/2,.8);} SFX.shimmer();});
   e(13.9,()=>{$('chI0').classList.remove('loading'); $('chI0').classList.add('swapped'); SFX.chimes([659,880,1047],.09);});
-  e(14.4,()=>{chatMsg('v','VIVI','Done. Vikas now wears a red shirt.'); uncap(); zoomOff(.6);});
+  e(14.4,()=>{chatMsg('v','VISL','Done. Vikas now wears a red shirt.'); uncap(); zoomOff(.6);});
 
   /* prompt 2: voice */
   e(14.9,()=>gc('chatIn',.35,.45,.5,1.5));
@@ -1619,9 +1619,9 @@ function wireVibe(e){
   e(17.0,()=>gc('chatSend',.5,.5,.4,1.45));
   e(17.5,()=>{ripple(); press($('chatSend')); chatMsg('u','YOU',T2); chatClear(); SFX.pop(600); uncap();});
   e(17.9,()=>{zoomOff(.5); tp=chatTyping();});
-  e(18.7,()=>{tp.remove(); chatMsg('v','VIVI','Applying 1 edit: asset voice.'); const v=$('vp1'); v.classList.add('updating'); $('vps1').textContent='Updating voice…'; cap('Adult Vikas gets a heavier voice'); go('vp1',.5,.5,.7,true); {const r=raw($('vp1')); zoom(1.14,900,r.y+r.h/2,.8);} SFX.shimmer();});
+  e(18.7,()=>{tp.remove(); chatMsg('v','VISL','Applying 1 edit: asset voice.'); const v=$('vp1'); v.classList.add('updating'); $('vps1').textContent='Updating voice…'; cap('Adult Vikas gets a heavier voice'); go('vp1',.5,.5,.7,true); {const r=raw($('vp1')); zoom(1.14,900,r.y+r.h/2,.8);} SFX.shimmer();});
   e(20.2,()=>{const v=$('vp1'); v.classList.remove('updating'); v.classList.add('upd'); $('vps1').textContent='Updated'; SFX.chimes([523,659,784],.09);});
-  e(20.6,()=>{chatMsg('v','VIVI','Done. Vikas (age 24, India jersey) now has a deeper, heavier voice.'); uncap(); zoomOff(.6);});
+  e(20.6,()=>{chatMsg('v','VISL','Done. Vikas (age 24, India jersey) now has a deeper, heavier voice.'); uncap(); zoomOff(.6);});
 
   /* prompt 3: dialogue */
   e(21.1,()=>gc('chatIn',.35,.45,.5,1.5));
@@ -1629,8 +1629,8 @@ function wireVibe(e){
   e(23.4,()=>gc('chatSend',.5,.5,.4,1.45));
   e(23.9,()=>{ripple(); press($('chatSend')); chatMsg('u','YOU',T3); chatClear(); SFX.pop(600); uncap();});
   e(24.3,()=>{zoomOff(.5); tp=chatTyping();});
-  e(25.1,()=>{tp.remove(); chatMsg('v','VIVI','Applying 1 edit: script dialogue.'); SFX.shimmer(); cap('The possibilities are endless with vibe editing');});
-  e(26.0,()=>{ const m=chatMsg('v','VIVI','Updated Vikas’s line in Scene 01.<div class="diff"><div class="dh">SCENE 01 · VIKAS</div><div class="dold hi">माँ, एक दिन मेरे शॉट पर पूरा देश खड़ा होगा। देखना, यह गेंद ईंटों के पार ही जाएगी।</div><div class="dnew hi" id="dnew">माँ, एक दिन मेरे हर शॉट पर पूरा देश तालियाँ बजाएगा। मैं तेरा सपना पूरा करके दिखाऊँगा।</div></div>'); SFX.chimes([587,740,880],.1); zoom(1.3,1920,640,.7); setTimeout(()=>{const d=$('dnew'); if(d)d.classList.add('in');},500*k); });
+  e(25.1,()=>{tp.remove(); chatMsg('v','VISL','Applying 1 edit: script dialogue.'); SFX.shimmer(); cap('The possibilities are endless with vibe editing');});
+  e(26.0,()=>{ const m=chatMsg('v','VISL','Updated Vikas’s line in Scene 01.<div class="diff"><div class="dh">SCENE 01 · VIKAS</div><div class="dold hi">माँ, एक दिन मेरे शॉट पर पूरा देश खड़ा होगा। देखना, यह गेंद ईंटों के पार ही जाएगी।</div><div class="dnew hi" id="dnew">माँ, एक दिन मेरे हर शॉट पर पूरा देश तालियाँ बजाएगा। मैं तेरा सपना पूरा करके दिखाऊँगा।</div></div>'); SFX.chimes([587,740,880],.1); zoom(1.3,1920,640,.7); setTimeout(()=>{const d=$('dnew'); if(d)d.classList.add('in');},500*k); });
   e(28.2,()=>{uncap(); zoomOff(.6);});
 
   /* save */
@@ -2021,7 +2021,7 @@ function tick(ts) {
     window.parent.postMessage(
   {
     type:
-      "VIVI_WORKFLOW_PROGRESS",
+      "VISL_WORKFLOW_PROGRESS",
 
     clip:
       clipKey,
@@ -2059,7 +2059,7 @@ function tick(ts) {
       window.parent.postMessage(
   {
     type:
-      "VIVI_WORKFLOW_PROGRESS",
+      "VISL_WORKFLOW_PROGRESS",
 
     clip:
       clipKey,
@@ -2111,7 +2111,7 @@ function finish() {
     window.parent.postMessage(
       {
         type:
-          'VIVI_WORKFLOW_DONE',
+          'VISL_WORKFLOW_DONE',
 
         clip:
           clipKey,
@@ -2176,7 +2176,7 @@ if (embedMode) {
        */
       if (
         data?.type ===
-        'VIVI_WORKFLOW_PLAY'
+        'VISL_WORKFLOW_PLAY'
       ) {
         const nextClip =
           data.clip;
@@ -2225,7 +2225,7 @@ if (embedMode) {
        */
       if (
         data?.type ===
-        'VIVI_WORKFLOW_PAUSE'
+        'VISL_WORKFLOW_PAUSE'
       ) {
         cancelAnimationFrame(
           raf
