@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ROUTES } from '../../lib/routes';
+
 const DEMO_PROMPTS = [
   {
     label: 'Microdrama',
@@ -73,7 +74,9 @@ export function HeroPrompt() {
       });
 
       if (!cancelled) {
-        setPromptIndex((current) => (current + 1) % DEMO_PROMPTS.length);
+        setPromptIndex(
+          (current) => (current + 1) % DEMO_PROMPTS.length
+        );
       }
     };
 
@@ -89,22 +92,15 @@ export function HeroPrompt() {
     setIsFocused(true);
   };
 
-  // Mobile story chips: fill the composer with an example idea.
-  const handleChipClick = (index: number) => {
-    setPromptIndex(index);
-    setValue(DEMO_PROMPTS[index].text);
-    setIsFocused(true);
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setValue(event.target.value);
   };
 
-const handleStart = () => {
-  navigate(ROUTES.COMING_SOON);
-};
-
-  
+  const handleStart = () => {
+    navigate(ROUTES.COMING_SOON);
+  };
 
   return (
     <div className="vivi-prompt-wrapper">
@@ -156,26 +152,6 @@ const handleStart = () => {
             </svg>
           </button>
         </div>
-      </div>
-
-      {/* Mobile-only quick ideas (hidden on desktop via CSS) */}
-      <div
-        className="vivi-mobile-chips"
-        role="group"
-        aria-label="Try an example story idea"
-      >
-        {DEMO_PROMPTS.map((prompt, index) => (
-          <button
-            key={prompt.label}
-            type="button"
-            className={`vivi-mobile-chip${
-              value === prompt.text ? ' is-active' : ''
-            }`}
-            onClick={() => handleChipClick(index)}
-          >
-            {prompt.label}
-          </button>
-        ))}
       </div>
     </div>
   );
