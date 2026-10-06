@@ -195,7 +195,7 @@ export function Navbar() {
         {/* RIGHT SIDE ACTIONS */}
         <div className="vivi-navbar-actions">
           <Link
-            to={ROUTES.LOGIN}
+            to="/coming-soon"
             className="vivi-navbar-login"
             onClick={closeMenu}
           >
@@ -203,7 +203,7 @@ export function Navbar() {
           </Link>
 
           <Link
-            to={ROUTES.SIGNUP}
+            to="/coming-soon"
             className="vivi-navbar-signup"
             onClick={closeMenu}
           >

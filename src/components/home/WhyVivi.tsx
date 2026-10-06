@@ -251,7 +251,7 @@ window into a flooded city...
   <h3>{feature.title}</h3>
   <p>{feature.description}</p>
 
-  <a href="/signup" className="feature-create-btn">
+  <a href="/coming-soon" className="feature-create-btn">
     <span className="feature-btn-sparkle">✦</span>
     <span>Start Creating</span>
     <span className="feature-btn-arrow">↗</span>

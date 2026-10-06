@@ -1,0 +1,854 @@
+/* =========================================================
+   VISL — COMING SOON
+   ========================================================= */
+
+.coming-soon-page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  min-height: calc(100svh - 72px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  box-sizing: border-box;
+
+  background: #07111f;
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.coming-soon-background {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 45%,
+      rgba(32, 65, 118, 0.18),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 45% at 5% 20%,
+      rgba(45, 65, 105, 0.10),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 45% at 95% 80%,
+      rgba(50, 58, 100, 0.08),
+      transparent 70%
+    ),
+    #07111f;
+}
+
+
+/* =========================================================
+   MOVING GRID
+   ========================================================= */
+
+.coming-soon-grid {
+  position: absolute;
+  inset: -100px;
+
+  z-index: 1;
+
+  background-image:
+    linear-gradient(
+      rgba(111, 145, 194, 0.055) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(111, 145, 194, 0.055) 1px,
+      transparent 1px
+    );
+
+  background-size: 64px 64px;
+
+  transform:
+    perspective(1100px)
+    rotateX(1deg)
+    scale(1.03);
+
+  mask-image:
+    radial-gradient(
+      ellipse at center,
+      black 10%,
+      rgba(0, 0, 0, 0.85) 48%,
+      rgba(0, 0, 0, 0.35) 78%,
+      transparent 100%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse at center,
+      black 10%,
+      rgba(0, 0, 0, 0.85) 48%,
+      rgba(0, 0, 0, 0.35) 78%,
+      transparent 100%
+    );
+
+  animation: coming-soon-grid-drift 42s linear infinite;
+
+  will-change: background-position;
+}
+
+
+@keyframes coming-soon-grid-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: 64px 64px, 64px 64px;
+  }
+}
+
+
+/* =========================================================
+   AMBIENT GLOWS
+   ========================================================= */
+
+.coming-soon-glow {
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  border-radius: 50%;
+
+  filter: blur(110px);
+
+  opacity: 0.075;
+
+  pointer-events: none;
+
+  z-index: 2;
+
+  animation:
+    coming-soon-glow-float
+    18s
+    ease-in-out
+    infinite;
+
+  will-change: transform;
+}
+
+
+.coming-soon-glow-one {
+  top: -300px;
+  left: -100px;
+
+  background: #456a9f;
+}
+
+
+.coming-soon-glow-two {
+  right: -320px;
+  bottom: -300px;
+
+  background: #4c4e82;
+
+  animation-delay: -7s;
+}
+
+
+.coming-soon-glow-three {
+  left: 35%;
+  bottom: -420px;
+
+  width: 440px;
+  height: 440px;
+
+  background: #53617a;
+
+  opacity: 0.045;
+
+  animation-delay: -12s;
+}
+
+
+@keyframes coming-soon-glow-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(24px, 18px, 0);
+  }
+}
+
+
+/* =========================================================
+   VIGNETTE
+   ========================================================= */
+
+.coming-soon-vignette {
+  position: absolute;
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 20%,
+      rgba(2, 7, 15, 0.12) 58%,
+      rgba(2, 7, 15, 0.48) 100%
+    );
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.coming-soon-content {
+  position: relative;
+
+  z-index: 10;
+
+  width: min(900px, calc(100% - 48px));
+
+  margin: 0 auto;
+
+  padding: 58px 0 68px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.coming-soon-brand {
+  display: inline-block;
+
+  margin-bottom: 74px;
+
+  color: #ffffff;
+
+  font-family: var(--ff-display);
+
+  font-size: 34px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -0.055em;
+
+  text-decoration: none;
+
+  text-shadow:
+    0 0 22px rgba(255, 255, 255, 0.06);
+
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease;
+}
+
+
+.coming-soon-brand span {
+  color: #ffffff;
+}
+
+
+.coming-soon-brand:hover {
+  transform: translateY(-2px);
+  opacity: 0.84;
+}
+
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.coming-soon-eyebrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+
+  color: #899dbd;
+
+  font-family: var(--ff-mono, monospace);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+
+  text-shadow:
+    0 0 18px rgba(83, 116, 169, 0.20);
+}
+
+
+.eyebrow-line {
+  width: 30px;
+  height: 1px;
+
+  background: rgba(111, 140, 184, 0.50);
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.coming-soon-title {
+  min-height: 1.05em;
+
+  margin: 0;
+
+  color: #f1f3f6;
+
+  font-family: var(--ff-display);
+
+  font-size: clamp(48px, 7vw, 82px);
+
+  font-weight: 400;
+
+  line-height: 0.98;
+
+  letter-spacing: -0.055em;
+
+  text-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.35);
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TYPEWRITER CURSOR
+   ========================================================= */
+
+.typewriter-cursor {
+  display: inline-block;
+
+  width: 3px;
+  height: 0.78em;
+
+  margin-left: 8px;
+
+  vertical-align: -0.04em;
+
+  background: #8196b9;
+
+  border-radius: 2px;
+
+  box-shadow:
+    0 0 10px rgba(112, 139, 181, 0.45);
+
+  animation:
+    typewriter-blink
+    0.85s
+    steps(1)
+    infinite;
+}
+
+
+@keyframes typewriter-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  46%,
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   SUBTITLE
+   ========================================================= */
+
+.coming-soon-description {
+  width: min(720px, 100%);
+
+  margin: 28px auto 36px;
+
+  color: rgba(222, 229, 239, 0.91);
+
+  font-family: var(--ff-display);
+
+  font-size: 20px;
+  font-weight: 400;
+
+  line-height: 1.62;
+
+  letter-spacing: -0.008em;
+
+  text-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.42);
+}
+
+
+.description-accent {
+  color: #b9c7db;
+
+  font-style: italic;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.coming-soon-back {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 15px 24px;
+
+  border: 0;
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6651bd 0%,
+      #7659ca 100%
+    );
+
+  color: #ffffff;
+
+  font-family: var(--ff-mono, monospace);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.01em;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 25px rgba(71, 55, 145, 0.22),
+    0 4px 10px rgba(55, 45, 105, 0.14);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+
+.coming-soon-back:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 32px rgba(71, 55, 145, 0.28),
+    0 6px 14px rgba(55, 45, 105, 0.18);
+
+  filter: brightness(1.07);
+}
+
+
+.coming-soon-back:active {
+  transform: translateY(-1px);
+}
+
+
+.button-sparkle {
+  font-size: 17px;
+  line-height: 1;
+
+  transform: translateY(-1px);
+}
+
+
+.button-arrow {
+  font-size: 18px;
+  line-height: 1;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.coming-soon-back:hover .button-arrow {
+  transform: translate(2px, -2px);
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.coming-soon-status {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 28px;
+
+  color: rgba(145, 161, 185, 0.60);
+
+  font-family: var(--ff-mono, monospace);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.13em;
+}
+
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #7185a3;
+
+  box-shadow:
+    0 0 9px rgba(117, 138, 169, 0.55);
+
+  animation:
+    status-pulse 1.8s ease-in-out infinite;
+}
+
+
+.status-pulse {
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: rgba(130, 149, 177, 0.40);
+}
+
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 720px) {
+  .coming-soon-page {
+    min-height: calc(100svh - 72px);
+
+    align-items: center;
+  }
+
+
+  .coming-soon-content {
+    width: calc(100% - 40px);
+
+    min-height: calc(100svh - 72px);
+
+    padding:
+      34px
+      0
+      38px;
+
+    /*
+     * IMPORTANT:
+     * Do NOT use space-between here.
+     * It creates the giant empty gaps seen previously.
+     */
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+  }
+
+
+  /* -------------------------------------------------------
+     LOGO
+     ------------------------------------------------------- */
+
+  .coming-soon-brand {
+    margin-bottom: clamp(72px, 12vh, 110px);
+
+    font-size: 31px;
+  }
+
+
+  /* -------------------------------------------------------
+     EYEBROW
+     ------------------------------------------------------- */
+
+  .coming-soon-eyebrow {
+    gap: 8px;
+
+    margin-bottom: 17px;
+
+    font-size: 8px;
+
+    letter-spacing: 0.105em;
+  }
+
+
+  .eyebrow-line {
+    width: 22px;
+  }
+
+
+  /* -------------------------------------------------------
+     TITLE
+     ------------------------------------------------------- */
+
+  .coming-soon-title {
+    width: 100%;
+
+    font-size: clamp(47px, 13.5vw, 62px);
+
+    line-height: 1;
+
+    letter-spacing: -0.052em;
+
+    white-space: nowrap;
+  }
+
+
+  .typewriter-cursor {
+    width: 2px;
+
+    margin-left: 6px;
+  }
+
+
+  /* -------------------------------------------------------
+     SUBTITLE
+     ------------------------------------------------------- */
+
+  .coming-soon-description {
+    width: min(100%, 540px);
+
+    margin:
+      20px auto
+      30px;
+
+    color: rgba(226, 232, 241, 0.93);
+
+    font-size: 17px;
+
+    line-height: 1.58;
+
+    letter-spacing: -0.004em;
+  }
+
+
+  .description-accent {
+    color: #c0ccdd;
+  }
+
+
+  /* -------------------------------------------------------
+     BUTTON
+     ------------------------------------------------------- */
+
+  .coming-soon-back {
+    padding: 14px 21px;
+
+    font-size: 11px;
+  }
+
+
+  /* -------------------------------------------------------
+     STATUS
+     ------------------------------------------------------- */
+
+  .coming-soon-status {
+    margin-top: 25px;
+
+    font-size: 8px;
+  }
+
+
+  /* -------------------------------------------------------
+     GRID
+     ------------------------------------------------------- */
+
+  .coming-soon-grid {
+    inset: -60px;
+
+    background-size: 52px 52px;
+
+    animation-duration: 44s;
+  }
+
+
+  /* -------------------------------------------------------
+     GLOWS
+     ------------------------------------------------------- */
+
+  .coming-soon-glow {
+    width: 380px;
+    height: 380px;
+
+    filter: blur(95px);
+
+    opacity: 0.065;
+  }
+
+
+  .coming-soon-glow-three {
+    opacity: 0.035;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .coming-soon-content {
+    width: calc(100% - 32px);
+
+    padding:
+      28px
+      0
+      32px;
+  }
+
+
+  .coming-soon-brand {
+    margin-bottom: 70px;
+
+    font-size: 29px;
+  }
+
+
+  .coming-soon-eyebrow {
+    margin-bottom: 15px;
+
+    font-size: 7.5px;
+
+    letter-spacing: 0.085em;
+  }
+
+
+  .eyebrow-line {
+    width: 19px;
+  }
+
+
+  .coming-soon-title {
+    font-size: clamp(42px, 13.2vw, 54px);
+  }
+
+
+  .coming-soon-description {
+    margin-top: 19px;
+    margin-bottom: 27px;
+
+    font-size: 16.5px;
+
+    line-height: 1.58;
+  }
+
+
+  .coming-soon-back {
+    padding: 13px 20px;
+  }
+
+
+  .coming-soon-status {
+    margin-top: 23px;
+
+    font-size: 7px;
+  }
+
+
+  .coming-soon-grid {
+    background-size: 48px 48px;
+
+    animation-duration: 40s;
+  }
+}
+
+
+/* =========================================================
+   SHORT MOBILE SCREENS
+   ========================================================= */
+
+@media (max-width: 720px) and (max-height: 700px) {
+  .coming-soon-brand {
+    margin-bottom: 48px;
+  }
+
+
+  .coming-soon-description {
+    margin-top: 16px;
+    margin-bottom: 22px;
+
+    font-size: 15px;
+  }
+
+
+  .coming-soon-status {
+    margin-top: 19px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .coming-soon-grid,
+  .coming-soon-glow,
+  .typewriter-cursor,
+  .status-dot {
+    animation: none !important;
+  }
+
+  .coming-soon-back,
+  .coming-soon-brand {
+    transition: none;
+  }
+}
