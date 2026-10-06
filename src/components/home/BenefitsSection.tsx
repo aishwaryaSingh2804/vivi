@@ -10,7 +10,7 @@ const benefits = [
     metricLabel: "LESS PRODUCTION TIME",
     title: "Create in minutes, not days.",
     description:
-      "Turn days of editing into a simple creative process. Vivi helps creators who stitch together clips, assets, and edits save up to 80% of their production time.",
+      "Turn days of editing into a simple creative process. Visl helps creators who stitch together clips, assets, and edits save up to 80% of their production time.",
     className: "benefit-time",
   },
   {
@@ -20,7 +20,7 @@ const benefits = [
     metricLabel: "FIRST DRAFT",
     title: "Your first draft feels production-ready.",
     description:
-      "Skip endless iterations. Vivi understands your intent and creates polished, cinematic videos that are ready to refine and share.",
+      "Skip endless iterations. Visl understands your intent and creates polished, cinematic videos that are ready to refine and share.",
     className: "benefit-ready",
   },
   {
@@ -40,7 +40,7 @@ const benefits = [
     metricLabel: "MODEL SELECTION",
     title: "Pay for what you need.",
     description:
-      "Vivi automatically chooses the right AI models for every task — balancing quality, speed, and cost so you get the best output without overspending.",
+      "Visl automatically chooses the right AI models for every task — balancing quality, speed, and cost so you get the best output without overspending.",
     className: "benefit-smart",
   },
 ];
@@ -60,7 +60,7 @@ function BenefitVisual({ id }: { id: string }) {
             <div className="timeline-track traditional-track">
               <span />
             </div>
-            <div className="timeline-label">WITH VIVI</div>
+            <div className="timeline-label">WITH VISL</div>
             <div className="timeline-track vivi-track">
               <span />
             </div>
@@ -139,7 +139,7 @@ case "03":
             <div className="smart-panel-heading">
               <span className="smart-ai-icon">✳</span>
               <div>
-                <strong>Vivi AI</strong>
+                <strong>Visl AI</strong>
                 <small>MODEL OPTIMIZATION</small>
               </div>
               <span className="smart-status" />
@@ -211,7 +211,7 @@ export function BenefitsSection() {
       <div className="benefits-inner">
         <div className="benefits-header">
           <div className="section-overline">
-            THE VIVI ADVANTAGE
+            THE VISL ADVANTAGE
           </div>
 
           <h2 className="benefits-heading">
@@ -220,7 +220,7 @@ export function BenefitsSection() {
           </h2>
 
           <p className="benefits-subheading">
-            What changes when you create with Vivi.
+            What changes when you create with Visl.
           </p>
         </div>
 

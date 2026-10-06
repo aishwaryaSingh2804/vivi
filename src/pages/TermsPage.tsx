@@ -17,7 +17,7 @@ export function TermsPage() {
           <div className="legal-section">
             <h2>1. Acceptance of Terms</h2>
             <p>
-              By accessing or using Vivi AI (&quot;the Service&quot;), you agree
+              By accessing or using Visl AI (&quot;the Service&quot;), you agree
               to be bound by these Terms and Conditions. If you do not agree,
               please do not use the Service. These terms apply to all visitors,
               users, and creators.
@@ -27,7 +27,7 @@ export function TermsPage() {
           <div className="legal-section">
             <h2>2. Account Registration</h2>
             <p>
-              You must be at least 13 years old to use Vivi. You are responsible
+              You must be at least 13 years old to use Visl. You are responsible
               for maintaining the confidentiality of your account credentials
               and for all activities that occur under your account. You agree
               to notify us immediately of any unauthorised use.
@@ -61,10 +61,10 @@ export function TermsPage() {
           <div className="legal-section">
             <h2>4. Intellectual Property</h2>
             <p>
-              You retain ownership of the videos you generate using Vivi. You
-              grant Vivi a limited, non-exclusive licence to store and process
+              You retain ownership of the videos you generate using Visl. You
+              grant Visl a limited, non-exclusive licence to store and process
               your content solely for the purpose of providing the Service.
-              Vivi&apos;s platform, models, and interface remain the
+              Visl&apos;s platform, models, and interface remain the
               intellectual property of Visl AI Pvt. Ltd.
             </p>
           </div>
@@ -103,7 +103,7 @@ export function TermsPage() {
             <h2>8. Contact</h2>
             <p>
               For questions about these Terms, contact us at{' '}
-              <strong>legal@vivi.ai</strong>.
+              <strong>legal@visl.ai</strong>.
             </p>
           </div>
         </div>

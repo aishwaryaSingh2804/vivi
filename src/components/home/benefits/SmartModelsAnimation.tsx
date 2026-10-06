@@ -3,7 +3,7 @@ export function SmartModelsAnimation() {
     <div className="mini-scene smart-scene">
       <div className="smart-glow" />
 
-      <div className="smart-heading">VIVI AI SELECTOR</div>
+      <div className="smart-heading">Visl AI SELECTOR</div>
 
       <div className="smart-models">
         <div className="smart-model model-quality">

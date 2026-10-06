@@ -20,8 +20,8 @@ export function AuthLayout({ mode, children }: AuthLayoutProps) {
           <div className="vivi-auth-heading">
             <h1>
               {isLogin
-                ? 'Welcome back to Vivi'
-                : 'Create your Vivi account'}
+                ? 'Welcome back to Visl'
+                : 'Create your Visl account'}
             </h1>
 
             <p>
@@ -51,7 +51,7 @@ export function AuthLayout({ mode, children }: AuthLayoutProps) {
 
           {/* Terms */}
           <p className="vivi-auth-terms">
-            By continuing, you agree to Vivi's{' '}
+            By continuing, you agree to Visl's{' '}
             <Link to={ROUTES.TERMS}>Terms of Service</Link>
             {' '}and{' '}
             <Link to={ROUTES.PRIVACY}>Privacy Policy</Link>.
@@ -88,7 +88,7 @@ export function AuthLayout({ mode, children }: AuthLayoutProps) {
           <div className="vivi-auth-video-placeholder">
             <div className="vivi-auth-video-content">
               <span className="vivi-auth-video-label">
-                VIVI
+                VISL
               </span>
 
               <h2>
@@ -110,7 +110,7 @@ export function AuthLayout({ mode, children }: AuthLayoutProps) {
         </div>
 
         <div className="vivi-auth-visual-caption">
-          <span>Vivi</span>
+          <span>Visl</span>
           <span>AI storytelling, reimagined.</span>
         </div>
 

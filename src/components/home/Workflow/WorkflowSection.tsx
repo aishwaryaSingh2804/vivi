@@ -1548,7 +1548,7 @@ export function WorkflowSection() {
                 {hasEntered && (
                   <iframe
                     ref={demoFrameRef}
-                    title="Vivi live product walkthrough"
+                    title="Visl live product walkthrough"
                     src="/workflow-demo.html?clip=prompt&embed=1"
                     loading="eager"
                     allow="autoplay; fullscreen"

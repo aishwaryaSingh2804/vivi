@@ -9,7 +9,7 @@ export function CommunityPage() {
     <div>
       <div className="hero-eyebrow">Community</div>
       <h1 style={{ fontFamily: 'var(--ff-display)', fontSize: 'clamp(44px,5vw,68px)', fontWeight: '700', lineHeight: '1.05', color: 'var(--text)', marginBottom: '16px' } as CSSProperties}>Stories made here.      <br />Shared everywhere.</h1>
-      <p style={{ fontSize: '17px', color: 'var(--muted)', lineHeight: '1.7', maxWidth: '440px', marginBottom: '32px' } as CSSProperties}>14,000+ creators are already using Vivi to tell the stories they have been putting off. Here is where they share them.</p>
+      <p style={{ fontSize: '17px', color: 'var(--muted)', lineHeight: '1.7', maxWidth: '440px', marginBottom: '32px' } as CSSProperties}>14,000+ creators are already using Visl to tell the stories they have been putting off. Here is where they share them.</p>
       <div className="comm-stats">
         <div className="comm-stat">
           <div className="comm-stat-num">14k+</div>
@@ -31,7 +31,7 @@ export function CommunityPage() {
           <div className="social-icon" style={{ background: '#5865F2', color: '#fff', fontSize: '16px' } as CSSProperties}>◈</div>
           <div>
             <div className="social-name">Discord</div>
-            <div className="social-handle">Vivi Community Server</div>
+            <div className="social-handle">Visl Community Server</div>
           </div>
         </div>
         <button className="social-follow" style={{ background: '#5865F2', color: '#fff', borderColor: '#5865F2' } as CSSProperties}>Join</button>
@@ -42,7 +42,7 @@ export function CommunityPage() {
           <div style={{ color: 'var(--muted)' } as CSSProperties}>Drop a story idea → community votes → we make it. Best one this week: "The engineer who tried to stop Bhopal."</div>
         </div>
         <div style={{ background: '#F7F6F3', borderRadius: '10px', padding: '12px', fontSize: '12px', lineHeight: '1.5' } as CSSProperties}>
-          <div style={{ fontWeight: '600', color: '#5865F2', marginBottom: '6px' } as CSSProperties}># made-with-vivi</div>
+          <div style={{ fontWeight: '600', color: '#5865F2', marginBottom: '6px' } as CSSProperties}># made-with-visl</div>
           <div style={{ color: 'var(--muted)' } as CSSProperties}>Share your videos, get feedback, get featured on the community page.</div>
         </div>
       </div>
@@ -51,13 +51,13 @@ export function CommunityPage() {
   </div>
   <div className="ugc-section">
     <hr style={{ border: 'none', borderTop: '1px solid #E8E6E0', marginBottom: '64px' } as CSSProperties} />
-    <div className="section-overline">Made with Vivi</div>
+    <div className="section-overline">Made with Visl</div>
     <h2 className="section-h">What creators are making.</h2>
-    <p className="section-sub">Real videos from real creators. Tag     <strong style={{ color: 'var(--accent)' } as CSSProperties}>#MadeWithVivi</strong> to be featured here.</p>
+    <p className="section-sub">Real videos from real creators. Tag     <strong style={{ color: 'var(--accent)' } as CSSProperties}>#MadeWithVisl</strong> to be featured here.</p>
     <div className="ugc-grid">
       <div className="ugc-card">
         <div className="ugc-thumb grad-history">
-          <div className="ugc-made-badge">Made with Vivi</div>
+          <div className="ugc-made-badge">Made with Visl</div>
           <div className="ugc-play">
             <div className="ugc-play-btn"></div>
           </div>
@@ -73,7 +73,7 @@ export function CommunityPage() {
       </div>
       <div className="ugc-card">
         <div className="ugc-thumb grad-micro">
-          <div className="ugc-made-badge">Made with Vivi</div>
+          <div className="ugc-made-badge">Made with Visl</div>
           <div className="ugc-play">
             <div className="ugc-play-btn"></div>
           </div>
@@ -89,7 +89,7 @@ export function CommunityPage() {
       </div>
       <div className="ugc-card">
         <div className="ugc-thumb grad-kids">
-          <div className="ugc-made-badge">Made with Vivi</div>
+          <div className="ugc-made-badge">Made with Visl</div>
           <div className="ugc-play">
             <div className="ugc-play-btn"></div>
           </div>
@@ -105,7 +105,7 @@ export function CommunityPage() {
       </div>
       <div className="ugc-card">
         <div className="ugc-thumb grad-ghibli">
-          <div className="ugc-made-badge">Made with Vivi</div>
+          <div className="ugc-made-badge">Made with Visl</div>
           <div className="ugc-play">
             <div className="ugc-play-btn"></div>
           </div>
@@ -121,7 +121,7 @@ export function CommunityPage() {
       </div>
       <div className="ugc-card">
         <div className="ugc-thumb" style={{ background: 'linear-gradient(135deg,#0d1a2e,#1a3d5c)' } as CSSProperties}>
-          <div className="ugc-made-badge">Made with Vivi</div>
+          <div className="ugc-made-badge">Made with Visl</div>
           <div className="ugc-play">
             <div className="ugc-play-btn"></div>
           </div>
@@ -137,7 +137,7 @@ export function CommunityPage() {
       </div>
       <div className="ugc-card">
         <div className="ugc-thumb" style={{ background: 'linear-gradient(135deg,#1a0d1a,#3d1a3d)' } as CSSProperties}>
-          <div className="ugc-made-badge">Made with Vivi</div>
+          <div className="ugc-made-badge">Made with Visl</div>
           <div className="ugc-play">
             <div className="ugc-play-btn"></div>
           </div>
@@ -153,7 +153,7 @@ export function CommunityPage() {
       </div>
       <div className="ugc-card">
         <div className="ugc-thumb" style={{ background: 'linear-gradient(135deg,#0a2a1a,#1a3d2a)' } as CSSProperties}>
-          <div className="ugc-made-badge">Made with Vivi</div>
+          <div className="ugc-made-badge">Made with Visl</div>
           <div className="ugc-play">
             <div className="ugc-play-btn"></div>
           </div>
@@ -169,7 +169,7 @@ export function CommunityPage() {
       </div>
       <div className="ugc-card">
         <div className="ugc-thumb" style={{ background: 'linear-gradient(135deg,#1a1a0d,#3a3a1a)' } as CSSProperties}>
-          <div className="ugc-made-badge">Made with Vivi</div>
+          <div className="ugc-made-badge">Made with Visl</div>
           <div className="ugc-play">
             <div className="ugc-play-btn"></div>
           </div>
@@ -197,7 +197,7 @@ export function CommunityPage() {
           <div className="social-icon" style={{ background: '#FF0000' } as CSSProperties}>▶</div>
           <div>
             <div className="social-name">YouTube</div>
-            <div className="social-handle">@viviai · Full episodes + Shorts</div>
+            <div className="social-handle">@Vislai · Full episodes + Shorts</div>
           </div>
         </div>
         <button className="social-follow" style={{ background: '#FF0000', color: '#fff', borderColor: '#FF0000' } as CSSProperties}>Subscribe</button>
@@ -233,7 +233,7 @@ export function CommunityPage() {
           <div className="social-icon" style={{ background: '#010101', color: '#fff' } as CSSProperties}>♪</div>
           <div>
             <div className="social-name">TikTok</div>
-            <div className="social-handle">@viviai · Microdramas</div>
+            <div className="social-handle">@Vislai · Microdramas</div>
           </div>
         </div>
         <button className="social-follow">Follow</button>
@@ -269,7 +269,7 @@ export function CommunityPage() {
           <div className="social-icon" style={{ background: 'linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)', color: '#fff', fontSize: '14px' } as CSSProperties}>◈</div>
           <div>
             <div className="social-name">Instagram</div>
-            <div className="social-handle">@viviai · Reels + BTS</div>
+            <div className="social-handle">@Vislai · Reels + BTS</div>
           </div>
         </div>
         <button className="social-follow">Follow</button>
@@ -302,7 +302,7 @@ export function CommunityPage() {
           <div className="social-icon" style={{ background: '#000', color: '#fff', fontSize: '15px', fontWeight: '700' } as CSSProperties}>𝕏</div>
           <div>
             <div className="social-name">X (Twitter)</div>
-            <div className="social-handle">@viviai · Threads + Founder</div>
+            <div className="social-handle">@Vislai · Threads + Founder</div>
           </div>
         </div>
         <button className="social-follow">Follow</button>
@@ -319,7 +319,7 @@ export function CommunityPage() {
           <div className="social-icon" style={{ background: '#0A66C2', color: '#fff', fontSize: '13px', fontWeight: '700' } as CSSProperties}>in</div>
           <div>
             <div className="social-name">LinkedIn</div>
-            <div className="social-handle">Vivi AI · Building in public</div>
+            <div className="social-handle">Visl AI · Building in public</div>
           </div>
         </div>
         <button className="social-follow">Follow</button>
@@ -367,8 +367,8 @@ Made a cinematic microdrama from a 2-sentence prompt — twist ending surprised 
   <div className="comm-share-cta">
     <div className="callout-chip">Share yours</div>
     <h2>Your story belongs here.</h2>
-    <p>Made something with Vivi? Tag us and we will feature the best ones on this page, our socials, and our weekly newsletter.</p>
-    <div className="tag-row">    <span className="tag-pill">#MadeWithVivi</span>    <span className="tag-pill">@viviai on Instagram</span>    <span className="tag-pill">@viviai on TikTok</span>    <span className="tag-pill">@viviai on X</span></div>
+    <p>Made something with Visl? Tag us and we will feature the best ones on this page, our socials, and our weekly newsletter.</p>
+    <div className="tag-row">    <span className="tag-pill">#MadeWithVisl</span>    <span className="tag-pill">@Vislai on Instagram</span>    <span className="tag-pill">@Vislai on TikTok</span>    <span className="tag-pill">@Vislai on X</span></div>
     <button className="btn-primary btn-large">Make your first video free</button>
   </div>
 </div>

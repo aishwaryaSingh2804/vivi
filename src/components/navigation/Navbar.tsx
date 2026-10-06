@@ -144,7 +144,7 @@ export function Navbar() {
           className="vivi-navbar-logo"
           onClick={handleLogoClick}
         >
-          vi<span>vi</span>
+          Vi<span>sl</span>
         </Link>
 
         {/* MOBILE MENU BUTTON */}

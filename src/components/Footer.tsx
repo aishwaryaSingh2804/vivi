@@ -34,11 +34,11 @@ export function Footer() {
             className="vivi-footer-logo"
             onClick={scrollToTop}
           >
-            vi<span>vi</span>
+            Vi<span>sl</span>
           </Link>
 
           <p>
-            You tell the story. vivi AI is the tool.
+            You tell the story. Visl AI is the tool.
             No camera. No crew. No excuse.
           </p>
         </div>
@@ -87,7 +87,7 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="vivi-footer-bottom">
         <span>
-          © {currentYear} vivi AI. Made in India.
+          © {currentYear} Visl AI. Made in India.
         </span>
 
         <div className="vivi-footer-socials">

@@ -16,7 +16,7 @@ export function ResourcesPage() {
       <span className="resource-card-link">Open calculator →</span>
     </a>    <a href="#page-how-to-use" className="resource-card">
       <div className="resource-card-icon">📖</div>
-      <div className="resource-card-h">How to Use Vivi</div>
+      <div className="resource-card-h">How to Use Visl</div>
       <p className="resource-card-p">Step-by-step guide to creating your first video.</p>
       <span className="resource-card-link">Read the guide →</span>
     </a>    <a href="#page-blog" className="resource-card">

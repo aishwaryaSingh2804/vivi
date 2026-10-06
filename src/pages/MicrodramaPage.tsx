@@ -66,7 +66,7 @@ export function MicrodramaPage() {
     <div className="twist-callout">
       <div>
         <div className="twist-text">"The ending is never what you think it is."</div>
-        <p className="twist-sub">Every Vivi microdrama is engineered for a twist that earns it — not just a cheap reversal. The kind that makes people comment "I did NOT see that coming."</p>
+        <p className="twist-sub">Every Visl microdrama is engineered for a twist that earns it — not just a cheap reversal. The kind that makes people comment "I did NOT see that coming."</p>
       </div>
       <button className="btn-primary btn-large" style={{ flexShrink: '0', whiteSpace: 'nowrap' } as CSSProperties}>Write my twist</button>
     </div>

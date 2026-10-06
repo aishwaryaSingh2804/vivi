@@ -1,6 +1,6 @@
 # Vivi AI — React + TypeScript
 
-This project migrates the supplied Vivi HTML prototype into a Vite + React + TypeScript application with React Router, centralized route constants, isolated source content, calculator business logic, responsive CSS, and a Not Found route.
+This project migrates the supplied Visl HTML prototype into a Vite + React + TypeScript application with React Router, centralized route constants, isolated source content, calculator business logic, responsive CSS, and a Not Found route.
 
 ## Run
 

@@ -8,10 +8,10 @@ export function IndiaPage() {
   <div className="hero" style={{} as CSSProperties}>
     <div className="hero-left">
       <div className="lang-toggle">      <button className="lang-btn active">English</button>      <button className="lang-btn">हिंदी</button></div>
-      <div className="hero-eyebrow">India — vivi.ai/in</div>
+      <div className="hero-eyebrow">India — visl.ai/in</div>
       <h1 className="hero-h">India's stories      <br />deserve a      <br />      <em>screen.</em></h1>
       <p className="india-hero-h">भारत की कहानियाँ, अब पर्दे पर।</p>
-      <p className="hero-sub" style={{ marginBottom: '20px', fontSize: '15px' } as CSSProperties}>From the freedom struggle to Panchtantra to slice-of-life Ghibli — Vivi makes Indian stories the way they deserve to be told.</p>
+      <p className="hero-sub" style={{ marginBottom: '20px', fontSize: '15px' } as CSSProperties}>From the freedom struggle to Panchtantra to slice-of-life Ghibli — Visl makes Indian stories the way they deserve to be told.</p>
       <div className="hero-ctas">      <button className="btn-primary btn-large" data-route="studio">Start for free</button>      <button type="button" className="btn-text" data-route="studio">
   देखिए उदाहरण
 </button></div>
@@ -43,7 +43,7 @@ export function IndiaPage() {
     <div className="dub-callout">
       <div>
         <h3>Your story in every language.</h3>
-        <p>Vivi can generate and dub your video in Hindi, Tamil, and Telugu — automatically. The same story, the same characters, the same emotional beats, in the language your audience grew up hearing.</p>
+        <p>Visl can generate and dub your video in Hindi, Tamil, and Telugu — automatically. The same story, the same characters, the same emotional beats, in the language your audience grew up hearing.</p>
         <div className="lang-chips">        <span className="lang-chip">Hindi</span>        <span className="lang-chip">Tamil</span>        <span className="lang-chip">Telugu</span>        <span className="lang-chip">English</span>        <span className="lang-chip">More coming</span></div>
       </div>
       <button className="btn-primary btn-large" style={{ whiteSpace: 'nowrap', flexShrink: '0' } as CSSProperties}>Try Hindi dubbing</button>

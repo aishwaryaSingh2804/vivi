@@ -195,7 +195,7 @@ export function PricingPage() {
       <AccordionItem question="What happens to my videos if I downgrade?" isOpen={openPricingFaq === 1} onToggle={() => setOpenPricingFaq((current) => current === 1 ? null : 1)} className="pricing-faq-item" style={{ marginBottom: '8px', border: '1px solid #E8E6E0', borderRadius: '10px', overflow: 'hidden', background: '#fff' } as CSSProperties}>
         Your existing videos stay accessible and downloadable. You simply cannot generate new videos above the free tier limits until you upgrade again.
       </AccordionItem>
-      <AccordionItem question="Can I use Vivi videos commercially?" isOpen={openPricingFaq === 2} onToggle={() => setOpenPricingFaq((current) => current === 2 ? null : 2)} className="pricing-faq-item" style={{ marginBottom: '8px', border: '1px solid #E8E6E0', borderRadius: '10px', overflow: 'hidden', background: '#fff' } as CSSProperties}>
+      <AccordionItem question="Can I use Visl videos commercially?" isOpen={openPricingFaq === 2} onToggle={() => setOpenPricingFaq((current) => current === 2 ? null : 2)} className="pricing-faq-item" style={{ marginBottom: '8px', border: '1px solid #E8E6E0', borderRadius: '10px', overflow: 'hidden', background: '#fff' } as CSSProperties}>
         Yes, on all plans. You own the videos you generate. Use them commercially, monetize on YouTube, no attribution required.
       </AccordionItem>
       <AccordionItem question="Do you offer team or enterprise plans?" isOpen={openPricingFaq === 3} onToggle={() => setOpenPricingFaq((current) => current === 3 ? null : 3)} className="pricing-faq-item" style={{ marginBottom: '8px', border: '1px solid #E8E6E0', borderRadius: '10px', overflow: 'hidden', background: '#fff' } as CSSProperties}>

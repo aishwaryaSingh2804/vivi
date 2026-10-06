@@ -19,7 +19,7 @@ export const WORKFLOW_STAGES: WorkflowStage[] = [
     eyebrow: "IMAGINE",
     headline: "It all starts with an idea.",
     description:
-      "Describe what you want to create in your own words. Vivi turns your initial thought into the starting point for a complete video.",
+      "Describe what you want to create in your own words. Visl turns your initial thought into the starting point for a complete video.",
     demoClip: "prompt",
     accent: "#5146e5",
   },
@@ -63,7 +63,7 @@ export const WORKFLOW_STAGES: WorkflowStage[] = [
     eyebrow: "REFINE",
     headline: "Direct your video through conversation.",
     description:
-      "Tell Vivi what you want to change. Use natural language to guide edits and shape the result until it feels right.",
+      "Tell Visl what you want to change. Use natural language to guide edits and shape the result until it feels right.",
     demoClip: "vibe",
     accent: "#5548e8",
   },

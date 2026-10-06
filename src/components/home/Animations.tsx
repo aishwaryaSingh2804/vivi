@@ -541,7 +541,7 @@ function Animations() {
       <div className="vivi-showcase-header">
         <div>
           <div className="vivi-showcase-overline">
-            MADE WITH VIVI
+            MADE WITH VISL
           </div>
 
           <h2>
@@ -554,7 +554,7 @@ function Animations() {
 
           <p>
             Explore what creators can make
-            with Vivi. Scroll through the
+            with Visl. Scroll through the
             productions and start with any
             story that inspires you.
           </p>
@@ -865,7 +865,7 @@ function Animations() {
               </span>
 
               <span>
-                CREATE THIS WITH VIVI
+                CREATE THIS WITH VISL
               </span>
 
             </div>
@@ -920,7 +920,7 @@ function Animations() {
 
 
           <span className="vivi-create-hint">
-            The prompt will open in Vivi Studio.
+            The prompt will open in Visl Studio.
           </span>
 
 

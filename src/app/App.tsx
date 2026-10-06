@@ -25,29 +25,29 @@ import { SignupPage } from '../pages/SignupPage';
 import { Footer } from '../components/Footer';
 
 const titles: Record<string, string> = {
-  [ROUTES.HOME]: 'Vivi — AI Video Storytelling',
-  [ROUTES.KIDS]: 'Vivi — Kids Stories',
-  [ROUTES.HISTORY]: 'Vivi — History Stories',
-  [ROUTES.INDIA]: 'Vivi — India Stories',
-  [ROUTES.MICRODRAMA]: 'Vivi — Microdramas',
-  [ROUTES.STUDIO]: 'Vivi Studio',
-  [ROUTES.RESOURCES]: 'Vivi — Resources',
-  [ROUTES.HOW_TO_USE]: 'Vivi — How to Use',
-  [ROUTES.BLOG]: 'Vivi — Blog',
-  [ROUTES.CONTACT]: 'Vivi — Contact',
-  [ROUTES.COMMUNITY]: 'Vivi — Community',
-  [ROUTES.PRICING]: 'Vivi — Pricing',
-  [ROUTES.FAQ]: 'Vivi — FAQ',
-  [ROUTES.PRIVACY]: 'Vivi — Privacy Policy',
-  [ROUTES.CREDITS]: 'Vivi — Credit Calculator',
-  [ROUTES.TERMS]: 'Vivi — Terms & Conditions',
-  [ROUTES.REFUND]: 'Vivi — Refund & Cancellation',
+  [ROUTES.HOME]: 'Visl — AI Video Storytelling',
+  [ROUTES.KIDS]: 'Visl — Kids Stories',
+  [ROUTES.HISTORY]: 'Visl — History Stories',
+  [ROUTES.INDIA]: 'Visl — India Stories',
+  [ROUTES.MICRODRAMA]: 'Visl — Microdramas',
+  [ROUTES.STUDIO]: 'Visl Studio',
+  [ROUTES.RESOURCES]: 'Visl — Resources',
+  [ROUTES.HOW_TO_USE]: 'Visl — How to Use',
+  [ROUTES.BLOG]: 'Visl — Blog',
+  [ROUTES.CONTACT]: 'Visl — Contact',
+  [ROUTES.COMMUNITY]: 'Visl — Community',
+  [ROUTES.PRICING]: 'Visl — Pricing',
+  [ROUTES.FAQ]: 'Visl — FAQ',
+  [ROUTES.PRIVACY]: 'Visl — Privacy Policy',
+  [ROUTES.CREDITS]: 'Visl — Credit Calculator',
+  [ROUTES.TERMS]: 'Visl — Terms & Conditions',
+  [ROUTES.REFUND]: 'Visl — Refund & Cancellation',
 
-  [ROUTES.LOGIN]: 'Vivi — Log In',
-  [ROUTES.SIGNUP]: 'Vivi — Sign Up',
+  [ROUTES.LOGIN]: 'Visl — Log In',
+  [ROUTES.SIGNUP]: 'Visl — Sign Up',
 };
 
-function MetaTitle(){const {pathname}=useLocation(); const title=titles[pathname]??'Vivi AI'; document.title=title; const description='Vivi AI creates long-form videos with consistent characters and complete story arcs.'; let meta=document.querySelector('meta[name=description]') as HTMLMetaElement|null; if(!meta){meta=document.createElement('meta');meta.name='description';document.head.appendChild(meta);} meta.content=description; let canonical=document.querySelector('link[rel=canonical]') as HTMLLinkElement|null; if(!canonical){canonical=document.createElement('link');canonical.rel='canonical';document.head.appendChild(canonical);} canonical.href=window.location.origin+pathname; return null;}
+function MetaTitle(){const {pathname}=useLocation(); const title=titles[pathname]??'Visl AI'; document.title=title; const description='Visl AI creates long-form videos with consistent characters and complete story arcs.'; let meta=document.querySelector('meta[name=description]') as HTMLMetaElement|null; if(!meta){meta=document.createElement('meta');meta.name='description';document.head.appendChild(meta);} meta.content=description; let canonical=document.querySelector('link[rel=canonical]') as HTMLLinkElement|null; if(!canonical){canonical=document.createElement('link');canonical.rel='canonical';document.head.appendChild(canonical);} canonical.href=window.location.origin+pathname; return null;}
 function ScrollManager() {
   const { pathname, hash } = useLocation();
 

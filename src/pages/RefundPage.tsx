@@ -15,7 +15,7 @@ export function RefundPage() {
     </div>
     <div className="legal-section">
       <h2>2. Refund Eligibility</h2>
-      <p>We offer a full refund within       <strong>7 days</strong> of your first payment on a new plan, provided you have generated fewer than 3 videos. To request a refund within this window, contact us at       <strong>billing@vivi.ai</strong>.</p>
+      <p>We offer a full refund within       <strong>7 days</strong> of your first payment on a new plan, provided you have generated fewer than 3 videos. To request a refund within this window, contact us at       <strong>billing@visl.ai</strong>.</p>
       <p>After 7 days, or if you have used credits significantly, refunds are evaluated on a case-by-case basis at our discretion.</p>
     </div>
     <div className="legal-section">
@@ -29,7 +29,7 @@ export function RefundPage() {
     </div>
     <div className="legal-section">
       <h2>4. How to Request a Refund</h2>
-      <p>Email       <strong>billing@vivi.ai</strong> with your account email, the plan purchased, and the reason for the request. We aim to respond within 2 business days and process approved refunds within 5–7 business days to the original payment method.</p>
+      <p>Email       <strong>billing@visl.ai</strong> with your account email, the plan purchased, and the reason for the request. We aim to respond within 2 business days and process approved refunds within 5–7 business days to the original payment method.</p>
     </div>
     <div className="legal-section">
       <h2>5. Chargebacks</h2>

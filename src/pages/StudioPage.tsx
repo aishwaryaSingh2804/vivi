@@ -29,18 +29,18 @@ export function StudioPage() {
         <div className="studio-header">
           <a href="#page-home" className="studio-logo">
             <div className="studio-logo-icon">V</div>
-            <span className="studio-logo-name">Vivi</span>
+            <span className="studio-logo-name">Visl</span>
           </a>
           <span className="studio-product-label">A Visl AI Product</span>
           <div style={{ flex: 1 }} />
-          <button type="button" className="studio-top-btn">✦ Vivi Studio</button>
+          <button type="button" className="studio-top-btn">✦ Visl Studio</button>
         </div>
 
         <div className="studio-creation">
           <h1 className="studio-headline">
             What should we <span className="handwrite-card"><span className="handwrite-text">create?</span></span>
           </h1>
-          <p className="studio-sub">Describe the story or paste a link. Vivi will guide the rest.</p>
+          <p className="studio-sub">Describe the story or paste a link. Visl will guide the rest.</p>
           <div className="studio-input-box">
             <textarea
               className="studio-textarea"

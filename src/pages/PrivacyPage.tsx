@@ -40,7 +40,7 @@ export function PrivacyPage() {
               </li>
               <li>
                 <strong>Payment information</strong> — billing details
-                processed by Razorpay or Stripe. Vivi does not store card
+                processed by Razorpay or Stripe. Visl does not store card
                 numbers.
               </li>
               <li>
@@ -80,7 +80,7 @@ export function PrivacyPage() {
               <p>
                 <strong>
                   We do not use your prompts, scripts, or generated videos to
-                  train Vivi&apos;s AI models.
+                  train Visl&apos;s AI models.
                 </strong>
               </p>
             </div>
@@ -111,7 +111,7 @@ export function PrivacyPage() {
                 court order.
               </li>
               <li>
-                <strong>Business transfers</strong> — if Vivi is acquired, your
+                <strong>Business transfers</strong> — if Visl is acquired, your
                 data may transfer to the new entity under this policy.
               </li>
             </ul>
@@ -132,7 +132,7 @@ export function PrivacyPage() {
               You may request: access to your data, correction of inaccurate
               information, deletion of your account and all data, data
               portability, or objection to certain uses. Email{' '}
-              <strong>privacy@vivi.ai</strong> and we will respond within 30
+              <strong>privacy@visl.ai</strong> and we will respond within 30
               days.
             </p>
           </div>
@@ -140,9 +140,9 @@ export function PrivacyPage() {
           <div className="privacy-section">
             <h2>7. Children&apos;s Privacy</h2>
             <p>
-              Vivi is for users aged 13+. We do not knowingly collect data from
+              Visl is for users aged 13+. We do not knowingly collect data from
               children under 13. If you believe a child has created an account,
-              contact privacy@vivi.ai and we will delete it promptly.
+              contact privacy@visl.ai and we will delete it promptly.
             </p>
           </div>
 
@@ -158,8 +158,8 @@ export function PrivacyPage() {
           <div className="privacy-section">
             <h2>9. Contact Us</h2>
             <p>
-              Email: <strong>privacy@vivi.ai</strong> · Response within 30 days
-              · Vivi AI is a product of Visl AI Pvt. Ltd., registered in India.
+              Email: <strong>privacy@visl.ai</strong> · Response within 30 days
+              · Visl AI is a product of Visl AI Pvt. Ltd., registered in India.
             </p>
           </div>
         </div>

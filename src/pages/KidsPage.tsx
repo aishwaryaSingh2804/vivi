@@ -66,7 +66,7 @@ export function KidsPage() {
     </div>
   </section>
   <section className="std" style={{ paddingTop: '0' } as CSSProperties}>
-    <div className="section-overline">Why parents trust Vivi</div>
+    <div className="section-overline">Why parents trust Visl</div>
     <div className="trust-row">
       <div className="trust-item">
         <div className="trust-icon">🛡️</div>
@@ -94,7 +94,7 @@ export function KidsPage() {
       <div style={{ fontSize: '48px' } as CSSProperties}>▶</div>
       <div className="yt-kids-text">
         <h3>Also on YouTube Kids</h3>
-        <p style={{ fontSize: '14px', color: 'var(--muted)', maxWidth: '480px' } as CSSProperties}>All Vivi kids content is published separately on a dedicated YouTube Kids channel — with kid-safe metadata, no external links, and filtered for younger audiences.</p>
+        <p style={{ fontSize: '14px', color: 'var(--muted)', maxWidth: '480px' } as CSSProperties}>All Visl kids content is published separately on a dedicated YouTube Kids channel — with kid-safe metadata, no external links, and filtered for younger audiences.</p>
       </div>
       <button className="btn-primary" style={{ whiteSpace: 'nowrap', marginLeft: 'auto' } as CSSProperties}>Visit the channel</button>
     </div>

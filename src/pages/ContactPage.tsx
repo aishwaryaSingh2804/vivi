@@ -29,7 +29,7 @@ export function ContactPage() {
       <div className="contact-alt-card">
         <div className="contact-alt-icon">📧</div>
         <div className="contact-alt-h">Email</div>
-        <p className="contact-alt-p">hello@vivi.ai · privacy@vivi.ai · legal@vivi.ai</p>
+        <p className="contact-alt-p">hello@visl.ai · privacy@visl.ai · legal@visl.ai</p>
       </div>
     </div>
     <div className="contact-alt" style={{ marginTop: '12px' } as CSSProperties}>

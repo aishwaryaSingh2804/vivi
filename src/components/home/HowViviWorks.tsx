@@ -15,7 +15,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
     title: 'Start with an idea',
     eyebrow: 'SETUP',
     description:
-      'Tell vivi what you want to create. Start with a simple idea, concept, or story direction.',
+      'Tell Visl what you want to create. Start with a simple idea, concept, or story direction.',
     image: '/workflow/setup.jpeg',
   },
   {
@@ -23,7 +23,7 @@ const WORKFLOW_STEPS: WorkflowStep[] = [
     title: 'Shape the script',
     eyebrow: 'SCRIPT',
     description:
-      'vivi turns your idea into a structured script with scenes, dialogue, characters, and story beats.',
+      'Visl turns your idea into a structured script with scenes, dialogue, characters, and story beats.',
     image: '/workflow/script.jpeg',
   },
   {
@@ -397,7 +397,7 @@ export function HowViviWorks() {
 
         <div className="how-vivi-header">
           <div className="how-vivi-eyebrow">
-            HOW VIVI WORKS
+            HOW VISL WORKS
           </div>
 
           <h2>
@@ -407,7 +407,7 @@ export function HowViviWorks() {
           </h2>
 
           <p>
-            From your first idea to a finished story, Vivi
+            From your first idea to a finished story, Visl
             helps you move through the entire creative process.
           </p>
         </div>
@@ -502,12 +502,12 @@ export function HowViviWorks() {
               <img
                 key={currentStep.image}
                 src={currentStep.image}
-                alt={`${currentStep.title} - Vivi workflow`}
+                alt={`${currentStep.title} - Visl workflow`}
               />
             </div>
 
             <div className="workflow-image-label">
-              <span>VIVI</span>
+              <span>Visl</span>
               <span>
                 {currentStep.eyebrow}
               </span>

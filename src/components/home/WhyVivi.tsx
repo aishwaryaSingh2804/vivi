@@ -13,7 +13,7 @@ const features = [
   </>
 ),
     description:
-      'Turn a simple idea into a complete, long-form video. vivi handles the story, scenes, characters and pacing for you.',
+      'Turn a simple idea into a complete, long-form video. Visl handles the story, scenes, characters and pacing for you.',
     type: 'longform',
   },
   {
@@ -93,7 +93,7 @@ const features = [
   </>
 ),
     description:
-      'Just tell vivi what to change. No timeline, no complicated controls and no editing experience required.',
+      'Just tell Visl what to change. No timeline, no complicated controls and no editing experience required.',
     type: 'chat',
   },
 ];
@@ -102,7 +102,7 @@ export function WhyVivi() {
     <section id="why-vivi" className="why-vivi">
       <div className="why-vivi-intro">
         <div className="why-vivi-overline">
-          WHY VIVI
+          WHY Visl
         </div>
         <h2>
           From idea to story.
@@ -110,7 +110,7 @@ export function WhyVivi() {
           <em>Without the busywork.</em>
         </h2>
         <p>
-          vivi takes care of the production details so you can focus on
+          Visl takes care of the production details so you can focus on
           the story you want to tell.
         </p>
 <div className="why-vivi-create-demo">
@@ -124,7 +124,7 @@ export function WhyVivi() {
   {/* PROMPT */}
   <div className="demo-prompt-card">
     <div className="demo-prompt-top">
-      <span>VIVI PROMPT</span>
+      <span>Visl PROMPT</span>
       <span className="demo-live">
         <i />
         LIVE
@@ -150,7 +150,7 @@ window into a flooded city...
       <i />
     </div>
     <span className="processing-label">
-      vivi is creating
+      Visl is creating
     </span>
   </div>
   {/* FILM STRIP */}
@@ -305,7 +305,7 @@ function LongFormVisual() {
       <div className="longform-output">
   <img
     src="/images/longform-grid.png"
-    alt="Vivi generating multiple scenes for a long-form video"
+    alt="Visl generating multiple scenes for a long-form video"
     className="longform-grid-image"
   />
 </div>
@@ -545,7 +545,7 @@ function ChatVisual() {
     <div className="chat-visual">
       <img
         src="/images/chat-editor.png"
-        alt="Vivi AI video editor with conversational editing and before-and-after previews"
+        alt="Visl AI video editor with conversational editing and before-and-after previews"
         className="chat-editor-image"
       />
     </div>

@@ -19,9 +19,9 @@ const faqGroups: FAQGroup[] = [
     category: 'General',
     items: [
       {
-        question: 'What is Vivi?',
+        question: 'What is Visl?',
         answer:
-          'Vivi is an AI video generator built for long-form storytelling. Describe a story and Vivi writes the script, casts consistent characters, generates visuals, adds narration and dialogue, and delivers a finished video of 2-8 minutes.',
+          'Visl is an AI video generator built for long-form storytelling. Describe a story and Visl writes the script, casts consistent characters, generates visuals, adds narration and dialogue, and delivers a finished video of 2-8 minutes.',
       },
       {
         question: 'What kinds of videos can I make?',
@@ -29,9 +29,9 @@ const faqGroups: FAQGroup[] = [
           'Microdramas (2-3 min thrillers, sci-fi, heist stories), history videos (cinematic retellings of real events), kids stories (educational, safe animated stories), and adult animation (Indian Ghibli-style, literature classics).',
       },
       {
-        question: 'How is Vivi different from other AI video tools?',
+        question: 'How is Visl different from other AI video tools?',
         answer:
-          'Three things: (1) Long-form — most AI video tools max out at 30-60 seconds. Vivi is built for 2-8 minute complete stories with a real arc. (2) Consistent characters — the same face across every scene. (3) Narration and dialogue — characters speak to each other. Vivi writes and voices the entire script.',
+          'Three things: (1) Long-form — most AI video tools max out at 30-60 seconds. Visl is built for 2-8 minute complete stories with a real arc. (2) Consistent characters — the same face across every scene. (3) Narration and dialogue — characters speak to each other. Visl writes and voices the entire script.',
       },
       {
         question: 'How long does generation take?',
@@ -46,17 +46,17 @@ const faqGroups: FAQGroup[] = [
       {
         question: 'Do I need any creative experience?',
         answer:
-          'No. If you can describe a story in a few sentences, Vivi can build it. No screenwriting, animation, or video production knowledge needed.',
+          'No. If you can describe a story in a few sentences, Visl can build it. No screenwriting, animation, or video production knowledge needed.',
       },
       {
         question: 'Can I use my own script?',
         answer:
-          'Yes. Paste your own script and Vivi produces visuals, voices, and audio around it. Or write a rough outline and let Vivi expand it.',
+          'Yes. Paste your own script and Visl produces visuals, voices, and audio around it. Or write a rough outline and let Visl expand it.',
       },
       {
         question: 'Can I upload my own voice?',
         answer:
-          'Yes, on Creator and Pro plans. Upload a 30-second sample and Vivi uses it for narration. Your voice sample is private and never used to train models.',
+          'Yes, on Creator and Pro plans. Upload a 30-second sample and Visl uses it for narration. Your voice sample is private and never used to train models.',
       },
       {
         question: 'How do I get the best results?',
@@ -76,7 +76,7 @@ const faqGroups: FAQGroup[] = [
       {
         question: 'Do characters stay consistent between scenes?',
         answer:
-          "Yes. This is Vivi's core technical differentiator. Characters maintain the same face, voice, and visual presence across every scene — what makes the output feel like a film rather than a series of disconnected clips.",
+          "Yes. This is Visl's core technical differentiator. Characters maintain the same face, voice, and visual presence across every scene — what makes the output feel like a film rather than a series of disconnected clips.",
       },
       {
         question: 'Can I make videos in Hindi or other Indian languages?',
@@ -99,7 +99,7 @@ const faqGroups: FAQGroup[] = [
           'Yes. Direct publishing is included on all plans. You can also download as MP4 and upload anywhere manually.',
       },
       {
-        question: 'Can I use Vivi videos for ads or brand content?',
+        question: 'Can I use Visl videos for ads or brand content?',
         answer:
           'Yes, commercial use is included on all plans. For high-volume brand/agency work, a Pro or Enterprise plan is recommended.',
       },
@@ -129,10 +129,10 @@ const faqGroups: FAQGroup[] = [
     category: 'Privacy & Data',
     items: [
       {
-        question: 'Does Vivi train on my videos or prompts?',
+        question: 'Does Visl train on my videos or prompts?',
         answer: (
           <>
-            No. Your prompts and generated videos are not used to train Vivi&apos;s
+            No. Your prompts and generated videos are not used to train Visl&apos;s
             models. See our{' '}
             <Link
               to={ROUTES.PRIVACY}

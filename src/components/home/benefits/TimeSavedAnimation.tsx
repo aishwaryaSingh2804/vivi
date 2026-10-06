@@ -8,7 +8,7 @@ export function TimeSavedAnimation() {
       </div>
 
       <div className="time-floating-label new-label">
-        With Vivi
+        With Visl
       </div>
 
       <div className="time-workflow old-workflow">
