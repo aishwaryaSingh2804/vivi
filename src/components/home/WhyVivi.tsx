@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../lib/routes';
 import './WhyVivi.css';
 const features = [
   {
@@ -251,11 +253,11 @@ window into a flooded city...
   <h3>{feature.title}</h3>
   <p>{feature.description}</p>
 
-  <a href="/coming-soon" className="feature-create-btn">
-    <span className="feature-btn-sparkle">✦</span>
-    <span>Start Creating</span>
-    <span className="feature-btn-arrow">↗</span>
-  </a>
+  <Link to={ROUTES.COMING_SOON} className="feature-create-btn">
+  <span className="feature-btn-sparkle">✦</span>
+  <span>Start Creating</span>
+  <span className="feature-btn-arrow">↗</span>
+</Link>
 
   <div className="why-vivi-line" />
 </div>

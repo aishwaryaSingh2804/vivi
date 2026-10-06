@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ROUTES } from '../../lib/routes';
 const DEMO_PROMPTS = [
   {
     label: 'Microdrama',
@@ -92,8 +93,8 @@ export function HeroPrompt() {
     setValue(event.target.value);
   };
 
-  const handleStart = () => {
-  navigate('/login');
+const handleStart = () => {
+  navigate(ROUTES.COMING_SOON);
 };
 
   
