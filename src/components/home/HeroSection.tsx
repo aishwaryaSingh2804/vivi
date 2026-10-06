@@ -17,14 +17,19 @@ export function HeroSection() {
             </div>
 
             <h1 className="vivi-hero-title">
-              Tell the story you've
-              <br />
-              been putting off.
+              <span className="vivi-title-l1">Tell the story</span>{' '}
+              <span>you've</span>
+              <br className="vivi-title-br" />{' '}
+              <span>been</span>{' '}
+              <span className="vivi-hero-title-accent">putting off.</span>
             </h1>
 
             <p className="vivi-hero-subtitle">
-              Visl turns your idea into a cinematic video — complete
-              characters, narration, a real story arc. No camera. No crew.
+              Visl turns your idea into a{' '}
+              <span className="vivi-sub-em">cinematic video</span> — complete{' '}
+              <span className="vivi-sub-em">characters</span>,{' '}
+              <span className="vivi-sub-em">narration</span>, a real story
+              arc. <span className="vivi-sub-punch">No camera. No crew.</span>
             </p>
 
             <HeroPrompt />

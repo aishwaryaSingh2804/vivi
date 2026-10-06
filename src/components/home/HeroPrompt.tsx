@@ -89,6 +89,13 @@ export function HeroPrompt() {
     setIsFocused(true);
   };
 
+  // Mobile story chips: fill the composer with an example idea.
+  const handleChipClick = (index: number) => {
+    setPromptIndex(index);
+    setValue(DEMO_PROMPTS[index].text);
+    setIsFocused(true);
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
   };
@@ -151,7 +158,25 @@ const handleStart = () => {
         </div>
       </div>
 
-      
+      {/* Mobile-only quick ideas (hidden on desktop via CSS) */}
+      <div
+        className="vivi-mobile-chips"
+        role="group"
+        aria-label="Try an example story idea"
+      >
+        {DEMO_PROMPTS.map((prompt, index) => (
+          <button
+            key={prompt.label}
+            type="button"
+            className={`vivi-mobile-chip${
+              value === prompt.text ? ' is-active' : ''
+            }`}
+            onClick={() => handleChipClick(index)}
+          >
+            {prompt.label}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

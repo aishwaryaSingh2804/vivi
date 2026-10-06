@@ -89,14 +89,14 @@ export default function ComingSoon() {
           ========================================= */}
       <div className="coming-soon-content">
         {/* Visl logo */}
-        <Link
+        {/* <Link
           to={ROUTES.HOME}
           className="coming-soon-brand"
           onClick={handleLogoClick}
           aria-label="Go to Visl home"
         >
           Vi<span>sl</span>
-        </Link>
+        </Link> */}
 
         {/* Eyebrow */}
         <div className="coming-soon-eyebrow">
