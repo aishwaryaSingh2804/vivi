@@ -12,8 +12,8 @@ import { WORKFLOW_STAGES } from "./workflowData";
 const LAST_STAGE_INDEX =
   WORKFLOW_STAGES.length - 1;
 
-const WALKTHROUGH_VIEWPORTS =
-  WORKFLOW_STAGES.length;
+// const WALKTHROUGH_VIEWPORTS =
+//   WORKFLOW_STAGES.length;
 
 // Sub-pixel / rounding slack when comparing scroll positions
 // against stage boundaries.
