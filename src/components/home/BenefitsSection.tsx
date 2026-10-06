@@ -215,13 +215,12 @@ export function BenefitsSection() {
           </div>
 
           <h2 className="benefits-heading">
-            Everything you need.
-            <span> Nothing you don't.</span>
+            Create more.
+            <span> Spend less time producing.</span>
           </h2>
 
           <p className="benefits-subheading">
-            Four ways Vivi makes video creation simpler,
-            faster, and more accessible.
+            What changes when you create with Vivi.
           </p>
         </div>
 

@@ -1,129 +1,126 @@
 /* =========================================================
-
    VIVI WORKFLOW — SCROLL-DRIVEN PRODUCT WALKTHROUGH
-
    ========================================================= */
 
 
+/* =========================================================
+   MAIN SECTION
+   ========================================================= */
 
 .workflow-section {
-
   position: relative;
-
   width: 100%;
-
   height: 800vh;
-
   overflow: clip;
 
   background:
-
-    radial-gradient(circle at 72% 42%, rgba(91, 79, 230, 0.075), transparent 38%),
-
+    radial-gradient(
+      circle at 72% 42%,
+      rgba(91, 79, 230, 0.075),
+      transparent 38%
+    ),
     #f8f9ff;
 
   font-family: var(--ff-body);
-
 }
 
 
+/* =========================================================
+   STICKY WORKFLOW
+   ========================================================= */
 
 .workflow-sticky {
-
   position: sticky;
-
   top: 0;
 
   width: 100%;
-
   height: 100svh;
-
   min-height: 620px;
 
   overflow: hidden;
 
   display: flex;
-
   align-items: stretch;
-
 }
 
 
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
 
 .workflow-background-glow {
-
   position: absolute;
 
   width: 58vw;
-
   height: 58vw;
 
   max-width: 900px;
-
   max-height: 900px;
 
   right: 8%;
-
   top: 48%;
 
   transform: translateY(-50%);
 
-  background: radial-gradient(circle, rgba(93, 82, 239, 0.075), rgba(93, 82, 239, 0.02) 42%, transparent 70%);
+  background:
+    radial-gradient(
+      circle,
+      rgba(93, 82, 239, 0.075),
+      rgba(93, 82, 239, 0.02) 42%,
+      transparent 70%
+    );
 
   filter: blur(24px);
 
   pointer-events: none;
-
 }
 
 
+/* =========================================================
+   CONTAINER
+   ========================================================= */
 
 .workflow-container {
-
   position: relative;
-
   z-index: 2;
 
   width: 100%;
-
   height: 100%;
 
   margin: 0 auto;
 
-  padding: clamp(22px, 3.2vh, 38px) clamp(18px, 2.2vw, 36px) 38px;
+  padding:
+    clamp(22px, 3.2vh, 38px)
+    clamp(18px, 2.2vw, 36px)
+    38px;
 
   display: flex;
-
   flex-direction: column;
 
   min-width: 0;
-
 }
 
 
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .workflow-header {
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   flex-shrink: 0;
 
   padding-left: 2px;
 
-  margin-bottom: clamp(16px, 2.5vh, 28px);
-
+  margin-bottom:
+    clamp(16px, 2.5vh, 28px);
 }
 
 
-
 .workflow-kicker {
-
   display: flex;
-
   align-items: center;
 
   gap: 9px;
@@ -131,21 +128,15 @@
   color: #9da0b5;
 
   font-size: 10px;
-
   font-weight: 800;
 
   letter-spacing: 0.14em;
-
   text-transform: uppercase;
-
 }
 
 
-
 .workflow-kicker-dot {
-
   width: 7px;
-
   height: 7px;
 
   flex-shrink: 0;
@@ -154,16 +145,17 @@
 
   background: #5146e5;
 
-  box-shadow: 0 0 0 5px rgba(81, 70, 229, 0.09);
-
+  box-shadow:
+    0 0 0 5px rgba(81, 70, 229, 0.09);
 }
 
 
+.workflow-kicker-brand {
+  color: #999caf;
+}
 
-.workflow-kicker-brand { color: #999caf; }
 
 .workflow-kicker-title {
-
   margin-left: 5px;
 
   color: #202136;
@@ -173,15 +165,11 @@
   letter-spacing: 0;
 
   text-transform: none;
-
 }
 
 
-
 .workflow-counter {
-
   display: flex;
-
   align-items: center;
 
   gap: 5px;
@@ -189,37 +177,43 @@
   color: #a5a7b9;
 
   font-size: 11px;
-
   font-weight: 700;
-
 }
 
-.workflow-counter strong { color: #5146e5; }
+
+.workflow-counter strong {
+  color: #5146e5;
+}
 
 
+/* =========================================================
+   MAIN EXPERIENCE GRID
+   ========================================================= */
 
 .workflow-experience {
-
   flex: 1;
 
   min-height: 0;
 
   display: grid;
 
-  grid-template-columns: 82px minmax(220px, 270px) minmax(0, 1fr);
+  grid-template-columns:
+    82px
+    minmax(220px, 270px)
+    minmax(0, 1fr);
 
-  column-gap: clamp(18px, 2.1vw, 34px);
+  column-gap:
+    clamp(18px, 2.1vw, 34px);
 
   align-items: center;
-
 }
 
 
-
-/* Vertical timeline: anchored to the far left of the experience */
+/* =========================================================
+   LEFT TIMELINE
+   ========================================================= */
 
 .workflow-journey {
-
   position: relative;
 
   align-self: stretch;
@@ -229,30 +223,39 @@
   display: flex;
 
   justify-content: center;
-
 }
 
 
+/*
+   Timeline track.
+
+   IMPORTANT:
+   The track itself has a fixed height and the nodes are
+   distributed across it using space-between.
+*/
 
 .workflow-vertical-track {
   position: relative;
+
   width: 100%;
+
   height: min(100%, 520px);
+
   min-height: 0;
+
   align-self: center;
 }
 
 
+/* =========================================================
+   TIMELINE BASE LINE
+   ========================================================= */
 
-.workflow-vertical-line,
-
-.workflow-vertical-progress {
-
+.workflow-vertical-line {
   position: absolute;
 
-  top: 25px;
-
-  bottom: 25px;
+  top: 15px;
+  bottom: 15px;
 
   left: 27px;
 
@@ -260,36 +263,64 @@
 
   border-radius: 4px;
 
-}
-
-
-
-.workflow-vertical-line {
-
   background: #dedff0;
 
+  pointer-events: none;
 }
 
 
+/* =========================================================
+   TIMELINE PROGRESS
+   ========================================================= */
+
+/*
+   IMPORTANT:
+
+   This is intentionally NOT transitioned.
+
+   The TSX continuously updates its height from the actual
+   scroll position.
+
+   Therefore the blue line physically travels with the page
+   instead of lagging behind the stage.
+*/
 
 .workflow-vertical-progress {
+  position: absolute;
 
-  bottom: auto;
+  top: 15px;
+  left: 27px;
+
+  width: 2px;
 
   height: 0;
 
-  max-height: calc(100% - 50px);
+  max-height: calc(100% - 30px);
 
-  background: linear-gradient(180deg, #8178ff, #5146e5);
+  border-radius: 4px;
 
-  transition: height 0.4s cubic-bezier(.2,.8,.2,1);
+  background:
+    linear-gradient(
+      180deg,
+      #8178ff,
+      #5146e5
+    );
 
+  transition: none;
+
+  will-change: height;
+
+  pointer-events: none;
+
+  z-index: 1;
 }
 
 
+/* =========================================================
+   TIMELINE NODES
+   ========================================================= */
 
 .workflow-nodes {
-
   position: absolute;
 
   inset: 0;
@@ -301,13 +332,14 @@
   justify-content: space-between;
 
   align-items: flex-start;
-
 }
 
 
+/*
+   Stage is a real button so the entire row is clickable.
+*/
 
 .workflow-node {
-
   position: relative;
 
   z-index: 2;
@@ -322,16 +354,41 @@
 
   gap: 9px;
 
+  padding: 0;
+
+  margin: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  font: inherit;
+
+  color: inherit;
+
   text-align: left;
 
+  cursor: pointer;
 }
 
 
+/* Keyboard accessibility */
+
+.workflow-node:focus-visible {
+  outline: 2px solid #5146e5;
+
+  outline-offset: 4px;
+
+  border-radius: 8px;
+}
+
+
+/* =========================================================
+   NODE CIRCLE
+   ========================================================= */
 
 .workflow-node-circle {
-
   width: 30px;
-
   height: 30px;
 
   flex: 0 0 30px;
@@ -339,7 +396,6 @@
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border-radius: 50%;
@@ -351,37 +407,46 @@
   color: #a5a7b7;
 
   font-size: 8px;
-
   font-weight: 800;
 
-  box-shadow: 0 5px 15px rgba(45, 40, 100, 0.06);
+  box-shadow:
+    0 5px 15px rgba(45, 40, 100, 0.06);
 
-  transition: transform .35s ease, background .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease;
-
+  transition:
+    transform 0.35s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 
+/* =========================================================
+   NODE LABEL
+   ========================================================= */
 
 .workflow-node-label {
-
   color: #9295aa;
 
   font-size: 9px;
 
   font-weight: 800;
 
-  letter-spacing: .015em;
+  letter-spacing: 0.015em;
 
   line-height: 1.15;
 
-  transition: color .3s ease;
-
+  transition:
+    color 0.3s ease;
 }
 
 
+/* =========================================================
+   ACTIVE NODE
+   ========================================================= */
 
-.workflow-node.is-active .workflow-node-circle {
-
+.workflow-node.is-active
+  .workflow-node-circle {
   color: #fff;
 
   background: #5146e5;
@@ -390,78 +455,123 @@
 
   transform: scale(1.14);
 
-  box-shadow: 0 0 0 6px rgba(81,70,229,.11), 0 8px 20px rgba(81,70,229,.2);
-
+  box-shadow:
+    0 0 0 6px rgba(81, 70, 229, 0.11),
+    0 8px 20px rgba(81, 70, 229, 0.2);
 }
 
-.workflow-node.is-active .workflow-node-label { color: #5146e5; }
 
-.workflow-node.is-completed .workflow-node-circle {
+.workflow-node.is-active
+  .workflow-node-label {
+  color: #5146e5;
+}
 
+
+/* =========================================================
+   COMPLETED NODE
+   ========================================================= */
+
+.workflow-node.is-completed
+  .workflow-node-circle {
   color: #5146e5;
 
   border-color: #c2c4ed;
 
   background: #fafaff;
-
 }
 
 
+/* =========================================================
+   HOVER
+   ========================================================= */
 
-/* Compact stage description popup */
+@media (hover: hover) and (pointer: fine) {
+
+  .workflow-node:not(.is-active):hover
+    .workflow-node-circle {
+    transform: scale(1.08);
+
+    border-color: #bfc1e8;
+
+    color: #5146e5;
+  }
+
+
+  .workflow-node:not(.is-active):hover
+    .workflow-node-label {
+    color: #5146e5;
+  }
+}
+
+
+/* =========================================================
+   STAGE DESCRIPTION CARD
+   ========================================================= */
 
 .workflow-stage-info {
-
   min-width: 0;
 
   display: flex;
 
   align-items: center;
-
 }
-
 
 
 .workflow-stage-card {
-
   width: 100%;
 
-  padding: clamp(20px, 2.1vw, 30px);
+  padding:
+    clamp(20px, 2.1vw, 30px);
 
   border-radius: 17px;
 
-  background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(250,250,255,.94));
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(250, 250, 255, 0.94)
+    );
 
-  border: 1px solid rgba(101,103,156,.13);
+  border:
+    1px solid rgba(101, 103, 156, 0.13);
 
-  box-shadow: 0 20px 50px rgba(44,42,90,.075);
+  box-shadow:
+    0 20px 50px rgba(44, 42, 90, 0.075);
 
-  animation: workflowCardIn .45s cubic-bezier(.2,.8,.2,1);
-
+  animation:
+    workflowCardIn
+    0.45s
+    cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
 
 
 @keyframes workflowCardIn {
 
-  from { opacity: 0; transform: translateY(10px) scale(.99); }
+  from {
+    opacity: 0;
 
-  to { opacity: 1; transform: translateY(0) scale(1); }
+    transform:
+      translateY(10px)
+      scale(0.99);
+  }
 
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
 }
 
 
-
 .workflow-stage-number {
-
   width: 30px;
-
   height: 30px;
 
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   border-radius: 8px;
@@ -477,47 +587,39 @@
   font-weight: 800;
 
   margin-bottom: 22px;
-
 }
 
 
-
 .workflow-eyebrow {
-
   color: #5146e5;
 
   font-size: 9px;
 
   font-weight: 800;
 
-  letter-spacing: .16em;
+  letter-spacing: 0.16em;
 
   margin-bottom: 10px;
-
 }
 
 
-
 .workflow-stage-card h2 {
-
   margin: 0;
 
   color: #1d1e31;
 
   font-family: var(--ff-display);
 
-  font-size: clamp(25px, 2.15vw, 36px);
+  font-size:
+    clamp(25px, 2.15vw, 36px);
 
   line-height: 1.06;
 
-  letter-spacing: -.04em;
-
+  letter-spacing: -0.04em;
 }
 
 
-
 .workflow-stage-card p {
-
   margin: 16px 0 0;
 
   color: #777b92;
@@ -525,13 +627,10 @@
   font-size: 12px;
 
   line-height: 1.75;
-
 }
 
 
-
 .workflow-divider {
-
   width: 100%;
 
   height: 1px;
@@ -539,13 +638,10 @@
   margin: 21px 0 13px;
 
   background: #e8e9f2;
-
 }
 
 
-
 .workflow-next {
-
   display: flex;
 
   align-items: center;
@@ -559,31 +655,38 @@
   font-size: 10px;
 
   font-weight: 700;
-
 }
+
 
 .workflow-next-arrow {
-
   font-size: 17px;
 
-  animation: workflowArrow 1.5s ease-in-out infinite;
-
+  animation:
+    workflowArrow
+    1.5s
+    ease-in-out
+    infinite;
 }
+
 
 @keyframes workflowArrow {
 
-  0%, 100% { transform: translateX(0); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
 
-  50% { transform: translateX(5px); }
-
+  50% {
+    transform: translateX(5px);
+  }
 }
 
 
-
-/* Large interactive HTML demo */
+/* =========================================================
+   DEMO
+   ========================================================= */
 
 .workflow-demo {
-
   min-width: 0;
 
   min-height: 0;
@@ -595,13 +698,10 @@
   flex-direction: column;
 
   justify-content: center;
-
 }
 
 
-
 .workflow-demo-heading {
-
   display: flex;
 
   align-items: center;
@@ -618,29 +718,24 @@
 
   font-weight: 800;
 
-  letter-spacing: .12em;
-
+  letter-spacing: 0.12em;
 }
-
 
 
 .workflow-demo-heading span:last-child {
-
   color: #5146e5;
 
-  letter-spacing: .04em;
-
+  letter-spacing: 0.04em;
 }
 
 
-
 .workflow-demo-frame {
-
   position: relative;
 
   width: 100%;
 
-  height: min(76vh, 780px);
+  height:
+    min(76vh, 780px);
 
   min-height: 360px;
 
@@ -650,39 +745,58 @@
 
   background: #fff;
 
-  border: 1px solid rgba(100,102,150,.14);
+  border:
+    1px solid rgba(100, 102, 150, 0.14);
 
-  box-shadow: 0 25px 65px rgba(39,36,91,.12), 0 7px 22px rgba(39,36,91,.05);
-
+  box-shadow:
+    0 25px 65px rgba(39, 36, 91, 0.12),
+    0 7px 22px rgba(39, 36, 91, 0.05);
 }
 
 
-
 .workflow-demo-frame iframe {
-
   display: block;
 
   width: 100%;
-
   height: 100%;
 
   border: 0;
 
   background: #fff;
 
+  animation:
+    workflowDemoReveal
+    0.32s
+    ease-out
+    both;
 }
 
 
+@keyframes workflowDemoReveal {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   SCROLL HINT
+   ========================================================= */
 
 .workflow-scroll-hint {
-
   position: absolute;
 
   left: 50%;
 
   bottom: 11px;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
   display: flex;
 
@@ -696,36 +810,36 @@
 
   font-weight: 700;
 
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
 
   text-transform: uppercase;
 
-  transition: opacity .4s ease;
+  transition:
+    opacity 0.4s ease;
 
   pointer-events: none;
-
 }
 
-.workflow-scroll-hint.is-fading { opacity: .2; }
 
+.workflow-scroll-hint.is-fading {
+  opacity: 0.2;
+}
 
 
 .workflow-scroll-mouse {
-
   position: relative;
 
   width: 14px;
-
   height: 20px;
 
-  border: 1px solid #b9bbca;
+  border:
+    1px solid #b9bbca;
 
   border-radius: 9px;
-
 }
 
-.workflow-scroll-mouse span {
 
+.workflow-scroll-mouse span {
   position: absolute;
 
   top: 4px;
@@ -733,33 +847,47 @@
   left: 50%;
 
   width: 3px;
-
   height: 5px;
 
   border-radius: 5px;
 
   background: #5146e5;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
-  animation: workflowScrollWheel 1.6s ease-in-out infinite;
-
+  animation:
+    workflowScrollWheel
+    1.6s
+    ease-in-out
+    infinite;
 }
+
 
 @keyframes workflowScrollWheel {
 
-  0% { transform: translate(-50%,0); opacity: 1; }
+  0% {
+    transform:
+      translate(-50%, 0);
 
-  70%, 100% { transform: translate(-50%,7px); opacity: 0; }
+    opacity: 1;
+  }
 
+  70%,
+  100% {
+    transform:
+      translate(-50%, 7px);
+
+    opacity: 0;
+  }
 }
 
 
-
-/* Journey complete */
+/* =========================================================
+   FINALE
+   ========================================================= */
 
 .workflow-finale {
-
   position: absolute;
 
   top: 700vh;
@@ -785,23 +913,26 @@
   padding: 70px 30px;
 
   background: #fff;
-
 }
 
-.workflow-finale-line {
 
+.workflow-finale-line {
   width: 1px;
 
   height: 50px;
 
   margin-bottom: 38px;
 
-  background: linear-gradient(to bottom, transparent, #5146e5);
-
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      #5146e5
+    );
 }
 
-.workflow-finale-kicker {
 
+.workflow-finale-kicker {
   display: flex;
 
   align-items: center;
@@ -814,54 +945,55 @@
 
   font-weight: 800;
 
-  letter-spacing: .17em;
-
+  letter-spacing: 0.17em;
 }
 
+
 .workflow-finale-kicker span {
-
   width: 6px;
-
   height: 6px;
 
   border-radius: 50%;
 
   background: #5146e5;
 
-  box-shadow: 0 0 0 5px rgba(81,70,229,.09);
-
+  box-shadow:
+    0 0 0 5px
+    rgba(81, 70, 229, 0.09);
 }
 
-.workflow-finale h2 {
 
+.workflow-finale h2 {
   margin: 17px 0 0;
 
   color: #1d1e31;
 
   font-family: var(--ff-display);
 
-  font-size: clamp(46px, 6vw, 78px);
+  font-size:
+    clamp(46px, 6vw, 78px);
 
-  line-height: .94;
+  line-height: 0.94;
 
-  letter-spacing: -.06em;
-
+  letter-spacing: -0.06em;
 }
 
-.workflow-finale h2 span { color: #5146e5; }
+
+.workflow-finale h2 span {
+  color: #5146e5;
+}
+
 
 .workflow-finale p {
-
   margin: 20px 0 28px;
 
   color: #7f8297;
 
   font-size: 12px;
-
 }
 
-.workflow-cta {
 
+.workflow-cta {
   display: inline-flex;
 
   align-items: center;
@@ -872,7 +1004,8 @@
 
   min-width: 145px;
 
-  padding: 13px 15px 13px 19px;
+  padding:
+    13px 15px 13px 19px;
 
   border-radius: 8px;
 
@@ -880,7 +1013,9 @@
 
   background: #5146e5;
 
-  box-shadow: 0 14px 30px rgba(81,70,229,.2);
+  box-shadow:
+    0 14px 30px
+    rgba(81, 70, 229, 0.2);
 
   text-decoration: none;
 
@@ -888,231 +1023,355 @@
 
   font-weight: 700;
 
-  transition: transform .25s ease, box-shadow .25s ease;
-
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
 
 .workflow-cta:hover {
-
   transform: translateY(-3px);
 
-  box-shadow: 0 18px 35px rgba(81,70,229,.28);
-
+  box-shadow:
+    0 18px 35px
+    rgba(81, 70, 229, 0.28);
 }
 
-.workflow-cta-arrow { font-size: 16px; transition: transform .25s ease; }
 
-.workflow-cta:hover .workflow-cta-arrow { transform: translateX(4px); }
+.workflow-cta-arrow {
+  font-size: 16px;
+
+  transition:
+    transform 0.25s ease;
+}
 
 
+.workflow-cta:hover
+  .workflow-cta-arrow {
+  transform: translateX(4px);
+}
 
-/* Tablet */
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 1050px) {
 
-  .workflow-container { padding-left: 16px; padding-right: 16px; }
-
-  .workflow-experience {
-
-    grid-template-columns: 65px minmax(190px, 230px) minmax(0, 1fr);
-
-    column-gap: 16px;
-
+  .workflow-container {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  .workflow-stage-card { padding: 20px; }
 
-  .workflow-stage-card h2 { font-size: clamp(23px, 2.6vw, 30px); }
+  .workflow-experience {
+    grid-template-columns:
+      65px
+      minmax(190px, 230px)
+      minmax(0, 1fr);
 
-  .workflow-stage-card p { font-size: 11px; }
+    column-gap: 16px;
+  }
 
-  .workflow-demo-frame { height: min(70vh, 700px); }
 
+  .workflow-stage-card {
+    padding: 20px;
+  }
+
+
+  .workflow-stage-card h2 {
+    font-size:
+      clamp(23px, 2.6vw, 30px);
+  }
+
+
+  .workflow-stage-card p {
+    font-size: 11px;
+  }
+
+
+  .workflow-demo-frame {
+    height:
+      min(70vh, 700px);
+  }
 }
 
 
-
-/* Mobile keeps the stage rail vertical, with the description above the demo. */
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 700px) {
 
-  .workflow-section { height: 800vh; }
+  .workflow-section {
+    height: 800vh;
+  }
 
-  .workflow-sticky { min-height: 580px; }
 
-  .workflow-container { padding: 22px 12px 34px; }
+  .workflow-sticky {
+    min-height: 580px;
+  }
 
-  .workflow-header { margin-bottom: 10px; }
 
-  .workflow-kicker { font-size: 8px; gap: 7px; }
+  .workflow-container {
+    padding:
+      22px 12px 34px;
+  }
 
-  .workflow-kicker-title { display: none; }
+
+  .workflow-header {
+    margin-bottom: 10px;
+  }
+
+
+  .workflow-kicker {
+    font-size: 8px;
+
+    gap: 7px;
+  }
+
+
+  .workflow-kicker-title {
+    display: none;
+  }
+
 
   .workflow-experience {
+    grid-template-columns:
+      43px
+      minmax(0, 1fr);
 
-    grid-template-columns: 43px minmax(0, 1fr);
-
-    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-rows:
+      auto
+      minmax(0, 1fr);
 
     column-gap: 10px;
 
     row-gap: 12px;
-
   }
 
-  .workflow-journey {
 
+  .workflow-journey {
     grid-column: 1;
 
     grid-row: 1 / span 2;
-
   }
 
- .workflow-vertical-track {
-  height: min(100%, 390px);
-  min-height: 0;
-}
 
-  .workflow-vertical-line,
+  .workflow-vertical-track {
+    height:
+      min(100%, 390px);
 
-  .workflow-vertical-progress { left: 13px; top: 18px; bottom: 18px; }
+    min-height: 0;
+  }
 
-  .workflow-node { min-height: 38px; gap: 5px; }
 
-  .workflow-node-circle { width: 27px; height: 27px; flex-basis: 27px; font-size: 7px; }
+  /*
+     Mobile timeline alignment.
+
+     Node circles are 27px, so the line is centered
+     at 13px within the 43px timeline column.
+  */
+
+  .workflow-vertical-line {
+    left: 13px;
+
+    top: 14px;
+
+    bottom: 14px;
+  }
+
+
+  .workflow-vertical-progress {
+    left: 13px;
+
+    top: 14px;
+
+    bottom: auto;
+
+    max-height:
+      calc(100% - 28px);
+  }
+
+
+  .workflow-node {
+    min-height: 50px;
+
+    margin-bottom: 8px;
+
+    gap: 5px;
+
+    align-items: flex-start;
+  }
+
+
+  .workflow-node:last-child {
+    margin-bottom: 0;
+  }
+
+
+  .workflow-node-circle {
+    width: 27px;
+    height: 27px;
+
+    flex: 0 0 27px;
+
+    font-size: 7px;
+  }
+
 
   .workflow-node-label {
-
     position: absolute;
 
     left: 0;
 
-    top: 29px;
+    top: 37px;
 
-    width: 42px;
+    width: 54px;
 
-    font-size: 6px;
+    font-size: 7px;
 
     text-align: center;
 
     white-space: nowrap;
 
-    transform: translateX(-7px);
+    line-height: 1.2;
 
+    transform:
+      translateX(-13px);
   }
 
-  .workflow-node { margin-bottom: 12px; }
 
-  .workflow-node:last-child { margin-bottom: 0; }
+  .workflow-stage-info {
+    grid-column: 2;
 
-  .workflow-stage-info { grid-column: 2; grid-row: 1; }
+    grid-row: 1;
+  }
 
-  .workflow-stage-card { padding: 15px; border-radius: 13px; }
 
-  .workflow-stage-number { width: 25px; height: 25px; margin-bottom: 10px; font-size: 9px; }
+  .workflow-stage-card {
+    padding: 15px;
 
-  .workflow-eyebrow { margin-bottom: 6px; font-size: 7px; }
+    border-radius: 13px;
+  }
 
-  .workflow-stage-card h2 { font-size: clamp(21px, 5vw, 27px); }
 
-  .workflow-stage-card p { margin-top: 8px; font-size: 10px; line-height: 1.5; }
+  .workflow-stage-number {
+    width: 25px;
+    height: 25px;
 
-  .workflow-divider { margin: 10px 0 8px; }
+    margin-bottom: 10px;
 
-  .workflow-next { font-size: 8px; }
+    font-size: 9px;
+  }
 
-  .workflow-demo { grid-column: 2; grid-row: 2; justify-content: flex-start; }
 
-  .workflow-demo-heading { padding-bottom: 6px; font-size: 7px; }
+  .workflow-eyebrow {
+    margin-bottom: 6px;
 
-  .workflow-demo-frame { height: 100%; min-height: 0; border-radius: 10px; }
+    font-size: 7px;
+  }
 
-  .workflow-scroll-hint { bottom: 8px; font-size: 7px; }
 
-  .workflow-finale { top: 700vh; min-height: 560px; }
+  .workflow-stage-card h2 {
+    font-size:
+      clamp(21px, 5vw, 27px);
+  }
 
-  .workflow-finale h2 { font-size: 44px; }
 
-/* Mobile timeline — prevent stage labels overlapping circles */
+  .workflow-stage-card p {
+    margin-top: 8px;
 
-.workflow-vertical-track {
-  height: min(100%, 390px);
-  min-height: 0;
+    font-size: 10px;
+
+    line-height: 1.5;
+  }
+
+
+  .workflow-divider {
+    margin:
+      10px 0 8px;
+  }
+
+
+  .workflow-next {
+    font-size: 8px;
+  }
+
+
+  .workflow-demo {
+    grid-column: 2;
+
+    grid-row: 2;
+
+    justify-content: flex-start;
+  }
+
+
+  .workflow-demo-heading {
+    padding-bottom: 6px;
+
+    font-size: 7px;
+  }
+
+
+  .workflow-demo-frame {
+    height: 100%;
+
+    min-height: 0;
+
+    border-radius: 10px;
+  }
+
+
+  .workflow-scroll-hint {
+    bottom: 8px;
+
+    font-size: 7px;
+  }
+
+
+  .workflow-finale {
+    top: 700vh;
+
+    min-height: 560px;
+  }
+
+
+  .workflow-finale h2 {
+    font-size: 44px;
+  }
 }
 
-.workflow-vertical-line,
-.workflow-vertical-progress {
-  left: 13px;
-  top: 14px;
-  bottom: 37px;
-}
 
-.workflow-node {
-  min-height: 50px;
-  margin-bottom: 8px;
-  gap: 5px;
-  align-items: flex-start;
-}
-
-.workflow-node:last-child {
-  margin-bottom: 0;
-}
-
-.workflow-node-circle {
-  width: 27px;
-  height: 27px;
-  flex: 0 0 27px;
-  font-size: 7px;
-}
-
-.workflow-node-label {
-  position: absolute;
-  left: 0;
-  top: 37px;
-  width: 54px;
-  font-size: 7px;
-  text-align: center;
-  white-space: nowrap;
-  line-height: 1.2;
-  transform: translateX(-13px);
-}
-
-}
-
-
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
   .workflow-stage-card,
-
   .workflow-node-circle,
-
   .workflow-node-label,
-
   .workflow-cta,
-
   .workflow-next-arrow,
-
-  .workflow-scroll-mouse span {
+  .workflow-scroll-mouse span,
+  .workflow-demo-frame iframe,
+  .workflow-demo-intro-arrow {
 
     animation: none !important;
 
     transition: none !important;
-
   }
-
 }
 
 
-
-
-
-/* Intro state shown while the section is entering its sticky position. */
+/* =========================================================
+   OPTIONAL DEMO INTRO
+   ========================================================= */
 
 .workflow-demo-intro {
-
   width: 100%;
-
   height: 100%;
 
   min-height: 360px;
@@ -1132,108 +1391,229 @@
   text-align: center;
 
   background:
-
-    radial-gradient(circle at 50% 42%, rgba(112, 103, 255, .13), transparent 48%),
-
-    linear-gradient(145deg, #fbfbff, #f2f3ff);
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(112, 103, 255, 0.13),
+      transparent 48%
+    ),
+    linear-gradient(
+      145deg,
+      #fbfbff,
+      #f2f3ff
+    );
 
   color: #202136;
-
 }
 
 
-
 .workflow-demo-intro-kicker {
-
   color: #5146e5;
 
   font-size: 9px;
 
   font-weight: 800;
 
-  letter-spacing: .18em;
-
+  letter-spacing: 0.18em;
 }
 
 
-
 .workflow-demo-intro strong {
-
   max-width: 440px;
 
   font-family: var(--ff-display);
 
-  font-size: clamp(24px, 3vw, 42px);
+  font-size:
+    clamp(24px, 3vw, 42px);
 
   line-height: 1.08;
 
-  letter-spacing: -.04em;
-
+  letter-spacing: -0.04em;
 }
-
 
 
 .workflow-demo-intro-copy {
-
   color: #8588a0;
 
   font-size: 12px;
-
 }
 
 
-
 .workflow-demo-intro-arrow {
-
   display: grid;
 
   place-items: center;
 
   width: 32px;
-
   height: 32px;
 
   margin-top: 8px;
 
-  border: 1px solid rgba(81, 70, 229, .2);
+  border:
+    1px solid
+    rgba(81, 70, 229, 0.2);
 
   border-radius: 50%;
 
   color: #5146e5;
 
-  animation: workflowIntroNudge 1.5s ease-in-out infinite;
-
+  animation:
+    workflowIntroNudge
+    1.5s
+    ease-in-out
+    infinite;
 }
-
 
 
 @keyframes workflowIntroNudge {
 
-  0%, 100% { transform: translateY(0); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
 
-  50% { transform: translateY(5px); }
-
+  50% {
+    transform: translateY(5px);
+  }
 }
-
 
 
 @media (prefers-reduced-motion: reduce) {
 
-  .workflow-demo-intro-arrow { animation: none; }
+  .workflow-demo-intro-arrow {
+    animation: none;
+  }
+}
 
+/* ---------------------------------------------------------
+   WORKFLOW SCROLL / WALKTHROUGH HINT
+--------------------------------------------------------- */
+
+.workflow-scroll-hint {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 44px;
+
+  margin-top: 18px;
+
+  gap: 10px;
+
+  /* Vivi accent */
+  color: #5146e5;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  opacity: 1;
+
+  z-index: 5;
+
+  /* Never interfere with the demo */
+  pointer-events: none;
+
+  /* Keep it visually constant */
+  transition: none;
+}
+
+/* Never fade/change the hint during the walkthrough */
+.workflow-scroll-hint.is-fading {
+  opacity: 1;
+  color: #5146e5;
 }
 
 
-/* Let the next clip appear cleanly when the active stage changes. */
-.workflow-demo-frame iframe {
-  animation: workflowDemoReveal 0.32s ease-out both;
+/* ---------------------------------------------------------
+   SCROLL INDICATOR
+--------------------------------------------------------- */
+
+.workflow-scroll-mouse {
+  position: relative;
+
+  width: 14px;
+  height: 21px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 1.5px solid #5146e5;
+  border-radius: 8px;
 }
 
-@keyframes workflowDemoReveal {
-  from { opacity: 0; }
-  to { opacity: 1; }
+
+/* Moving scroll wheel */
+.workflow-scroll-mouse > span {
+  width: 2px;
+  height: 5px;
+
+  margin-top: 4px;
+
+  border-radius: 999px;
+
+  background: #5146e5;
+
+  animation: workflow-scroll-indicator 1.8s
+    ease-in-out infinite;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .workflow-demo-frame iframe { animation: none; }
+
+/* ---------------------------------------------------------
+   SCROLL ANIMATION
+--------------------------------------------------------- */
+
+@keyframes workflow-scroll-indicator {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateY(6px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .workflow-scroll-hint {
+    height: 38px;
+    margin-top: 14px;
+
+    gap: 8px;
+
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .workflow-scroll-mouse {
+    width: 13px;
+    height: 19px;
+  }
+
+  .workflow-scroll-mouse > span {
+    width: 2px;
+    height: 4px;
+  }
 }

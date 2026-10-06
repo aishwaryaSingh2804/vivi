@@ -554,3 +554,8 @@
     padding-right: 18px;
   }
 }
+
+.credits-feature strong {
+  color: var(--text);
+  font-weight: 700;
+}

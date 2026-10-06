@@ -18,8 +18,7 @@ export function PricingSection() {
           </h2>
 
           <p className="pricing-subheading">
-            No credit card to start. All plans include HD export,
-            multi-language subtitles, and direct social publishing.
+            No credit card to start. All plans include HD export and direct social publishing.
           </p>
         </div>
 
@@ -76,8 +75,12 @@ export function PricingSection() {
                     </span>
 
                     <span className="feature-name">
-                      {item.name}
-                    </span>
+  {item.name.startsWith("Monthly credits:") ? (
+    <strong>{item.name}</strong>
+  ) : (
+    item.name
+  )}
+</span>
                   </li>
                 ))}
               </ul>

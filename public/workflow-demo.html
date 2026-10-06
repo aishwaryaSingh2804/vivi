@@ -1058,7 +1058,25 @@ function stopPad(){ if(!padNodes||!ac)return; const t=now(); padNodes.g.gain.can
 
 /* =====================  ENGINE  ===================== */
 const stage=document.getElementById('stage');
-let S=1,k=1,raf=0,t0=0,fired=0,E=[],TW=[],cache={},hovEl=null,typedLen=0;
+
+let S=1,
+    k=1,
+    raf=0,
+    t0=0,
+    fired=0,
+    E=[],
+    TW=[],
+    cache={},
+    hovEl=null,
+    typedLen=0;
+
+/*
+ * React creates a new playbackId every time a stage starts.
+ * These values belong to the currently active iframe playback.
+ */
+let activePlaybackId = null;
+let activePlaybackStageIndex = null;
+
 const $=id=>document.getElementById(id);
 function fit(){ S=Math.min(innerWidth/1920,innerHeight/1080); stage.style.transform=`translate(-50%,-50%) scale(${S})`; }
 addEventListener('resize',fit);
@@ -1942,11 +1960,124 @@ function wire(){
   CL.wire(e);
 }
 
-function tick(ts){
-  const T=(ts-t0)/1000/k;
-  while(fired<E.length&&E[fired][0]<=T){ try{E[fired][1]();}catch(err){console.error(err);} fired++; }
-  for(const w of TW){ if(T>=w[0]&&T<=w[1]) w[2]((T-w[0])/(w[1]-w[0])); else if(T>w[1]&&!w.d){ w[2](1); w.d=1; } }
-  if(T<(allMode?runTotal:CL.total)) raf=requestAnimationFrame(tick); else finish();
+function tick(ts) {
+  const T = (ts - t0) / 1000 / k;
+
+  while (
+    fired < E.length &&
+    E[fired][0] <= T
+  ) {
+    try {
+      E[fired][1]();
+    } catch (err) {
+      console.error(err);
+    }
+
+    fired++;
+  }
+
+  for (const w of TW) {
+    if (T >= w[0] && T <= w[1]) {
+      w[2](
+        (T - w[0]) /
+        (w[1] - w[0])
+      );
+    } else if (
+      T > w[1] &&
+      !w.d
+    ) {
+      w[2](1);
+      w.d = 1;
+    }
+  }
+
+  /*
+   * -------------------------------------------------------
+   * REPORT EXACT DEMO PROGRESS TO REACT
+   * -------------------------------------------------------
+   *
+   * This is now the source of truth for the blue timeline.
+   */
+  if (
+    embedMode &&
+    window.parent !== window
+  ) {
+    const totalDuration =
+      allMode
+        ? runTotal
+        : CL.total;
+
+    const demoProgress =
+      totalDuration > 0
+        ? Math.max(
+            0,
+            Math.min(
+              1,
+              T / totalDuration
+            )
+          )
+        : 0;
+
+    window.parent.postMessage(
+  {
+    type:
+      "VIVI_WORKFLOW_PROGRESS",
+
+    clip:
+      clipKey,
+
+    progress:
+      demoProgress,
+
+    playbackId:
+      activePlaybackId,
+
+    stageIndex:
+      activePlaybackStageIndex,
+  },
+  window.location.origin
+);
+  }
+
+  const total =
+    allMode
+      ? runTotal
+      : CL.total;
+
+  if (T < total) {
+    raf =
+      requestAnimationFrame(tick);
+  } else {
+    /*
+     * Make absolutely sure React receives 100%
+     * before the DONE event.
+     */
+    if (
+      embedMode &&
+      window.parent !== window
+    ) {
+      window.parent.postMessage(
+  {
+    type:
+      "VIVI_WORKFLOW_PROGRESS",
+
+    clip:
+      clipKey,
+
+    progress: 1,
+
+    playbackId:
+      activePlaybackId,
+
+    stageIndex:
+      activePlaybackStageIndex,
+  },
+  window.location.origin
+);
+    }
+
+    finish();
+  }
 }
 function sortE(){ E.sort((a,b)=>a[0]-b[0]); }
 
@@ -1963,22 +2094,38 @@ function play(){
 }
 function finish() {
   stopPad();
+
   document.body.classList.remove('playing');
   document.body.classList.add('done');
+
   $('play').textContent = 'Replay';
 
-  // Tell React that this stage's entire demo has finished.
-  if (embedMode && window.parent !== window) {
+  /*
+   * Tell React that THIS exact playback session
+   * has completed.
+   */
+  if (
+    embedMode &&
+    window.parent !== window
+  ) {
     window.parent.postMessage(
       {
-        type: 'VIVI_WORKFLOW_DONE',
-        clip: clipKey
+        type:
+          'VIVI_WORKFLOW_DONE',
+
+        clip:
+          clipKey,
+
+        playbackId:
+          activePlaybackId,
+
+        stageIndex:
+          activePlaybackStageIndex,
       },
       window.location.origin
     );
   }
-}
-function pick(v){ cancelAnimationFrame(raf); stopPad(); $('clip').value=v; clipKey=(v==='all')?'prompt':v; allMode=false; $('wipe').classList.remove('go'); k=+$('len').value; document.body.classList.remove('playing','done'); $('play').textContent='Play'; build(); }
+}function pick(v){ cancelAnimationFrame(raf); stopPad(); $('clip').value=v; clipKey=(v==='all')?'prompt':v; allMode=false; $('wipe').classList.remove('go'); k=+$('len').value; document.body.classList.remove('playing','done'); $('play').textContent='Play'; build(); }
 
 /* controls */
 $('play').onclick=play; $('bp').onclick=play;
@@ -2002,59 +2149,106 @@ const shouldAutoplay = embedParams.get('autoplay') === '1';
 
 // Listen for playback commands from the React workflow.
 if (embedMode) {
-  window.addEventListener('message', (event) => {
-    if (event.source !== window.parent) return;
-    if (event.origin !== window.location.origin) return;
-
-    const data = event.data;
-
-    if (data?.type === 'VIVI_WORKFLOW_PLAY') {
-      const nextClip = data.clip;
-
-      if (!Object.prototype.hasOwnProperty.call(CLIPS, nextClip)) {
+  window.addEventListener(
+    'message',
+    (event) => {
+      if (
+        event.source !==
+        window.parent
+      ) {
         return;
       }
 
-      // Always select the requested clip and rebuild it from the beginning.
-      $('clip').value = nextClip;
-      play();
-    }
+      if (
+        event.origin !==
+        window.location.origin
+      ) {
+        return;
+      }
 
-    if (data?.type === 'VIVI_WORKFLOW_PAUSE') {
-      cancelAnimationFrame(raf);
-      stopPad();
+      const data =
+        event.data;
 
-      document.body.classList.remove('playing');
+      /*
+       * -----------------------------------------
+       * START EXACT PLAYBACK SESSION
+       * -----------------------------------------
+       */
+      if (
+        data?.type ===
+        'VIVI_WORKFLOW_PLAY'
+      ) {
+        const nextClip =
+          data.clip;
+
+        if (
+          !Object.prototype.hasOwnProperty.call(
+            CLIPS,
+            nextClip
+          )
+        ) {
+          return;
+        }
+
+        /*
+         * Store the identity generated by React.
+         */
+        activePlaybackId =
+          data.playbackId ?? null;
+
+        activePlaybackStageIndex =
+          Number.isInteger(
+            data.stageIndex
+          )
+            ? data.stageIndex
+            : null;
+
+        /*
+         * Select the requested clip.
+         */
+        $('clip').value =
+          nextClip;
+
+        /*
+         * play() starts this exact clip
+         * from 0.
+         */
+        play();
+
+        return;
+      }
+
+      /*
+       * -----------------------------------------
+       * STOP CURRENT PLAYBACK
+       * -----------------------------------------
+       */
+      if (
+        data?.type ===
+        'VIVI_WORKFLOW_PAUSE'
+      ) {
+        cancelAnimationFrame(
+          raf
+        );
+
+        stopPad();
+
+        document.body.classList.remove(
+          'playing'
+        );
+
+        /*
+         * Do NOT send DONE.
+         *
+         * React deliberately cancelled
+         * this playback.
+         */
+        return;
+      }
     }
-  });
+  );
 }
-// Allow React to change stages without reloading the iframe.
-window.addEventListener("message", (event) => {
-  if (event.source !== window.parent) return;
-  if (event.origin !== window.location.origin) return;
-  if (!embedMode) return;
 
-  const data = event.data;
-
-  if (data?.type !== "VIVI_WORKFLOW_PLAY") return;
-
-  const nextClip = data.clip;
-
-  if (!Object.prototype.hasOwnProperty.call(CLIPS, nextClip)) {
-    return;
-  }
-
-  // Avoid restarting an already-playing stage.
-  if (
-    $('clip').value === nextClip &&
-    document.body.classList.contains("playing")
-  ) {
-    return;
-  }
-
-  $('clip').value = nextClip;
-  play();
-});
 if (embedMode) {
   document.body.classList.add('embed-mode');
   // Keep the walkthrough silent in an iframe; browser autoplay policies can

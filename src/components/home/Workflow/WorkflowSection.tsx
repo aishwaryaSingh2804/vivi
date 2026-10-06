@@ -1,322 +1,1499 @@
-
 // src/components/home/Workflow/WorkflowSection.tsx
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import "./WorkflowSection.css";
 import { WORKFLOW_STAGES } from "./workflowData";
 
-const PUBLISH_STAGE_INDEX = WORKFLOW_STAGES.length - 1;
-const WALKTHROUGH_VIEWPORTS = WORKFLOW_STAGES.length + 1;
+const LAST_STAGE_INDEX =
+  WORKFLOW_STAGES.length - 1;
+
+const WALKTHROUGH_VIEWPORTS =
+  WORKFLOW_STAGES.length + 1;
+
+type PlaybackSession = {
+  id: number;
+  stageIndex: number;
+  clip: string;
+};
+
+type WorkflowState = {
+  activeStage: number;
+  demoProgress: number;
+  isPlaying: boolean;
+  isTransitioning: boolean;
+  targetStage: number | null;
+  currentPlayingClip: string | null;
+};
+
+const INITIAL_STATE: WorkflowState = {
+  activeStage: 0,
+  demoProgress: 0,
+  isPlaying: false,
+  isTransitioning: false,
+  targetStage: null,
+  currentPlayingClip: null,
+};
 
 export function WorkflowSection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const demoFrameRef = useRef<HTMLIFrameElement | null>(null);
+  const sectionRef =
+    useRef<HTMLElement | null>(null);
 
-  const demoReadyRef = useRef(false);
-  const firstStageStartedRef = useRef(false);
-  const isPlayingRef = useRef(false);
-  const lastClipRef = useRef<string | null>(null);
-  const touchStartYRef = useRef(0);
+  const demoFrameRef =
+    useRef<HTMLIFrameElement | null>(null);
 
-  const [activeStage, setActiveStage] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const [hasEntered, setHasEntered] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // ---------------------------------------------------------
+  // IMPERATIVE REFS
+  // ---------------------------------------------------------
 
-  const currentStage = WORKFLOW_STAGES[activeStage];
-  const nextStage = WORKFLOW_STAGES[activeStage + 1];
+  const stateRef =
+    useRef<WorkflowState>(INITIAL_STATE);
 
-  const setPlaybackState = useCallback((playing: boolean) => {
-    isPlayingRef.current = playing;
-    setIsPlaying(playing);
-  }, []);
+  const demoReadyRef =
+    useRef(false);
 
-  const sendToDemo = useCallback((message: object) => {
-    demoFrameRef.current?.contentWindow?.postMessage(
-      message,
-      window.location.origin
+  const workflowStartedRef =
+    useRef(false);
+
+  const playbackCounterRef =
+    useRef(0);
+
+  const playbackSessionRef =
+    useRef<PlaybackSession | null>(null);
+
+  const targetStageRef =
+    useRef<number | null>(null);
+
+  const targetScrollYRef =
+    useRef<number | null>(null);
+
+  const transitionDirectionRef =
+    useRef<"forward" | "backward" | null>(
+      null
     );
-  }, []);
+
+  const transitionKindRef =
+    useRef<"stage" | "finale" | null>(
+      null
+    );
+
+  const touchStartYRef =
+    useRef(0);
+
+  // Automatic-scroll watchdog. Smooth scrolling does not
+  // reliably emit a final scroll event in every browser, so
+  // the transition is also checked from requestAnimationFrame.
+  const autoScrollRafRef =
+    useRef<number | null>(null);
+
+  const autoScrollTimeoutRef =
+    useRef<number | null>(null);
+
+  // ---------------------------------------------------------
+  // STATE
+  // ---------------------------------------------------------
+
+  const [workflowState, setWorkflowState] =
+    useState<WorkflowState>(
+      INITIAL_STATE
+    );
+
+  const [hasEntered, setHasEntered] =
+    useState(false);
+
+  /*
+   * React state is the source of truth.
+   *
+   * The ref is only a synchronous mirror so scroll/message
+   * handlers always have the latest state.
+   */
+  stateRef.current = workflowState;
+
+  const {
+    activeStage,
+    demoProgress,
+    isPlaying,
+    isTransitioning,
+  } = workflowState;
+
+  const currentStage =
+    WORKFLOW_STAGES[activeStage];
+
+  const nextStage =
+    WORKFLOW_STAGES[activeStage + 1];
+
+  // ---------------------------------------------------------
+  // STATE HELPER
+  // ---------------------------------------------------------
+
+  const updateState = useCallback(
+    (
+      updater:
+        | Partial<WorkflowState>
+        | ((
+            previous: WorkflowState
+          ) => WorkflowState)
+    ) => {
+      setWorkflowState((previous) => {
+        const next =
+          typeof updater === "function"
+            ? updater(previous)
+            : {
+                ...previous,
+                ...updater,
+              };
+
+        stateRef.current = next;
+
+        return next;
+      });
+    },
+    []
+  );
+
+  // ---------------------------------------------------------
+  // SEND MESSAGE TO DEMO
+  // ---------------------------------------------------------
+
+  const sendToDemo = useCallback(
+    (message: object) => {
+      demoFrameRef.current?.contentWindow?.postMessage(
+        message,
+        window.location.origin
+      );
+    },
+    []
+  );
+
+  // ---------------------------------------------------------
+  // INVALIDATE CURRENT PLAYBACK
+  // ---------------------------------------------------------
+
+  const invalidatePlayback =
+    useCallback(() => {
+      /*
+       * Incrementing this counter invalidates every message
+       * belonging to the previous playback session.
+       */
+      playbackCounterRef.current += 1;
+
+      playbackSessionRef.current = null;
+
+      updateState({
+        isPlaying: false,
+        currentPlayingClip: null,
+      });
+    }, [updateState]);
+
+  // ---------------------------------------------------------
+  // PAUSE DEMO
+  // ---------------------------------------------------------
 
   const pauseDemo = useCallback(() => {
-    if (!demoReadyRef.current) return;
+    invalidatePlayback();
 
-    sendToDemo({ type: "VIVI_WORKFLOW_PAUSE" });
-    setPlaybackState(false);
-  }, [sendToDemo, setPlaybackState]);
+    sendToDemo({
+      type: "VIVI_WORKFLOW_PAUSE",
+    });
+  }, [
+    invalidatePlayback,
+    sendToDemo,
+  ]);
 
-  const playStage = useCallback(
+  // ---------------------------------------------------------
+  // START A STAGE
+  // ---------------------------------------------------------
+
+  const startStage = useCallback(
     (stageIndex: number) => {
-      if (!demoReadyRef.current) return;
+      const stage =
+        WORKFLOW_STAGES[stageIndex];
 
-      const stage = WORKFLOW_STAGES[stageIndex];
-      if (!stage) return;
+      if (!stage) {
+        return;
+      }
 
-      setPlaybackState(true);
-      lastClipRef.current = stage.demoClip;
+      /*
+       * The iframe must be ready before a playback session
+       * can actually begin.
+       *
+       * We still update the active stage immediately.
+       * The iframe onLoad handler will start it once ready.
+       */
+      if (!demoReadyRef.current) {
+        updateState({
+          activeStage: stageIndex,
+          demoProgress: 0,
+          isPlaying: false,
+          isTransitioning: false,
+          targetStage: null,
+          currentPlayingClip: null,
+        });
+
+        playbackSessionRef.current = null;
+
+        return;
+      }
+
+      /*
+       * Every actual playback receives a completely unique ID.
+       */
+      const playbackId =
+        ++playbackCounterRef.current;
+
+      const session: PlaybackSession = {
+        id: playbackId,
+        stageIndex,
+        clip: stage.demoClip,
+      };
+
+      playbackSessionRef.current =
+        session;
+
+      /*
+       * Stage 6 has no following node.
+       * Its line therefore remains at 100%.
+       *
+       * Every other stage starts exactly at its own node.
+       */
+      const startingProgress =
+        stageIndex >=
+        LAST_STAGE_INDEX
+          ? 1
+          : stageIndex /
+            LAST_STAGE_INDEX;
+
+      updateState({
+        activeStage: stageIndex,
+        demoProgress: startingProgress,
+        isPlaying: true,
+        isTransitioning: false,
+        targetStage: null,
+        currentPlayingClip:
+          stage.demoClip,
+      });
 
       sendToDemo({
         type: "VIVI_WORKFLOW_PLAY",
         clip: stage.demoClip,
+        playbackId,
+        stageIndex,
       });
     },
-    [sendToDemo, setPlaybackState]
+    [
+      sendToDemo,
+      updateState,
+    ]
   );
 
-  // Preload the iframe as the user approaches the workflow section.
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+  // ---------------------------------------------------------
+  // STOP AUTOMATIC SCROLL WATCHDOG
+  // ---------------------------------------------------------
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHasEntered(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: "700px 0px",
-        threshold: 0,
+  const stopAutoScrollWatchdog = useCallback(() => {
+    if (autoScrollRafRef.current !== null) {
+      window.cancelAnimationFrame(
+        autoScrollRafRef.current
+      );
+      autoScrollRafRef.current = null;
+    }
+
+    if (autoScrollTimeoutRef.current !== null) {
+      window.clearTimeout(
+        autoScrollTimeoutRef.current
+      );
+      autoScrollTimeoutRef.current = null;
+    }
+  }, []);
+
+  // ---------------------------------------------------------
+  // COMPLETE AUTOMATIC STAGE TRANSITION
+  // ---------------------------------------------------------
+
+  const finishStageTransition =
+    useCallback(() => {
+      const target =
+        targetStageRef.current;
+
+      stopAutoScrollWatchdog();
+
+      if (target === null) {
+        return;
       }
-    );
+
+      targetStageRef.current = null;
+      targetScrollYRef.current = null;
+      transitionDirectionRef.current =
+        null;
+      transitionKindRef.current = null;
+
+      /*
+       * IMPORTANT:
+       *
+       * The next stage becomes active ONLY HERE.
+       *
+       * The normal scroll listener is not allowed to
+       * activate it while the automatic scroll is occurring.
+       */
+      updateState({
+        isTransitioning: false,
+        targetStage: null,
+      });
+
+      startStage(target);
+    }, [
+      startStage,
+      stopAutoScrollWatchdog,
+      updateState,
+    ]);
+
+  // ---------------------------------------------------------
+  // COMPLETE FINALE TRANSITION
+  // ---------------------------------------------------------
+
+  const finishFinaleTransition =
+    useCallback(() => {
+      stopAutoScrollWatchdog();
+
+      targetStageRef.current = null;
+      targetScrollYRef.current = null;
+      transitionDirectionRef.current =
+        null;
+      transitionKindRef.current = null;
+
+      updateState({
+        isTransitioning: false,
+        targetStage: null,
+        isPlaying: false,
+        currentPlayingClip: null,
+      });
+    }, [
+      stopAutoScrollWatchdog,
+      updateState,
+    ]);
+
+  // ---------------------------------------------------------
+  // BEGIN SCROLL TO STAGE
+  // ---------------------------------------------------------
+
+  const scrollToStage = useCallback(
+    (stageIndex: number) => {
+      const section =
+        sectionRef.current;
+
+      if (!section) {
+        return;
+      }
+
+      const clampedIndex =
+        Math.max(
+          0,
+          Math.min(
+            stageIndex,
+            LAST_STAGE_INDEX
+          )
+        );
+
+      // Cancel any previous transition watcher before starting
+      // a new one. This prevents two transitions racing each other.
+      stopAutoScrollWatchdog();
+
+      // Invalidate the old demo session. The completed demo has
+      // already reached its next node, so nothing from that session
+      // is allowed to change the timeline during the scroll.
+      pauseDemo();
+
+      const sectionTop =
+        section.getBoundingClientRect()
+          .top +
+        window.scrollY;
+
+      const targetTop =
+        sectionTop +
+        clampedIndex *
+          window.innerHeight;
+
+      const direction =
+        targetTop >= window.scrollY
+          ? "forward"
+          : "backward";
+
+      targetStageRef.current =
+        clampedIndex;
+
+      targetScrollYRef.current =
+        targetTop;
+
+      transitionDirectionRef.current =
+        direction;
+
+      transitionKindRef.current =
+        "stage";
+
+      updateState({
+        isTransitioning: true,
+        targetStage: clampedIndex,
+        isPlaying: false,
+        currentPlayingClip: null,
+      });
+
+      const reachedTarget = () => {
+        const currentTarget =
+          targetScrollYRef.current;
+
+        const currentDirection =
+          transitionDirectionRef.current;
+
+        if (
+          currentTarget === null ||
+          currentDirection === null
+        ) {
+          return false;
+        }
+
+        // A small tolerance prevents sub-pixel scroll values from
+        // leaving the transition permanently waiting.
+        const tolerance = 2;
+
+        return
+          currentDirection === "forward"
+            ? window.scrollY >=
+                currentTarget - tolerance
+            : window.scrollY <=
+                currentTarget + tolerance;
+      };
+
+      const watchScroll = () => {
+        if (!stateRef.current.isTransitioning) {
+          autoScrollRafRef.current = null;
+          return;
+        }
+
+        if (reachedTarget()) {
+          autoScrollRafRef.current = null;
+          finishStageTransition();
+          return;
+        }
+
+        autoScrollRafRef.current =
+          window.requestAnimationFrame(
+            watchScroll
+          );
+      };
+
+      // If already at the destination, transition immediately.
+      if (reachedTarget()) {
+        finishStageTransition();
+        return;
+      }
+
+      window.scrollTo({
+        top: targetTop,
+        behavior: "smooth",
+      });
+
+      autoScrollRafRef.current =
+        window.requestAnimationFrame(
+          watchScroll
+        );
+
+      // Safety fallback for browsers where smooth scrolling is
+      // interrupted and no final position is reported.
+      autoScrollTimeoutRef.current =
+        window.setTimeout(() => {
+          autoScrollTimeoutRef.current =
+            null;
+
+          if (
+            stateRef.current.isTransitioning &&
+            targetStageRef.current ===
+              clampedIndex
+          ) {
+            window.scrollTo({
+              top: targetTop,
+              behavior: "auto",
+            });
+
+            // Give the browser one frame to commit the final
+            // position before starting the next demo.
+            window.requestAnimationFrame(() => {
+              if (
+                stateRef.current.isTransitioning &&
+                targetStageRef.current ===
+                  clampedIndex
+              ) {
+                stopAutoScrollWatchdog();
+                finishStageTransition();
+              }
+            });
+          }
+        }, 1400);
+    },
+    [
+      finishStageTransition,
+      pauseDemo,
+      stopAutoScrollWatchdog,
+      updateState,
+    ]
+  );
+
+  // ---------------------------------------------------------
+  // BEGIN FINALE SCROLL
+  // ---------------------------------------------------------
+
+  const scrollToFinale = useCallback(() => {
+    const section =
+      sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    pauseDemo();
+
+    const sectionTop =
+      section.getBoundingClientRect()
+        .top +
+      window.scrollY;
+
+    const finaleTop =
+      sectionTop +
+      window.innerHeight *
+        WALKTHROUGH_VIEWPORTS;
+
+    targetStageRef.current = null;
+
+    targetScrollYRef.current =
+      finaleTop;
+
+    transitionDirectionRef.current =
+      "forward";
+
+    transitionKindRef.current =
+      "finale";
+
+    updateState({
+      isTransitioning: true,
+      targetStage: null,
+      isPlaying: false,
+      currentPlayingClip: null,
+    });
+
+    if (window.scrollY === finaleTop) {
+      finishFinaleTransition();
+      return;
+    }
+
+    window.scrollTo({
+      top: finaleTop,
+      behavior: "smooth",
+    });
+  }, [
+    finishFinaleTransition,
+    pauseDemo,
+    updateState,
+  ]);
+
+  // ---------------------------------------------------------
+  // PRELOAD IFRAME
+  // ---------------------------------------------------------
+
+  useEffect(() => {
+    const section =
+      sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setHasEntered(true);
+            observer.disconnect();
+          }
+        },
+        {
+          rootMargin: "700px 0px",
+          threshold: 0,
+        }
+      );
 
     observer.observe(section);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
-  // Track scroll position and determine the current stage.
+  // ---------------------------------------------------------
+  // SCROLL HANDLER
+  // ---------------------------------------------------------
+
   useEffect(() => {
     let ticking = false;
     let frameId = 0;
 
     const updateWorkflow = () => {
-      const section = sectionRef.current;
+      ticking = false;
+
+      const section =
+        sectionRef.current;
 
       if (!section) {
-        ticking = false;
         return;
       }
 
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = Math.max(window.innerHeight, 1);
+      const current =
+        stateRef.current;
+
+      const rect =
+        section.getBoundingClientRect();
+
+      const viewportHeight =
+        Math.max(
+          window.innerHeight,
+          1
+        );
 
       const isSectionVisible =
-        rect.bottom > 0 && rect.top < viewportHeight;
+        rect.bottom > 0 &&
+        rect.top < viewportHeight;
 
-      // If the user leaves the workflow section, pause the demo.
-      if (!isSectionVisible && firstStageStartedRef.current) {
-        firstStageStartedRef.current = false;
-        lastClipRef.current = null;
+      /*
+       * Completely outside the workflow.
+       */
+      if (
+        !isSectionVisible &&
+        workflowStartedRef.current
+      ) {
+        workflowStartedRef.current =
+          false;
+
+        targetStageRef.current = null;
+        targetScrollYRef.current = null;
+        transitionDirectionRef.current =
+          null;
+        transitionKindRef.current = null;
+
         pauseDemo();
+
+        updateState({
+          isTransitioning: false,
+          targetStage: null,
+          isPlaying: false,
+          currentPlayingClip: null,
+        });
+
+        return;
       }
 
-      const rawTravel = -rect.top;
-      const stageTravel = Math.max(0, rawTravel);
-      const totalStageTravel = viewportHeight * WALKTHROUGH_VIEWPORTS;
-      const clampedTravel = Math.min(stageTravel, totalStageTravel);
+      /*
+       * -----------------------------------------------------
+       * AUTOMATIC TRANSITION
+       * -----------------------------------------------------
+       *
+       * While this is true, scroll position is NOT allowed
+       * to change activeStage.
+       *
+       * We only watch until the browser reaches the exact
+       * target side of the target scroll position.
+       */
+      if (
+        current.isTransitioning &&
+        targetScrollYRef.current !== null
+      ) {
+        const targetY =
+          targetScrollYRef.current;
 
-      const nextStageIndex = Math.min(
-        PUBLISH_STAGE_INDEX,
-        Math.floor(clampedTravel / viewportHeight)
-      );
+        const direction =
+          transitionDirectionRef.current;
 
-      const publishStartsAt = viewportHeight * PUBLISH_STAGE_INDEX;
+        const reached =
+          direction === "forward"
+            ? window.scrollY >= targetY
+            : window.scrollY <= targetY;
 
-      const nextProgress = Math.min(
-        clampedTravel / Math.max(publishStartsAt, 1),
-        1
-      );
+        if (reached) {
+          if (
+            transitionKindRef.current ===
+            "stage"
+          ) {
+            finishStageTransition();
+          } else if (
+            transitionKindRef.current ===
+            "finale"
+          ) {
+            finishFinaleTransition();
+          }
+        }
 
-      setProgress(nextProgress);
-      setActiveStage(nextStageIndex);
+        return;
+      }
 
-      // The first clip starts only when the workflow reaches
-      // its actual starting position.
+      /*
+       * -----------------------------------------------------
+       * INITIAL WORKFLOW ENTRY
+       * -----------------------------------------------------
+       */
+
       if (
         rect.top <= 0 &&
         isSectionVisible &&
-        !firstStageStartedRef.current
+        !workflowStartedRef.current
       ) {
-        firstStageStartedRef.current = true;
+        workflowStartedRef.current =
+          true;
 
-        if (demoReadyRef.current) {
-          playStage(nextStageIndex);
-        }
+        const sectionTop =
+          rect.top +
+          window.scrollY;
+
+        const relativePosition =
+          Math.max(
+            0,
+            (window.scrollY -
+              sectionTop) /
+              viewportHeight
+          );
+
+        const initialStage =
+          Math.max(
+            0,
+            Math.min(
+              LAST_STAGE_INDEX,
+              Math.floor(
+                relativePosition
+              )
+            )
+          );
+
+        startStage(initialStage);
+
+        return;
       }
 
-      ticking = false;
+      /*
+       * -----------------------------------------------------
+       * MANUAL SCROLLING
+       * -----------------------------------------------------
+       *
+       * This is ONLY used when the user manually moves
+       * between already-existing stage positions.
+       *
+       * It never runs during an automatic forward transition.
+       */
+      if (
+        workflowStartedRef.current &&
+        !current.isTransitioning
+      ) {
+        const sectionTop =
+          rect.top +
+          window.scrollY;
+
+        const relativePosition =
+          Math.max(
+            0,
+            Math.min(
+              LAST_STAGE_INDEX,
+              (window.scrollY -
+                sectionTop) /
+                viewportHeight
+            )
+          );
+
+        const manuallyReachedStage =
+          Math.floor(
+            relativePosition
+          );
+
+        /*
+         * Only react when the user has actually crossed
+         * a stage boundary.
+         */
+        if (
+          manuallyReachedStage !==
+            current.activeStage &&
+          manuallyReachedStage >= 0 &&
+          manuallyReachedStage <=
+            LAST_STAGE_INDEX
+        ) {
+          startStage(
+            manuallyReachedStage
+          );
+        }
+      }
     };
 
-    const handleScrollOrResize = () => {
-      if (ticking) return;
+    const handleScrollOrResize =
+      () => {
+        if (ticking) {
+          return;
+        }
 
-      ticking = true;
-      frameId = window.requestAnimationFrame(updateWorkflow);
-    };
+        ticking = true;
+
+        frameId =
+          window.requestAnimationFrame(
+            updateWorkflow
+          );
+      };
 
     updateWorkflow();
 
-    window.addEventListener("scroll", handleScrollOrResize, {
-      passive: true,
-    });
-    window.addEventListener("resize", handleScrollOrResize);
+    window.addEventListener(
+      "scroll",
+      handleScrollOrResize,
+      {
+        passive: true,
+      }
+    );
+
+    window.addEventListener(
+      "resize",
+      handleScrollOrResize
+    );
 
     return () => {
-      window.removeEventListener("scroll", handleScrollOrResize);
-      window.removeEventListener("resize", handleScrollOrResize);
+      window.removeEventListener(
+        "scroll",
+        handleScrollOrResize
+      );
+
+      window.removeEventListener(
+        "resize",
+        handleScrollOrResize
+      );
 
       if (frameId) {
-        window.cancelAnimationFrame(frameId);
+        window.cancelAnimationFrame(
+          frameId
+        );
       }
     };
-  }, [pauseDemo, playStage]);
+  }, [
+    finishFinaleTransition,
+    finishStageTransition,
+    pauseDemo,
+    startStage,
+    updateState,
+  ]);
 
-  // Start the appropriate clip whenever the active stage changes.
-  // This also restarts a stage when the user scrolls back to it.
+  // ---------------------------------------------------------
+  // IFRAME MESSAGES
+  // ---------------------------------------------------------
+
   useEffect(() => {
-    if (!firstStageStartedRef.current || !demoReadyRef.current) return;
-
-    const clip = currentStage.demoClip;
-
-    if (lastClipRef.current === clip) return;
-
-    playStage(activeStage);
-  }, [activeStage, currentStage.demoClip, playStage]);
-
-  // Listen for playback completion from the iframe.
-  useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== window.location.origin) return;
-      if (event.source !== demoFrameRef.current?.contentWindow) return;
-
-      if (event.data?.type === "VIVI_WORKFLOW_DONE") {
-        setPlaybackState(false);
+    const handleMessage = (
+      event: MessageEvent
+    ) => {
+      /*
+       * Only accept messages from our own iframe.
+       */
+      if (
+        event.origin !==
+        window.location.origin
+      ) {
+        return;
       }
+
+      if (
+        event.source !==
+        demoFrameRef.current
+          ?.contentWindow
+      ) {
+        return;
+      }
+
+      const data = event.data;
+
+      if (!data) {
+        return;
+      }
+
+      const current =
+        stateRef.current;
+
+      const session =
+        playbackSessionRef.current;
+
+      // -----------------------------------------------------
+      // DEMO PROGRESS
+      // -----------------------------------------------------
+
+      if (
+        data.type ===
+        "VIVI_WORKFLOW_PROGRESS"
+      ) {
+        /*
+         * A progress message MUST belong to the current
+         * playback session.
+         */
+        if (!session) {
+          return;
+        }
+
+        if (
+          data.playbackId !==
+          session.id
+        ) {
+          return;
+        }
+
+        if (
+          data.clip !==
+          session.clip
+        ) {
+          return;
+        }
+
+        if (
+          Number(data.stageIndex) !==
+          session.stageIndex
+        ) {
+          return;
+        }
+
+        if (!current.isPlaying) {
+          return;
+        }
+
+        const rawProgress =
+          Number(data.progress);
+
+        if (
+          !Number.isFinite(
+            rawProgress
+          )
+        ) {
+          return;
+        }
+
+        /*
+         * HARD CLAMP:
+         *
+         * 0 <= stageProgress <= 1
+         */
+        // Do not allow the live progress event to reach the next
+        // node. Only VIVI_WORKFLOW_DONE is allowed to place the
+        // line exactly on that node.
+        const stageProgress =
+          Math.max(
+            0,
+            Math.min(
+              0.999,
+              rawProgress
+            )
+          );
+
+        const stageIndex =
+          session.stageIndex;
+
+        /*
+         * Stage 6 has no next node.
+         * It therefore remains at 100%.
+         */
+        if (
+          stageIndex >=
+          LAST_STAGE_INDEX
+        ) {
+          updateState({
+            demoProgress: 1,
+          });
+
+          return;
+        }
+
+        /*
+         * Map ONLY between the current node and
+         * the next node.
+         *
+         * Example:
+         *
+         * Stage 3:
+         * start = 3 / 5 = 60%
+         * end   = 4 / 5 = 80%
+         *
+         * progress 0   → 60%
+         * progress .5  → 70%
+         * progress 1   → 80%
+         */
+        const currentNodeProgress =
+          stageIndex /
+          LAST_STAGE_INDEX;
+
+        const nextNodeProgress =
+          (stageIndex + 1) /
+          LAST_STAGE_INDEX;
+
+        const timelineProgress =
+          currentNodeProgress +
+          stageProgress *
+            (
+              nextNodeProgress -
+              currentNodeProgress
+            );
+
+        /*
+         * SECOND HARD CLAMP:
+         *
+         * The line physically cannot go beyond
+         * the next node.
+         */
+        const safeTimelineProgress =
+          Math.max(
+            currentNodeProgress,
+            Math.min(
+              nextNodeProgress,
+              timelineProgress
+            )
+          );
+
+        updateState({
+          demoProgress:
+            safeTimelineProgress,
+        });
+
+        return;
+      }
+
+      // -----------------------------------------------------
+      // DEMO COMPLETION
+      // -----------------------------------------------------
+
+      if (
+        data.type !==
+        "VIVI_WORKFLOW_DONE"
+      ) {
+        return;
+      }
+
+      /*
+       * Completion MUST belong to the current playback.
+       */
+      if (!session) {
+        return;
+      }
+
+      if (
+        data.playbackId !==
+        session.id
+      ) {
+        return;
+      }
+
+      if (
+        data.clip !==
+        session.clip
+      ) {
+        return;
+      }
+
+      if (
+        Number(data.stageIndex) !==
+        session.stageIndex
+      ) {
+        return;
+      }
+
+      if (!current.isPlaying) {
+        return;
+      }
+
+      /*
+       * Invalidate the completed playback immediately.
+       *
+       * This prevents a duplicate DONE event from
+       * triggering another transition.
+       */
+      playbackSessionRef.current =
+        null;
+
+      /*
+       * Stage N is now EXACTLY complete.
+       */
+      const finishedStage =
+        session.stageIndex;
+
+      const nextIndex =
+        finishedStage + 1;
+
+      if (
+        finishedStage >=
+        LAST_STAGE_INDEX
+      ) {
+        /*
+         * Stage 6:
+         * line is already exactly at 100%.
+         */
+        updateState({
+          demoProgress: 1,
+          isPlaying: false,
+          currentPlayingClip: null,
+        });
+
+        /*
+         * Wait for the next browser frame so the
+         * 100% timeline value is rendered before
+         * beginning the finale scroll.
+         */
+        window.requestAnimationFrame(
+          () => {
+            scrollToFinale();
+          }
+        );
+
+        return;
+      }
+
+      /*
+       * EXACTLY the next node.
+       *
+       * There is no overshoot.
+       */
+      const nextNodeProgress =
+        nextIndex /
+        LAST_STAGE_INDEX;
+
+      updateState({
+        demoProgress:
+          nextNodeProgress,
+        isPlaying: false,
+        currentPlayingClip: null,
+      });
+
+      /*
+       * The next browser frame is deterministic:
+       *
+       * render exact node position
+       *        ↓
+       * begin automatic scroll
+       */
+      window.requestAnimationFrame(
+        () => {
+          scrollToStage(
+            nextIndex
+          );
+        }
+      );
     };
 
-    window.addEventListener("message", handleMessage);
+    window.addEventListener(
+      "message",
+      handleMessage
+    );
 
     return () => {
-      window.removeEventListener("message", handleMessage);
+      window.removeEventListener(
+        "message",
+        handleMessage
+      );
     };
-  }, [setPlaybackState]);
+  }, [
+    scrollToFinale,
+    scrollToStage,
+    updateState,
+  ]);
 
-  // Prevent scrolling down while a stage demo is playing.
-  // Scrolling upwards is always allowed.
+  // ---------------------------------------------------------
+  // IFRAME LOAD
+  // ---------------------------------------------------------
+
+  const handleDemoLoad =
+    useCallback(() => {
+      demoReadyRef.current = true;
+
+      const current =
+        stateRef.current;
+
+      /*
+       * If the workflow already reached a stage before
+       * the iframe finished loading, start that stage now.
+       */
+      if (
+        workflowStartedRef.current &&
+        !current.isTransitioning
+      ) {
+        startStage(
+          current.activeStage
+        );
+      }
+    }, [startStage]);
+
+  // ---------------------------------------------------------
+  // WHEEL / TOUCH CONTROL
+  // ---------------------------------------------------------
+
   useEffect(() => {
-    const handleWheel = (event: WheelEvent) => {
-      if (isPlayingRef.current && event.deltaY > 0) {
+    const handleWheel = (
+      event: WheelEvent
+    ) => {
+      const current =
+        stateRef.current;
+
+      /*
+       * While a demo is playing OR an automatic transition
+       * is occurring, downward scrolling is locked.
+       *
+       * Upward scrolling remains available for revisiting
+       * previous stages.
+       */
+      if (
+        event.deltaY > 0 &&
+        (
+          current.isPlaying ||
+          current.isTransitioning
+        )
+      ) {
         event.preventDefault();
       }
     };
 
-    const handleTouchStart = (event: TouchEvent) => {
-      touchStartYRef.current = event.touches[0]?.clientY ?? 0;
+    const handleTouchStart = (
+      event: TouchEvent
+    ) => {
+      touchStartYRef.current =
+        event.touches[0]?.clientY ??
+        0;
     };
 
-    const handleTouchMove = (event: TouchEvent) => {
-      if (!isPlayingRef.current) return;
+    const handleTouchMove = (
+      event: TouchEvent
+    ) => {
+      const current =
+        stateRef.current;
 
-      const currentY = event.touches[0]?.clientY ?? 0;
-      const movingDownPage = touchStartYRef.current > currentY;
+      if (
+        !current.isPlaying &&
+        !current.isTransitioning
+      ) {
+        return;
+      }
+
+      const currentY =
+        event.touches[0]?.clientY ??
+        0;
+
+      /*
+       * Finger moving upward means page moving downward.
+       */
+      const movingDownPage =
+        touchStartYRef.current >
+        currentY;
 
       if (movingDownPage) {
         event.preventDefault();
       }
     };
 
-    window.addEventListener("wheel", handleWheel, {
-      passive: false,
-    });
+    window.addEventListener(
+      "wheel",
+      handleWheel,
+      {
+        passive: false,
+      }
+    );
 
-    window.addEventListener("touchstart", handleTouchStart, {
-      passive: true,
-    });
+    window.addEventListener(
+      "touchstart",
+      handleTouchStart,
+      {
+        passive: true,
+      }
+    );
 
-    window.addEventListener("touchmove", handleTouchMove, {
-      passive: false,
-    });
+    window.addEventListener(
+      "touchmove",
+      handleTouchMove,
+      {
+        passive: false,
+      }
+    );
 
     return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener(
+        "wheel",
+        handleWheel
+      );
+
+      window.removeEventListener(
+        "touchstart",
+        handleTouchStart
+      );
+
+      window.removeEventListener(
+        "touchmove",
+        handleTouchMove
+      );
     };
   }, []);
+
+  // ---------------------------------------------------------
+  // GLOBAL CLEANUP
+  // ---------------------------------------------------------
+
+  useEffect(() => {
+    return () => {
+      stopAutoScrollWatchdog();
+      playbackSessionRef.current = null;
+    };
+  }, [stopAutoScrollWatchdog]);
+
+  // ---------------------------------------------------------
+  // RENDER
+  // ---------------------------------------------------------
 
   return (
     <section
       ref={sectionRef}
       className="workflow-section"
       id="vivi-workflow"
-      style={{ scrollMarginTop: "88px" }}
+      style={{
+        scrollMarginTop: "88px",
+      }}
     >
       <div className="workflow-sticky">
         <div className="workflow-background-glow" />
 
         <div className="workflow-container">
+
+          {/* -----------------------------------------------
+              HEADER
+          ----------------------------------------------- */}
+
           <header className="workflow-header">
             <div className="workflow-kicker">
               <span className="workflow-kicker-dot" />
-              <span className="workflow-kicker-brand">VIVI STUDIO</span>
+
+              <span className="workflow-kicker-brand">
+                VIVI STUDIO
+              </span>
+
               <span className="workflow-kicker-title">
                 How your story comes to life
               </span>
             </div>
 
-            <div className="workflow-counter" aria-live="polite">
-              <strong>{currentStage.number}</strong>
+            <div
+              className="workflow-counter"
+              aria-live="polite"
+            >
+              <strong>
+                {currentStage.number}
+              </strong>
+
               <span>/</span>
+
               <span>06</span>
             </div>
           </header>
 
+          {/* -----------------------------------------------
+              MAIN EXPERIENCE
+          ----------------------------------------------- */}
+
           <div className="workflow-experience">
+
+            {/* ---------------------------------------------
+                TIMELINE
+            --------------------------------------------- */}
+
             <nav
               className="workflow-journey"
               aria-label="Video creation stages"
             >
               <div className="workflow-vertical-track">
+
                 <div className="workflow-vertical-line" />
 
+                {/*
+                 * IMPORTANT:
+                 *
+                 * This height is controlled ONLY by the
+                 * actual iframe demo progress.
+                 */}
                 <div
                   className="workflow-vertical-progress"
-                  style={{ height: `${progress * 100}%` }}
+                  style={{
+                    height: `${
+                      demoProgress * 100
+                    }%`,
+                  }}
                 />
 
                 <div className="workflow-nodes">
-                  {WORKFLOW_STAGES.map((stage, index) => {
-                    const isActive = index === activeStage;
-                    const isCompleted = index < activeStage;
+                  {WORKFLOW_STAGES.map(
+                    (
+                      stage,
+                      index
+                    ) => {
+                      const isActive =
+                        index ===
+                        activeStage;
 
-                    return (
-                      <div
-                        key={stage.id}
-                        className={[
-                          "workflow-node",
-                          isActive ? "is-active" : "",
-                          isCompleted ? "is-completed" : "",
-                        ].join(" ")}
-                        aria-current={isActive ? "step" : undefined}
-                      >
-                        <span className="workflow-node-circle">
-                          {isCompleted ? "✓" : stage.number}
-                        </span>
+                      const isCompleted =
+                        index <
+                        activeStage;
 
-                        <span className="workflow-node-label">
-                          {stage.title}
-                        </span>
-                      </div>
-                    );
-                  })}
+                      return (
+                        <button
+                          key={stage.id}
+                          type="button"
+                          className={[
+                            "workflow-node",
+                            isActive
+                              ? "is-active"
+                              : "",
+                            isCompleted
+                              ? "is-completed"
+                              : "",
+                          ].join(" ")}
+                          aria-current={
+                            isActive
+                              ? "step"
+                              : undefined
+                          }
+                          aria-label={`Go to stage ${stage.number}: ${stage.title}`}
+                          onClick={() =>
+                            scrollToStage(
+                              index
+                            )
+                          }
+                        >
+                          <span className="workflow-node-circle">
+                            {isCompleted
+                              ? "✓"
+                              : stage.number}
+                          </span>
+
+                          <span className="workflow-node-label">
+                            {stage.title}
+                          </span>
+                        </button>
+                      );
+                    }
+                  )}
                 </div>
               </div>
             </nav>
 
-            <div className="workflow-stage-info" aria-live="polite">
-              <article className="workflow-stage-card" key={currentStage.id}>
+            {/* ---------------------------------------------
+                STAGE CARD
+            --------------------------------------------- */}
+
+            <div
+              className="workflow-stage-info"
+              aria-live="polite"
+            >
+              <article
+                className="workflow-stage-card"
+                key={currentStage.id}
+              >
                 <div className="workflow-stage-number">
                   {currentStage.number}
                 </div>
@@ -325,9 +1502,13 @@ export function WorkflowSection() {
                   {currentStage.eyebrow}
                 </div>
 
-                <h2>{currentStage.headline}</h2>
+                <h2>
+                  {currentStage.headline}
+                </h2>
 
-                <p>{currentStage.description}</p>
+                <p>
+                  {currentStage.description}
+                </p>
 
                 <div className="workflow-divider" />
 
@@ -338,17 +1519,29 @@ export function WorkflowSection() {
                       : "Journey complete"}
                   </span>
 
-                  <span className="workflow-next-arrow" aria-hidden="true">
+                  <span
+                    className="workflow-next-arrow"
+                    aria-hidden="true"
+                  >
                     →
                   </span>
                 </div>
               </article>
             </div>
 
+            {/* ---------------------------------------------
+                DEMO
+            --------------------------------------------- */}
+
             <div className="workflow-demo">
               <div className="workflow-demo-heading">
-                <span>LIVE PRODUCT WALKTHROUGH</span>
-                <span>{currentStage.number} / 06</span>
+                <span>
+                  LIVE PRODUCT WALKTHROUGH
+                </span>
+
+                <span>
+                  {currentStage.number} / 06
+                </span>
               </div>
 
               <div className="workflow-demo-frame">
@@ -360,22 +1553,24 @@ export function WorkflowSection() {
                     loading="eager"
                     allow="autoplay; fullscreen"
                     referrerPolicy="strict-origin-when-cross-origin"
-                    onLoad={() => {
-                      demoReadyRef.current = true;
-
-                      if (firstStageStartedRef.current) {
-                        playStage(activeStage);
-                      }
-                    }}
+                    onLoad={
+                      handleDemoLoad
+                    }
                   />
                 )}
               </div>
             </div>
           </div>
 
+          {/* -----------------------------------------------
+              SCROLL HINT
+          ----------------------------------------------- */}
+
           <div
             className={`workflow-scroll-hint ${
-              activeStage > 0 ? "is-fading" : ""
+              activeStage > 0
+                ? "is-fading"
+                : ""
             }`}
           >
             <span className="workflow-scroll-mouse">
@@ -383,32 +1578,15 @@ export function WorkflowSection() {
             </span>
 
             <span>
-              {isPlaying ? "Watch the demo to continue" : "Scroll to explore"}
+              {isPlaying
+                ? "Watch the demo to continue"
+                : "Scroll to explore"}
             </span>
           </div>
         </div>
       </div>
 
-      <div className="workflow-finale">
-        <div className="workflow-finale-line" />
 
-        <div className="workflow-finale-kicker">
-          <span /> JOURNEY COMPLETE
-        </div>
-
-        <h2>
-          Your idea made
-          <br />
-          <span>it to the screen.</span>
-        </h2>
-
-        <p>One idea. Six stages. One finished story.</p>
-
-        <a href="/studio" className="workflow-cta">
-          <span>Start creating</span>
-          <span className="workflow-cta-arrow">→</span>
-        </a>
-      </div>
     </section>
   );
 }
