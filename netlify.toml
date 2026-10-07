@@ -8,6 +8,19 @@
   to = "/:splat"
   status = 301
 
+# Old Visl AI Labs site, proxied from its own Netlify project
+[[redirects]]
+  from = "/labs"
+  to = "https://inquisitive-klepon-cd2ed6.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/labs/*"
+  to = "https://inquisitive-klepon-cd2ed6.netlify.app/:splat"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
