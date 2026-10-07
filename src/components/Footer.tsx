@@ -91,11 +91,11 @@ export function Footer() {
         </span>
 
         <div className="vivi-footer-socials">
-          <a href="#" aria-label="YouTube">YouTube</a>
+          {/* <a href="#" aria-label="YouTube">YouTube</a>
           <a href="#" aria-label="Instagram">Instagram</a>
           <a href="#" aria-label="TikTok">TikTok</a>
-          <a href="#" aria-label="X">X</a>
-          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="X">X</a> */}
+          <a href="https://www.linkedin.com/company/visl-ai/" aria-label="LinkedIn">LinkedIn</a>
         </div>
       </div>
     </footer>
