@@ -216,4 +216,13 @@ export function AppShell() {
     
   );
 }
-export function App(){return <BrowserRouter><AppShell/></BrowserRouter>}
+// export function App(){return <BrowserRouter><AppShell/></BrowserRouter>}
+export function App() {
+  return (
+    <BrowserRouter
+      basename={import.meta.env.PROD ? '/new' : undefined}
+    >
+      <AppShell />
+    </BrowserRouter>
+  );
+}
