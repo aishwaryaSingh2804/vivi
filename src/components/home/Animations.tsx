@@ -152,7 +152,9 @@ function Animations() {
   const [isPaused, setIsPaused] = useState(false);
   const [progressKey, setProgressKey] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInView, setIsInView] = useState(false);
 
+  const sectionRef = useRef<HTMLElement | null>(null);
   const transitionTimer = useRef<number | null>(null);
   const autoplayTimer = useRef<number | null>(null);
 
@@ -262,7 +264,7 @@ function Animations() {
   ========================================================= */
 
   useEffect(() => {
-    if (isPaused || isModalOpen) return;
+    if (!isInView || isPaused || isModalOpen) return;
 
     autoplayTimer.current =
       window.setTimeout(() => {
@@ -278,9 +280,33 @@ function Animations() {
     };
   }, [
     activeIndex,
+    isInView,
     isPaused,
     isModalOpen,
   ]);
+
+
+  /* =========================================================
+     LOAD VIDEOS ONLY NEAR THE VIEWPORT
+
+     Videos are large, so nothing is downloaded until the
+     section is about to scroll into view.
+  ========================================================= */
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { rootMargin: "200px 0px" }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
 
 
   /* =========================================================
@@ -346,31 +372,7 @@ function Animations() {
     };
 
     playVideo();
-  }, [activeIndex]);
-
-
-  /* =========================================================
-     PRELOAD NEIGHBOURING VIDEOS
-  ========================================================= */
-
-  useEffect(() => {
-    const preloadVideos = [
-      VIDEO_PRODUCTIONS[previousIndex].video,
-      VIDEO_PRODUCTIONS[nextIndex].video,
-    ];
-
-    preloadVideos.forEach((src) => {
-      const video = document.createElement(
-        "video"
-      );
-
-      video.preload = "auto";
-      video.src = src;
-    });
-  }, [
-    previousIndex,
-    nextIndex,
-  ]);
+  }, [activeIndex, isInView]);
 
 
   /* =========================================================
@@ -498,6 +500,7 @@ function Animations() {
   return (
     <>
     <section
+      ref={sectionRef}
       className="vivi-openart-showcase"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -593,16 +596,18 @@ function Animations() {
             -------------------------------------------- */}
 
             <div className="vivi-video-card vivi-video-card-previous">
-              <video
-                src={
-                  VIDEO_PRODUCTIONS[
-                    previousIndex
-                  ].video
-                }
-                muted
-                playsInline
-                preload="auto"
-              />
+              {isInView && (
+                <video
+                  src={
+                    VIDEO_PRODUCTIONS[
+                      previousIndex
+                    ].video
+                  }
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+              )}
 
               <div className="vivi-video-card-glass" />
             </div>
@@ -614,15 +619,17 @@ function Animations() {
 
             <div className="vivi-video-card vivi-video-card-current">
 
-              <video
-                key={activeVideo.id}
-                src={activeVideo.video}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-              />
+              {isInView && (
+                <video
+                  key={activeVideo.id}
+                  src={activeVideo.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                />
+              )}
 
               <div className="vivi-video-overlay" />
 
@@ -687,16 +694,18 @@ function Animations() {
 
             <div className="vivi-video-card vivi-video-card-next">
 
-              <video
-                src={
-                  VIDEO_PRODUCTIONS[
-                    nextIndex
-                  ].video
-                }
-                muted
-                playsInline
-                preload="auto"
-              />
+              {isInView && (
+                <video
+                  src={
+                    VIDEO_PRODUCTIONS[
+                      nextIndex
+                    ].video
+                  }
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+              )}
 
               <div className="vivi-video-card-glass" />
 

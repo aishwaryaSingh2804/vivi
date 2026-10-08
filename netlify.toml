@@ -25,3 +25,30 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Build output has hashed file names, so it can be cached forever
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Media keeps its file name: give a replaced file a new name to bust this cache
+[[headers]]
+  for = "/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/benefits/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/background/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
