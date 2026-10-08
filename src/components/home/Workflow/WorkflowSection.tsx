@@ -1383,18 +1383,14 @@ export function WorkflowSection() {
         stateRef.current;
 
       /*
-       * While a demo is playing OR an automatic transition
-       * is occurring, downward scrolling is locked.
-       *
-       * Upward scrolling remains available for revisiting
-       * previous stages.
+       * Downward scrolling is locked only during the short
+       * automatic transition between stages, so it does not
+       * fight the smooth scroll. Visitors can always scroll
+       * past a playing demo.
        */
       if (
         event.deltaY > 0 &&
-        (
-          current.isPlaying ||
-          current.isTransitioning
-        )
+        current.isTransitioning
       ) {
         event.preventDefault();
       }
@@ -1414,10 +1410,7 @@ export function WorkflowSection() {
       const current =
         stateRef.current;
 
-      if (
-        !current.isPlaying &&
-        !current.isTransitioning
-      ) {
+      if (!current.isTransitioning) {
         return;
       }
 
