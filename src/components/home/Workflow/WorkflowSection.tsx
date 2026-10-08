@@ -125,7 +125,6 @@ export function WorkflowSection() {
   const {
     activeStage,
     demoProgress,
-    isPlaying,
   } = workflowState;
 
   const currentStage =
@@ -1723,9 +1722,7 @@ export function WorkflowSection() {
             </span>
 
             <span>
-              {isPlaying
-                ? "Watch the demo to continue"
-                : "Scroll to explore"}
+              Scroll to explore
             </span>
           </div>
         </div>

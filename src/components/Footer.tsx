@@ -77,10 +77,6 @@ export function Footer() {
           <Link to={ROUTES.TERMS} onClick={scrollToTop}>
             Terms of service
           </Link>
-
-          <Link to={ROUTES.CONTACT} onClick={scrollToTop}>
-            Contact Us
-          </Link>
         </div>
       </div>
 
