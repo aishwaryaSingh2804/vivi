@@ -257,7 +257,7 @@
   top: 15px;
   bottom: 15px;
 
-  left: 27px;
+  left: 14px;
 
   width: 2px;
 
@@ -290,7 +290,7 @@
 
   top: 15px;
   bottom: 15px;
-  left: 27px;
+  left: 14px;
 
   width: 2px;
 
@@ -1174,18 +1174,18 @@
      Mobile timeline alignment.
 
      Node circles are 27px, so the line is centered
-     at 13px within the 43px timeline column.
+     at 13.5px within the 43px timeline column.
   */
 
   .workflow-vertical-line {
-  left: 13px;
+  left: 12.5px;
 
   top: 13.5px;
   bottom: 36.5px;
 }
 
 .workflow-vertical-progress {
-  left: 13px;
+  left: 12.5px;
 
   top: 13.5px;
   bottom: 36.5px;
