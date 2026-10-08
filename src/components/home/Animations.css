@@ -1172,7 +1172,6 @@
 .vivi-showcase-panel {
   min-height: 0;
   overflow-y: auto;
-  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: rgba(49, 95, 216, .24) transparent;
 }
