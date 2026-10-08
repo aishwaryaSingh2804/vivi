@@ -153,7 +153,6 @@ function Animations() {
   const [progressKey, setProgressKey] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const wheelLocked = useRef(false);
   const transitionTimer = useRef<number | null>(null);
   const autoplayTimer = useRef<number | null>(null);
 
@@ -375,33 +374,6 @@ function Animations() {
 
 
   /* =========================================================
-     MOUSE WHEEL
-  ========================================================= */
-
-  const handleWheel = (
-    event: React.WheelEvent<HTMLDivElement>
-  ) => {
-    if (wheelLocked.current) return;
-
-    if (Math.abs(event.deltaY) < 20) {
-      return;
-    }
-
-    wheelLocked.current = true;
-
-    if (event.deltaY > 0) {
-      changeVideo("next");
-    } else {
-      changeVideo("previous");
-    }
-
-    window.setTimeout(() => {
-      wheelLocked.current = false;
-    }, 800);
-  };
-
-
-  /* =========================================================
      KEYBOARD
   ========================================================= */
 
@@ -527,7 +499,6 @@ function Animations() {
     <>
     <section
       className="vivi-openart-showcase"
-      onWheel={handleWheel}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onMouseEnter={() => setIsPaused(true)}
@@ -554,7 +525,7 @@ function Animations() {
 
           <p>
             Explore what creators can make
-            with Visl. Scroll through the
+            with Visl. Browse the
             productions and start with any
             story that inspires you.
           </p>
